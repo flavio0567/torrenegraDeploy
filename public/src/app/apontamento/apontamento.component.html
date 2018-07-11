@@ -1,0 +1,114 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Torre Negra</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Sair <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+
+  <h3>Selecione um projeto</h3>
+  <div class="select is-multiple is-focused">
+    <select #selectElem (change)="setProject(selectElem.value)">
+        <option>--Selecione--</option>
+        <option *ngFor="let project of projects" [value]="project.id">
+            {{ project.id }} {{ project.descricao }}
+        </option>
+    </select>
+  </div>
+
+  <div style="margin-top: 15px; width: 50%;">
+      <!-- {{today | date:'short'}} -->
+      <ngbd-datepicker-popup></ngbd-datepicker-popup>
+  </div>
+
+  <h3>Selecione o tipo de apontamento</h3>
+  <div class="select is-multiple">
+      <select #selectElem (change)="setTipoApontamento(selectElem.value)">
+          <option>--Selecione--</option>
+          <option>Despesa </option>
+          <option>Hora </option>
+      </select>
+      <!-- (submit)="setApontamento()" -->
+      <form  #formData="ngForm" id="newDespesaForm">
+        <div *ngIf="(selectElem.value=='Despesa')">
+            <!-- <form (submit)="addDespesa()" #formData="ngForm" id="newDespesaForm"> -->
+                <div class="field is-horizontal">
+                  <!-- <div class="field-label is-normal">
+                    <label class="label">Despesa</label>
+                  </div> -->
+                  <div   style="margin-top: 15px;" class="field-body">
+                    <div class="field">
+                      <p class="control">
+                        <input 
+                        class="input" 
+                        type="text" 
+                        name="despesa" 
+                        [(ngModel)]="apontamento.despesa"
+                        #despesa="ngModel"
+                        />
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              <!-- </form> -->
+
+        </div>
+
+        <div *ngIf="(selectElem.value=='Hora')">
+            <!-- <form (submit)="addDespesa()" #formData="ngForm" id="newDespesaForm"> -->
+                <div class="field is-horizontal">
+                  <!-- <div class="field-label is-normal">
+                    <label class="label">Despesa</label>
+                  </div> -->
+                  <div style="margin-top: 15px;" class="field-body">
+                    <div class="field">
+                      <p class="control">
+                        <input 
+                        class="input" 
+                        type="text" 
+                        name="hora" 
+                        [(ngModel)]="apontamento.hora"
+                        #hora="ngModel"
+                        />
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              <!-- </form> -->
+
+        </div>
+
+        <button type="button" class="btn btn-secondary" (click)="cancel()">Cancela</button>
+        <button type="button" class="btn btn-primary" (click)="setTipoApontamento(selectElem.value)" [disabled]="formData.invalid">Confirma</button>
+
+      <!-- <div class="errors">
+        <p *ngIf="errors.name" >  {{ errors.name.message }} </p>
+        <p *ngIf="errors.cuisine"> {{ errors.cuisine.message }} </p>        
+      </div> -->
+
+      </form>
+    </div>
+    
+
+
+  <!-- <div style="margin: 10px; width: 50%; border: 3px solid green; padding: 10px;">
+    {{today | date:'short'}}
+    <ngbd-datepicker-popup></ngbd-datepicker-popup>
+  </div> -->
+
+
+
+
+
+
+
+
+

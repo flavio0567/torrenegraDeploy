@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Torre Negra</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="projeto/list">Retornar <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  
+  <div class="container">
+      <nav class="level">
+        <div class="level-left">
+            <div class="title is-4">Usuário</div> 
+        </div>
+        <div class="level-right">
+            <button type="button" class="button is-light" [routerLink]="['/usuario/novo']">Novo usuário</button>
+        </div> 
+      </nav>
+    <article class="media">
+      <div class="media-content">
+        <div class="content">
+  
+          <br>
+          <div id="scroll">
+            <table class="table table-hover" align="left">
+              <thead>
+                  <tr class="table-primary d-flex">
+                    <th class="col-3">Nome</th>
+                    <th class="col-3">Função</th>
+                    <th class="col-2">Custo/hora</th>
+                    <th class="col-2">Admin</th>
+                    <th class="col-1">Ação</th>
+                    <th class="col-1"> </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let usuario of usuarios" class="d-flex">
+                    <td class="col-3">{{ usuario['nome'] }}</td>
+                    <td class="col-3">{{ usuario['funcao'] }}</td>
+                    <td class="col-2">{{ usuario['custo'] | number : '1.2-2' }}</td>
+                    <td class="col-2">{{ usuario['admin'] }}</td>
+                    <td class="col-1"><button type="button" [routerLink]="['/usuario/edit/', usuario['_id'] ]" class="button is-warning">Editar</button></td>
+                    <td class="col-1"><button type="button" [routerLink]="['/usuario/show', usuario['_id'] ]"  class="button is-danger">Detalhes</button></td>
+                  </tr>
+                </tbody>
+              </table> 
+            </div>    
+          </div>
+        </div>
+      </article>
+  </div>
+    
+  
+  

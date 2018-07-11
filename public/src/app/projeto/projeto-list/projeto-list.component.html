@@ -1,0 +1,90 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Torre Negra</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Cadastro
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="usuario/list">Usuário</a>
+          <a class="dropdown-item" href="cliente/list">Cliente</a>
+          <!-- <div class="dropdown-divider"></div> -->
+          <!-- <a class="dropdown-item" href="#">Projeto</a> -->
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="apontamento">Apontamento</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="financeiro">Financeiro</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Relatório
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="relatorio/financeiro">Financeiro</a>
+          <a class="dropdown-item" href="#">Total de horas por projeto</a>
+          <a class="dropdown-item" href="#">Total de horas por funcionário</a>
+          <a class="dropdown-item" href="#">Custo por pedido</a>
+        </div>
+      </li>
+      <li class="nav-item active">
+          <a class="nav-link" href="#">Sair <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+
+<div class="box">
+  <nav class="level">
+    <div class="level-left">
+        <div class="title is-4">Projetos</div> 
+    </div>
+    <div class="level-right">
+        <button type="button" class="button is-light" [routerLink]="['/projeto/novo']">Novo projeto</button>
+    </div> 
+  </nav>
+  <article class="media">
+    <div class="media-content">
+      <div class="content">
+
+        <br>
+        <div id="scroll">
+          <table class="table table-hover" align="left">
+            <thead>
+                <tr class="table-primary d-flex">
+                  <th class="col-1">Id</th>
+                  <th class="col-3">Descrição</th>
+                  <th class="col-2">Cliente</th>
+                  <th class="col-2">Pedido</th>
+                  <th class="col-1">Ação</th>
+                  <th class="col-1"> </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let projeto of projetos" class="d-flex">
+                  <td class="col-1">{{ projeto['_id'] }}</td>
+                  <td class="col-3">{{ projeto['descricao'] }}</td>
+                  <td class="col-2">{{ projeto['cliente'] }}</td>
+                  <td class="col-2">{{ projeto['pedido'] }}</td>
+                  <td class="col-1"><button type="button" [routerLink]="['/projeto/edit/', projeto['_id'] ]" class="button is-warning">Editar</button></td>
+                  <td class="col-1"><button type="button" [routerLink]="['/projeto/', projeto['_id'] ]"  class="button is-danger">Detalhes</button></td>
+                </tr>
+              </tbody>
+            </table> 
+          </div>    
+        </div>
+      </div>
+    </article>
+  </div>

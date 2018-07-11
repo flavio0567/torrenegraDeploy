@@ -1,0 +1,16 @@
+.right {
+    text-align: right;
+}
+p {
+    font-size: 0.9em;
+}
+.errors{
+    width: inherit;
+    height: 40px;
+    display: block;
+    margin: 0px auto;
+    color: red;
+}
+button {
+    margin: 10px;
+}
