@@ -2,20 +2,20 @@
 // ======date: 03-05-2018 ====//
 // 
 const path = require('path');
-const boiler = require('../controllers/boiler.js');
+const projeto = require('../controllers/projeto.js');
 
 module.exports = function(app){
     app
     .get('/', (req, res) => {
-        boiler.dashboard(req, res)})
-    .get('/read/:id', (req, res) => {
-        boiler.read(req, res)})
-    .post('/new', (req, res) => {
-        boiler.new(req, res)})
-    .put('/update/:id', (req, res) => {
-        boiler.update(req, res)})
-    .delete('/destroy', (req, res) => {
-        boiler.destroy(req, res)})
+        projeto.list(req, res)})
+    .get('/projeto/edit/:id', (req, res) => {
+        projeto.edit(req, res)})
+    .post('/projeto/novo', (req, res) => {
+        projeto.novo(req, res)})
+    .put('/projeto/edit/:id', (req, res) => {
+        projeto.edit(req, res)})
+    .delete('/projeto/destroy', (req, res) => {
+        projeto.destroy(req, res)})
     .all("*", (req, res) => { 
-        res.sendFile(path.resolve('../boilerplate/public/dist/index.html'))})
+        res.sendFile(path.resolve('../torrenegraDeploy/public/dist/index.html'))})
 }
