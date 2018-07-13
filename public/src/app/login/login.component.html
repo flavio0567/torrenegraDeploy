@@ -8,7 +8,10 @@
                   <figure class="avatar">
                       <img src="../assets/images/torrenegra.png">
                   </figure>
-
+                  <div class="errors">
+                    <p *ngIf="errors.email" >  {{ errors.email.message }} </p>
+                    <p *ngIf="errors.senha"> {{ errors.senha.message }} </p>        
+                  </div>
                   <form name="form" (submit)="login()" #formData="ngForm"> 
                       <div class="field">
                           <div class="control">

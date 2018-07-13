@@ -32,6 +32,8 @@
           <a class="dropdown-item" href="#">Total de horas por projeto</a>
           <a class="dropdown-item" href="#">Total de horas por funcionário</a>
           <a class="dropdown-item" href="#">Custo por pedido</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Projetos encerrados</a>
         </div>
       </li>
       <li class="nav-item active">
@@ -64,7 +66,7 @@
           <table class="table table-hover" align="left">
             <thead>
                 <tr class="table-primary d-flex">
-                  <th class="col-1">Id</th>
+                  <th class="col-1">Código</th>
                   <th class="col-3">Descrição</th>
                   <th class="col-2">Cliente</th>
                   <th class="col-2">Pedido</th>
@@ -73,13 +75,14 @@
                 </tr>
               </thead>
               <tbody>
+
                 <tr *ngFor="let projeto of projetos" class="d-flex">
-                  <td class="col-1">{{ projeto['_id'] }}</td>
+                  <td class="col-1">{{ projeto['codigo'] }}</td>
                   <td class="col-3">{{ projeto['descricao'] }}</td>
                   <td class="col-2">{{ projeto['cliente'] }}</td>
                   <td class="col-2">{{ projeto['pedido'] }}</td>
                   <td class="col-1"><button type="button" [routerLink]="['/projeto/edit/', projeto['_id'] ]" class="button is-warning">Editar</button></td>
-                  <td class="col-1"><button type="button" [routerLink]="['/projeto/', projeto['_id'] ]"  class="button is-danger">Detalhes</button></td>
+                  <td class="col-1"><button type="button" (click)="encerrar()"  class="button is-danger">Encerrar</button></td>
                 </tr>
               </tbody>
             </table> 

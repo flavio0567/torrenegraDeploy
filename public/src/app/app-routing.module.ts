@@ -16,6 +16,7 @@ import { ClienteEditComponent } from './cliente/cliente-edit/cliente-edit.compon
 import { ClienteShowComponent } from './cliente/cliente-show/cliente-show.component';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { RelatorioFinanceiroComponent } from './relatorio/relatorio-financeiro/relatorio-financeiro.component';
+import { ApontamentoListComponent } from './apontamento/apontamento-list/apontamento-list.component';
 
 const routes: Routes = [
   {
@@ -24,8 +25,8 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'apontamento',
-    component:ApontamentoComponent,
+    path: 'apontamentos',
+    component:ApontamentoListComponent,
     pathMatch: 'full'
   },
   {
@@ -74,7 +75,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'projeto/list',
+    path: 'projetos',
     component: ProjetoListComponent,
     pathMatch: 'full'
   },

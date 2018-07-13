@@ -2,16 +2,20 @@
 // ======date: 03-05-2018 ====//
 // 
 const path = require('path');
-const projeto = require('../controllers/projeto.js');
+const projeto = require('../controllers/projeto.ctrl.js');
 
 module.exports = function(app){
     app
-    .get('/', (req, res) => {
+    .get('/projetos', (req, res) => {
         projeto.list(req, res)})
+    .get('/apontamento/list', (req, res) => {
+        projeto.apontamentoList(req, res)})
     .get('/projeto/edit/:id', (req, res) => {
         projeto.edit(req, res)})
     .post('/projeto/novo', (req, res) => {
         projeto.novo(req, res)})
+    .put('/projeto/encerrar/:id', (req, res) => {
+        projeto.encerrar(req, res)})
     .put('/projeto/edit/:id', (req, res) => {
         projeto.edit(req, res)})
     .delete('/projeto/destroy', (req, res) => {

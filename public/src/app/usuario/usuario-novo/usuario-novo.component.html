@@ -38,7 +38,30 @@
       </div>
     </div>
     <!-- <div *ngIf="!codigo.valid" class="purple">Código precisar ter no mínimo 4 caracteres!</div> -->
-  
+   
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label">e-mail</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control">
+            <input 
+            class="input is-focused" 
+            type="text" 
+            name="email" 
+            minlength=6
+            required
+            pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            [(ngModel)]="usuario.email"
+            #email="ngModel"
+            />
+          </p>
+        </div>
+      </div>
+    </div>
+<!-- <div *ngIf="!codigo.valid" class="purple">Código precisar ter no mínimo 4 caracteres!</div> -->
+
   <div class="field is-horizontal">
     <div class="field-label is-normal">
       <label class="label">Função</label>
@@ -59,7 +82,7 @@
       </div>
     </div>
   </div>
-  <div *ngIf="!cliente.valid" class="purple">Função precisar ter no mínimo 4 caracteres!</div>
+  <!-- <div *ngIf="!cliente.valid" class="purple">Função precisar ter no mínimo 4 caracteres!</div> -->
   
   
   <div class="field is-horizontal">

@@ -7,11 +7,17 @@ import { Http } from '@angular/http';
 export class UsuarioService {
 
   private isUserLoggedIn;
-  private username;
+  public usuario;
 
 
   constructor(private _http: Http) { 
     this.isUserLoggedIn = false;
+  }
+
+  login(usuario, callback) {
+    this.usuario = usuario;
+    console.log('LOGIN success: ', this.usuario);
+    callback(this.usuario);
   }
 
   setUserLoggedIn() {

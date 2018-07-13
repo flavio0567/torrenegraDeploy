@@ -7,14 +7,14 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="projeto/list">Retornar <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="projetos">Retornar <span class="sr-only">(current)</span></a>
         </li>
       </ul>
     </div>
   </nav>
   
   <div class="container">
-    <form (submit)="addProject()" #formData="ngForm" id="newForm">
+    <form (submit)='criarProjeto(projCreateForm)' #projCreateForm='ngForm'>
       <div class="field is-horizontal">
         <div class="field-label is-normal">
           <label class="label">Código</label>
@@ -35,7 +35,7 @@
           </div>
         </div>
       </div>
-      <!-- <div *ngIf="!codigo.valid" class="purple">Código precisar ter no mínimo 4 caracteres!</div> -->
+      <!-- <div *ngIf="!projeto.codigo.valid" class="purple">* Código precisar ter 7 caracteres!</div> -->
   
     <div class="field is-horizontal">
       <div class="field-label is-normal">
@@ -57,7 +57,7 @@
         </div>
       </div>
     </div>
-    <div *ngIf="!descricao.valid" class="purple">Descrição do projeto precisar ter no mínimo 8 caracteres!</div>
+    <!-- <div *ngIf="!projeto.descricao.valid" class="purple">Descrição do projeto precisar ter no mínimo 8 caracteres!</div> -->
   
     <div class="field is-horizontal">
       <div class="field-label is-normal">
@@ -79,7 +79,7 @@
         </div>
       </div>
     </div>
-    <div *ngIf="!cliente.valid" class="purple">Cliente precisar ter no mínimo 4 caracteres!</div>
+    <!-- <div *ngIf="!projeto.cliente.valid" class="purple">Cliente precisar ter no mínimo 6 caracteres!</div> -->
   
     <div class="field is-horizontal">
       <div class="field-label is-normal">
@@ -100,7 +100,7 @@
         </div>
       </div>
     </div>
-    <!-- <div *ngIf="!pedido.valid" class="purple">Pedido do projeto precisar ter no mínimo 8 caracteres!</div> -->
+    <!-- <div *ngIf="!projeto.pedido.valid" class="purple">Pedido do projeto precisar ter no mínimo 4 caracteres!</div> -->
   
     <div class="field is-horizontal">
       <div class="field-label is-normal">
@@ -191,9 +191,9 @@
               <input 
               class="input " 
               type="text" 
-              name="valorviagens" 
-              [(ngModel)]="projeto.valorviagens"
-              #valorviagens="ngModel"
+              name="valorViagens" 
+              [(ngModel)]="projeto.valorViagens"
+              #valorViagens="ngModel"
               />
             </p>
           </div>
@@ -201,7 +201,7 @@
     </div>
   
     <button type="button" class="btn btn-secondary" (click)="cancel()">Cancela</button>
-    <button type="submit" class="btn btn-primary" [disabled]="formData.invalid">Confirma</button>
+    <button type="submit" class="btn btn-primary" [disabled]="projCreateForm.invalid">Confirma</button>
   
           <!-- <div class="errors">
             <p *ngIf="errors.name" >  {{ errors.name.message }} </p>

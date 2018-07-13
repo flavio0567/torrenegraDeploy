@@ -6,7 +6,7 @@
 
 const express = require('express');
 const app     = express();
-const port    = 1337;
+const port    = 5000;
 
 const path = require('path');
 
@@ -25,12 +25,12 @@ app.use(parser.text({type: 'text/xml' }));
 app.use(parser.text({type: 'text/plain' }));
 // - - - - = = = = Model = = = = - - - - 
 // define Schema variable
-require('./server/config/mongoose.js');
+require('./server/config/mongoose.config.js');
 
 // - - - - = = = = Routes = = = = - - - - 
 
 // route for getting / creatting 
-require('./server/config/routes.js')(app);
+require('./server/config/routes.config.js')(app);
 
 // listen to port 
 app.listen(port, function() {

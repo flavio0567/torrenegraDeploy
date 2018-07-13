@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-pagina-nao-encontrada',
-  templateUrl: './pagina-nao-encontrada.component.html',
-  styleUrls: ['./pagina-nao-encontrada.component.css']
+  template: `<h2>Pagagina não encontrada ;|</h2>
+             <div>
+                <button (click)="goBack()">Retornar</button>
+	     </div>
+        `
 })
-export class PaginaNaoEncontradaComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+export class PaginaNaoEncontradaComponent {
+	constructor(private location: Location) { }
+	goBack(): void {
+          this.location.back();
+        }
 }

@@ -2,8 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
-import { NgbdDatepickerPopup } from './apontamento/datepicker-popup';
-import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+// import { NgbdDatepickerPopup } from './apontamento/datepicker-popup';
+// import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,12 +24,16 @@ import { ProjetoShowComponent } from './projeto/projeto-show/projeto-show.compon
 import { ProjetoEditComponent } from './projeto/projeto-edit/projeto-edit.component';
 import { ClienteListComponent } from './cliente/cliente-list/cliente-list.component';
 import { RelatorioFinanceiroComponent } from './relatorio/relatorio-financeiro/relatorio-financeiro.component';
+import { ApontamentoListComponent } from './apontamento/apontamento-list/apontamento-list.component';
+import { ProjetoService } from './projeto/projeto.service';
+import { UsuarioService } from './usuario/usuario.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     ApontamentoComponent,
+    ApontamentoListComponent,
     FinanceiroComponent,
     ClienteListComponent,
     ClienteNovoComponent,
@@ -44,18 +48,21 @@ import { RelatorioFinanceiroComponent } from './relatorio/relatorio-financeiro/r
     ProjetoShowComponent,
     ProjetoEditComponent,
     PaginaNaoEncontradaComponent,
-    NgbdDatepickerPopup,
     RelatorioFinanceiroComponent
+    // NgbdDatepickerPopup,
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
-    NgbModule,
-    AppRoutingModule,
-    NgbModule.forRoot()
+    AppRoutingModule
+    // NgbModule,
+    // NgbModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    ProjetoService,
+    UsuarioService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
