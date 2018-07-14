@@ -6,7 +6,7 @@ const mongoose   = require('mongoose'),
 uniqueValidator  = require('mongoose-unique-validator');
 
 const ClienteSchema = new Schema({
-    name: {
+    cnpj: {
         type: Number,
         required: [true, "CNPJ do cliente é requerido"],
         unique: true,
@@ -20,8 +20,38 @@ const ClienteSchema = new Schema({
     },
     nomeFantasia: {
         type: String,
-        required: [true, "Nome fantasia do cliente é requerido"],
-        minlength: 3
+        required: [true, "Nome fantasia do cliente é requerida"],
+        minlength: 2
+    },
+    endereco: {
+        type: String,
+        required: [true, "Endereço é requerido"],
+        minlength: 6
+    },
+    contato1: {
+        nome: {
+            type: String,
+            required: [true, "Favor informar o primeiro contato do cliente"],
+            minlength: 3
+        },
+        email: {
+            type: String,
+            trim: true,
+            unique: [true, 'E-mail em uso'],
+            uniqueCaseInsensitive: true,
+            required: [true,'E-mail do primeiro contato é requerido'],
+            validate: {
+            validator: function( value ) {
+            return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test( value );
+            },
+            message: "Por favor, informe um endereço de e-mail válido",
+            }
+        },
+        telefone: {
+            type: Number,
+            required: [true, "Telefone do primeiro contato do cliente é requerido"],
+        },
+
     },
     clienteProjetos: [{type: Schema.Types.ObjectId, ref: 'ClienteProjeto'}]
     }, { timestamps: true }, 

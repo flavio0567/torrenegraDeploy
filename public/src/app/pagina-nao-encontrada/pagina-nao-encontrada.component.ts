@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 
 @Component({
-  template: `<h2>Pagagina não encontrada ;|</h2>
+  template: `<h2>Pagina não encontrada!</h2>
              <div>
                 <button (click)="goBack()">Retornar</button>
 	     </div>

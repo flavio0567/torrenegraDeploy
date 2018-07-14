@@ -18,12 +18,12 @@ export class ProjetoShowComponent implements OnInit {
   ngOnInit() {
   }
 
-  encerrar() {
-    console.log('projeto em showProjeto: ', this.projeto); 
-    this._projetoService.encerrarProjeto(this.projeto, (res) => {
-      this._router.navigate(['projeto/list', res]);
-    });
-  }
+  // encerrar() {
+  //   console.log('projeto em showProjeto: ', this.projeto); 
+  //   this._projetoService.encerrarProjeto(this.projeto, (res) => {
+  //     this._router.navigate(['projeto/list', res]);
+  //   });
+  // }
 
   cancel() {
     this._router.navigate(['/projeto/list']);

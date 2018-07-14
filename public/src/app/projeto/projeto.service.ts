@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response  } from '@angular/http';
+import { Http } from '@angular/http';
 
 @Injectable()
 export class ProjetoService {
@@ -31,11 +31,16 @@ export class ProjetoService {
     return this._http.post('projeto/novo', projeto);
   }
 
-  encerrarProjeto(id, callback) {
+  editarProjeto(projeto) {
+    console.log('ProjetoService > editarProjeto(projeto)', projeto);
+    return this._http.put('projeto/edit/' + projeto['_id'], projeto);
+  }
+
+  encerrarProjeto(id) {
     this._http.put('/projeto/encerrar,' + id, this.projeto).subscribe(
       (res) => {
         console.log('SUCESSO no encerramento do projeto: ', res.json());
-        callback(res.json());
+        this.projeto(res.json());
       },
       (err) => {
         console.log('ERRO no encerramento do projeto: ', err);
@@ -43,23 +48,18 @@ export class ProjetoService {
     );
   }
 
+  obterProjetoById(id) {
+    console.log('ProjetoService > obterProjetoById', id);
+    return this._http.get('/projeto/' + id );
+  }
+  
   // getOne(recipie, id) {
   //   this._http.get('/recipie').subscribe(
   //   id => id.json());
   //   console.log('services-recipie in getOne:', id)
   // }
 
-  // getRecipieById(id, callback) {
-  //   this._http.get('/recipie/' + id ).subscribe(
-  //     (res) => {
-  //       console.log('SUCCESS getting RecipeByID: ', res.json());
-  //       callback(res.json());
-  //     },
-  //     (err) => {
-  //       console.log('ERROR getting RecipieByID: ', err);
-  //     }
-  //   );
-  // }
+
 
   // updateRecipie(ingredients, callback) {
   //   this._http.put('/recipie/update', ingredients).subscribe(

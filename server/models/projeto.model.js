@@ -21,28 +21,39 @@ const ProjetoSchema = new Schema({
     },
     cliente: {
         type: String,
-        required: [true, "Cliente do projeto é requerido"]
+        required: [true, "Favor informar o Cliente do projeto"]
     },
     pedido: {
         type: Number,
-        required: [true, "Pedido do projeto é requerido"],
+        required: [true, "Favor informar o número do Pedido do projeto"],
         trim: true
     },
     horasPLC: {
         type: Number,
-        required: [true, "Horas PLC do projeto são requerias"]
+        required: [true, "Favor informar Horas PLC do projeto"],
+        min: 10,
+        max: 5000,
     },
     horasIHM: {
-        type: Number
+        type: Number,
+        required: [true, "Favor informar Horas IHM do projeto"],
+        min: 10,
+        max: 5000,
     },
     valorTerceiros: {
-        type: Number
+        type: Number,
+        min: 0,
+        max: 500000,
     },
     valorMateriais: {
-        type: Number
+        type: Number,
+        min: 0,
+        max: 100000,
     },
     valorViagens: {
-        type: Number
+        type: Number,
+        min: 0,
+        max: 5000,
     },
     bloquearApontamento: {                 
         type: Boolean, default: false

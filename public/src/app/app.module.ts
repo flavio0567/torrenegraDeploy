@@ -1,14 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
+import { GlobalErrorComponent } from './global-error/global-error.component';
+
+import { ProjetoService } from './projeto/projeto.service';
+import { UsuarioService } from './usuario/usuario.service';
+import { ClienteService } from './cliente/cliente.service';
+import { GlobalErrorHandlerService } from './global-error-handler.service';
+
 // import { NgbdDatepickerPopup } from './apontamento/datepicker-popup';
 // import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ApontamentoComponent } from './apontamento/apontamento.component';
-import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
+import { ApontamentoListComponent } from './apontamento/apontamento-list/apontamento-list.component';
 import { ClienteEditComponent } from './cliente/cliente-edit/cliente-edit.component';
 import { ClienteNovoComponent } from './cliente/cliente-novo/cliente-novo.component';
 import { ClienteShowComponent } from './cliente/cliente-show/cliente-show.component';
@@ -24,9 +31,7 @@ import { ProjetoShowComponent } from './projeto/projeto-show/projeto-show.compon
 import { ProjetoEditComponent } from './projeto/projeto-edit/projeto-edit.component';
 import { ClienteListComponent } from './cliente/cliente-list/cliente-list.component';
 import { RelatorioFinanceiroComponent } from './relatorio/relatorio-financeiro/relatorio-financeiro.component';
-import { ApontamentoListComponent } from './apontamento/apontamento-list/apontamento-list.component';
-import { ProjetoService } from './projeto/projeto.service';
-import { UsuarioService } from './usuario/usuario.service';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 
 @NgModule({
   declarations: [
@@ -47,8 +52,9 @@ import { UsuarioService } from './usuario/usuario.service';
     ProjetoNovoComponent,
     ProjetoShowComponent,
     ProjetoEditComponent,
+    RelatorioFinanceiroComponent,
     PaginaNaoEncontradaComponent,
-    RelatorioFinanceiroComponent
+    GlobalErrorComponent
     // NgbdDatepickerPopup,
   ],
   imports: [
@@ -61,7 +67,10 @@ import { UsuarioService } from './usuario/usuario.service';
   ],
   providers: [
     ProjetoService,
-    UsuarioService
+    UsuarioService,
+    ClienteService,
+    GlobalErrorHandlerService,
+    { provide: ErrorHandler, useClass: GlobalErrorHandlerService }    
   ],
   bootstrap: [AppComponent]
 })

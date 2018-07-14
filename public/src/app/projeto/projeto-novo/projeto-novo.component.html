@@ -14,6 +14,15 @@
   </nav>
   
   <div class="container">
+
+    <div class="errors" *ngIf="errors">
+      <p *ngIf="errors.codigo" >  {{ errors['codigo'].message }} </p>
+      <p *ngIf="errors.descricao" >  {{ errors['descricao'].message }} </p>
+      <p *ngIf="errors.cliente" >  {{ errors['cliente'].message }} </p>
+      <p *ngIf="errors.pedido" >  {{ errors['pedido'].message }} </p>   
+      <p *ngIf="errors.horasPLC" >  {{ errors['horasPLC'].message }} </p>       
+    </div>
+
     <form (submit)='criarProjeto(projCreateForm)' #projCreateForm='ngForm'>
       <div class="field is-horizontal">
         <div class="field-label is-normal">
@@ -200,13 +209,8 @@
       </div>
     </div>
   
-    <button type="button" class="btn btn-secondary" (click)="cancel()">Cancela</button>
+    <button type="button" class="btn btn-secondary" [routerLink]="['/projetos']">Cancela</button>
     <button type="submit" class="btn btn-primary" [disabled]="projCreateForm.invalid">Confirma</button>
-  
-          <!-- <div class="errors">
-            <p *ngIf="errors.name" >  {{ errors.name.message }} </p>
-            <p *ngIf="errors.cuisine"> {{ errors.cuisine.message }} </p>        
-          </div> -->
   
     </form>
   </div>  

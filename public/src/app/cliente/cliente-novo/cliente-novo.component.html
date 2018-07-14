@@ -1,309 +1,336 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Torre Negra</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="projeto/list">Retornar <span class="sr-only">(current)</span></a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  <a class="navbar-brand" href="#">Torre Negra</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="projeto/list">Retornar <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+  </div>
+</nav>
   
   
   <div class="container">
-  
+
+    <div class="errors" *ngIf="errors">
+      <p *ngIf="errors.cnpj" >  {{ errors['cnpj'].message }} </p>
+      <p *ngIf="errors.razaoSocial" >  {{ errors['razaoSocial'].message }} </p>
+      <p *ngIf="errors.nomeFantasia" >  {{ errors['nomeFantasia'].message }} </p>
+      <p *ngIf="errors.endereco" >  {{ errors['endereco'].message }} </p>
+      <p *ngIf="errors.contato1.nome" >  {{ errors['contato1']['nome'].message }} </p> 
+      <p *ngIf="errors.contato1.email" >  {{ errors['contato1']['email'].message }} </p>
+      <p *ngIf="errors.contato1.telefone" >  {{ errors['contato1']['telefone'].message }} </p>         
+    </div>
+
     Dados básicos: 
-  
-  <form (submit)="addClient()" #formData="ngForm" id="newClientForm">
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        <label class="label">CNPJ</label>
-      </div>
-      <div class="field-body">
-        <div class="field">
-          <p class="control">
-            <input 
-            class="input is-focused" 
-            type="text" 
-            name="cnpj" 
-            minlength=4
-            required
-            [(ngModel)]="cliente.cnpj"
-            #cnpj="ngModel"
-            />
-          </p>
+
+    <form (submit)="criarCliente(cliForm)" #cliForm="ngForm">
+
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">CNPJ</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <input 
+              class="input is-focused" 
+              type="text" 
+              name="cnpj" 
+              minlength=11
+              required
+              [(ngModel)]="cliente.cnpj"
+              #cnpj="ngModel"
+              />
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-    <!-- <div *ngIf="!codigo.valid" class="purple">Código precisar ter no mínimo 4 caracteres!</div> -->
-  
-  <div class="field is-horizontal">
-    <div class="field-label is-normal">
-      <label class="label">Razão Social</label>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <p class="control">
-          <input 
-          class="input" 
-          type="text" 
-          name="razaoSocial" 
-          minlength=8
-          required
-          [(ngModel)]="cliente.razaoSocial"
-          #razaoSocial="ngModel"
-          />
-        </p>
+      <div *ngIf="!cliente.cnpj.valid" class="purple">* CNPJ precisar ter no mínimo 11 caracteres!</div>
+    
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Razão Social</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <input 
+              class="input" 
+              type="text" 
+              name="razaoSocial" 
+              minlength=3
+              required
+              [(ngModel)]="cliente.razaoSocial"
+              #razaoSocial="ngModel"
+              />
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <div *ngIf="!razaoSocial.valid" class="purple">Razão Social do cliente precisar ter no mínimo 8 caracteres!</div>
-  
-  <div class="field is-horizontal">
-    <div class="field-label is-normal">
-      <label class="label">Endereço</label>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <p class="control">
-          <input 
-          class="input" 
-          type="text" 
-          name="endereco" 
-          minlength=4
-          required
-          [(ngModel)]="cliente.endereco"
-          #endereco="ngModel"
-          />
-        </p>
+      <div *ngIf="!cliente.razaoSocial.valid" class="purple">* Razão Social do cliente precisar ter no mínimo 3 caracteres!</div>
+      
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Nome Fantasia</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <input 
+              class="input" 
+              type="text" 
+              name="nomeFantasia" 
+              minlength=2
+              required
+              [(ngModel)]="cliente.nomeFantasia"
+              #razaoSocial="ngModel"
+              />
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <div *ngIf="!cliente.valid" class="purple">Cliente precisar ter no mínimo 4 caracteres!</div>
-  
-  Contatos: 
-  
-  <div class="field is-horizontal">
-    <div class="field-label is-normal">
-      <label class="label">Contato 1</label>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <p class="control">
-          <input 
-          class="input" 
-          type="text" 
-          name="nomeContato1" 
-          required
-          placeholder="nome"
-          [(ngModel)]="cliente.nomeContato1"
-          #nomeContato1="ngModel"
-          />
-  
-          <input 
-          class="input" 
-          type="text" 
-          name="emailContato1" 
-          required
-          placeholder="e-mail"
-          [(ngModel)]="cliente.emailContato1"
-          #emailContato1="ngModel"
-          />
-  
-          <input 
-          class="input" 
-          type="text" 
-          name="telContato1" 
-          required
-          placeholder="telefone"
-          [(ngModel)]="cliente.telContato1"
-          #telContato1="ngModel"
-          />
-        </p>
+      <div *ngIf="!cliente.nomeFantasia.valid" class="purple">* Nome Fantasia do cliente precisar ter no mínimo 2 caracteres!</div>
+      
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Endereço</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <input 
+              class="input" 
+              type="text" 
+              name="endereco" 
+              minlength=6
+              required
+              [(ngModel)]="cliente.endereco"
+              #endereco="ngModel"
+              />
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  
-  <div class="field is-horizontal">
-    <div class="field-label is-normal">
-      <label class="label">Contato 2</label>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <p class="control">
-          <input 
-          class="input" 
-          type="text" 
-          name="nomeContato2" 
-          required
-          placeholder="nome"
-          [(ngModel)]="cliente.nomeContato2"
-          #nomeContato2="ngModel"
-          />
-  
-          <input 
-          class="input" 
-          type="text" 
-          name="emailContato2" 
-          required
-          placeholder="e-mail"
-          [(ngModel)]="cliente.emailContato2"
-          #emailContato2="ngModel"
-          />
-  
-          <input 
-          class="input" 
-          type="text" 
-          name="telContato2" 
-          required
-          placeholder="telefone"
-          [(ngModel)]="cliente.telContato2"
-          #telContato2="ngModel"
-          />
-        </p>
+      <div *ngIf="!cliente.endereco.valid" class="purple">* Endereço do cliente precisar ter no mínimo 6 caracteres!</div>
+      
+      Contatos: 
+      
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Contato 1</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <input 
+              class="input" 
+              type="text" 
+              name="nome" 
+              required
+              placeholder="contato1.nome"
+              [(ngModel)]="cliente.contato1.nome"
+              #contato1.nome="ngModel"
+              />
+      
+              <input 
+              class="input" 
+              type="text" 
+              name="contato1.email" 
+              required
+              placeholder="e-mail"
+              [(ngModel)]="cliente.contato1.email"
+              #contato1.email="ngModel"
+              />
+      
+              <input 
+              class="input" 
+              type="text" 
+              name="contato1.telefone" 
+              required
+              placeholder="telefone"
+              [(ngModel)]="cliente.contato1.telefone"
+              #contato1.telefone="ngModel"
+              />
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  
-  <div class="field is-horizontal">
-    <div class="field-label is-normal">
-      <label class="label">Contato 3</label>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <p class="control">
-          <input 
-          class="input" 
-          type="text" 
-          name="nomeContato3" 
-          required
-          placeholder="nome"
-          [(ngModel)]="cliente.nomeContato3"
-          #nomeContato3="ngModel"
-          />
-  
-          <input 
-          class="input" 
-          type="text" 
-          name="emailContato3" 
-          required
-          placeholder="e-mail"
-          [(ngModel)]="cliente.emailContato3"
-          #emailContato3="ngModel"
-          />
-  
-          <input 
-          class="input" 
-          type="text" 
-          name="telContato3" 
-          required
-          placeholder="telefone"
-          [(ngModel)]="cliente.telContato3"
-          #telContato3="ngModel"
-          />
-        </p>
+<!--       
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Contato 2</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <input 
+              class="input" 
+              type="text" 
+              name="nomeContato2" 
+              required
+              placeholder="nome"
+              [(ngModel)]="cliente.contato2.nome"
+              #nomeContato2="ngModel"
+              />
+      
+              <input 
+              class="input" 
+              type="text" 
+              name="emailContato2" 
+              required
+              placeholder="e-mail"
+              [(ngModel)]="cliente.contato2.email"
+              #emailContato2="ngModel"
+              />
+      
+              <input 
+              class="input" 
+              type="text" 
+              name="telContato2" 
+              required
+              placeholder="telefone"
+              [(ngModel)]="cliente.contato2.telefone"
+              #telContato2="ngModel"
+              />
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  
-  
-  <div class="field is-horizontal">
-    <div class="field-label is-normal">
-      <label class="label">Contato 4</label>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <p class="control">
-          <input 
-          class="input" 
-          type="text" 
-          name="nomeContato4" 
-          required
-          placeholder="nome"
-          [(ngModel)]="cliente.nomeContato4"
-          #nomeContato4="ngModel"
-          />
-  
-          <input 
-          class="input" 
-          type="text" 
-          name="emailContato4" 
-          required
-          placeholder="e-mail"
-          [(ngModel)]="cliente.emailContato4"
-          #emailContato4="ngModel"
-          />
-  
-          <input 
-          class="input" 
-          type="text" 
-          name="telContato4" 
-          required
-          placeholder="telefone"
-          [(ngModel)]="cliente.telContato4"
-          #telContato4="ngModel"
-          />
-        </p>
+      
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Contato 3</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <input 
+              class="input" 
+              type="text" 
+              name="nomeContato3" 
+              required
+              placeholder="nome"
+              [(ngModel)]="cliente.contato3.nome"
+              #nomeContato3="ngModel"
+              />
+      
+              <input 
+              class="input" 
+              type="text" 
+              name="emailContato3" 
+              required
+              placeholder="e-mail"
+              [(ngModel)]="cliente.contato3.email"
+              #emailContato3="ngModel"
+              />
+      
+              <input 
+              class="input" 
+              type="text" 
+              name="telContato3" 
+              required
+              placeholder="telefone"
+              [(ngModel)]="cliente.contato3.telefone"
+              #telContato3="ngModel"
+              />
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  
-  
-  <div class="field is-horizontal">
-    <div class="field-label is-normal">
-      <label class="label">Contato 5</label>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <p class="control">
-          <input 
-          class="input" 
-          type="text" 
-          name="nomeContato5" 
-          required
-          placeholder="nome"
-          [(ngModel)]="cliente.nomeContato5"
-          #nomeContato5="ngModel"
-          />
-  
-          <input 
-          class="input" 
-          type="text" 
-          name="emailContato5" 
-          required
-          placeholder="e-mail"
-          [(ngModel)]="cliente.emailContato5"
-          #emailContato5="ngModel"
-          />
-  
-          <input 
-          class="input" 
-          type="text" 
-          name="telContato5" 
-          required
-          placeholder="telefone"
-          [(ngModel)]="cliente.telContato5"
-          #telContato5="ngModel"
-          />
-        </p>
+      
+      
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Contato 4</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <input 
+              class="input" 
+              type="text" 
+              name="nomeContato4" 
+              required
+              placeholder="nome"
+              [(ngModel)]="cliente.contato4.nome"
+              #nomeContato4="ngModel"
+              />
+      
+              <input 
+              class="input" 
+              type="text" 
+              name="emailContato4" 
+              required
+              placeholder="e-mail"
+              [(ngModel)]="cliente.contato4.email"
+              #emailContato4="ngModel"
+              />
+      
+              <input 
+              class="input" 
+              type="text" 
+              name="telContato4" 
+              required
+              placeholder="telefone"
+              [(ngModel)]="cliente.contato4.telefone"
+              #telContato4="ngModel"
+              />
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  
-  
-  
-  <button type="button" class="btn btn-secondary" (click)="cancel()">Cancela</button>
-  <button type="submit" class="btn btn-primary" [disabled]="formData.invalid">Confirma</button>
-  
-        <!-- <div class="errors">
-          <p *ngIf="errors.name" >  {{ errors.name.message }} </p>
-          <p *ngIf="errors.cuisine"> {{ errors.cuisine.message }} </p>        
-        </div> -->
-  
-  </form>
+      
+      
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Contato 5</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <input 
+              class="input" 
+              type="text" 
+              name="nomeContato5" 
+              required
+              placeholder="nome"
+              [(ngModel)]="cliente.contato5.nome"
+              #nomeContato5="ngModel"
+              />
+      
+              <input 
+              class="input" 
+              type="text" 
+              name="emailContato5" 
+              required
+              placeholder="e-mail"
+              [(ngModel)]="cliente.contato5.email"
+              #emailContato5="ngModel"
+              />
+      
+              <input 
+              class="input" 
+              type="text" 
+              name="telContato5" 
+              required
+              placeholder="telefone"
+              [(ngModel)]="cliente.contato5.telefone"
+              #telContato5="ngModel"
+              />
+            </p>
+          </div>
+        </div>
+      </div> -->
+      
+      <button type="button" class="btn btn-secondary" [routerLink]="['/clientes']">Cancela</button>
+      <button type="submit" class="btn btn-primary" [disabled]="cliForm.invalid">Confirma</button>
+      {{ errors | json }}
+      
+    </form>
   
   </div>

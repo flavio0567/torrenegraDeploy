@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { ApontamentoComponent } from './apontamento/apontamento.component';
+// import { ApontamentoComponent } from './apontamento/apontamento.component';
 import { FinanceiroComponent } from './financeiro/financeiro.component';
 import { UsuarioNovoComponent } from './usuario/usuario-novo/usuario-novo.component';
 import { UsuarioEditComponent } from './usuario/usuario-edit/usuario-edit.component';
@@ -17,6 +17,7 @@ import { ClienteShowComponent } from './cliente/cliente-show/cliente-show.compon
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { RelatorioFinanceiroComponent } from './relatorio/relatorio-financeiro/relatorio-financeiro.component';
 import { ApontamentoListComponent } from './apontamento/apontamento-list/apontamento-list.component';
+import { GlobalErrorComponent } from './global-error/global-error.component';
 
 const routes: Routes = [
   {
@@ -50,12 +51,12 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'usuario/list',
+    path: 'usuarios',
     component: UsuarioListComponent,
     pathMatch: 'full'
   },
   {
-    path: 'cliente/list',
+    path: 'clientes',
     component: ClienteListComponent,
     pathMatch: 'full'
   },
@@ -94,6 +95,10 @@ const routes: Routes = [
     component: ProjetoShowComponent,
     pathMatch: 'full'
   },
+  {
+    path: 'error',
+    component: GlobalErrorComponent
+ },
   { 
     path: 'reset',
     redirectTo: '',

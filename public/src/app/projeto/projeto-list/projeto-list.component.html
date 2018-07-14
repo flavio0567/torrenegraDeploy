@@ -11,10 +11,8 @@
           Cadastro
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="usuario/list">Usuário</a>
-          <a class="dropdown-item" href="cliente/list">Cliente</a>
-          <!-- <div class="dropdown-divider"></div> -->
-          <!-- <a class="dropdown-item" href="#">Projeto</a> -->
+          <a class="dropdown-item" [routerLink]="['/usuarios']">Usuário</a>
+          <a class="dropdown-item" [routerLink]="['/clientes']">Cliente</a>
         </div>
       </li>
       <li class="nav-item">

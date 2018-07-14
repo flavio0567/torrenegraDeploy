@@ -32,11 +32,9 @@ export class ProjetoListComponent implements OnInit {
     )
   }
 
-  encerrar(id) {
-    this._projetoService.encerrarProjeto(id, (res) => {
-      // this.projetos = res;
-      console.log('projetos:', this.projetos);
-    });
+  encerrar() {
+    console.log('ProjetoListComponent > encerrar()')
+
   }
 
 
