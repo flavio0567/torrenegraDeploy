@@ -22,6 +22,7 @@ export class ClienteListComponent implements OnInit {
     const clienteObservable = this._clienteService.obterTodos();
     clienteObservable.subscribe(
       (clientes) => { 
+        console.log('clientes in obterClientes list:', clientes.json());
         this.clientes = clientes.json();
       },
       (err) => { },

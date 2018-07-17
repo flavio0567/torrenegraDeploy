@@ -18,10 +18,11 @@ export class ApontamentoListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.obterListaApontamentos();
+    this.obterListaApontamento();
   }
 
-  obterListaApontamentos(){
+  obterListaApontamento(){
+    console.log('ApontamentoListComponent > obterListaApontamento()')
     this._projetoService.obterApontamentos((res) => {
       this.apontamentos = res;
     });

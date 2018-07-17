@@ -17,11 +17,11 @@ export class ProjetoListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.obterProjetoList();
+    this.obterListaProjeto();
   }
 
-  obterProjetoList() {
-    console.log('ProjetoListComponent > obterProjetoList()')
+  obterListaProjeto() {
+    console.log('ProjetoListComponent > obterListaProjeto()')
     const projetoObservable = this._projetoService.obterTodos();
     projetoObservable.subscribe(
       (projetos) => { 

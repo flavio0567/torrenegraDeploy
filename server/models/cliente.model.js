@@ -28,35 +28,38 @@ const ClienteSchema = new Schema({
         required: [true, "Endereço é requerido"],
         minlength: 6
     },
-    contato1: {
-        nome: {
-            type: String,
-            required: [true, "Favor informar o primeiro contato do cliente"],
-            minlength: 3
-        },
-        email: {
-            type: String,
-            trim: true,
-            unique: [true, 'E-mail em uso'],
-            uniqueCaseInsensitive: true,
-            required: [true,'E-mail do primeiro contato é requerido'],
-            validate: {
-            validator: function( value ) {
-            return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test( value );
-            },
-            message: "Por favor, informe um endereço de e-mail válido",
-            }
-        },
-        telefone: {
-            type: Number,
-            required: [true, "Telefone do primeiro contato do cliente é requerido"],
-        },
-
-    },
+    contatos: [
+        // title: String,
+        // value: String
+        // nome: {
+        //     type: String,
+        //     // required: [true, "Favor informar o primeiro contato do cliente"],
+        //     minlength: 3
+        // },
+        // email: {
+        //     type: String,
+        //     trim: true,
+        //     unique: [true, 'E-mail em uso'],
+        //     uniqueCaseInsensitive: true,
+        //     // required: [true,'E-mail do primeiro contato é requerido'],
+        //     validate: {
+        //     validator: function( value ) {
+        //     return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test( value );
+        //     },
+        //     message: "Por favor, informe um endereço de e-mail válido",
+        //     }
+        // },
+        // telefone: {
+        //     type: Number,
+        //     // required: [true, "Telefone do primeiro contato do cliente é requerido"],
+        // },
+        // skype: {
+        //     type:String
+        // },
+    ],
     clienteProjetos: [{type: Schema.Types.ObjectId, ref: 'ClienteProjeto'}]
     }, { timestamps: true }, 
-       { autoIndex: false },
-       { usePushEach: true }
+       { autoIndex: false }
 );
  // define review Schema
 const ClienteProjetoSchema = new mongoose.Schema({
@@ -66,8 +69,7 @@ const ClienteProjetoSchema = new mongoose.Schema({
         minlength: 7 
     }
    }, { timestamps: true }, 
-      { autoIndex: false },
-      { usePushEach: true }
+      { autoIndex: false }
 );
 
 // set model by passing his Schema

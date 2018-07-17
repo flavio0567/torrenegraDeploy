@@ -11,6 +11,8 @@ module.exports = function(app){
         projeto.list(req, res)})
     .get('/apontamento/list', (req, res) => {
         projeto.apontamentoList(req, res)})
+    .put('/apontamento/novo', (req, res) => {
+        projeto.apontamentoNovo(req, res)})
     .get('/projeto/:id', (req, res) => {
         projeto.obterProjetoById(req, res)})
     .post('/projeto/novo', (req, res) => {

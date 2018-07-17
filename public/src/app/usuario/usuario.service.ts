@@ -17,7 +17,7 @@ export class UsuarioService {
   login(usuario, callback) {
     this.usuario = usuario;
     console.log('LOGIN success: ', this.usuario);
-    callback(this.usuario);
+    callback(this.usuario.email);
   }
 
   setUserLoggedIn() {

@@ -1,0 +1,109 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Torre Negra</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Sair <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+
+<h3>  {{today | date:'short' }} </h3>
+<form  #formData="ngForm" id="newDespesaForm">
+  <h3>Projeto</h3>
+  <div class="select is-multiple">
+    <select name="projeto" [(ngModel)]="apontamento.projeto" required>
+      <option></option>
+        <option *ngFor="let p of projetos">
+          {{ p.codigo }} {{ p.descricao }}
+        </option>
+    </select>
+    <div *ngIf="!apontamento.projeto.valid" class="purple"> * Selecione um projeto!</div>
+  
+  </div>
+
+  <h3>Tipo de apontamento</h3>
+  <div class="select is-multiple">
+      <select name="tipo" [(ngModel)]="apontamento.tipo">
+        <option>Hora </option>
+        <option>Despesa </option>
+      </select>
+      <div *ngIf="!apontamento.tipo.valid" class="purple"> * Selecione um tipo de apontamento!</div>
+  
+      <!-- Tipo de Apontamento: Despesa -->
+      <div class="control" *ngIf="(apontamento.tipo=='Despesa')">
+        <div class="field is-horizontal" style="margin-top: 20px;" >
+          <select name="opcaoDespesa" [(ngModel)]="apontamento.opcaoDespesa" > 
+            <option>alimentação </option>
+            <option>hospedagem </option>
+            <option>pedágio </option>
+            <option>transporte </option>
+            <option>outros </option>
+          </select>
+          <div *ngIf="!apontamento.opcaoDespesa.valid" class="purple"> * Selecione uma opção de despesa!</div>
+
+        </div>
+            <div class="control" *ngIf="apontamento.opcaoDespesa=='outros'">
+            <div class="field is-horizontal">
+              <p class="control">
+                <textarea 
+                class="textarea is-warning" 
+                type="text" 
+                rows="2"
+                name="descricao" 
+                placeholder="Descrição da despesa"
+                [(ngModel)]="apontamento.despesa.descricao"
+                #descricao="ngModel">
+                </textarea>
+              </p>
+            </div>
+        </div>
+        <div class="field is-horizontal" >
+          <div class="field-body">
+            <div class="field">
+              <p class="control">
+                <input 
+                class="input" 
+                type="text" 
+                name="valor" 
+                [(ngModel)]="apontamento.despesa.valor"
+                #valor="ngModel"
+                />
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Tipo de Apontamento: Hora -->
+      <div *ngIf="(apontamento.tipo=='Hora')">
+          <div style="border: solid 2px green; margin-top: 10px;  padding: 10px;">
+            <select name="inicio" [(ngModel)]="apontamento.hora.inicio" > 
+                <option>{{today | date:'short'}}</option>
+              </select>
+              
+          </div>
+      </div>
+      <button type="button" class="btn btn-secondary" (click)="cancel()">Cancela</button>
+      <button type="button" class="btn btn-primary" (click)="setTipoApontamento()" [disabled]="formData.invalid">Confirma</button>
+
+    </div>
+  </form>
+
+
+<!-- <div style="margin-top: 15px; width: 50%;">
+        <ngbd-datepicker-popup></ngbd-datepicker-popup>
+    </div> -->
+
+
+
+
+
+
+
+

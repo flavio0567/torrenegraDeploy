@@ -13,8 +13,9 @@ module.exports = {
             .catch(error => console.log(error));
     },
     novo: (req, res) => {
-        console.log("SERVER > CONTROLLER > CLIENTE > novo > req.body", req.body);
+        console.log("SERVER > CONTROLLER > cliente > novo > req.body", req.body);
         let cliente = new Cliente(req.body);
+        console.log('cliente.ctrl:', cliente);
         cliente.save(function(err, result){
             if(err) {
                 console.log('Ocorreu erro salvando cliente', err);
@@ -61,13 +62,21 @@ module.exports = {
             };
         });
     },
-
     apontamentoList: (req, res) => {
+        console.log("SERVER > CONTROLLER > apontamentoList > req.body", req.body);
         Projeto.findOne({_id: req.params.id})
         // .populate('reviews')
         .populate({path: 'Projeto', apontamentos: { sort: { 'inicio': -1 } } })
             .then(projeto => res.json(projeto))
             .catch(error => console.log(error));
+    },
+    apontamentoNovo: (req, res) => {
+        console.log("SERVER > CONTROLLER > apontamentonovo > req.body", req.body);
+        // Projeto.findOne({_id: req.params.id})
+        // // .populate('reviews')
+        // .populate({path: 'Projeto', apontamentos: { sort: { 'inicio': -1 } } })
+        //     .then(projeto => res.json(projeto))
+        //     .catch(error => console.log(error));
     },
     encerrar: (req, res) => {
         Projeto.update( { _id: req.params.id }, { encerrado: true })
