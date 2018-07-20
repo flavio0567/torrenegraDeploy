@@ -1,3 +1,207 @@
-<p>
-  cliente-edit works!
-</p>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Torre Negra</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" [routerLink]="['/clientes']">Retornar <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  
+  
+  <div class="container">
+  
+      Dados básicos: 
+  
+      <div class="errors" *ngIf="errors">
+        <p *ngIf="errors.cnpj" >  {{ errors['cnpj'].message }} </p>
+        <p *ngIf="errors.razaoSocial" >  {{ errors['razaoSocial'].message }} </p>
+        <p *ngIf="errors.nomeFantasia" >  {{ errors['nomeFantasia'].message }} </p>
+        <p *ngIf="errors.endereco" >  {{ errors['endereco'].message }} </p>   
+        <!-- <p *ngIf="errors.contatos" >  {{ errors['contatos'].message }} </p>        -->
+      </div>
+  
+  
+    <form [formGroup] = "clienteForm" (submit)="editarCliente(clienteForm)">
+  
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">CNPJ</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <input 
+              class="input is-focused" 
+              type="text"
+              formControlName="cnpj" 
+              name="cnpj"
+              minlength=11
+              required
+              />
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- <div *ngIf="!cnpj?.valid" class="purple">CNPJ precisar ter no mínimo 11 caracteres!</div> -->
+  
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Razão Social</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <input 
+              class="input" 
+              type="text" 
+              formControlName="razaoSocial" 
+              name="razaoSocial"
+              minlength=8
+              required
+              />
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- <div *ngIf="!razaoSocial?.valid" class="purple">Razão Social do cliente precisar ter no mínimo 8 caracteres!</div> -->
+  
+      <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Nome Fantasia</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control">
+                <input 
+                class="input" 
+                type="text" 
+                formControlName="nomeFantasia"  
+                name="nomeFantasia"
+                minlength=2
+                required
+                />
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- <div *ngIf="!nomeFantasia?.valid" class="purple">Nome fantasia do cliente precisar ter no mínimo 2 caracteres!</div> -->
+    
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Endereço</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <input 
+              class="input" 
+              type="text"
+              formControlName="endereco" 
+              name="endereco"  
+              minlength=6
+              required
+              />
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- <div *ngIf="!endereco?.valid" class="purple">Endereço do cliente precisar ter no mínimo 4 caracteres!</div> -->
+    
+  
+      Dados comerciais:
+  
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Valor h/h</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <input 
+              class="input" 
+              type="text"
+              formControlName="valorHH" 
+              name="valorHH"  
+              required
+              />
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- <div *ngIf="!valorHH?.valid" class="purple">Valor HH do cliente precisar ter no mínimo 4 caracteres!</div> -->
+    
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Prazo Pagamento</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <input 
+              class="input" 
+              type="text"
+              formControlName="prazoPgto" 
+              name="prazoPgto"  
+              required
+              />
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- <div *ngIf="!prazoPgto?.valid" class="purple">Prazo pgto do cliente precisar ter no mínimo 4 caracteres!</div> -->
+    
+      Contatos: 
+      <div  class="tile is-ancestor">
+        <div class="tile is-vertical is-content">
+          <div class="tile">
+            <div class="tile is-parent is-vertical">
+              <article class="tile is-child notification is-primary">
+  
+                <div  formArrayName="contatos" *ngFor="let brand of clienteForm.controls.contatos.controls; let i = index;">
+                  <div formGroupName ="{{i}}">
+                    <div class="field is-horizontal">
+                      <div class="field-label is-normal">
+                        {{brand.get('title').value}}
+                      </div>
+                      <div class="field-body">
+                        <div class="field">
+                          <p class="control">
+                            <input
+                            type="text"
+                            formControlName="value" 
+                            >
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+                <a style="margin-left: 150px;" class="button is-warning is-rounded is-small" (click)="addContato()">+</a>
+  
+              </article>
+            </div>
+  
+            <div class="tile is-parent">
+                <article class="tile is-child notification is-info">
+                  {{ contato.nome }}  {{ contato.email }}  {{ contato.telefone }}  {{ contato.skype }}
+                </article>
+            </div>
+          </div>
+        </div>
+      </div>
+   
+  
+      <button type="button" class="btn btn-secondary" (click)="cancel()">Cancela</button>
+      <button type="submit" class="btn btn-primary" [disabled]="clienteForm.invalid">Confirma</button>
+        
+  
+    </form>
+  
+  </div>

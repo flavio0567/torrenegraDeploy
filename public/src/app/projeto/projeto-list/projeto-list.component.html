@@ -7,7 +7,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle  active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Cadastro
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -34,19 +34,18 @@
           <a class="dropdown-item" href="#">Projetos encerrados</a>
         </div>
       </li>
-      <li class="nav-item active">
+      <li class="nav-item">
           <a class="nav-link" href="#">Sair <span class="sr-only">(current)</span></a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <input class="form-control mr-sm-2" type="search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
     </form>
   </div>
 </nav>
 
-
-<div class="box">
+<div class="container">
   <nav class="level">
     <div class="level-left">
         <div class="title is-4">Projetos</div> 
@@ -58,34 +57,32 @@
   <article class="media">
     <div class="media-content">
       <div class="content">
-
         <br>
         <div id="scroll">
           <table class="table table-hover" align="left">
             <thead>
-                <tr class="table-primary d-flex">
-                  <th class="col-1">Código</th>
-                  <th class="col-3">Descrição</th>
-                  <th class="col-2">Cliente</th>
-                  <th class="col-2">Pedido</th>
-                  <th class="col-1">Ação</th>
-                  <th class="col-1"> </th>
-                </tr>
-              </thead>
-              <tbody>
-
-                <tr *ngFor="let projeto of projetos" class="d-flex">
-                  <td class="col-1">{{ projeto['codigo'] }}</td>
-                  <td class="col-3">{{ projeto['descricao'] }}</td>
-                  <td class="col-2">{{ projeto['cliente'] }}</td>
-                  <td class="col-2">{{ projeto['pedido'] }}</td>
-                  <td class="col-1"><button type="button" [routerLink]="['/projeto/edit/', projeto['_id'] ]" class="button is-warning">Editar</button></td>
-                  <td class="col-1"><button type="button" (click)="encerrar()"  class="button is-danger">Encerrar</button></td>
-                </tr>
-              </tbody>
-            </table> 
-          </div>    
-        </div>
+              <tr class="table-primary d-flex">
+                <th class="col-1">Código</th>
+                <th class="col-3">Descrição</th>
+                <th class="col-2">Cliente</th>
+                <th class="col-2">Pedido</th>
+                <th class="col-1">Ação</th>
+                <th class="col-1"> </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let projeto of projetos" class="d-flex">
+                <td class="col-1">{{ projeto['codigo'] }}</td>
+                <td class="col-3">{{ projeto['descricao'] }}</td>
+                <td class="col-2">{{ projeto['nomeFantasiaCliente'] }}</td>
+                <td class="col-2">{{ projeto['pedido'] }}</td>
+                <td class="col-1"><button type="button" [routerLink]="['/projeto/edit/', projeto['_id'] ]" class="button is-warning">Editar</button></td>
+                <td class="col-1"><button mat-button (click)="openDialog(projeto)" class="button is-danger" [disabled]="projeto['encerrado']">Encerrar</button></td>
+              </tr>
+            </tbody>
+          </table> 
+        </div>    
       </div>
-    </article>
-  </div>
+    </div>
+  </article>
+</div>

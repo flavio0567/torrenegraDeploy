@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UsuarioService } from '../usuario.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-usuario-list',
@@ -7,9 +9,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsuarioListComponent implements OnInit {
 
-  constructor() { }
+  usuarios: any;
+  frontPath:string = "../../assets/images/check.png";
+
+  backPath:string =  "";
+
+  constructor(
+    private _usuarioService: UsuarioService,
+    private _router: Router
+  ) { }
 
   ngOnInit() {
+    this.obterListaUsuario();
   }
+
+  obterListaUsuario() {
+    console.log('ProjetoListComponent > obterListaUsuario()')
+    const usuarioObservable = this._usuarioService.obterTodos();
+    usuarioObservable.subscribe(
+      (usuarios) => { 
+        this.usuarios = usuarios.json();
+        console.log('usuarios in UsuariosListComponent:', this.usuarios);
+      },
+      (err) => { },
+        () => { }
+    )
+  }
+
+
 
 }

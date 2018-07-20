@@ -25,7 +25,29 @@ export class UsuarioService {
   }
 
   getUserLoggedIn() {
-    return this.isUserLoggedIn;
+    return this.usuario;
+    // return this.isUserLoggedIn;
+  }
+
+
+  obterTodos() {
+    console.log('UsuarioService > obterTodos()');
+    return this._http.get('/usuarios');
+  }
+
+  obterUsuarioById(id) {
+    console.log('UsuarioService > obterUsuarioById', id);
+    return this._http.get('/usuario/' + id );
+  }
+
+  criarUsuario(usuario) {
+    console.log('UsuarioService > criarUsuario(usuario)', usuario);
+    return this._http.post('usuario/novo', usuario);
+  }
+
+  editarUsuario(usuario) {
+    console.log('UsuarioService > editarUsuario(usuario)', usuario);
+    return this._http.put('usuario/edit/' + usuario['_id'], usuario);
   }
 
   // login(user, callback) {

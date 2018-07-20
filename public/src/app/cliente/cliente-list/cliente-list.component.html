@@ -28,27 +28,29 @@
   
           <br>
           <div id="scroll">
-            <table class="table table-hover" align="left">
+            <table class="table table-hover is-one-third" align="left">
               <thead>
                   <tr class="table-primary d-flex">
-                    <th class="col-2">CNPJ</th>
-                    <th class="col-2">Razão Social</th>
+                    <th class="col-2">Nome Fantasia</th>
+                    <th class="col-1">Valor H/H</th>
+                    <th class="col-1">Prazo Pgto</th>
                     <th class="col-2">Primeiro Contato </th>
-                    <th class="col-3">e-mail </th>
-                    <th class="col-1">Fone </th>
+                    <th class="col-3">E-mail </th>
+                    <th class="col-2">Fone </th>
                     <th class="col-1">Ação</th>
-                    <th class="col-1"> </th>
+                    <th class="col-2"> </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr *ngFor="let cliente of clientes" class="d-flex is-small">
-                    <td class="col-2">{{ cliente['cnpj'] }}</td>
-                    <td class="col-2">{{ cliente['razaoSocial'] }}</td>
+                    <td class="col-2">{{ cliente['nomeFantasia'] }}</td>
+                    <td class="col-1">{{ cliente['valorHH'] }}</td>
+                    <td class="col-1">{{ cliente['prazoPgto'] }}</td>
                     <td class="col-2">{{ cliente.contatos[0].value }}</td>
                     <td class="col-3">{{ cliente.contatos[1].value }}</td>
                     <td class="col-2">{{ cliente.contatos[2].value }}</td>
                     <td class="col-1"><button type="button" [routerLink]="['/cliente/edit/', cliente['_id'] ]" class="button is-warning">Editar</button></td>
-                    <td class="col-1"><button type="button" [routerLink]="['/cliente/show', cliente['_id'] ]"  class="button is-danger">Detalhes</button></td>
+                    <td class="col-2"><button type="button" [routerLink]="['/cliente/show', cliente['_id'] ]"  class="button is-danger">Detalhes</button></td>
                   </tr>
                 </tbody>
               </table> 

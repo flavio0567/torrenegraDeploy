@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+
 import { GlobalErrorComponent } from './global-error/global-error.component';
 
 import { ProjetoService } from './projeto/projeto.service';
@@ -14,7 +17,7 @@ import { GlobalErrorHandlerService } from './global-error-handler.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ApontamentoComponent } from './apontamento/apontamento.component';
+// import { ApontamentoComponent } from './apontamento/apontamento.component';
 import { ApontamentoListComponent } from './apontamento/apontamento-list/apontamento-list.component';
 import { ClienteEditComponent } from './cliente/cliente-edit/cliente-edit.component';
 import { ClienteNovoComponent } from './cliente/cliente-novo/cliente-novo.component';
@@ -33,12 +36,13 @@ import { ClienteListComponent } from './cliente/cliente-list/cliente-list.compon
 import { RelatorioFinanceiroComponent } from './relatorio/relatorio-financeiro/relatorio-financeiro.component';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { ApontamentoNovoComponent } from './apontamento/apontamento-novo/apontamento-novo.component';
+import { Dialog } from './projeto//projeto-list/projeto-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ApontamentoComponent,
+    // ApontamentoComponent,
     ApontamentoListComponent,
     FinanceiroComponent,
     ClienteListComponent,
@@ -56,18 +60,24 @@ import { ApontamentoNovoComponent } from './apontamento/apontamento-novo/apontam
     RelatorioFinanceiroComponent,
     PaginaNaoEncontradaComponent,
     GlobalErrorComponent,
-    ApontamentoNovoComponent
+    ApontamentoNovoComponent,
+    Dialog
     // NgbdDatepickerPopup,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
     HttpModule,
     FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
     ReactiveFormsModule,
     AppRoutingModule
     // NgbModule,
     // NgbModule.forRoot()
   ],
+  entryComponents:[Dialog],
   providers: [
     ProjetoService,
     UsuarioService,

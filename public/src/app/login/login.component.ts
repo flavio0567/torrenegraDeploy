@@ -8,7 +8,7 @@ import { UsuarioService } from '../usuario/usuario.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  usuario = {
+  public usuario = {
     email: '',
     senha: ''
   };
@@ -22,6 +22,9 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.usuario = { email: "", senha: ""};
     console.log('usuario logado? ', this._usuarioService.getUserLoggedIn());
+    // if (this.usuario.senha === "torrenegra123") {
+    //   this.errors = this.errors.senha.message = 'Primeiro acesso, informar sua nova senha';
+    // }
   }
 
   login() {
@@ -39,7 +42,7 @@ export class LoginComponent implements OnInit {
         }
       }
     })
-}
+  }
 
 
 }

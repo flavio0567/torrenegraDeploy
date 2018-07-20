@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProjetoService } from '../../projeto/projeto.service';
 import { UsuarioService } from '../../usuario/usuario.service';
 import { Router } from '../../../../node_modules/@angular/router';
+import { getLocaleDateTimeFormat } from '../../../../node_modules/@angular/common';
 
 @Component({
   selector: 'app-apontamento-novo',
@@ -12,19 +13,20 @@ import { Router } from '../../../../node_modules/@angular/router';
 export class ApontamentoNovoComponent implements OnInit {
   usuario: any;;
 
-  // today = Date.now();
+  today = new Date();
   
   projetos: any[];
-  
-  // curProject: any = this.projects[0];
-  
+  projetoSelecionado: Number;
+ 
+  id: any;
+  tipo: any;
+  opcaoDespesa: any;
+
   apontamento: any = {
-    projeto: "",
-    tipo: "",
-    opcaoDespesa: "",
+    usuario: "",
     hora: {
-      inicio: 0,
-      fim: 0
+      inicio: "",
+      fim: ""
       },
     despesa: {
       descricao: "",
@@ -41,7 +43,7 @@ export class ApontamentoNovoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.usuario = this._usuarioService.login;
+    this.usuario = this._usuarioService.getUserLoggedIn();
     console.log(' usuario in apontamento:', this.usuario);
     this.obterListaProjeto();
   }
@@ -58,39 +60,32 @@ export class ApontamentoNovoComponent implements OnInit {
     )
   }
 
-
-  // setProject(id: any): void {
-  //   console.log('id projeto selecionado:',id);
-  //   this.curProject = this.projects.filter(value => value.id === parseInt(id));
-  //   console.log('curProject in setProject:',this.curProject[0]);
-  // }
-
-  setTipoApontamento(): void {
-    console.log('ApontamentoNovoComponent > setTipoApontamento() ', this.apontamento)
-    if (this.apontamento.tipo != 'Hora') {
-      this.apontamento.hora.inicio = 0;
-      this.apontamento.hora.fim = 0;
+  setApontamento() {
+    console.log('ApontamentoNovoComponent > setApontamento() ', this.apontamento, this.projetoSelecionado);
+    if (this.tipo != 'Hora') {
+    this.apontamento.hora.inicio = "";
+    this.apontamento.hora.fim = "";
     }
-    if (this.apontamento.opcaoDespesa != 'outros') {
-      this.apontamento.despesa.descricao = this.apontamento.opcaoDespesa;
+    if (this.opcaoDespesa != 'outros') {
+      this.apontamento.despesa.descricao = this.opcaoDespesa;
     }
+    this.apontamento.usuario = this.usuario.email;   // arrumar essa mess
+    const Observable = this._projetoService.apontamentoNovo(this.projetoSelecionado, this.apontamento);
+    Observable.subscribe(
+      (projetos) => { 
+        this.projetos = projetos.json();
+        this._router.navigate(['/apontamentos']);
+      },
+      (err) => { },
+        () => { }
+    )
   }
-
-  // setInicioAtendimento() {
-  //   this.apontamento.hora.inicio = this.today;
-  //   console.log('INICIO:', this.apontamento.hora.inicio);
-  // }
-
-  // setTipoDespesa(id: any) {
-  //   if (id === 'outros') {
-  //     this.apontamento.tipo = 'Despesa';
-  //   } else { 
-  //     this.apontamento.tipo = id;
-  //   }
-  // }
 
   cancel() {
-    this._router.navigate(['/projeto/list']);
+    this._router.navigate(['/apontamentos']);
   }
+
+
+
 
 }

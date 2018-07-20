@@ -18,38 +18,38 @@
 <form  #formData="ngForm" id="newDespesaForm">
   <h3>Projeto</h3>
   <div class="select is-multiple">
-    <select name="projeto" [(ngModel)]="apontamento.projeto" required>
-      <option></option>
-        <option *ngFor="let p of projetos">
+    <select name="projeto" [(ngModel)]="projetoSelecionado" required>
+        <option *ngFor="let p of projetos" [value]="p._id">
           {{ p.codigo }} {{ p.descricao }}
         </option>
     </select>
-    <div *ngIf="!apontamento.projeto.valid" class="purple"> * Selecione um projeto!</div>
+
+    <!-- <div *ngIf="!apontamento.projeto.valid" class="purple"> * Selecione um projeto!</div> -->
   
   </div>
 
   <h3>Tipo de apontamento</h3>
   <div class="select is-multiple">
-      <select name="tipo" [(ngModel)]="apontamento.tipo">
+      <select name="tipo" [(ngModel)]="tipo">
         <option>Hora </option>
         <option>Despesa </option>
       </select>
-      <div *ngIf="!apontamento.tipo.valid" class="purple"> * Selecione um tipo de apontamento!</div>
+      <!-- <div *ngIf="!apontamento.tipo.valid" class="purple"> * Selecione um tipo de apontamento!</div> -->
   
       <!-- Tipo de Apontamento: Despesa -->
-      <div class="control" *ngIf="(apontamento.tipo=='Despesa')">
+      <div class="control" *ngIf="(tipo=='Despesa')">
         <div class="field is-horizontal" style="margin-top: 20px;" >
-          <select name="opcaoDespesa" [(ngModel)]="apontamento.opcaoDespesa" > 
+          <select name="opcaoDespesa" [(ngModel)]="opcaoDespesa" > 
             <option>alimentação </option>
             <option>hospedagem </option>
             <option>pedágio </option>
             <option>transporte </option>
             <option>outros </option>
           </select>
-          <div *ngIf="!apontamento.opcaoDespesa.valid" class="purple"> * Selecione uma opção de despesa!</div>
+          <!-- <div *ngIf="!apontamento.opcaoDespesa.valid" class="purple"> * Selecione uma opção de despesa!</div> -->
 
         </div>
-            <div class="control" *ngIf="apontamento.opcaoDespesa=='outros'">
+            <div class="control" *ngIf="opcaoDespesa=='outros'">
             <div class="field is-horizontal">
               <p class="control">
                 <textarea 
@@ -81,16 +81,16 @@
         </div>
       </div>
       <!-- Tipo de Apontamento: Hora -->
-      <div *ngIf="(apontamento.tipo=='Hora')">
-          <div style="border: solid 2px green; margin-top: 10px;  padding: 10px;">
+      <div *ngIf="(tipo=='Hora')">
+          <!-- <div style="border: solid 2px green; margin-top: 10px;  padding: 10px;"> -->
             <select name="inicio" [(ngModel)]="apontamento.hora.inicio" > 
-                <option>{{today | date:'short'}}</option>
+                <option>{{today | date:"MMM d, y H:mm"}}</option>
               </select>
               
-          </div>
+          <!-- </div> -->
       </div>
       <button type="button" class="btn btn-secondary" (click)="cancel()">Cancela</button>
-      <button type="button" class="btn btn-primary" (click)="setTipoApontamento()" [disabled]="formData.invalid">Confirma</button>
+      <button type="button" class="btn btn-primary" (click)="setApontamento()" [disabled]="formData.invalid">Confirma</button>
 
     </div>
   </form>

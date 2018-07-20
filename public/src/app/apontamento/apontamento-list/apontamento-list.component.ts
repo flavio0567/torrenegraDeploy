@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./apontamento-list.component.css']
 })
 export class ApontamentoListComponent implements OnInit {
+  usuario: any;
   apontamentos: any[];
   
   constructor(
@@ -18,15 +19,22 @@ export class ApontamentoListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.usuario = this._usuarioService.getUserLoggedIn();
     this.obterListaApontamento();
   }
 
   obterListaApontamento(){
-    console.log('ApontamentoListComponent > obterListaApontamento()')
-    this._projetoService.obterApontamentos((res) => {
-      this.apontamentos = res;
-    });
+    console.log('ApontamentoListComponent > obterListaApontamento()', this.usuario)
+    const apontObservable = this._projetoService.obterApontamentos();
+    apontObservable.subscribe(
+      (apontamentos) => {
+      console.log('retornei service obterApontamentos()', apontamentos);
+      this.apontamentos = apontamentos.json();
+      console.log('JSON apontamentos in obterApontamentos()', this.apontamentos);
+      },
+      (err) => { },
+        () => { }
+    )
   }
-
 
 }

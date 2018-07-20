@@ -18,6 +18,8 @@ export class ClienteNovoComponent implements OnInit, OnChanges {
     razaoSocial: "",
     nomeFantasia: "",
     endereco: "",
+    valorHH: 0,
+    prazoPgto: 0,
     contatos:  [{ 
       nome: "",
       email: "",
@@ -83,9 +85,10 @@ export class ClienteNovoComponent implements OnInit, OnChanges {
       razaoSocial: ['', Validators.required ],
       nomeFantasia: ['', Validators.required ],
       endereco: ['', Validators.required ],
+      valorHH: '',
+      prazoPgto: '', 
       contatos: this.formBuilder.array(arr)
       })
-
   }
 
 addContato() {

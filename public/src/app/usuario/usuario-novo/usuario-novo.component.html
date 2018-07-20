@@ -7,16 +7,25 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="usuario/list">Retornar <span class="sr-only">(current)</span></a>
+          <a class="nav-link" [routerLink]="['/usuarios']">Retornar <span class="sr-only">(current)</span></a>
         </li>
       </ul>
     </div>
   </nav>
   
-  
   <div class="container">
   
-  <form (submit)="addUsuario()" #formData="ngForm" id="newUsuarioForm">
+
+  Dados do usuário:
+
+  <div class="errors" *ngIf="errors">
+    <p *ngIf="errors.nome" >  {{ errors['nome'].message }} </p>
+    <p *ngIf="errors.email" >  {{ errors['email'].message }} </p>
+    <p *ngIf="errors.funcao" >  {{ errors['funcao'].message }} </p>
+    <p *ngIf="errors.custoHora" >  {{ errors['custoHora'].message }} </p>       
+  </div>
+
+  <form (submit)="criarUsuario(userForm)" #userForm='ngForm'>
     <div class="field is-horizontal">
       <div class="field-label is-normal">
         <label class="label">Nome</label>
@@ -47,10 +56,9 @@
         <div class="field">
           <p class="control">
             <input 
-            class="input is-focused" 
+            class="input" 
             type="text" 
             name="email" 
-            minlength=6
             required
             pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
             [(ngModel)]="usuario.email"
@@ -96,7 +104,6 @@
           class="input" 
           type="text" 
           name="custoHora" 
-          minlength=8
           required
           [(ngModel)]="usuario.custoHora"
           #custoHora="ngModel"
@@ -108,19 +115,16 @@
   
   <div class="field is-horizontal">
     <label class="checkbox">
-        <input type="checkbox">
-       &nbsp; Adminstrador  
+        <input 
+        type="checkbox"
+        name="admin"
+        [(ngModel)]="usuario.admin">
+       &nbsp; Administrador  
     </label>
   </div>
   
-  
   <button type="button" class="btn btn-secondary" (click)="cancel()">Cancela</button>
-  <button type="submit" class="btn btn-primary" [disabled]="formData.invalid">Confirma</button>
-  
-        <!-- <div class="errors">
-          <p *ngIf="errors.name" >  {{ errors.name.message }} </p>
-          <p *ngIf="errors.cuisine"> {{ errors.cuisine.message }} </p>        
-        </div> -->
+  <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">Confirma</button>
   
   </form>
   

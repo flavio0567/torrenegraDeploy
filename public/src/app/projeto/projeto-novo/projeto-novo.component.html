@@ -15,6 +15,9 @@
   
   <div class="container">
 
+
+    Dados básicos:
+
     <div class="errors" *ngIf="errors">
       <p *ngIf="errors.codigo" >  {{ errors['codigo'].message }} </p>
       <p *ngIf="errors.descricao" >  {{ errors['descricao'].message }} </p>
@@ -72,7 +75,19 @@
       <div class="field-label is-normal">
         <label class="label">Cliente</label>
       </div>
+
       <div class="field-body">
+        <div class="field">
+          <div class="select is-multiple control">
+            <select name="_clienteId" [(ngModel)]="clienteSelecionado" required>
+                <option *ngFor="let c of clientes" [value]="c._id">
+                  {{ c.nomeFantasia }}
+                </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="field-body">
         <div class="field">
           <p class="control">
             <input 
@@ -86,7 +101,7 @@
             />
           </p>
         </div>
-      </div>
+      </div> -->
     </div>
     <!-- <div *ngIf="!projeto.cliente.valid" class="purple">Cliente precisar ter no mínimo 6 caracteres!</div> -->
   
@@ -111,6 +126,8 @@
     </div>
     <!-- <div *ngIf="!projeto.pedido.valid" class="purple">Pedido do projeto precisar ter no mínimo 4 caracteres!</div> -->
   
+  Dados financeiros:
+
     <div class="field is-horizontal">
       <div class="field-label is-normal">
         <label class="label">Horas PLC</label>

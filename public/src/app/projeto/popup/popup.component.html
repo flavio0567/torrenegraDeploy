@@ -1,0 +1,11 @@
+<h3 mat-dialog-title>Encerrar Projeto </h3>
+<h4>{{ data.codigo }} {{ data.descricao }}</h4>
+<br><br>
+<div mat-dialog-content>
+  <p>Confirma? </p>
+</div>
+<br><br>
+<div mat-dialog-actions>
+  <button class="btn btn-danger btn-sm" mat-button (click)="onNoClick()"> Não obrigado! </button><br><br>
+  <button class="btn btn-danger btn-sm" mat-button (click)="encerrarProjeto(data.id)" cdkFocusInitial> Ok </button>
+</div>

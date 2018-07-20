@@ -1,3 +1,13 @@
 button {
     margin: 10px;
 }
+select {
+    margin-bottom: 15px;
+}
+.purple {
+    color: purple;
+    margin: 0px 0px 30px 60px;
+}
+.errors {
+    color: brown;
+}

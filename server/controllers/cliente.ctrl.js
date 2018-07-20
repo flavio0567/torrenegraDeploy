@@ -1,8 +1,9 @@
 // ===== Conttroler cliente.ctrl.JS ======
 // ===== date:  20180713            ======
 //
-const mongoose    = require('mongoose');
-const Cliente     = mongoose.model('Cliente');
+const mongoose = require('mongoose'),
+      Cliente  = mongoose.model('Cliente');
+
 // const Apontamento = mongoose.model('Apontamento');
 
 module.exports = { 
@@ -28,64 +29,52 @@ module.exports = {
     },
     obterClienteById: function(req, res) {
         console.log("SERVER > CONTROLLER > obterClienteById > req.params.id", req.params.id);
-        Projeto.findById({_id: req.params.id})
-        .populate('projetos')
+        Cliente.findById({_id: req.params.id})
+        .populate('clienteProjetos')
         // .populate({path: 'Restaurant', reviews: { sort: { 'starts': 1 } } })
         .then(cliente => res.json(cliente))
         .catch(error => console.log(error));
     },
     edit: (req, res) => {
-        console.log("SERVER > CONTROLLER > edit > req.body", req.body);
+        console.log("SERVER > CONTROLLER > cliente > edit > req.params._id > req.body", req.params.id, req.body);
         Cliente.findOne({
-            _id: req.body._id
+            _id: req.params.id
         }, function (err, eCliente) {
             if (err) {
                 console.log('Ocorreu erro lendo cliente antes da edição', err);
             } else { 
-                eProduct.descricao = req.body.descricao;
-                eProduct.cliente = req.body.cliente;
-                eProduct.pedido = req.body.pedido;
-                eProduct.horasPLC = req.body.horasPLC;
-                eProduct.horasIHM = req.body.horasIHM;
-                eProduct.valorTerceiros = req.body.valorTerceiros;   
-                eProduct.valorMateriais = req.body.valorMateriais; 
-                eProduct.valorViagens = req.body.valorViagens;   
-                eProduct.save(function(err, result){
+                eCliente.cnpj = req.body.cnpj;
+                eCliente.razaoSocial = req.body.razaoSocial;
+                eCliente.nomeFantasia = req.body.nomeFantasia;
+                eCliente.endereco = req.body.endereco; 
+                eCliente.valorHH = req.body.valorHH; 
+                eCliente.prazoPgto = req.body.prazoPgto; 
+                eCliente.save(function(err, result){
                     if(err) {
-                        console.log('Ocorreu erro salvando projeto', err);
+                        console.log('Ocorreu erro editando cliente', err);
                         res.json(err);
                     } else { 
-                        console.log('sucesso savando projeto');
+                        console.log('sucesso editando cliente');
                         res.json(result);
                     };
                 });
             };
         });
     },
-    apontamentoList: (req, res) => {
-        console.log("SERVER > CONTROLLER > apontamentoList > req.body", req.body);
-        Projeto.findOne({_id: req.params.id})
-        // .populate('reviews')
-        .populate({path: 'Projeto', apontamentos: { sort: { 'inicio': -1 } } })
-            .then(projeto => res.json(projeto))
-            .catch(error => console.log(error));
-    },
-    apontamentoNovo: (req, res) => {
-        console.log("SERVER > CONTROLLER > apontamentonovo > req.body", req.body);
-        // Projeto.findOne({_id: req.params.id})
-        // // .populate('reviews')
-        // .populate({path: 'Projeto', apontamentos: { sort: { 'inicio': -1 } } })
-        //     .then(projeto => res.json(projeto))
-        //     .catch(error => console.log(error));
-    },
+    // apontamentoList: (req, res) => {
+    //     console.log("SERVER > CONTROLLER > apontamentoList > req.body", req.body);
+    //     Projeto.findOne({_id: req.params.id})
+    //     // .populate('reviews')
+    //     .populate({path: 'Projeto', apontamentos: { sort: { 'inicio': -1 } } })
+    //         .then(projeto => res.json(projeto))
+    //         .catch(error => console.log(error));
+    // },
     encerrar: (req, res) => {
         Projeto.update( { _id: req.params.id }, { encerrado: true })
             .then(projeto => res.json(projeto))
             .catch(error => console.log(error));
     },
     
-
-
     // destroy: (req, res) => {
     //     Restaurant.findByIdAndRemove({_id: req.params.id})
     //         .then(restaurant => res.json(restaurant))

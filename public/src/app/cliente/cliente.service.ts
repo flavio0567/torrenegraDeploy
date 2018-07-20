@@ -17,10 +17,15 @@ export class ClienteService {
     return this._http.post('cliente/novo', cliente);
   }
 
-  // editarCliente(cliente) {
-  //   console.log('ProjetoService > editarProjeto(projeto)', projeto);
-  //   return this._http.put('projeto/edit/' + projeto['_id'], projeto);
-  // }
+  obterClienteById(id) {
+    console.log('ClienteService > obterClienteById', id);
+    return this._http.get('/cliente/' + id );
+  }
+
+  editarCliente(id, cliente) {
+    console.log('ClienteService > editarCliente(cliente)', id, cliente);
+    return this._http.put('cliente/edit/' + id, cliente);
+  }
 
   // encerrarProjeto(id) {
   //   this._http.put('/projeto/encerrar,' + id, this.projeto).subscribe(
@@ -34,10 +39,7 @@ export class ClienteService {
   //   );
   // }
 
-  // obterProjetoById(id) {
-  //   console.log('ProjetoService > obterProjetoById', id);
-  //   return this._http.get('/projeto/' + id );
-  // }
+
   
   // getOne(recipie, id) {
   //   this._http.get('/recipie').subscribe(

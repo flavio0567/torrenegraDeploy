@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+// import { NgForm } from '@angular/forms';
 import { UsuarioService } from '../../usuario/usuario.service';
 import { ProjetoService } from '../projeto.service';
-import { Router, ActivatedRoute } from '../../../../node_modules/@angular/router';
+import { ClienteService } from '../../cliente/cliente.service';
 
 @Component({
   selector: 'app-projeto-edit',
@@ -15,18 +16,36 @@ export class ProjetoEditComponent implements OnInit {
   projeto = {
     codigo: "",
     descricao: "",
-    cliente:  "",
-    pedido:  0,
+    _clienteId:  "",
+    nomeFantasiaCliente: "",
+    pedido:  "",
     horasPLC:  0,
     horasIHM:  0,
     valorTerceiros:  0,
     valorMateriais:  0,
     valorViagens:  0
   };
+  clientes: any;
+  cliente = {
+    _id: "",
+    cnpj: 0,
+    razaoSocial: "",
+    nomeFantasia: "",
+    endereco: "",
+    valorHH: 0,
+    prazoPgto: 0,
+    contatos:  [{ 
+      nome: "",
+      email: "",
+      telefone: 0,
+      skype: ""}]
+  }
+  clienteSelecionado: any;
 
   constructor(
     private _usuarioService: UsuarioService,
     private _projetoService: ProjetoService,
+    private _clienteService: ClienteService,
     private _route: ActivatedRoute,
     private _router: Router
   ) { }
@@ -35,21 +54,52 @@ export class ProjetoEditComponent implements OnInit {
     this.usuario = this._usuarioService.usuario;
     console.log('ProjetoEditComponent > usuario: ', this.usuario);
     this.obterProjeto(this._route.snapshot.params['id']);
-
   }
 
   obterProjeto(id){
     console.log('ProjetoEditComponent > obterProjeto'); 
       const observable = this._projetoService.obterProjetoById(id);
-      observable.subscribe((response) => {
-        this.projeto = response.json();
-        console.log('ProjetoEditComponent > returning', this.projeto);
-    });
+      observable.subscribe(
+        (response) => {
+          this.projeto = response.json();
+          this.obterClienteNomeFantasia(this.projeto._clienteId);
+          this.obterClientes();
+        },
+        (err) => { },
+          () => { }
+      )
   }
 
+  obterClienteNomeFantasia(id) {
+    console.log('ProjetoEditComponent > obterCliente()')
+    const clienteObservable = this._clienteService.obterClienteById(id);
+    clienteObservable.subscribe(
+      (cliente) => { 
+        this.cliente = cliente.json();
+        this.projeto.nomeFantasiaCliente = this.cliente.nomeFantasia;
+        this.clienteSelecionado = this.cliente._id;
+      },
+      (err) => { },
+        () => { }
+    )
+  }
+
+  obterClientes() {
+    console.log('ProjetoEditComponent  > obterClienteList()')
+    const clienteObservable = this._clienteService.obterTodos();
+    clienteObservable.subscribe(
+      (clientes) => { 
+        console.log('clientes in obterClientes ProjetoEditComponent:', clientes.json());
+        this.clientes = clientes.json();
+      },
+      (err) => { },
+        () => { }
+    )
+  }
 
   editarProjeto() {
-      console.log('ProjetoEditComponent > obterProjeto(projForm)', this.projeto); 
+      console.log('ProjetoEditComponent > editarProjeto', this.projeto);
+      this.projeto._clienteId = this.clienteSelecionado; 
       this._projetoService.editarProjeto(this.projeto)
       .subscribe(observable => {
         if(observable.json().errors) {

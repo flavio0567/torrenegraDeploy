@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="projetos">Retornar <span class="sr-only">(current)</span></a>
+          <a class="nav-link" [routerLink]="['/projetos']">Retornar <span class="sr-only">(current)</span></a>
         </li>
       </ul>
     </div>
@@ -68,17 +68,16 @@
         </div>
         <div class="field-body">
           <div class="field">
-            <p class="control">
-              <input 
-              class="input " 
-              type="text" 
-              name="cliente" 
-              minlength=4
-              required
-              [(ngModel)]="projeto.cliente"
-              #cliente="ngModel"
-              />
-            </p>
+            <!-- <p style="margin-top: 6px" > -->
+              <!-- {{ projeto.nomeFantasiaCliente }} -->
+            <!-- </p> -->
+            <div class="select is-multiple control">
+              <select name="_clienteId" [(ngModel)]="clienteSelecionado" required>
+                  <option *ngFor="let c of clientes" [value]="c._id">
+                    {{ c.nomeFantasia }}   
+                  </option>
+              </select>
+            </div>
           </div>
         </div>
       </div>

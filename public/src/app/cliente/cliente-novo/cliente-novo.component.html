@@ -7,7 +7,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="projeto/list">Retornar <span class="sr-only">(current)</span></a>
+        <a class="nav-link" [routerLink]="['/clientes']">Retornar <span class="sr-only">(current)</span></a>
       </li>
     </ul>
   </div>
@@ -112,6 +112,49 @@
       </div>
     </div>
     <!-- <div *ngIf="!endereco?.valid" class="purple">Endereço do cliente precisar ter no mínimo 4 caracteres!</div> -->
+  
+
+    Dados comerciais:
+
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label">Valor h/h</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control">
+            <input 
+            class="input" 
+            type="text"
+            formControlName="valorHH" 
+            name="valorHH"  
+            required
+            />
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- <div *ngIf="!valorHH?.valid" class="purple">Valor HH do cliente precisar ter no mínimo 4 caracteres!</div> -->
+  
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label">Prazo Pagamento</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control">
+            <input 
+            class="input" 
+            type="text"
+            formControlName="prazoPgto" 
+            name="prazoPgto"  
+            required
+            />
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- <div *ngIf="!prazoPgto?.valid" class="purple">Prazo pgto do cliente precisar ter no mínimo 4 caracteres!</div> -->
   
     Contatos: 
     <div  class="tile is-ancestor">

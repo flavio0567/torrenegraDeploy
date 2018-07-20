@@ -12,7 +12,7 @@
       </ul>
     </div>
   </nav>
-  
+
   <div class="container">
       <nav class="level">
         <div class="level-left">
@@ -31,22 +31,25 @@
             <table class="table table-hover" align="left">
               <thead>
                   <tr class="table-primary d-flex">
-                    <th class="col-3">Nome</th>
-                    <th class="col-3">Função</th>
-                    <th class="col-2">Custo/hora</th>
-                    <th class="col-2">Admin</th>
+                    <th class="col-2">Nome</th>
+                    <th class="col-3">E-mail</th>
+                    <th class="col-2">Função</th>
+                    <th class="col-1">Custo/hr</th>
+                    <th class="col-1">Admin</th>
                     <th class="col-1">Ação</th>
                     <th class="col-1"> </th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let usuario of usuarios" class="d-flex">
-                    <td class="col-3">{{ usuario['nome'] }}</td>
-                    <td class="col-3">{{ usuario['funcao'] }}</td>
-                    <td class="col-2">{{ usuario['custo'] | number : '1.2-2' }}</td>
-                    <td class="col-2">{{ usuario['admin'] }}</td>
-                    <td class="col-1"><button type="button" [routerLink]="['/usuario/edit/', usuario['_id'] ]" class="button is-warning">Editar</button></td>
-                    <td class="col-1"><button type="button" [routerLink]="['/usuario/show', usuario['_id'] ]"  class="button is-danger">Detalhes</button></td>
+                  <tr *ngFor="let u  of usuarios" class="d-flex">
+                    <td class="col-2">{{ u['nome'] }}</td>
+                    <td class="col-3">{{ u['email'] }}</td>
+                    <td class="col-2">{{ u['funcao'] }}</td>
+                    <td class="col-1">{{ u['custoHora'] | number : '1.2-2' }}</td>
+                    <td class="col-1">
+                    <img [src]="u['admin'] ? frontPath : backPath"></td>
+                    <td class="col-1"><button type="button" [routerLink]="['/usuario/edit/', u['_id'] ]" class="button is-warning">Editar</button></td>
+                    <td class="col-1"><button type="button" [routerLink]="['/usuario/show', u['_id'] ]"  class="button is-danger">Detalhes</button></td>
                   </tr>
                 </tbody>
               </table> 

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { UsuarioService } from '../../usuario/usuario.service';
 import { ProjetoService } from '../projeto.service';
-import { Router } from '../../../../node_modules/@angular/router';
+import { ClienteService } from '../../cliente/cliente.service';
 
 @Component({
   selector: 'app-projeto-novo',
@@ -11,29 +12,45 @@ import { Router } from '../../../../node_modules/@angular/router';
 })
 export class ProjetoNovoComponent implements OnInit {
   usuario: any;
+  clientes: any;
   errors: any;
   projetos: any;
   projeto = {
     codigo: "",
     descricao: "",
     cliente:  "",
-    pedido:  0,
+    pedido:  "",
     horasPLC:  0,
     horasIHM:  0,
     valorTerceiros:  0,
     valorMateriais:  0,
     valorViagens:  0
   };
+  clienteSelecionado: Number;
 
   constructor(
     private _usuarioService: UsuarioService,
     private _projetoService: ProjetoService,
+    private _clienteService: ClienteService,
     private _router: Router
   ) { }
 
   ngOnInit() {
     this.usuario = this._usuarioService.usuario;
     console.log('ProjetoNovoComponent > ', this.usuario);
+    this.obterListaCliente();
+  }
+
+  obterListaCliente() {
+    console.log('ProjetoNovoComponent > obterListaCliente()')
+    const cliObservable = this._clienteService.obterTodos();
+    cliObservable.subscribe(
+      (clientes) => { 
+        this.clientes = clientes.json();
+      },
+      (err) => { },
+        () => { }
+    )
   }
 
   criarProjeto(projForm: NgForm) {

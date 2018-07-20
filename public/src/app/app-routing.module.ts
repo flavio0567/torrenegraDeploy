@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { FinanceiroComponent } from './financeiro/financeiro.component';
 import { UsuarioNovoComponent } from './usuario/usuario-novo/usuario-novo.component';
 import { UsuarioEditComponent } from './usuario/usuario-edit/usuario-edit.component';
+import { UsuarioShowComponent } from './usuario/usuario-show/usuario-show.component';
 import { UsuarioListComponent } from './usuario/usuario-list/usuario-list.component';
 import { ProjetoListComponent } from './projeto/projeto-list/projeto-list.component';
 import { ProjetoNovoComponent } from './projeto/projeto-novo/projeto-novo.component';
@@ -18,6 +19,7 @@ import { ApontamentoNovoComponent } from './apontamento/apontamento-novo/apontam
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { RelatorioFinanceiroComponent } from './relatorio/relatorio-financeiro/relatorio-financeiro.component';
 import { GlobalErrorComponent } from './global-error/global-error.component';
+
 
 const routes: Routes = [
   {
@@ -43,6 +45,11 @@ const routes: Routes = [
   {
     path: 'relatorio/financeiro',
     component: RelatorioFinanceiroComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'usuario/show/:id',
+    component: UsuarioShowComponent,
     pathMatch: 'full'
   },
   {

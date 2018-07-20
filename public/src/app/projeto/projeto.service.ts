@@ -9,16 +9,10 @@ export class ProjetoService {
 
   constructor(private _http: Http) { }
 
-  obterApontamentos(apontamentos) {
-    this._http.get('/apontamento/list').subscribe(
-      (res) => {
-        console.log('SUCESSO lendo apontamento: ', res.json());
-        apontamentos(res.json());
-      },
-      (err) => {
-        console.log('ERRO lendo apontamento: ', err);
-      }
-    );
+  obterApontamentos() {
+    console.log('ProjetoService > obterApontamentos()');
+    return this._http.get('/apontamentos');
+
   }
 
   obterTodos() {
@@ -36,16 +30,14 @@ export class ProjetoService {
     return this._http.put('projeto/edit/' + projeto['_id'], projeto);
   }
 
+  apontamentoNovo(id, apontamento) {
+    console.log('ProjetoService > apontamentoNovo(id, apontamento)', id, apontamento);
+    return this._http.put('apontamento/novo/' + id, apontamento);
+  }
+
   encerrarProjeto(id) {
-    this._http.put('/projeto/encerrar,' + id, this.projeto).subscribe(
-      (res) => {
-        console.log('SUCESSO no encerramento do projeto: ', res.json());
-        this.projeto(res.json());
-      },
-      (err) => {
-        console.log('ERRO no encerramento do projeto: ', err);
-      }
-    );
+    console.log('ProjetoService > encerrarProjeto(id)', id);
+    return this._http.put('/projeto/encerrar/' + id, this.projeto);
   }
 
   obterProjetoById(id) {
@@ -53,39 +45,5 @@ export class ProjetoService {
     return this._http.get('/projeto/' + id );
   }
   
-  // getOne(recipie, id) {
-  //   this._http.get('/recipie').subscribe(
-  //   id => id.json());
-  //   console.log('services-recipie in getOne:', id)
-  // }
-
-
-
-  // updateRecipie(ingredients, callback) {
-  //   this._http.put('/recipie/update', ingredients).subscribe(
-  //     (res) => {
-  //       console.log('SUCCESS updating recipie: ', res.json());
-  //       callback(res.json());
-  //     },
-  //     (err) => {
-  //       console.log('ERROR updating recipie: ', err);
-  //     }
-  //   );
-  // }
-
-  // likeRecipie(id, callback) {
-  //   this._http.put('/recipie/like/' + id, this.recipie ).subscribe(
-  //     (res) => {
-  //       console.log('SUCCESS Like recipie: ', res.json());
-  //       res.json();
-  //     },
-  //     (err) => {
-  //       console.log('ERROR like recipie: ', err);
-  //     }
-  //   );
-  // }
-
-
-
   
 }
