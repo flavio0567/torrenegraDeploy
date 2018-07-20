@@ -63,10 +63,11 @@ module.exports = {
     },  
     apontamentos: (req, res) => {
         console.log("SERVER > CONTROLLER > apontamentos (list)")
-        Apontamento.find({ })
+        Apontamento.find({  })
+            .populate('apontamentos') 
             .populate('apontamentos', {
-                "path": "apontamentos.hora",
-                "match": {"fim": { "$eq": ""}
+                "path": "apontamentos.fim",
+                "match": {"apontamentos.fim": { "$eq": ""}
             }})
             .exec(function (err, apontamento) {
                 if (err) return handleError(err);

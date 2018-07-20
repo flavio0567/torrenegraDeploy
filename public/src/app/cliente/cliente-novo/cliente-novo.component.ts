@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgForm, FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { NgForm, FormGroup, FormBuilder, FormControl, Validators, FormArray } from '@angular/forms';
 import { ClienteService } from '../cliente.service';
 import { UsuarioService } from '../../usuario/usuario.service';
 import { Contato } from './cliente-model';
@@ -13,26 +13,27 @@ import { Contato } from './cliente-model';
 export class ClienteNovoComponent implements OnInit, OnChanges {
   usuario: any;
   errors: any;
-  cliente = {
-    cnpj: 0,
-    razaoSocial: "",
-    nomeFantasia: "",
-    endereco: "",
-    valorHH: 0,
-    prazoPgto: 0,
-    contatos:  [{ 
-      nome: "",
-      email: "",
-      telefone: 0,
-      skype: ""}]
-  }
+  // cliente = {
+  //   cnpj: 0,
+  //   razaoSocial: "",
+  //   nomeFantasia: "",
+  //   endereco: "",
+  //   valorHH: 0,
+  //   prazoPgto: 0,
+  //   contatos:  [{ 
+  //     nome: "",
+  //     email: "",
+  //     telefone: 0,
+  //     skype: ""}]
+  // }
   contato = new Contato;
 
   contatosArray = [];
   flContato: Boolean = false;
   clienteForm: FormGroup;
+  index: any = 0;
 
-  products=[
+  clienteContatos=[
     {
       'brand': "nome"
     },
@@ -60,7 +61,7 @@ export class ClienteNovoComponent implements OnInit, OnChanges {
     console.log('contato in ngOnInit:', this.contato);
     this.usuario = this._usuarioService.usuario;
     console.log(' ClienteNovoComponent > ', this.usuario);
-    this.createForm(this.products);
+    this.createForm(this.clienteContatos);
   }
 
   ngOnChanges() {
@@ -75,10 +76,10 @@ export class ClienteNovoComponent implements OnInit, OnChanges {
     // this.setContatos(this.cliente.contatos);
   }
 
-  createForm(products) {
+  createForm(clienteContatos) {
     var arr = [];
-    for (var i=0; i < products.length; i++ ) {
-      arr.push(this.buildContato(products[i]));
+    for (var i=0; i < clienteContatos.length; i++ ) {
+      arr.push(this.buildContato(clienteContatos[i]));
     }
     return this.clienteForm = this.formBuilder.group({
       cnpj: ['', Validators.required ],
@@ -88,31 +89,43 @@ export class ClienteNovoComponent implements OnInit, OnChanges {
       valorHH: '',
       prazoPgto: '', 
       contatos: this.formBuilder.array(arr)
-      })
+  })
+  } 
+
+  addContato() {
+    console.log('ClienteNovoComponent > >>>>>>> addContato() ', this.clienteForm.controls.contatos.value);
+    this.flContato = true;
+    this.contatosArray.push(this.clienteForm.controls.contatos.value);
+    this.contato.nome = this.contatosArray[this.index][0].value;
+    this.contato.email = this.contatosArray[this.index][1].value;
+    this.contato.telefone = this.contatosArray[this.index][2].value;
+    this.contato.skype = this.contatosArray[this.index][3].value;
+    console.log('contatos antes >>> contatosArray :', this.contatosArray );
+    this.createContatos()
+    this.index += 1;
   }
 
-addContato() {
-  console.log('controls value:', this.clienteForm.controls.contatos.value);
-  this.flContato = true;
-  this.contatosArray.push(this.clienteForm.controls.contatos.value);
-  this.contato.nome = this.contatosArray[0][0].value;
-  this.contato.email = this.contatosArray[0][1].value;
-  this.contato.telefone = this.contatosArray[0][2].value;
-  this.contato.skype = this.contatosArray[0][3].value;
-  console.log('contatos antes setValue in addContato :', this.contatosArray[0][0].value );
-  console.log('contato after cleaning in addContato :', this.contato);
-}
+  createContatos() {
+    console.log('ClienteNovoComponent >  createContatos() '); 
+    var arr = [];
+    for (var i=0; i < this.clienteContatos.length; i++ ) {
+      arr.push(this.buildContato(this.clienteContatos[i]));
+    }
+    // return this.clienteForm = this.formBuilder.group({
+    //   contatos: this.formBuilder.array(arr)
+    //   })
+  } 
 
-  buildContato(product): FormGroup {
+  buildContato(clienteContatos): FormGroup {
     return this.formBuilder.group({
-      title: [product.brand],
+      title: [clienteContatos.brand],
       value: ['']
     });
   }
 
   criarCliente(clienteForm: NgForm) {
+    console.log('ClienteNovoComponent > criarCliente(clienteForm: NgForm)', clienteForm.controls.contatos.value); 
     if (!this.flContato) { this._router.navigate(['/cliente/novo']) };
-    console.log('ClienteNovoComponent > novoProjeto(clienteForm)', clienteForm); 
     this._clienteService.criarCliente(clienteForm.value)
       .subscribe(observable => {
         if(observable.json().errors) {
@@ -127,7 +140,7 @@ addContato() {
         throw err;
       }
     );
-    this.createForm(this.products);
+    this.createForm(this.clienteContatos);
   }
 
   cancel() {

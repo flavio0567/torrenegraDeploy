@@ -15,6 +15,9 @@ export class UsuarioShowComponent implements OnInit {
     custoHora: 0,
     admin: false
   };
+  frontPath:string = "../../assets/images/check.png";
+
+  backPath:string =  "";
 
   constructor(
     private _usuarioService: UsuarioService,
