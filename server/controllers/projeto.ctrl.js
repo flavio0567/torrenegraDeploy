@@ -107,6 +107,14 @@ module.exports = {
             .catch(error => console.log(error));
     },
     
+
+    encerrarApontamento: (req, res) => {
+        console.log("SERVER > CONTROLLER > encerrar apontamento > req.params.id, req.body  ", req.params.id, req.body);
+        Apontamento.update( { _id: req.params.id }, { fim: req.body.apontamento.hora.fim })
+            .then(projeto => res.json(projeto))
+            .catch(error => console.log(error));
+    }
+
     // delete: (req, res) => {
     //     Proejto.findByIdAndRemove({_id: req.params.id})
     //         .then(restaurant => res.json(restaurant))

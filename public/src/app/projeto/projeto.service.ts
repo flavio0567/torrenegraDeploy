@@ -44,6 +44,10 @@ export class ProjetoService {
     console.log('ProjetoService > obterProjetoById', id);
     return this._http.get('/projeto/' + id );
   }
-  
+
+  encerrarApontamento(id) {
+    console.log('ProjetoService > encerrarApontamento(id)', id);
+    return this._http.put('/apontamento/encerrar/' + id, this.projeto);
+  }
   
 }

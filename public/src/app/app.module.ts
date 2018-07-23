@@ -37,12 +37,15 @@ import { RelatorioFinanceiroComponent } from './relatorio/relatorio-financeiro/r
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { ApontamentoNovoComponent } from './apontamento/apontamento-novo/apontamento-novo.component';
 import { Dialog } from './projeto//projeto-list/projeto-list.component';
+import { PopupComponent } from './apontamento/popup/popup.component';
+import { MaterialModule } from './material';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    // ApontamentoComponent,
     ApontamentoListComponent,
     FinanceiroComponent,
     ClienteListComponent,
@@ -61,7 +64,8 @@ import { Dialog } from './projeto//projeto-list/projeto-list.component';
     PaginaNaoEncontradaComponent,
     GlobalErrorComponent,
     ApontamentoNovoComponent,
-    Dialog
+    Dialog,
+    PopupComponent
     // NgbdDatepickerPopup,
   ],
   imports: [
@@ -73,7 +77,8 @@ import { Dialog } from './projeto//projeto-list/projeto-list.component';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MaterialModule
     // NgbModule,
     // NgbModule.forRoot()
   ],

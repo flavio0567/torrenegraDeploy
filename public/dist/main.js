@@ -41,7 +41,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <!-- <a class=\"navbar-brand\" href=\"#\">Torre Negra</a> -->\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" href=\"#\">Sair <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n\n<div class=\"box\">\n  <nav class=\"level\">\n    <div class=\"level-left\">\n        <div class=\"title is-4\">Apontamentos</div> \n    </div>\n    <div class=\"level-right\">\n        <button type=\"button\" class=\"button is-light\" [routerLink]=\"['/apontamento/novo']\">Novo apontamento</button>\n    </div> \n  </nav>\n  <article class=\"media\">\n    <div class=\"media-content\">\n      <div class=\"content\">\n\n        <br>\n        <div id=\"scroll\">\n          <table class=\"table table-hover\" align=\"left\">\n            <thead>\n                <tr class=\"table-primary d-flex\">\n                  <th class=\"col-3\"># Projeto</th>\n                  <th class=\"col-3\">Usuario</th>\n                  <th class=\"col-2\">Hora início</th>\n                  <th class=\"col-2\">Hora fim</th>\n                  <th class=\"col-1\">Ação</th>\n                  <!-- <th class=\"col-1\"> </th> -->\n                </tr>\n              </thead>\n              <tbody>\n                <tr *ngFor=\"let a of apontamentos\" class=\"d-flex\">\n                   <!-- apontamento: {{ a }} -->\n                  <td class=\"col-3\">{{ a['_projeto'] }}</td>\n                  <td class=\"col-3\">{{ a['usuario'] }}</td>\n                  <td class=\"col-2\">{{ a['hora']['inicio'] }}</td>\n                  <td class=\"col-2\">{{ a['hora']['fim'] }}</td>\n                  <td class=\"col-1\"><button type=\"button\" [disabled]=\"a['hora']['fim']!=''\" [routerLink]=\"['/apontamentos' ]\" class=\"button is-warning\">Encerrar atendimento</button></td>\n                  <!-- <td class=\"col-1\"><button type=\"button\" [routerLink]=\"['/projeto/', projeto['_id'] ]\"  class=\"button is-danger\">Detalhes</button></td> -->\n                </tr>\n              </tbody>\n            </table> \n          </div>    \n        </div>\n      </div>\n    </article>\n  </div>\n\n"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <!-- <a class=\"navbar-brand\" href=\"#\">Torre Negra</a> -->\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" href=\"#\">Sair <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n\n<div class=\"box\">\n  <nav class=\"level\">\n    <div class=\"level-left\">\n        <div class=\"title is-4\">Apontamentos Projeto</div> \n    </div>\n    <div class=\"level-right\">\n        <button type=\"button\" class=\"button is-light\" [routerLink]=\"['/apontamento/novo']\">Novo apontamento</button>\n    </div> \n  </nav>\n  <article class=\"media\">\n    <div class=\"media-content\">\n      <div class=\"content\">\n\n        <br>\n        <div id=\"scroll\">\n          <table class=\"table table-hover\" align=\"left\">\n            <thead>\n                <tr class=\"table-primary d-flex\">\n                  <th class=\"col-3\">Código</th>\n                  <th class=\"col-3\">Descrição</th>\n                  <th class=\"col-2\">Início</th>\n                  <th class=\"col-2\">Fim</th>\n                  <th class=\"col-1\">Ação</th>\n                  <!-- <th class=\"col-1\"> </th> -->\n                </tr>\n              </thead>\n              <tbody>\n                <tr *ngFor=\"let a of apontamentos\" class=\"d-flex\">\n                   <!-- apontamento: {{ a }} -->\n                  <td class=\"col-3\">{{ a['codigo'] }}</td>\n                  <td class=\"col-3\">{{ a['descricao'] }}</td>\n                  <td class=\"col-2\">{{ a['hora']['inicio'] }}</td>\n                  <td class=\"col-2\">{{ a['hora']['fim'] }}</td>\n                  <td class=\"col-1\"><button type=\"button\" [disabled]=\"a['hora']['fim']!=''\" (click)=\"openDialog(projeto)\" class=\"button is-warning\">Encerrar atendimento</button></td>\n                  <!-- <td class=\"col-1\"><button type=\"button\" [routerLink]=\"['/projeto/', projeto['_id'] ]\"  class=\"button is-danger\">Detalhes</button></td> -->\n                </tr>\n              </tbody>\n            </table> \n          </div>    \n        </div>\n      </div>\n    </article>\n  </div>\n\n"
 
 /***/ }),
 
@@ -49,16 +49,18 @@ module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\
 /*!****************************************************************************!*\
   !*** ./src/app/apontamento/apontamento-list/apontamento-list.component.ts ***!
   \****************************************************************************/
-/*! exports provided: ApontamentoListComponent */
+/*! exports provided: ApontamentoListComponent, Dialog */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApontamentoListComponent", function() { return ApontamentoListComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Dialog", function() { return Dialog; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../projeto/projeto.service */ "./src/app/projeto/projeto.service.ts");
-/* harmony import */ var _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../usuario/usuario.service */ "./src/app/usuario/usuario.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../projeto/projeto.service */ "./src/app/projeto/projeto.service.ts");
+/* harmony import */ var _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../usuario/usuario.service */ "./src/app/usuario/usuario.service.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -68,15 +70,31 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
 
 
 
 
 var ApontamentoListComponent = /** @class */ (function () {
-    function ApontamentoListComponent(_projetoService, _usuarioService, _router) {
+    function ApontamentoListComponent(_projetoService, _usuarioService, dialog) {
         this._projetoService = _projetoService;
         this._usuarioService = _usuarioService;
-        this._router = _router;
+        this.dialog = dialog;
+        this.ap = [{
+                descricao: "",
+                usuario: "",
+                hora: {
+                    inicio: "",
+                    fim: ""
+                },
+                despesa: {
+                    descricao: "",
+                    valor: 0
+                }
+            }];
     }
     ApontamentoListComponent.prototype.ngOnInit = function () {
         this.usuario = this._usuarioService.getUserLoggedIn();
@@ -87,10 +105,43 @@ var ApontamentoListComponent = /** @class */ (function () {
         console.log('ApontamentoListComponent > obterListaApontamento()', this.usuario);
         var apontObservable = this._projetoService.obterApontamentos();
         apontObservable.subscribe(function (apontamentos) {
-            console.log('retornei service obterApontamentos()', apontamentos);
             _this.apontamentos = apontamentos.json();
             console.log('JSON apontamentos in obterApontamentos()', _this.apontamentos);
+            // this.ap.push(this.apontamentos);
+            for (var i = 0; i < _this.apontamentos.length; i++) {
+                _this.obterProjeto(_this.apontamentos[i]._projeto, i);
+            }
         }, function (err) { }, function () { });
+    };
+    ApontamentoListComponent.prototype.obterProjeto = function (id, i) {
+        var _this = this;
+        console.log('ApontamentoNovoComponent > obterProjeto()');
+        var observable = this._projetoService.obterProjetoById(id);
+        observable.subscribe(function (response) {
+            _this.projeto = response.json();
+            console.log(' descricao do projeto in obterProjeto()', _this.projeto, _this.ap);
+            _this.apontamentos[i].descricao = _this.projeto.descricao;
+            _this.apontamentos[i].codigo = _this.projeto.codigo;
+            // this.obterClienteNomeFantasia(this.projeto._clienteId);
+            // this.obterClientes();
+        }, function (err) { }, function () { });
+    };
+    ApontamentoListComponent.prototype.openDialog = function (projeto) {
+        var _this = this;
+        console.log('ProjetoListComponent > openDialog(projeto) > encerrar()');
+        var dialogRef = this.dialog.open(Dialog, {
+            width: '250px',
+            data: {
+                id: projeto._id,
+                codigo: projeto.codigo,
+                descricao: projeto.descricao,
+                usuario: this.usuario
+            }
+        });
+        dialogRef.afterClosed().subscribe(function (res) {
+            console.log('The dialog was closed');
+            _this.obterListaApontamento();
+        });
     };
     ApontamentoListComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -98,11 +149,46 @@ var ApontamentoListComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./apontamento-list.component.html */ "./src/app/apontamento/apontamento-list/apontamento-list.component.html"),
             styles: [__webpack_require__(/*! ./apontamento-list.component.css */ "./src/app/apontamento/apontamento-list/apontamento-list.component.css")]
         }),
-        __metadata("design:paramtypes", [_projeto_projeto_service__WEBPACK_IMPORTED_MODULE_1__["ProjetoService"],
-            _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_2__["UsuarioService"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+        __metadata("design:paramtypes", [_projeto_projeto_service__WEBPACK_IMPORTED_MODULE_2__["ProjetoService"],
+            _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_3__["UsuarioService"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatDialog"]])
     ], ApontamentoListComponent);
     return ApontamentoListComponent;
+}());
+
+var Dialog = /** @class */ (function () {
+    function Dialog(_projetoService, _router, dialogRef, data) {
+        this._projetoService = _projetoService;
+        this._router = _router;
+        this.dialogRef = dialogRef;
+        this.data = data;
+    }
+    Dialog.prototype.onNoClick = function () {
+        this.dialogRef.close();
+    };
+    Dialog.prototype.encerrarAtendinmento = function (id) {
+        var _this = this;
+        console.log('Dialog >  encerrarAtendimento(id) ', id);
+        var dialogObservable = this._projetoService.encerrarApontamento(id);
+        dialogObservable.subscribe(function (res) {
+            console.log('The dialog called encerrar apontamento!', res);
+            _this.dialogRef.close();
+        }, function (err) { }, function () { });
+        // console.log('The dialog called delete projeto!');
+        // this.dialogRef.close();
+    };
+    Dialog = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-popup',
+            template: __webpack_require__(/*! ../popup/popup.component.html */ "./src/app/apontamento/popup/popup.component.html"),
+            styles: [__webpack_require__(/*! ../popup/popup.component.css */ "./src/app/apontamento/popup/popup.component.css")]
+        }),
+        __param(3, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_4__["MAT_DIALOG_DATA"])),
+        __metadata("design:paramtypes", [_projeto_projeto_service__WEBPACK_IMPORTED_MODULE_2__["ProjetoService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatDialogRef"], Object])
+    ], Dialog);
+    return Dialog;
 }());
 
 
@@ -190,6 +276,7 @@ var ApontamentoNovoComponent = /** @class */ (function () {
         var projetoObservable = this._projetoService.obterTodos();
         projetoObservable.subscribe(function (projetos) {
             _this.projetos = projetos.json();
+            console.log('projetos in List apontamentos:', _this.projetos);
         }, function (err) { }, function () { });
     };
     ApontamentoNovoComponent.prototype.setApontamento = function () {
@@ -223,6 +310,69 @@ var ApontamentoNovoComponent = /** @class */ (function () {
             _node_modules_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
     ], ApontamentoNovoComponent);
     return ApontamentoNovoComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/apontamento/popup/popup.component.css":
+/*!*******************************************************!*\
+  !*** ./src/app/apontamento/popup/popup.component.css ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/apontamento/popup/popup.component.html":
+/*!********************************************************!*\
+  !*** ./src/app/apontamento/popup/popup.component.html ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  popup works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/apontamento/popup/popup.component.ts":
+/*!******************************************************!*\
+  !*** ./src/app/apontamento/popup/popup.component.ts ***!
+  \******************************************************/
+/*! exports provided: PopupComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PopupComponent", function() { return PopupComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var PopupComponent = /** @class */ (function () {
+    function PopupComponent() {
+    }
+    PopupComponent.prototype.ngOnInit = function () {
+    };
+    PopupComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-popup',
+            template: __webpack_require__(/*! ./popup.component.html */ "./src/app/apontamento/popup/popup.component.html"),
+            styles: [__webpack_require__(/*! ./popup.component.css */ "./src/app/apontamento/popup/popup.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], PopupComponent);
+    return PopupComponent;
 }());
 
 
@@ -403,17 +553,6 @@ var AppRoutingModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/app.component.css":
-/*!***********************************!*\
-  !*** ./src/app/app.component.css ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ""
-
-/***/ }),
-
 /***/ "./src/app/app.component.html":
 /*!************************************!*\
   !*** ./src/app/app.component.html ***!
@@ -422,6 +561,17 @@ module.exports = ""
 /***/ (function(module, exports) {
 
 module.exports = "<figure class=\"image is-128x128\">\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</figure>\n<router-outlet></router-outlet>\n"
+
+/***/ }),
+
+/***/ "./src/app/app.component.scss":
+/*!************************************!*\
+  !*** ./src/app/app.component.scss ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
 
 /***/ }),
 
@@ -451,7 +601,7 @@ var AppComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-root',
             template: __webpack_require__(/*! ./app.component.html */ "./src/app/app.component.html"),
-            styles: [__webpack_require__(/*! ./app.component.css */ "./src/app/app.component.css")]
+            styles: [__webpack_require__(/*! ./app.component.scss */ "./src/app/app.component.scss")]
         })
     ], AppComponent);
     return AppComponent;
@@ -502,6 +652,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _relatorio_relatorio_financeiro_relatorio_financeiro_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./relatorio/relatorio-financeiro/relatorio-financeiro.component */ "./src/app/relatorio/relatorio-financeiro/relatorio-financeiro.component.ts");
 /* harmony import */ var _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./pagina-nao-encontrada/pagina-nao-encontrada.component */ "./src/app/pagina-nao-encontrada/pagina-nao-encontrada.component.ts");
 /* harmony import */ var _apontamento_apontamento_novo_apontamento_novo_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./apontamento/apontamento-novo/apontamento-novo.component */ "./src/app/apontamento/apontamento-novo/apontamento-novo.component.ts");
+/* harmony import */ var _apontamento_popup_popup_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./apontamento/popup/popup.component */ "./src/app/apontamento/popup/popup.component.ts");
+/* harmony import */ var _material__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./material */ "./src/app/material.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -543,6 +695,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -551,7 +705,6 @@ var AppModule = /** @class */ (function () {
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_12__["AppComponent"],
                 _login_login_component__WEBPACK_IMPORTED_MODULE_21__["LoginComponent"],
-                // ApontamentoComponent,
                 _apontamento_apontamento_list_apontamento_list_component__WEBPACK_IMPORTED_MODULE_13__["ApontamentoListComponent"],
                 _financeiro_financeiro_component__WEBPACK_IMPORTED_MODULE_22__["FinanceiroComponent"],
                 _cliente_cliente_list_cliente_list_component__WEBPACK_IMPORTED_MODULE_27__["ClienteListComponent"],
@@ -570,7 +723,8 @@ var AppModule = /** @class */ (function () {
                 _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_29__["PaginaNaoEncontradaComponent"],
                 _global_error_global_error_component__WEBPACK_IMPORTED_MODULE_6__["GlobalErrorComponent"],
                 _apontamento_apontamento_novo_apontamento_novo_component__WEBPACK_IMPORTED_MODULE_30__["ApontamentoNovoComponent"],
-                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_23__["Dialog"]
+                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_23__["Dialog"],
+                _apontamento_popup_popup_component__WEBPACK_IMPORTED_MODULE_31__["PopupComponent"]
                 // NgbdDatepickerPopup,
             ],
             imports: [
@@ -582,7 +736,8 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatFormFieldModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatInputModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_11__["AppRoutingModule"]
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_11__["AppRoutingModule"],
+                _material__WEBPACK_IMPORTED_MODULE_32__["MaterialModule"]
                 // NgbModule,
                 // NgbModule.forRoot()
             ],
@@ -1591,6 +1746,46 @@ var LoginComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/material.ts":
+/*!*****************************!*\
+  !*** ./src/app/material.ts ***!
+  \*****************************/
+/*! exports provided: MaterialModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MaterialModule", function() { return MaterialModule; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_material_table__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material/table */ "./node_modules/@angular/material/esm5/table.es5.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+var MaterialModule = /** @class */ (function () {
+    function MaterialModule() {
+    }
+    MaterialModule = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
+            imports: [
+                _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatTableModule"]
+            ],
+            exports: [
+                _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatTableModule"]
+            ],
+        })
+    ], MaterialModule);
+    return MaterialModule;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/pagina-nao-encontrada/pagina-nao-encontrada.component.ts":
 /*!**************************************************************************!*\
   !*** ./src/app/pagina-nao-encontrada/pagina-nao-encontrada.component.ts ***!
@@ -1821,7 +2016,7 @@ var ProjetoEditComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".right {\n    text-align: right;\n}\np {\n    font-size: 0.9em;\n}\n.errors{\n    width: inherit;\n    height: 40px;\n    display: block;\n    margin: 0px auto;\n    color: red;\n}\n"
+module.exports = ".right {\n    text-align: right;\n}\np {\n    font-size: 0.9em;\n}\n.errors{\n    width: inherit;\n    height: 40px;\n    display: block;\n    margin: 0px auto;\n    color: red;\n}"
 
 /***/ }),
 
@@ -1832,7 +2027,7 @@ module.exports = ".right {\n    text-align: right;\n}\np {\n    font-size: 0.9em
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <!-- <a class=\"navbar-brand\" href=\"#\">Torre Negra</a> -->\n  <!-- <figure class=\"image is-128x128\">\n      <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</figure> -->\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item dropdown\">\n        <a class=\"nav-link dropdown-toggle  active\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n          Cadastro\n        </a>\n        <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\n          <a class=\"dropdown-item\" [routerLink]=\"['/usuarios']\">Usuário</a>\n          <a class=\"dropdown-item\" [routerLink]=\"['/clientes']\">Cliente</a>\n        </div>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" [routerLink]=\"['/apontamentos']\">Apontamento</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" [routerLink]=\"['/financeiro']\">Financeiro</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n          Relatório\n        </a>\n        <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\n          <a class=\"dropdown-item\" href=\"\">Financeiro</a>\n          <a class=\"dropdown-item\" href=\"#\">Total de horas por projeto</a>\n          <a class=\"dropdown-item\" href=\"#\">Total de horas por funcionário</a>\n          <a class=\"dropdown-item\" href=\"#\">Custo por pedido</a>\n          <div class=\"dropdown-divider\"></div>\n          <a class=\"dropdown-item\" href=\"#\">Projetos encerrados</a>\n        </div>\n      </li>\n      <li class=\"nav-item\">\n          <a class=\"nav-link\" href=\"#\">Sair <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n    <form class=\"form-inline my-2 my-lg-0\">\n      <input class=\"form-control mr-sm-2\" type=\"search\" aria-label=\"Search\">\n      <button class=\"btn btn-outline-success my-2 my-sm-0\" type=\"submit\">Buscar</button>\n    </form>\n  </div>\n</nav>\n\n<div class=\"container\">\n  <nav class=\"level\">\n    <div class=\"level-left\">\n        <div class=\"title is-4\">Projetos</div> \n    </div>\n    <div class=\"level-right\">\n        <button type=\"button\" class=\"button is-light\" [routerLink]=\"['/projeto/novo']\">Novo projeto</button>\n    </div> \n  </nav>\n  <article class=\"media\">\n    <div class=\"media-content\">\n      <div class=\"content\">\n        <br>\n        <div id=\"scroll\">\n          <table class=\"table table-hover\" align=\"left\">\n            <thead>\n              <tr class=\"table-primary d-flex\">\n                <th class=\"col-1\">Código</th>\n                <th class=\"col-3\">Descrição</th>\n                <th class=\"col-2\">Cliente</th>\n                <th class=\"col-2\">Pedido</th>\n                <th class=\"col-1\">Ação</th>\n                <th class=\"col-1\"> </th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr *ngFor=\"let projeto of projetos\" class=\"d-flex\">\n                <td class=\"col-1\">{{ projeto['codigo'] }}</td>\n                <td class=\"col-3\">{{ projeto['descricao'] }}</td>\n                <td class=\"col-2\">{{ projeto['nomeFantasiaCliente'] }}</td>\n                <td class=\"col-2\">{{ projeto['pedido'] }}</td>\n                <td class=\"col-1\"><button type=\"button\" [routerLink]=\"['/projeto/edit/', projeto['_id'] ]\" class=\"button is-warning\">Editar</button></td>\n                <td class=\"col-1\"><button mat-button (click)=\"openDialog(projeto)\" class=\"button is-danger\" [disabled]=\"projeto['encerrado']\">Encerrar</button></td>\n              </tr>\n            </tbody>\n          </table> \n        </div>    \n      </div>\n    </div>\n  </article>\n</div>\n"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <!-- <a class=\"navbar-brand\" href=\"#\">Torre Negra</a> -->\n  <!-- <figure class=\"image is-128x128\">\n      <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</figure> -->\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item dropdown\">\n        <a class=\"nav-link dropdown-toggle  active\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n          Cadastro\n        </a>\n        <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\n          <a class=\"dropdown-item\" [routerLink]=\"['/usuarios']\">Usuário</a>\n          <a class=\"dropdown-item\" [routerLink]=\"['/clientes']\">Cliente</a>\n        </div>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" [routerLink]=\"['/apontamentos']\">Apontamento</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" [routerLink]=\"['/financeiro']\">Financeiro</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n          Relatório\n        </a>\n        <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\n          <a class=\"dropdown-item\" href=\"\">Financeiro</a>\n          <a class=\"dropdown-item\" href=\"#\">Total de horas por projeto</a>\n          <a class=\"dropdown-item\" href=\"#\">Total de horas por funcionário</a>\n          <a class=\"dropdown-item\" href=\"#\">Custo por pedido</a>\n          <div class=\"dropdown-divider\"></div>\n          <a class=\"dropdown-item\" href=\"#\">Projetos encerrados</a>\n        </div>\n      </li>\n      <li class=\"nav-item\">\n          <a class=\"nav-link\" href=\"#\">Sair <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n    <form class=\"form-inline my-2 my-lg-0\">\n      <input class=\"form-control mr-sm-2\" type=\"search\" aria-label=\"Search\">\n      <button class=\"btn btn-outline-success my-2 my-sm-0\" type=\"submit\">Buscar</button>\n    </form>\n  </div>\n</nav>\n\n<div class=\"container\">\n  <nav class=\"level\">\n    <div class=\"level-left\">\n        <div class=\"title is-4\">Projetos</div> \n    </div>\n    <div class=\"level-right\">\n        <button type=\"button\" class=\"button is-light\" [routerLink]=\"['/projeto/novo']\">Novo projeto</button>\n    </div> \n  </nav>\n  <article class=\"media\">\n    <div class=\"media-content\">\n      <div class=\"content\">\n        <br>\n        <div id=\"scroll\">\n          <table class=\"table table-hover\" align=\"left\">\n            <thead>\n              <tr class=\"table-primary d-flex\">\n                <th class=\"col-1.5\">Código</th>\n                <th class=\"col-3\">Descrição</th>\n                <th class=\"col-2\">Cliente</th>\n                <th class=\"col-2\">Pedido</th>\n                <th class=\"col-1\">Ação</th>\n                <th class=\"col-1\"> </th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr *ngFor=\"let projeto of projetos\" class=\"d-flex\">\n                <td class=\"col-1.5\">{{ projeto['codigo'] }}</td>\n                <td class=\"col-3\">{{ projeto['descricao'] }}</td>\n                <td class=\"col-2\">{{ projeto['nomeFantasiaCliente'] }}</td>\n                <td class=\"col-2\">{{ projeto['pedido'] }}</td>\n                <td class=\"col-1\"><button type=\"button\" [routerLink]=\"['/projeto/edit/', projeto['_id'] ]\" class=\"button is-warning\">Editar</button></td>\n                <td class=\"col-1\"><button mat-button (click)=\"openDialog(projeto)\" class=\"button is-danger\" [disabled]=\"projeto['encerrado']\">Encerrar</button></td>\n              </tr>\n            </tbody>\n          </table> \n        </div>    \n      </div>\n    </div>\n  </article>\n</div>\n"
 
 /***/ }),
 
@@ -2241,6 +2436,10 @@ var ProjetoService = /** @class */ (function () {
     ProjetoService.prototype.obterProjetoById = function (id) {
         console.log('ProjetoService > obterProjetoById', id);
         return this._http.get('/projeto/' + id);
+    };
+    ProjetoService.prototype.encerrarApontamento = function (id) {
+        console.log('ProjetoService > encerrarApontamento(id)', id);
+        return this._http.put('/apontamento/encerrar/' + id, this.projeto);
     };
     ProjetoService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
@@ -2803,6 +3002,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser-dynamic */ "./node_modules/@angular/platform-browser-dynamic/fesm5/platform-browser-dynamic.js");
 /* harmony import */ var _app_app_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app/app.module */ "./src/app/app.module.ts");
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var hammerjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! hammerjs */ "./node_modules/hammerjs/hammer.js");
+/* harmony import */ var hammerjs__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(hammerjs__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 

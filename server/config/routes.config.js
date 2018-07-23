@@ -15,6 +15,8 @@ module.exports = function(app){
         projeto.apontamentos(req, res)})
     .put('/apontamento/novo/:id', (req, res) => {
         projeto.apontamentoNovo(req, res)})
+    .put('/apontamento/encerrar/:id', (req, res) => {
+        projeto.encerrarApontamento(req, res)})
     .get('/projeto/:id', (req, res) => {
         projeto.obterProjetoById(req, res)})
     .post('/projeto/novo', (req, res) => {

@@ -54,6 +54,7 @@ export class ApontamentoNovoComponent implements OnInit {
     projetoObservable.subscribe(
       (projetos) => { 
         this.projetos = projetos.json();
+        console.log('projetos in List apontamentos:', this.projetos);
       },
       (err) => { },
         () => { }
