@@ -5,6 +5,30 @@ const mongoose = require('mongoose');
 const Usuario  = mongoose.model('Usuario');
 
 module.exports = { 
+    login: function(req, res) {
+        console.log("SERVER > CONTROLLER > login > req.query", req.query.usuario);
+        Usuario.findOne({ email: req.query.usuario })
+        // .then(usuario => res.json(usuario))
+        // .catch(error => console.log(error));
+        .then(usuario => {
+            if(!usuario) {
+                return res.status(404).send({
+                    message: "Usuário não encontrado para o email " + req.query.usuario
+                });
+            }
+            res.send(usuario);
+        })
+        .catch(err => {
+            if(err.kind === 'ObjectId') {
+                return res.status(404).send({
+                    message: "Note not found with id " + req.params.noteId
+                });                
+            }
+            return res.status(500).send({
+                message: "Error retrieving note with id " + req.params.noteId
+            });
+        });
+    },
     list: (req, res) => {
         console.log("SERVER > CONTROLLER > usuario > list")
         Usuario.find({}).sort({ 'nome': 1 })

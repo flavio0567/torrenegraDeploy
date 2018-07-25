@@ -6,6 +6,8 @@
 </div>
 <br><br>
 <div mat-dialog-actions>
-  <button class="btn btn-danger btn-sm" mat-button (click)="onNoClick()"> Não obrigado! </button><br><br>
-  <button class="btn btn-danger btn-sm" mat-button (click)="encerrarProjeto(data.id)" cdkFocusInitial> Ok </button>
+    <div class="button-row">
+      <button style="margin: 10px;" mat-mini-fab color="primary" (click)="onNoClick()"> não </button>
+      <button style="margin: 10px;" mat-mini-fab color="warn" (click)="encerrarProjeto(data.id)" cdkFocusInitial> sim </button>
+    </div>
 </div>

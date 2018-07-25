@@ -14,11 +14,11 @@ import { ClienteListComponent } from './cliente/cliente-list/cliente-list.compon
 import { ClienteNovoComponent } from './cliente/cliente-novo/cliente-novo.component';
 import { ClienteEditComponent } from './cliente/cliente-edit/cliente-edit.component';
 import { ClienteShowComponent } from './cliente/cliente-show/cliente-show.component';
-import { ApontamentoListComponent } from './apontamento/apontamento-list/apontamento-list.component';
 import { ApontamentoNovoComponent } from './apontamento/apontamento-novo/apontamento-novo.component';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { RelatorioFinanceiroComponent } from './relatorio/relatorio-financeiro/relatorio-financeiro.component';
 import { GlobalErrorComponent } from './global-error/global-error.component';
+import { ApontamentoDashboardComponent } from './apontamento/apontamento-dashboard/apontamento-dashboard.component';
 
 
 const routes: Routes = [
@@ -34,7 +34,7 @@ const routes: Routes = [
   },
   {
     path: 'apontamentos',
-    component: ApontamentoListComponent,
+    component: ApontamentoDashboardComponent,
     pathMatch: 'full'
   },
   {

@@ -69,7 +69,12 @@ const ProjetoSchema = new Schema({
  // define Apontamento Schema
 var ApontamentoSchema = new mongoose.Schema({
     _projeto: {type: Schema.Types.ObjectId, ref: 'Projeto'},
-    usuario: String,
+    tipo: {                              
+        type: String,
+    },
+    usuario: {
+        type: String,
+    },
     hora: {                              
         inicio: {
             type: String
@@ -84,38 +89,8 @@ var ApontamentoSchema = new mongoose.Schema({
         },
         valor: {
             type: Number
-            // validate: {
-            //     validator: function( value ) {
-            //         return /[10-50]/.test( value );
-            //     },
-            //     message: "Valor da despesa deve estar entre 10 e 50 reais",
-            // }
         }
     },
-    // tipo: {                              
-    //     type: String,
-    // },
-    // descricaoDespesa: {                 
-    //     type: String,
-    //     minlength: 3,
-    // },
-    // valorDespesa: {
-    //     type: Number,
-    //     min: 10,
-    //     max: 50,
-    //     validate: {
-    //         validator: function( value ) {
-    //             return /[10-50]/.test( value );
-    //         },
-    //         message: "Valor da despesa deve estar entre 10 e 50 reais",
-    //       }
-    // },
-    // horaInicio: {
-    //     type: Date
-    // },
-    // horaFim: {
-    //     type: Date
-    // }
     }, { timestamps: true }, 
         { autoIndex: false }
 );

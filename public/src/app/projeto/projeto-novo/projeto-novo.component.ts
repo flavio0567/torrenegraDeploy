@@ -11,7 +11,10 @@ import { ClienteService } from '../../cliente/cliente.service';
   styleUrls: ['./projeto-novo.component.css']
 })
 export class ProjetoNovoComponent implements OnInit {
-  usuario: any;
+  usuarioLogado = {
+    email: '',
+    admin: ''
+  }
   clientes: any;
   errors: any;
   projetos: any;
@@ -36,8 +39,8 @@ export class ProjetoNovoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.usuario = this._usuarioService.usuario;
-    console.log('ProjetoNovoComponent > ', this.usuario);
+    this.usuarioLogado = this._usuarioService.getUserLoggedIn();
+    console.log('ProjetoNovoComponent > usuarioLogado ', this.usuarioLogado);
     this.obterListaCliente();
   }
 

@@ -7,26 +7,28 @@ import { Http } from '@angular/http';
 export class UsuarioService {
 
   private isUserLoggedIn;
-  public usuario;
+  public usuarioLogado;
 
 
   constructor(private _http: Http) { 
     this.isUserLoggedIn = false;
   }
 
-  login(usuario, callback) {
-    this.usuario = usuario;
-    console.log('LOGIN success: ', this.usuario);
-    callback(this.usuario.email);
+  login(usuario) {
+    console.log('UsuarioService > login(usuario)', usuario);
+    this.usuarioLogado = usuario;
+    return this._http.get('/login/', { params: { usuario: usuario } });
   }
 
-  setUserLoggedIn() {
+  setUserLoggedIn(usuario) {
     this.isUserLoggedIn = true;
+    usuario = this.usuarioLogado;
   }
 
   getUserLoggedIn() {
-    return this.usuario;
-    // return this.isUserLoggedIn;
+    this.login(this.usuarioLogado);
+    console.log('getUserLoggedIn() ',this.usuarioLogado);
+    return this.usuarioLogado;
   }
 
 

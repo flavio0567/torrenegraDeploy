@@ -61,14 +61,23 @@ module.exports = {
             };
         });
     },  
-    apontamentos: (req, res) => {
-        console.log("SERVER > CONTROLLER > apontamentos (list)")
-        Apontamento.find({  })
+    apontamentosHora: (req, res) => {
+        console.log("SERVER > CONTROLLER > apontamentos > hora > req.query", req.query.usuario);
+        // Apontamento.find({ $and: [ { tipo : { $eq: ['hora'] } }, { 'hora.inicio': { $ne: [''] } }, { 'hora.fim': { $eq: [''] }}, { usuario: { $eq: ['usuario']} } ] })
+        // Apontamento.find({ $and: [ { 'hora.inicio': { $ne: [''] } }, { 'hora.fim': { $eq: [''] }}, { usuario: { $eq: [req.query.usuario]} } ] })
+        Apontamento.find({ tipo : 'hora', 'hora.fim': '', usuario: req.query.usuario })
             .populate('apontamentos') 
-            .populate('apontamentos', {
-                "path": "apontamentos.fim",
-                "match": {"apontamentos.fim": { "$eq": ""}
-            }})
+            .exec(function (err, apontamento) {
+                if (err) return handleError(err);
+                console.log('Os apontamentos são %s', apontamento);
+                res.json(apontamento);
+                })
+    },
+    apontamentosDespesa: (req, res) => {
+        console.log("SERVER > CONTROLLER > apontamentos > despesa > req.query", req.query.usuario);
+        // Apontamento.find({ $and: [ { tipo : { $eq: ['despesa'] } }, { usuario: { $eq: [req.query.usuario]} } ] } )
+        Apontamento.find({ tipo : 'despesa', usuario: req.query.usuario} ).sort({ createdAt: -1 })
+            .populate('apontamentos') 
             .exec(function (err, apontamento) {
                 if (err) return handleError(err);
                 console.log('Os apontamentos são %s', apontamento);
@@ -110,7 +119,7 @@ module.exports = {
 
     encerrarApontamento: (req, res) => {
         console.log("SERVER > CONTROLLER > encerrar apontamento > req.params.id, req.body  ", req.params.id, req.body);
-        Apontamento.update( { _id: req.params.id }, { fim: req.body.apontamento.hora.fim })
+        Apontamento.findOneAndUpdate( { _id: req.params.id }, { 'hora.fim': req.body.fim  })
             .then(projeto => res.json(projeto))
             .catch(error => console.log(error));
     }

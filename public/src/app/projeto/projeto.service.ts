@@ -9,9 +9,15 @@ export class ProjetoService {
 
   constructor(private _http: Http) { }
 
-  obterApontamentos() {
-    console.log('ProjetoService > obterApontamentos()');
-    return this._http.get('/apontamentos');
+  obterApontamentosHora(usuario) {
+    console.log('ProjetoService > obterApontamentosHora(usuario)', usuario);
+    return this._http.get('/apontamentos/hora/', {params: { usuario: usuario}});
+
+  }
+
+  obterApontamentosDespesa(usuario) {
+    console.log('ProjetoService > obterApontamentosDespesa(usuario)', usuario);
+    return this._http.get('/apontamentos/despesa/', {params: { usuario: usuario}});
 
   }
 
@@ -45,9 +51,9 @@ export class ProjetoService {
     return this._http.get('/projeto/' + id );
   }
 
-  encerrarApontamento(id) {
-    console.log('ProjetoService > encerrarApontamento(id)', id);
-    return this._http.put('/apontamento/encerrar/' + id, this.projeto);
+  encerrarApontamento(projeto) {
+    console.log('ProjetoService > encerrarApontamento(projeto)', projeto);
+    return this._http.put('/apontamento/encerrar/' + projeto['id'], projeto);
   }
   
 }

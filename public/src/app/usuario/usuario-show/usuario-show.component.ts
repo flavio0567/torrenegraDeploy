@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '../../../../node_modules/@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UsuarioService } from '../usuario.service';
 
 @Component({
@@ -8,12 +8,16 @@ import { UsuarioService } from '../usuario.service';
   styleUrls: ['./usuario-show.component.css']
 })
 export class UsuarioShowComponent implements OnInit {
+  usuarioLogado = {
+    email: '',
+    admin: ''
+  }
   usuario = { 
     nome: "",
     email: "",
     funcao: "",
     custoHora: 0,
-    admin: false
+    admin: ""
   };
   frontPath:string = "../../assets/images/check.png";
 
@@ -26,8 +30,8 @@ export class UsuarioShowComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.usuario = this._usuarioService.usuario;
-    console.log('ProjetoEditComponent > usuario: ', this.usuario);
+    this.usuarioLogado = this._usuarioService.getUserLoggedIn();
+    console.log('UsuarioShowComponent > usuarioLogado ', this.usuarioLogado);
     this.obterUsuario(this._route.snapshot.params['id']);
   }
 

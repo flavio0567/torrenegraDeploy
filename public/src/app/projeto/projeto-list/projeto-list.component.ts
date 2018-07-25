@@ -1,22 +1,48 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProjetoService } from '../projeto.service';
 import { ClienteService } from '../../cliente/cliente.service';
+import { UsuarioService } from '../../usuario/usuario.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+
+
+export interface PedidoData {
+  codigo: string;
+  descricao: string;
+  cliente: string;
+  pedido: string;
+  acao: string;
+}
 
 @Component({
   selector: 'app-projeto-list',
   templateUrl: './projeto-list.component.html',
-  styleUrls: ['./projeto-list.component.css']
+  styleUrls: ['./projeto-list.component.scss']
 })
 export class ProjetoListComponent implements OnInit {
-  usuario: any;
+
+
+  displayedColumns: string[] = ['codigo', 'descricao', 'cliente', 'pedido', 'acao1', 'acao2'];
+  dataSource: MatTableDataSource<PedidoData>;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+
+  usuarioLogado = {
+    email: '',
+    admin: ''
+  }
   projetos = [{
+    _id: "",
     codigo: "",
     descricao: "",
     _clienteId: "",
-    nomeFantasiaCliente: "",
-    pedido: ""
+    cliente: "",
+    pedido: "",
+    acao: "",
+    encerrado: ""
   }];
   cliente = {
     _id: "",
@@ -24,8 +50,8 @@ export class ProjetoListComponent implements OnInit {
     razaoSocial: "",
     nomeFantasia: "",
     endereco: "",
-    valorHH: 0,
-    prazoPgto: 0,
+    valorHH: "",
+    prazoPgto: "",
     contatos:  [{ 
       nome: "",
       email: "",
@@ -33,15 +59,29 @@ export class ProjetoListComponent implements OnInit {
       skype: ""}]
   }
 
+
   constructor(
+    private _usuarioService: UsuarioService,
     private _projetoService: ProjetoService,
     private _clienteService: ClienteService,
     public dialog: MatDialog
   ) { } 
 
   ngOnInit() {
+    this.usuarioLogado = this._usuarioService.getUserLoggedIn();
+    console.log('ProjetoListComponent > usuariologado ',this.usuarioLogado)
     this.obterListaProjeto();
   }
+
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
 
   obterListaProjeto() {
     console.log('ProjetoListComponent > obterListaProjeto()')
@@ -49,10 +89,12 @@ export class ProjetoListComponent implements OnInit {
     projetoObservable.subscribe(
       (projetos) => { 
         this.projetos = projetos.json();
-        console.log('projetos in List:', this.projetos);
         for (var i = 0; i < this.projetos.length; i++) {
           this.obterCliente(this.projetos[i]._clienteId, i);
         }
+        this.dataSource = new MatTableDataSource(this.projetos);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       },
       (err) => { },
         () => { }
@@ -65,7 +107,7 @@ export class ProjetoListComponent implements OnInit {
     clienteObservable.subscribe(
       (cliente) => { 
         this.cliente = cliente.json();
-        this.projetos[i].nomeFantasiaCliente = this.cliente.nomeFantasia;
+        this.projetos[i].cliente = this.cliente.nomeFantasia;
       },
       (err) => { },
         () => { }
@@ -73,14 +115,14 @@ export class ProjetoListComponent implements OnInit {
   }
 
   openDialog(projeto): void {
-    console.log('ProjetoListComponent > openDialog(projeto) > encerrar()')
-    let dialogRef = this.dialog.open(Dialog, {
+    console.log('ProjetoListComponent > openDialog(projeto) ')
+    let dialogRef = this.dialog.open(DialogProjeto, {
       width: '250px',
       data: {
         id: projeto._id,
         codigo: projeto.codigo,
         descricao: projeto.descricao,
-        usuario: this.usuario
+        usuario: this.usuarioLogado
       }
     });
 
@@ -90,22 +132,19 @@ export class ProjetoListComponent implements OnInit {
     });
   }
 
-
-
 }
 
 
 @Component({
   selector: 'app-popup',
-  templateUrl: '../popup/popup.component.html',
-  styleUrls: ['../popup/popup.component.css']
+  templateUrl: '../popup/popup.component.html'
 })
 
-export class Dialog {
+export class DialogProjeto {
 
   constructor(private _projetoService: ProjetoService, 
     private _router: Router, 
-    public dialogRef: MatDialogRef<Dialog>,
+    public dialogRef: MatDialogRef<DialogProjeto>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   onNoClick(): void {
@@ -113,7 +152,7 @@ export class Dialog {
   }
 
   encerrarProjeto(id) {
-    console.log('Dialog >  encerrarProjeto(id) ', id)
+    console.log('DialogProjeto >  encerrarProjeto(id) ', id)
     const dialogObservable = this._projetoService.encerrarProjeto(id);
     dialogObservable.subscribe(
       (res) => { 

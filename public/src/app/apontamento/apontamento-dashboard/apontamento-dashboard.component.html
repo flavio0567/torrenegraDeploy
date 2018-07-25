@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Sair <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container"> 
+
+  <nav class="level">
+      <div class="level-left">
+          <div class="title is-4">Apontamentos Projeto</div>
+      </div>
+      <div class="level-right">
+          <button mat-stroked-button color="primary" style="margin-top: 15px;" [routerLink]="['/apontamento/novo']">Novo apontamento</button>
+      </div> 
+  </nav>
+  <p>Olá {{ usuarioLogado }}</p>
+
+  <mat-tab-group>
+    <div class="container"> 
+      <!-- <mat-tab label="Hora" *ngIf="apontamentos.hora.inicio"> -->
+      <mat-tab label="Hora">
+        <apontamento-lista-hora></apontamento-lista-hora>
+      </mat-tab>
+      <mat-tab label="Despesa">
+          <apontamento-lista-despesa></apontamento-lista-despesa>
+      </mat-tab>        
+    </div>
+  </mat-tab-group>
+</div>
+

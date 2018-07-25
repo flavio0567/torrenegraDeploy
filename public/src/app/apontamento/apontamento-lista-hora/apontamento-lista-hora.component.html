@@ -1,0 +1,43 @@
+<mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+  <!-- {{ apontamentos[0] | json }} -->
+  <div class="mat-elevation-z8 linha">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- Codigo Column -->
+      <ng-container matColumnDef="codigo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> código </th>
+        <td mat-cell *matCellDef="let row"> {{row.codigo}} </td>
+      </ng-container>
+  
+      <!-- Descricao Column -->
+      <ng-container matColumnDef="descricao">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> descricao </th>
+        <td mat-cell *matCellDef="let row"> {{row.descricao}} </td>
+      </ng-container>
+  
+      <!-- Inicio Column -->
+      <ng-container matColumnDef="inicio">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> início </th>
+        <td mat-cell *matCellDef="let row"> {{row.hora.inicio | date:"MMM d, y H:mm:ss"}} </td>
+      </ng-container>
+  
+    <!-- Ação Column -->
+    <ng-container matColumnDef="acao">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ação </th>
+        <td mat-cell *matCellDef="let row"> 
+          <div class="button-row">
+            <button mat-button color="warn" style="margin-top: -15px" (click)="openDialog(row)">encerrar</button>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
+  
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+

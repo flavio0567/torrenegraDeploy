@@ -1,34 +1,47 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProjetoService } from '../../projeto/projeto.service';
 import { UsuarioService } from '../../usuario/usuario.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 
-
+export interface ApontamentoData {
+  codigo: string;
+  descricao: string;
+  hora: {
+    inicio: string};
+  acao: string;
+}
 
 @Component({
   selector: 'app-apontamento-list',
   templateUrl: './apontamento-list.component.html',
-  styleUrls: ['./apontamento-list.component.css']
+  styleUrls: ['./apontamento-list.component.scss']
 })
 export class ApontamentoListComponent implements OnInit {
+
+  displayedColumns: string[] = ['codigo', 'descricao', 'inicio', 'acao'];
+  dataSource: MatTableDataSource<ApontamentoData>;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+
   usuario: any;
-  apontamentos: any; 
-  
-  ap = [{
-    descricao: "",
+  apontamentos = [{
+    _id: "", 
+    _projeto: "",
     usuario: "",
+    codigo: "",
+    descricao: "",
     hora: {
-      inicio: "",
-      fim: ""
-      },
-    despesa: {
-      descricao: "",
-      valor: 0
-    }
-  }];
+      inicio: ""
+    },
+    acao: ""
+  }] 
+  
 
   projeto: any;
+  
   
   constructor(
     private _projetoService: ProjetoService,
@@ -41,17 +54,28 @@ export class ApontamentoListComponent implements OnInit {
     this.obterListaApontamento();
   }
 
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
   obterListaApontamento(){
-    console.log('ApontamentoListComponent > obterListaApontamento()', this.usuario)
-    const apontObservable = this._projetoService.obterApontamentos();
+    console.log('ApontamentoListComponent > obterListaApontamento()', this.usuario.email)
+    const apontObservable = this._projetoService.obterApontamentosDespesa(this.usuario.email);
     apontObservable.subscribe(
       (apontamentos) => {
         this.apontamentos = apontamentos.json();
-        console.log('JSON apontamentos in obterApontamentos()', this.apontamentos);
-        // this.ap.push(this.apontamentos);
+        console.log('ApontamentoListComponent > obterListaApontamento() > apontamentos ', this.apontamentos)
         for (var i = 0; i < this.apontamentos.length; i++) {
           this.obterProjeto(this.apontamentos[i]._projeto, i);
         } 
+        this.dataSource = new MatTableDataSource(this.apontamentos);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       },
       (err) => { },
         () => { }
@@ -59,16 +83,13 @@ export class ApontamentoListComponent implements OnInit {
   }
 
   obterProjeto(id, i) {
-    console.log('ApontamentoNovoComponent > obterProjeto()')
+    console.log('ApontamentoListComponent > obterProjeto()')
     const observable = this._projetoService.obterProjetoById(id);
     observable.subscribe(
       (response) => {
         this.projeto = response.json();
-        console.log(' descricao do projeto in obterProjeto()', this.projeto, this.ap);
         this.apontamentos[i].descricao = this.projeto.descricao;
         this.apontamentos[i].codigo = this.projeto.codigo;
-        // this.obterClienteNomeFantasia(this.projeto._clienteId);
-        // this.obterClientes();
       },
       (err) => { },
         () => { }
@@ -76,16 +97,18 @@ export class ApontamentoListComponent implements OnInit {
   }
 
 
-
   openDialog(projeto): void {
-    console.log('ProjetoListComponent > openDialog(projeto) > encerrar()')
-    let dialogRef = this.dialog.open(Dialog, {
+    console.log('ApontamentoListComponent > openDialog(projeto)', projeto)
+    let dialogRef = this.dialog.open(DialogApontamento, {
       width: '250px',
+
       data: {
         id: projeto._id,
         codigo: projeto.codigo,
         descricao: projeto.descricao,
-        usuario: this.usuario
+        inicio: projeto.hora.inicio,
+        fim: new Date(),
+        usuario: this.usuario.email
       }
     });
 
@@ -96,31 +119,28 @@ export class ApontamentoListComponent implements OnInit {
   }
 
 
-
-
 }
 
 
 @Component({
   selector: 'app-popup',
-  templateUrl: '../popup/popup.component.html',
-  styleUrls: ['../popup/popup.component.css']
+  templateUrl: '../popup/popup.component.html'
 })
 
-export class Dialog {
+export class DialogApontamento {
 
   constructor(private _projetoService: ProjetoService, 
     private _router: Router, 
-    public dialogRef: MatDialogRef<Dialog>,
+    public dialogRef: MatDialogRef<DialogApontamento>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  encerrarAtendinmento(id) {
-    console.log('Dialog >  encerrarAtendimento(id) ', id)
-    const dialogObservable = this._projetoService.encerrarApontamento(id);
+  encerrarApontamento(data) {
+    console.log('DialogApontamento >  encerrarApontamento(data) ', data)
+    const dialogObservable = this._projetoService.encerrarApontamento(data);
     dialogObservable.subscribe(
       (res) => { 
         console.log('The dialog called encerrar apontamento!', res);
@@ -129,8 +149,6 @@ export class Dialog {
       (err) => { },
         () => { }
     )
-    // console.log('The dialog called delete projeto!');
-    // this.dialogRef.close();
   }
 
 }

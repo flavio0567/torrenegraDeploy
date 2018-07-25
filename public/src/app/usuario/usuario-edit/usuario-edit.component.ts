@@ -8,6 +8,10 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./usuario-edit.component.css']
 })
 export class UsuarioEditComponent implements OnInit {
+  usuarioLogado = {
+    email: '',
+    admin: ''
+  }
   usuario = { 
     nome: "",
     email: "",
@@ -24,8 +28,8 @@ export class UsuarioEditComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.usuario = this._usuarioService.usuario;
-    console.log('ProjetoEditComponent > usuario: ', this.usuario);
+    this.usuarioLogado = this._usuarioService.getUserLoggedIn();
+    console.log('ProjetoEditComponent > usuarioLogado ', this.usuarioLogado);
     this.obterUsuario(this._route.snapshot.params['id']);
   }
 

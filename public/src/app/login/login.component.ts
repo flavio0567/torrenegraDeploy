@@ -5,13 +5,18 @@ import { UsuarioService } from '../usuario/usuario.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  public usuario = {
+  usuario = {
     email: '',
-    senha: ''
+    senha: '',
+    admin: ''
   };
+  public usuarioLogado = {
+    email: '',
+    admin: ''
+  }
   errors: any = {}
   
   constructor(
@@ -20,7 +25,7 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit() {
-    this.usuario = { email: "", senha: ""};
+    this.usuario = { email: "", senha: "", admin: ""};
     console.log('usuario logado? ', this._usuarioService.getUserLoggedIn());
     // if (this.usuario.senha === "torrenegra123") {
     //   this.errors = this.errors.senha.message = 'Primeiro acesso, informar sua nova senha';
@@ -28,21 +33,25 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this._usuarioService.login(this.usuario, (res) => { 
-      if(res.errors) {
-        console.log('ERRO em login');
-        this.errors = res.errors;
-        this.router.navigate(['/']);
-      } else {
-        console.log('SUCESSO em login');
-        if (this.usuario.email == "admin@torrenegra.com.br") {
-          this.router.navigate(['/projetos']);
-        } else {
-          this.router.navigate(['/apontamentos']);
+    console.log('LoginComponent > login()', this.usuario)
+    const userObservable = this._usuarioService.login(this.usuario.email);
+    userObservable.subscribe(
+        (usuario) => {
+          this.usuario = usuario.json();
+          console.log('SUCESSO em login');
+          if (this.usuario.admin) {
+            this.router.navigate(['/projetos']);
+          } else {
+            this.router.navigate(['/apontamentos']);
+          }
+        },
+        (err) => { 
+          this.errors = err.json();
+          console.log('ERRO em login', this.errors);
+          this.router.navigate(['/']);
         }
-      }
-    })
-  }
-
+      )
+      this._usuarioService.setUserLoggedIn(this.usuarioLogado);
+    }
 
 }

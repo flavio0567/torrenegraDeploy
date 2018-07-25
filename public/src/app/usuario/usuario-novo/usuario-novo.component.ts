@@ -9,7 +9,10 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./usuario-novo.component.css']
 })
 export class UsuarioNovoComponent implements OnInit {
-  usuarioLogado: any;
+  usuarioLogado = {
+    email: '',
+    admin: ''
+  }
   usuario = { 
     nome: "",
     email: "",
@@ -25,8 +28,8 @@ export class UsuarioNovoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.usuarioLogado = this._usuarioService.usuario;
-    console.log('UsuarioNovoComponent > ', this.usuarioLogado);
+    this.usuarioLogado = this._usuarioService.getUserLoggedIn();
+    console.log('UsuarioNovoComponent > usuariologado ', this.usuarioLogado);
   }
 
   criarUsuario(userForm: NgForm) {

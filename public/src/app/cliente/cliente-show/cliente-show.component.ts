@@ -3,7 +3,7 @@ import { FormGroup, NgForm, FormControl, FormBuilder } from '@angular/forms';
 import { Contato } from '../cliente-novo/cliente-model';
 import { UsuarioService } from '../../usuario/usuario.service';
 import { ClienteService } from '../cliente.service';
-import { ActivatedRoute, Router } from '../../../../node_modules/@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-cliente-show',
@@ -11,7 +11,10 @@ import { ActivatedRoute, Router } from '../../../../node_modules/@angular/router
   styleUrls: ['./cliente-show.component.css']
 })
 export class ClienteShowComponent implements OnInit {
-  usuario: any;
+  usuarioLogado = {
+    email: '',
+    admin: ''
+  }
   errors: any;
   cliente = {
     cnpj: 0,
@@ -64,8 +67,8 @@ export class ClienteShowComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.usuario = this._usuarioService.usuario;
-    console.log('ProjetoEditComponent > usuario: ', this.usuario);
+    this.usuarioLogado = this._usuarioService.getUserLoggedIn();
+    console.log('ClienteShowComponent > usuario ', this.usuarioLogado);
     this.obterCliente(this._route.snapshot.params['id']);
   }
   

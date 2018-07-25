@@ -8,10 +8,7 @@
                   <figure class="image is-480x480">
                       <img src="../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png">
                   </figure>
-                  <div class="errors">
-                    <p *ngIf="errors.email" >  {{ errors.email.message }} </p>
-                    <p *ngIf="errors.senha"> {{ errors.senha.message }} </p>        
-                  </div>
+
                   <form name="form" (submit)="login()" #formData="ngForm"> 
                       <div class="field">
                           <div class="control">
@@ -48,10 +45,12 @@
                   <button type="submit" class="button is-block is-info is-large is-fullwidth" [disabled]="formData.invalid">Entrar</button>
                   </form>
               </div>
+              <div class="errors">
+                <p>{{ errors.message }} </p>      
+              </div>
               <p class="has-text-grey">
-                
-                  <a href="../">Esqueci minha Senha</a> &nbsp;·&nbsp;
-                  <a href="../">Ajuda?</a>
+                <a href="../">Esqueci minha Senha</a> &nbsp;·&nbsp;
+                <a href="../">Ajuda?</a>
               </p>
           </div>
       </div>

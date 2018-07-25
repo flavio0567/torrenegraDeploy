@@ -11,8 +11,10 @@ module.exports = function(app){
 
     .get('/projetos', (req, res) => {
         projeto.list(req, res)})
-    .get('/apontamentos', (req, res) => {
-        projeto.apontamentos(req, res)})
+    .get('/apontamentos/hora/', (req, res) => {
+        projeto.apontamentosHora(req, res)})
+    .get('/apontamentos/despesa/', (req, res) => {
+        projeto.apontamentosDespesa(req, res)})
     .put('/apontamento/novo/:id', (req, res) => {
         projeto.apontamentoNovo(req, res)})
     .put('/apontamento/encerrar/:id', (req, res) => {
@@ -37,6 +39,8 @@ module.exports = function(app){
         usuario.novo(req, res)})
     .put('/usuario/edit/:id', (req, res) => {
         usuario.edit(req, res)})
+    .get('/login/', (req, res) => {
+        usuario.login(req, res)})
     .get('/usuarios', (req, res) => {
         usuario.list(req, res)})
     .get('/usuario/:id', (req, res) => {

@@ -9,6 +9,10 @@ import { Router } from '@angular/router';
 })
 export class UsuarioListComponent implements OnInit {
 
+  usuarioLogado = {
+    email: '',
+    admin: ''
+  }
   usuarios: any;
   frontPath:string = "../../assets/images/check.png";
 
@@ -20,6 +24,8 @@ export class UsuarioListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.usuarioLogado = this._usuarioService.getUserLoggedIn();
+    console.log('UsuarioListComponent > usuariologado',this.usuarioLogado)
     this.obterListaUsuario();
   }
 

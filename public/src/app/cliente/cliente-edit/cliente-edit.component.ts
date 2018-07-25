@@ -11,7 +11,10 @@ import { Contato } from '../cliente-novo/cliente-model';
   styleUrls: ['./cliente-edit.component.css']
 })
 export class ClienteEditComponent implements OnInit {
-  usuario: any;
+  usuarioLogado = {
+    email: '',
+    admin: ''
+  }
   errors: any;
   cliente = {
     cnpj: 0,
@@ -64,8 +67,8 @@ export class ClienteEditComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.usuario = this._usuarioService.usuario;
-    console.log('ProjetoEditComponent > usuario: ', this.usuario);
+    this.usuarioLogado = this._usuarioService.getUserLoggedIn();
+    console.log('ClienteEditComponent  > usuarioLogado ', this.usuarioLogado);
     this.obterCliente(this._route.snapshot.params['id']);
   }
   

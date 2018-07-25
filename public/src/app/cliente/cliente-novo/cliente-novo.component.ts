@@ -11,21 +11,11 @@ import { Contato } from './cliente-model';
   styleUrls: ['./cliente-novo.component.css']
 })
 export class ClienteNovoComponent implements OnInit, OnChanges {
-  usuario: any;
+  usuarioLogado = {
+    email: '',
+    admin: ''
+  }
   errors: any;
-  // cliente = {
-  //   cnpj: 0,
-  //   razaoSocial: "",
-  //   nomeFantasia: "",
-  //   endereco: "",
-  //   valorHH: 0,
-  //   prazoPgto: 0,
-  //   contatos:  [{ 
-  //     nome: "",
-  //     email: "",
-  //     telefone: 0,
-  //     skype: ""}]
-  // }
   contato = new Contato;
 
   contatosArray = [];
@@ -59,8 +49,8 @@ export class ClienteNovoComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     console.log('contato in ngOnInit:', this.contato);
-    this.usuario = this._usuarioService.usuario;
-    console.log(' ClienteNovoComponent > ', this.usuario);
+    this.usuarioLogado = this._usuarioService.getUserLoggedIn();
+    console.log(' ClienteNovoComponent > ', this.usuarioLogado);
     this.createForm(this.clienteContatos);
   }
 
