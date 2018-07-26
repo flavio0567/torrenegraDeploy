@@ -68,7 +68,7 @@ export class ClienteEditComponent implements OnInit {
 
   ngOnInit() {
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-    console.log('ClienteEditComponent  > usuarioLogado ', this.usuarioLogado);
+    console.log('ClienteEditComponent  > usuarioLogado ', this.usuarioLogado.email);
     this.obterCliente(this._route.snapshot.params['id']);
   }
   

@@ -39,16 +39,6 @@ export class ApontamentoListaDespesaComponent implements OnInit {
     _projeto: ""
   }] 
 
-  // apontamentos = [{
-  //   _id: "", 
-  //   _projeto: "",
-  //   usuario: "",
-  //   codigo: "",
-  //   descricao: "",
-  //   despesaDescricao: "",
-  //   despesaValor: ""
-  // }] 
-
   projeto: any;
   
   constructor(
@@ -59,7 +49,7 @@ export class ApontamentoListaDespesaComponent implements OnInit {
 
   ngOnInit() {
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-    console.log('ApontamentoListaDespesaComponent > usuariologado',this.usuarioLogado)
+    console.log('ApontamentoListaDespesaComponent > usuariologado',this.usuarioLogado.email)
     this.obterListaApontamento();
   }
 
@@ -99,14 +89,6 @@ export class ApontamentoListaDespesaComponent implements OnInit {
         // console.log('ApontamentoListaDespesaComponent > obterProjeto() > this.projeto', this.projeto.apontamentos);
         this.apontamentos[i].codigo = this.projeto.codigo;
         this.apontamentos[i].descricao = this.projeto.descricao;
-        // for (let j = 0; j < this.projeto.apontamentos.length; j++) {
-        //   console.log('this.projeto.apontamentos[j]', this.projeto.apontamentos[j]);
-        //   // console.log('this.projeto.apontamentos[j].despesaValor;', this.projeto.apontamentos[j].despesa.valor);
-        //   if(this.projeto.apontamentos[j].tipo === 'despesa'){
-        //     this.apontamentos[i].despesaDescricao = this.projeto.apontamentos[j].despesa.descricao;
-        //     this.apontamentos[i].despesaValor = this.projeto.apontamentos[j].despesa.valor;
-        //   }
-        // }
       },
       (err) => { },
         () => { }
@@ -114,82 +96,4 @@ export class ApontamentoListaDespesaComponent implements OnInit {
   }
 
 
-
-  // obterProjeto(id, i) {
-  //   console.log('ApontamentoListaDespesaComponent > obterProjeto()', id, i)
-  //   const observable = this._projetoService.obterProjetoById(id);
-  //   observable.subscribe(
-  //     (response) => {
-  //       this.projeto = response.json();
-  //       // console.log('ApontamentoListaDespesaComponent > obterProjeto() > this.projeto', this.projeto.apontamentos);
-  //       this.apontamentos[i].codigo = this.projeto.codigo;
-  //       this.apontamentos[i].descricao = this.projeto.descricao;
-  //       for (let j = 0; j < this.projeto.apontamentos.length; j++) {
-  //         console.log('this.projeto.apontamentos[j]', this.projeto.apontamentos[j]);
-  //         // console.log('this.projeto.apontamentos[j].despesaValor;', this.projeto.apontamentos[j].despesa.valor);
-  //         if(this.projeto.apontamentos[j].tipo === 'despesa'){
-  //           this.apontamentos[i].despesaDescricao = this.projeto.apontamentos[j].despesa.descricao;
-  //           this.apontamentos[i].despesaValor = this.projeto.apontamentos[j].despesa.valor;
-  //         }
-  //       }
-  //     },
-  //     (err) => { },
-  //       () => { }
-  //   )
-  // }
-
-
-  // openDialog(projeto): void {
-  //   console.log('ApontamentoListaDespesaComponent > openDialog(projeto)', projeto)
-  //   let dialogRef = this.dialog.open(DialogApontamentoDespesa, {
-  //     width: '250px',
-
-  //     data: {
-  //       id: projeto._id,
-  //       codigo: projeto.codigo,
-  //       descricao: projeto.descricao,
-  //       valor: projeto.valor,
-  //       usuario: this.usuarioLogado
-  //     }
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(res => {
-  //       console.log('The dialog was closed');
-  //       this.obterListaApontamento();
-  //   });
-  // }
-
-
 }
-
-
-// @Component({
-//   selector: 'app-popup',
-//   templateUrl: '../popup/popup.component.html'
-// })
-
-// export class DialogApontamentoDespesa {
-
-//   constructor(private _projetoService: ProjetoService, 
-//     private _router: Router, 
-//     public dialogRef: MatDialogRef<DialogApontamentoDespesa>,
-//     @Inject(MAT_DIALOG_DATA) public data: any) { }
-
-//   onNoClick(): void {
-//     this.dialogRef.close();
-//   }
-
-//   encerrarApontamento(data) {
-//     console.log('DialogApontamentoDespesa >  encerrarApontamento(data) ', data)
-//     const dialogObservable = this._projetoService.encerrarApontamento(data);
-//     dialogObservable.subscribe(
-//       (res) => { 
-//         console.log('The dialog called encerrar apontamento!', res);
-//         this.dialogRef.close();
-//       },
-//       (err) => { },
-//         () => { }
-//     )
-//   }
-
-// }

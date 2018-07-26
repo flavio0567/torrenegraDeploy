@@ -25,7 +25,7 @@ export class UsuarioListComponent implements OnInit {
 
   ngOnInit() {
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-    console.log('UsuarioListComponent > usuariologado',this.usuarioLogado)
+    console.log('UsuarioListComponent > usuariologado',this.usuarioLogado.email)
     this.obterListaUsuario();
   }
 
@@ -35,7 +35,6 @@ export class UsuarioListComponent implements OnInit {
     usuarioObservable.subscribe(
       (usuarios) => { 
         this.usuarios = usuarios.json();
-        console.log('usuarios in UsuariosListComponent:', this.usuarios);
       },
       (err) => { },
         () => { }

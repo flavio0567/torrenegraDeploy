@@ -55,7 +55,7 @@ export class ApontamentoListaHoraComponent implements OnInit {
 
   ngOnInit() {
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-    console.log('ApontamentoListaHoraComponent > usuariologado ',this.usuarioLogado)
+    console.log('ApontamentoListaHoraComponent > usuariologado ',this.usuarioLogado.email)
     this.obterListaApontamento();
   }
 
@@ -96,19 +96,11 @@ export class ApontamentoListaHoraComponent implements OnInit {
         // console.log('ApontamentoListaHoraComponent > obterProjeto() > this.projeto', this.projeto.apontamentos.length, this.projeto );
         this.apontamentos[i].descricao = this.projeto.descricao;
         this.apontamentos[i].codigo = this.projeto.codigo;
-        // for (let j = 0; j < this.projeto.apontamentos.length; j++) {
-          // console.log(
-            // 'hora ', this.projeto.apontamentos[j].hora,
-            // 'inicio ', this.projeto.apontamentos[j].hora.inicio
-          // );
-          // this.apontamentos[i].hora.inicio = this.projeto.apontamentos[j].hora.inicio;  
-        // }
       },
       (err) => { },
         () => { }
     )
   }
-
 
   openDialog(projeto): void {
     console.log('ApontamentoListaHoraComponent > openDialog(projeto)', projeto)
@@ -130,7 +122,6 @@ export class ApontamentoListaHoraComponent implements OnInit {
         this.obterListaApontamento();
     });
   }
-
 
 }
 

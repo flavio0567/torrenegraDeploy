@@ -1,59 +1,33 @@
-<section class="hero is-info is-fullheight">
-  <div class="hero-body">
-      <div class="container has-text-centered">
-          <div class="column is-4 is-offset-4">
-              <!-- <h3 class="title has-text-grey">Apontador!</h3>
-              <p class="subtitle has-text-grey">Digite seus dados para entrar</p> -->
-              <div class="box">
-                  <figure class="image is-480x480">
-                      <img src="../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png">
-                  </figure>
+<div class="box">
 
-                  <form name="form" (submit)="login()" #formData="ngForm"> 
-                      <div class="field">
-                          <div class="control">
-                              <input class="input is-large"
-                               type="email" 
-                               placeholder="Seu Email" 
-                               autofocus=""
-                               name="email" 
-                               required
-                               [(ngModel)]="usuario.email" 
-                               #email="ngModel"  
-                              />
-                          </div>
-                      </div>
+    <mat-card class="example-card">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Torre Negra</mat-card-title>
+            <mat-card-subtitle>Sistemas</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <form class="example-form" [formGroup]="formLogin" (submit)="login()"> 
 
-                      <div class="field">
-                          <div class="control">
-                              <input class="input is-large" 
-                              type="password" 
-                              placeholder="Sua Senha"
-                              name="senha" 
-                              required
-                              [(ngModel)]="usuario.senha" 
-                              #senha="ngModel" 
-                             />
-                          </div>
-                      </div>
-                      <div class="field">
-                          <label class="checkbox">
-                              <input type="checkbox">
-                                  Lembrar a Senha
-                          </label>
-                      </div>
-                  <button type="submit" class="button is-block is-info is-large is-fullwidth" [disabled]="formData.invalid">Entrar</button>
-                  </form>
-              </div>
-              <div class="errors">
+                <mat-form-field>
+
+                    <input matInput type="email" placeholder="email" formControlName="email" />
+
+                </mat-form-field>
+
+                <mat-form-field>
+
+                    <input matInput type="password" placeholder="senha" formControlName="senha" />
+                </mat-form-field>
+                <mat-card-actions>
+                    <button type="submit" class="button is-block is-info is-large is-fullwidth" [disabled]="formLogin.invalid">Entrar</button>
+                </mat-card-actions>
+            </form>
+
+            <div class="errors">
                 <p>{{ errors.message }} </p>      
-              </div>
-              <p class="has-text-grey">
-                <a href="../">Esqueci minha Senha</a> &nbsp;·&nbsp;
-                <a href="../">Ajuda?</a>
-              </p>
-          </div>
-      </div>
-  </div>
-</section>
+            </div>
 
+        </mat-card-content>
+    </mat-card>
+</div>

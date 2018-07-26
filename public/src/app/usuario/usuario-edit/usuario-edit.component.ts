@@ -29,7 +29,7 @@ export class UsuarioEditComponent implements OnInit {
 
   ngOnInit() {
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-    console.log('ProjetoEditComponent > usuarioLogado ', this.usuarioLogado);
+    console.log('ProjetoEditComponent > usuarioLogado ', this.usuarioLogado.email);
     this.obterUsuario(this._route.snapshot.params['id']);
   }
 

@@ -40,7 +40,7 @@ export class ProjetoNovoComponent implements OnInit {
 
   ngOnInit() {
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-    console.log('ProjetoNovoComponent > usuarioLogado ', this.usuarioLogado);
+    console.log('ProjetoNovoComponent > usuarioLogado ', this.usuarioLogado.email);
     this.obterListaCliente();
   }
 

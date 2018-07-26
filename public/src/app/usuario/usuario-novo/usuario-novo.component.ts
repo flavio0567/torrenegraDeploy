@@ -29,7 +29,7 @@ export class UsuarioNovoComponent implements OnInit {
 
   ngOnInit() {
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-    console.log('UsuarioNovoComponent > usuariologado ', this.usuarioLogado);
+    console.log('UsuarioNovoComponent > usuariologado ', this.usuarioLogado.email);
   }
 
   criarUsuario(userForm: NgForm) {

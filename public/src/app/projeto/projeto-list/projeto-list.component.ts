@@ -69,7 +69,7 @@ export class ProjetoListComponent implements OnInit {
 
   ngOnInit() {
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-    console.log('ProjetoListComponent > usuariologado ',this.usuarioLogado)
+    console.log('ProjetoListComponent > usuariologado ',this.usuarioLogado.email)
     this.obterListaProjeto();
   }
 

@@ -71,7 +71,7 @@ export class ApontamentoNovoComponent implements OnInit {
 
   ngOnInit() {
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-    console.log(' ApontamentoNovoComponent > usuarioLogado ', this.usuarioLogado);
+    console.log(' ApontamentoNovoComponent > usuarioLogado ', this.usuarioLogado.email);
     this.apontamento.usuario = this.usuarioLogado;
     this.obterListaProjeto();
   }

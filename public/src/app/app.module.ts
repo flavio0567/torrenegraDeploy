@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule, MatFormFieldModule, MatInputModule, MatOptionModule, MatSelectModule, MatRadioModule } from '@angular/material';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatCardModule } from '@angular/material/card';
 
 import { GlobalErrorComponent } from './global-error/global-error.component';
 
@@ -82,7 +83,8 @@ import { ApontamentoListaHoraComponent, DialogApontamentoHora } from './apontame
     MatOptionModule,
     MatSelectModule,
     MatRadioModule,
-    MatTabsModule
+    MatTabsModule,
+    MatCardModule
     // NgbModule,
     // NgbModule.forRoot()
   ],

@@ -31,7 +31,7 @@ export class UsuarioShowComponent implements OnInit {
 
   ngOnInit() {
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-    console.log('UsuarioShowComponent > usuarioLogado ', this.usuarioLogado);
+    console.log('UsuarioShowComponent > usuarioLogado ', this.usuarioLogado.email);
     this.obterUsuario(this._route.snapshot.params['id']);
   }
 

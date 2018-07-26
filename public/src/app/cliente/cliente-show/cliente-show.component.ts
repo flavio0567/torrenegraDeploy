@@ -68,7 +68,7 @@ export class ClienteShowComponent implements OnInit {
 
   ngOnInit() {
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-    console.log('ClienteShowComponent > usuario ', this.usuarioLogado);
+    console.log('ClienteShowComponent > usuario ', this.usuarioLogado.email);
     this.obterCliente(this._route.snapshot.params['id']);
   }
   

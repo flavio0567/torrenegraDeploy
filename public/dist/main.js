@@ -78,7 +78,7 @@ var ApontamentoDashboardComponent = /** @class */ (function () {
     }
     ApontamentoDashboardComponent.prototype.ngOnInit = function () {
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log('ApontamentoDashboardComponent > usuariologado ', this.usuarioLogado);
+        console.log('ApontamentoDashboardComponent > usuariologado ', this.usuarioLogado.email);
     };
     ApontamentoDashboardComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -167,7 +167,7 @@ var ApontamentoListaDespesaComponent = /** @class */ (function () {
     }
     ApontamentoListaDespesaComponent.prototype.ngOnInit = function () {
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log('ApontamentoListaDespesaComponent > usuariologado', this.usuarioLogado);
+        console.log('ApontamentoListaDespesaComponent > usuariologado', this.usuarioLogado.email);
         this.obterListaApontamento();
     };
     ApontamentoListaDespesaComponent.prototype.applyFilter = function (filterValue) {
@@ -200,14 +200,6 @@ var ApontamentoListaDespesaComponent = /** @class */ (function () {
             // console.log('ApontamentoListaDespesaComponent > obterProjeto() > this.projeto', this.projeto.apontamentos);
             _this.apontamentos[i].codigo = _this.projeto.codigo;
             _this.apontamentos[i].descricao = _this.projeto.descricao;
-            // for (let j = 0; j < this.projeto.apontamentos.length; j++) {
-            //   console.log('this.projeto.apontamentos[j]', this.projeto.apontamentos[j]);
-            //   // console.log('this.projeto.apontamentos[j].despesaValor;', this.projeto.apontamentos[j].despesa.valor);
-            //   if(this.projeto.apontamentos[j].tipo === 'despesa'){
-            //     this.apontamentos[i].despesaDescricao = this.projeto.apontamentos[j].despesa.descricao;
-            //     this.apontamentos[i].despesaValor = this.projeto.apontamentos[j].despesa.valor;
-            //   }
-            // }
         }, function (err) { }, function () { });
     };
     __decorate([
@@ -231,31 +223,6 @@ var ApontamentoListaDespesaComponent = /** @class */ (function () {
     return ApontamentoListaDespesaComponent;
 }());
 
-// @Component({
-//   selector: 'app-popup',
-//   templateUrl: '../popup/popup.component.html'
-// })
-// export class DialogApontamentoDespesa {
-//   constructor(private _projetoService: ProjetoService, 
-//     private _router: Router, 
-//     public dialogRef: MatDialogRef<DialogApontamentoDespesa>,
-//     @Inject(MAT_DIALOG_DATA) public data: any) { }
-//   onNoClick(): void {
-//     this.dialogRef.close();
-//   }
-//   encerrarApontamento(data) {
-//     console.log('DialogApontamentoDespesa >  encerrarApontamento(data) ', data)
-//     const dialogObservable = this._projetoService.encerrarApontamento(data);
-//     dialogObservable.subscribe(
-//       (res) => { 
-//         console.log('The dialog called encerrar apontamento!', res);
-//         this.dialogRef.close();
-//       },
-//       (err) => { },
-//         () => { }
-//     )
-//   }
-// }
 
 
 /***/ }),
@@ -339,7 +306,7 @@ var ApontamentoListaHoraComponent = /** @class */ (function () {
     }
     ApontamentoListaHoraComponent.prototype.ngOnInit = function () {
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log('ApontamentoListaHoraComponent > usuariologado ', this.usuarioLogado);
+        console.log('ApontamentoListaHoraComponent > usuariologado ', this.usuarioLogado.email);
         this.obterListaApontamento();
     };
     ApontamentoListaHoraComponent.prototype.applyFilter = function (filterValue) {
@@ -373,13 +340,6 @@ var ApontamentoListaHoraComponent = /** @class */ (function () {
             // console.log('ApontamentoListaHoraComponent > obterProjeto() > this.projeto', this.projeto.apontamentos.length, this.projeto );
             _this.apontamentos[i].descricao = _this.projeto.descricao;
             _this.apontamentos[i].codigo = _this.projeto.codigo;
-            // for (let j = 0; j < this.projeto.apontamentos.length; j++) {
-            // console.log(
-            // 'hora ', this.projeto.apontamentos[j].hora,
-            // 'inicio ', this.projeto.apontamentos[j].hora.inicio
-            // );
-            // this.apontamentos[i].hora.inicio = this.projeto.apontamentos[j].hora.inicio;  
-            // }
         }, function (err) { }, function () { });
     };
     ApontamentoListaHoraComponent.prototype.openDialog = function (projeto) {
@@ -476,7 +436,7 @@ module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".example-container {\n  display: flex;\n  flex-direction: column; }\n\n.example-container > * {\n  width: 100%; }\n"
+module.exports = ".example-container {\n  display: flex;\n  flex-direction: column; }\n\n.example-container > * {\n  width: 100%; }\n\nbutton {\n  margin: 10px; }\n"
 
 /***/ }),
 
@@ -554,7 +514,7 @@ var ApontamentoNovoComponent = /** @class */ (function () {
     }
     ApontamentoNovoComponent.prototype.ngOnInit = function () {
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log(' ApontamentoNovoComponent > usuarioLogado ', this.usuarioLogado);
+        console.log(' ApontamentoNovoComponent > usuarioLogado ', this.usuarioLogado.email);
         this.apontamento.usuario = this.usuarioLogado;
         this.obterListaProjeto();
     };
@@ -807,7 +767,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<figure class=\"image is-128x128\">\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</figure>\n<router-outlet></router-outlet>\n"
+module.exports = "<!-- <figure class=\"image is-128x128\">\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</figure> -->\n<router-outlet></router-outlet>\n"
 
 /***/ }),
 
@@ -875,40 +835,42 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material/tabs */ "./node_modules/@angular/material/esm5/tabs.es5.js");
-/* harmony import */ var _global_error_global_error_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./global-error/global-error.component */ "./src/app/global-error/global-error.component.ts");
-/* harmony import */ var _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./projeto/projeto.service */ "./src/app/projeto/projeto.service.ts");
-/* harmony import */ var _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./usuario/usuario.service */ "./src/app/usuario/usuario.service.ts");
-/* harmony import */ var _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./cliente/cliente.service */ "./src/app/cliente/cliente.service.ts");
-/* harmony import */ var _global_error_handler_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./global-error-handler.service */ "./src/app/global-error-handler.service.ts");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _cliente_cliente_edit_cliente_edit_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./cliente/cliente-edit/cliente-edit.component */ "./src/app/cliente/cliente-edit/cliente-edit.component.ts");
-/* harmony import */ var _cliente_cliente_novo_cliente_novo_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./cliente/cliente-novo/cliente-novo.component */ "./src/app/cliente/cliente-novo/cliente-novo.component.ts");
-/* harmony import */ var _cliente_cliente_show_cliente_show_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./cliente/cliente-show/cliente-show.component */ "./src/app/cliente/cliente-show/cliente-show.component.ts");
-/* harmony import */ var _usuario_usuario_list_usuario_list_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./usuario/usuario-list/usuario-list.component */ "./src/app/usuario/usuario-list/usuario-list.component.ts");
-/* harmony import */ var _usuario_usuario_edit_usuario_edit_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./usuario/usuario-edit/usuario-edit.component */ "./src/app/usuario/usuario-edit/usuario-edit.component.ts");
-/* harmony import */ var _usuario_usuario_novo_usuario_novo_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./usuario/usuario-novo/usuario-novo.component */ "./src/app/usuario/usuario-novo/usuario-novo.component.ts");
-/* harmony import */ var _usuario_usuario_show_usuario_show_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./usuario/usuario-show/usuario-show.component */ "./src/app/usuario/usuario-show/usuario-show.component.ts");
-/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
-/* harmony import */ var _financeiro_financeiro_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./financeiro/financeiro.component */ "./src/app/financeiro/financeiro.component.ts");
-/* harmony import */ var _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./projeto/projeto-list/projeto-list.component */ "./src/app/projeto/projeto-list/projeto-list.component.ts");
-/* harmony import */ var _projeto_projeto_novo_projeto_novo_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./projeto/projeto-novo/projeto-novo.component */ "./src/app/projeto/projeto-novo/projeto-novo.component.ts");
-/* harmony import */ var _projeto_projeto_show_projeto_show_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./projeto/projeto-show/projeto-show.component */ "./src/app/projeto/projeto-show/projeto-show.component.ts");
-/* harmony import */ var _projeto_projeto_edit_projeto_edit_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./projeto/projeto-edit/projeto-edit.component */ "./src/app/projeto/projeto-edit/projeto-edit.component.ts");
-/* harmony import */ var _cliente_cliente_list_cliente_list_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./cliente/cliente-list/cliente-list.component */ "./src/app/cliente/cliente-list/cliente-list.component.ts");
-/* harmony import */ var _relatorio_relatorio_financeiro_relatorio_financeiro_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./relatorio/relatorio-financeiro/relatorio-financeiro.component */ "./src/app/relatorio/relatorio-financeiro/relatorio-financeiro.component.ts");
-/* harmony import */ var _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./pagina-nao-encontrada/pagina-nao-encontrada.component */ "./src/app/pagina-nao-encontrada/pagina-nao-encontrada.component.ts");
-/* harmony import */ var _apontamento_apontamento_novo_apontamento_novo_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./apontamento/apontamento-novo/apontamento-novo.component */ "./src/app/apontamento/apontamento-novo/apontamento-novo.component.ts");
-/* harmony import */ var _material__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./material */ "./src/app/material.ts");
-/* harmony import */ var _apontamento_apontamento_dashboard_apontamento_dashboard_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./apontamento/apontamento-dashboard/apontamento-dashboard.component */ "./src/app/apontamento/apontamento-dashboard/apontamento-dashboard.component.ts");
-/* harmony import */ var _apontamento_apontamento_lista_despesa_apontamento_lista_despesa_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./apontamento/apontamento-lista-despesa/apontamento-lista-despesa.component */ "./src/app/apontamento/apontamento-lista-despesa/apontamento-lista-despesa.component.ts");
-/* harmony import */ var _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./apontamento/apontamento-lista-hora/apontamento-lista-hora.component */ "./src/app/apontamento/apontamento-lista-hora/apontamento-lista-hora.component.ts");
+/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
+/* harmony import */ var _global_error_global_error_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./global-error/global-error.component */ "./src/app/global-error/global-error.component.ts");
+/* harmony import */ var _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./projeto/projeto.service */ "./src/app/projeto/projeto.service.ts");
+/* harmony import */ var _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./usuario/usuario.service */ "./src/app/usuario/usuario.service.ts");
+/* harmony import */ var _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./cliente/cliente.service */ "./src/app/cliente/cliente.service.ts");
+/* harmony import */ var _global_error_handler_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./global-error-handler.service */ "./src/app/global-error-handler.service.ts");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _cliente_cliente_edit_cliente_edit_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./cliente/cliente-edit/cliente-edit.component */ "./src/app/cliente/cliente-edit/cliente-edit.component.ts");
+/* harmony import */ var _cliente_cliente_novo_cliente_novo_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./cliente/cliente-novo/cliente-novo.component */ "./src/app/cliente/cliente-novo/cliente-novo.component.ts");
+/* harmony import */ var _cliente_cliente_show_cliente_show_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./cliente/cliente-show/cliente-show.component */ "./src/app/cliente/cliente-show/cliente-show.component.ts");
+/* harmony import */ var _usuario_usuario_list_usuario_list_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./usuario/usuario-list/usuario-list.component */ "./src/app/usuario/usuario-list/usuario-list.component.ts");
+/* harmony import */ var _usuario_usuario_edit_usuario_edit_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./usuario/usuario-edit/usuario-edit.component */ "./src/app/usuario/usuario-edit/usuario-edit.component.ts");
+/* harmony import */ var _usuario_usuario_novo_usuario_novo_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./usuario/usuario-novo/usuario-novo.component */ "./src/app/usuario/usuario-novo/usuario-novo.component.ts");
+/* harmony import */ var _usuario_usuario_show_usuario_show_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./usuario/usuario-show/usuario-show.component */ "./src/app/usuario/usuario-show/usuario-show.component.ts");
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
+/* harmony import */ var _financeiro_financeiro_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./financeiro/financeiro.component */ "./src/app/financeiro/financeiro.component.ts");
+/* harmony import */ var _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./projeto/projeto-list/projeto-list.component */ "./src/app/projeto/projeto-list/projeto-list.component.ts");
+/* harmony import */ var _projeto_projeto_novo_projeto_novo_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./projeto/projeto-novo/projeto-novo.component */ "./src/app/projeto/projeto-novo/projeto-novo.component.ts");
+/* harmony import */ var _projeto_projeto_show_projeto_show_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./projeto/projeto-show/projeto-show.component */ "./src/app/projeto/projeto-show/projeto-show.component.ts");
+/* harmony import */ var _projeto_projeto_edit_projeto_edit_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./projeto/projeto-edit/projeto-edit.component */ "./src/app/projeto/projeto-edit/projeto-edit.component.ts");
+/* harmony import */ var _cliente_cliente_list_cliente_list_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./cliente/cliente-list/cliente-list.component */ "./src/app/cliente/cliente-list/cliente-list.component.ts");
+/* harmony import */ var _relatorio_relatorio_financeiro_relatorio_financeiro_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./relatorio/relatorio-financeiro/relatorio-financeiro.component */ "./src/app/relatorio/relatorio-financeiro/relatorio-financeiro.component.ts");
+/* harmony import */ var _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./pagina-nao-encontrada/pagina-nao-encontrada.component */ "./src/app/pagina-nao-encontrada/pagina-nao-encontrada.component.ts");
+/* harmony import */ var _apontamento_apontamento_novo_apontamento_novo_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./apontamento/apontamento-novo/apontamento-novo.component */ "./src/app/apontamento/apontamento-novo/apontamento-novo.component.ts");
+/* harmony import */ var _material__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./material */ "./src/app/material.ts");
+/* harmony import */ var _apontamento_apontamento_dashboard_apontamento_dashboard_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./apontamento/apontamento-dashboard/apontamento-dashboard.component */ "./src/app/apontamento/apontamento-dashboard/apontamento-dashboard.component.ts");
+/* harmony import */ var _apontamento_apontamento_lista_despesa_apontamento_lista_despesa_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./apontamento/apontamento-lista-despesa/apontamento-lista-despesa.component */ "./src/app/apontamento/apontamento-lista-despesa/apontamento-lista-despesa.component.ts");
+/* harmony import */ var _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./apontamento/apontamento-lista-hora/apontamento-lista-hora.component */ "./src/app/apontamento/apontamento-lista-hora/apontamento-lista-hora.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -952,30 +914,30 @@ var AppModule = /** @class */ (function () {
     AppModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_13__["AppComponent"],
-                _login_login_component__WEBPACK_IMPORTED_MODULE_21__["LoginComponent"],
-                _financeiro_financeiro_component__WEBPACK_IMPORTED_MODULE_22__["FinanceiroComponent"],
-                _cliente_cliente_list_cliente_list_component__WEBPACK_IMPORTED_MODULE_27__["ClienteListComponent"],
-                _cliente_cliente_novo_cliente_novo_component__WEBPACK_IMPORTED_MODULE_15__["ClienteNovoComponent"],
-                _cliente_cliente_edit_cliente_edit_component__WEBPACK_IMPORTED_MODULE_14__["ClienteEditComponent"],
-                _cliente_cliente_show_cliente_show_component__WEBPACK_IMPORTED_MODULE_16__["ClienteShowComponent"],
-                _usuario_usuario_list_usuario_list_component__WEBPACK_IMPORTED_MODULE_17__["UsuarioListComponent"],
-                _usuario_usuario_edit_usuario_edit_component__WEBPACK_IMPORTED_MODULE_18__["UsuarioEditComponent"],
-                _usuario_usuario_novo_usuario_novo_component__WEBPACK_IMPORTED_MODULE_19__["UsuarioNovoComponent"],
-                _usuario_usuario_show_usuario_show_component__WEBPACK_IMPORTED_MODULE_20__["UsuarioShowComponent"],
-                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_23__["ProjetoListComponent"],
-                _projeto_projeto_novo_projeto_novo_component__WEBPACK_IMPORTED_MODULE_24__["ProjetoNovoComponent"],
-                _projeto_projeto_show_projeto_show_component__WEBPACK_IMPORTED_MODULE_25__["ProjetoShowComponent"],
-                _projeto_projeto_edit_projeto_edit_component__WEBPACK_IMPORTED_MODULE_26__["ProjetoEditComponent"],
-                _relatorio_relatorio_financeiro_relatorio_financeiro_component__WEBPACK_IMPORTED_MODULE_28__["RelatorioFinanceiroComponent"],
-                _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_29__["PaginaNaoEncontradaComponent"],
-                _global_error_global_error_component__WEBPACK_IMPORTED_MODULE_7__["GlobalErrorComponent"],
-                _apontamento_apontamento_novo_apontamento_novo_component__WEBPACK_IMPORTED_MODULE_30__["ApontamentoNovoComponent"],
-                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_23__["DialogProjeto"],
-                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_34__["DialogApontamentoHora"],
-                _apontamento_apontamento_dashboard_apontamento_dashboard_component__WEBPACK_IMPORTED_MODULE_32__["ApontamentoDashboardComponent"],
-                _apontamento_apontamento_lista_despesa_apontamento_lista_despesa_component__WEBPACK_IMPORTED_MODULE_33__["ApontamentoListaDespesaComponent"],
-                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_34__["ApontamentoListaHoraComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_14__["AppComponent"],
+                _login_login_component__WEBPACK_IMPORTED_MODULE_22__["LoginComponent"],
+                _financeiro_financeiro_component__WEBPACK_IMPORTED_MODULE_23__["FinanceiroComponent"],
+                _cliente_cliente_list_cliente_list_component__WEBPACK_IMPORTED_MODULE_28__["ClienteListComponent"],
+                _cliente_cliente_novo_cliente_novo_component__WEBPACK_IMPORTED_MODULE_16__["ClienteNovoComponent"],
+                _cliente_cliente_edit_cliente_edit_component__WEBPACK_IMPORTED_MODULE_15__["ClienteEditComponent"],
+                _cliente_cliente_show_cliente_show_component__WEBPACK_IMPORTED_MODULE_17__["ClienteShowComponent"],
+                _usuario_usuario_list_usuario_list_component__WEBPACK_IMPORTED_MODULE_18__["UsuarioListComponent"],
+                _usuario_usuario_edit_usuario_edit_component__WEBPACK_IMPORTED_MODULE_19__["UsuarioEditComponent"],
+                _usuario_usuario_novo_usuario_novo_component__WEBPACK_IMPORTED_MODULE_20__["UsuarioNovoComponent"],
+                _usuario_usuario_show_usuario_show_component__WEBPACK_IMPORTED_MODULE_21__["UsuarioShowComponent"],
+                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_24__["ProjetoListComponent"],
+                _projeto_projeto_novo_projeto_novo_component__WEBPACK_IMPORTED_MODULE_25__["ProjetoNovoComponent"],
+                _projeto_projeto_show_projeto_show_component__WEBPACK_IMPORTED_MODULE_26__["ProjetoShowComponent"],
+                _projeto_projeto_edit_projeto_edit_component__WEBPACK_IMPORTED_MODULE_27__["ProjetoEditComponent"],
+                _relatorio_relatorio_financeiro_relatorio_financeiro_component__WEBPACK_IMPORTED_MODULE_29__["RelatorioFinanceiroComponent"],
+                _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_30__["PaginaNaoEncontradaComponent"],
+                _global_error_global_error_component__WEBPACK_IMPORTED_MODULE_8__["GlobalErrorComponent"],
+                _apontamento_apontamento_novo_apontamento_novo_component__WEBPACK_IMPORTED_MODULE_31__["ApontamentoNovoComponent"],
+                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_24__["DialogProjeto"],
+                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_35__["DialogApontamentoHora"],
+                _apontamento_apontamento_dashboard_apontamento_dashboard_component__WEBPACK_IMPORTED_MODULE_33__["ApontamentoDashboardComponent"],
+                _apontamento_apontamento_lista_despesa_apontamento_lista_despesa_component__WEBPACK_IMPORTED_MODULE_34__["ApontamentoListaDespesaComponent"],
+                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_35__["ApontamentoListaHoraComponent"]
                 // NgbdDatepickerPopup,
             ],
             imports: [
@@ -987,27 +949,28 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatFormFieldModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatInputModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_12__["AppRoutingModule"],
-                _material__WEBPACK_IMPORTED_MODULE_31__["MaterialModule"],
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_13__["AppRoutingModule"],
+                _material__WEBPACK_IMPORTED_MODULE_32__["MaterialModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatOptionModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatSelectModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatRadioModule"],
-                _angular_material_tabs__WEBPACK_IMPORTED_MODULE_6__["MatTabsModule"]
+                _angular_material_tabs__WEBPACK_IMPORTED_MODULE_6__["MatTabsModule"],
+                _angular_material_card__WEBPACK_IMPORTED_MODULE_7__["MatCardModule"]
                 // NgbModule,
                 // NgbModule.forRoot()
             ],
             entryComponents: [
-                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_23__["DialogProjeto"],
-                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_34__["DialogApontamentoHora"]
+                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_24__["DialogProjeto"],
+                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_35__["DialogApontamentoHora"]
             ],
             providers: [
-                _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_8__["ProjetoService"],
-                _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_9__["UsuarioService"],
-                _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_10__["ClienteService"],
-                _global_error_handler_service__WEBPACK_IMPORTED_MODULE_11__["GlobalErrorHandlerService"],
-                { provide: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ErrorHandler"], useClass: _global_error_handler_service__WEBPACK_IMPORTED_MODULE_11__["GlobalErrorHandlerService"] }
+                _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_9__["ProjetoService"],
+                _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_10__["UsuarioService"],
+                _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_11__["ClienteService"],
+                _global_error_handler_service__WEBPACK_IMPORTED_MODULE_12__["GlobalErrorHandlerService"],
+                { provide: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ErrorHandler"], useClass: _global_error_handler_service__WEBPACK_IMPORTED_MODULE_12__["GlobalErrorHandlerService"] }
             ],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_13__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_14__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -1124,7 +1087,7 @@ var ClienteEditComponent = /** @class */ (function () {
     }
     ClienteEditComponent.prototype.ngOnInit = function () {
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log('ClienteEditComponent  > usuarioLogado ', this.usuarioLogado);
+        console.log('ClienteEditComponent  > usuarioLogado ', this.usuarioLogado.email);
         this.obterCliente(this._route.snapshot.params['id']);
     };
     // ngOnChanges() {
@@ -1324,17 +1287,6 @@ var Contato = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/cliente/cliente-novo/cliente-novo.component.css":
-/*!*****************************************************************!*\
-  !*** ./src/app/cliente/cliente-novo/cliente-novo.component.css ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "button {\n    margin: 10px;\n}\n.purple {\n    color: purple;\n    margin: 0px 0px 30px 175px;\n}\n.errors {\n    color: brown;\n}\n"
-
-/***/ }),
-
 /***/ "./src/app/cliente/cliente-novo/cliente-novo.component.html":
 /*!******************************************************************!*\
   !*** ./src/app/cliente/cliente-novo/cliente-novo.component.html ***!
@@ -1342,7 +1294,18 @@ module.exports = "button {\n    margin: 10px;\n}\n.purple {\n    color: purple;\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <!-- <a class=\"navbar-brand\" href=\"#\">Torre Negra</a> -->\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" [routerLink]=\"['/clientes']\">Retornar <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n\n\n<div class=\"container\">\n\n    Dados básicos: \n\n    <div class=\"errors\" *ngIf=\"errors\">\n      <p *ngIf=\"errors.cnpj\" >  {{ errors['cnpj'].message }} </p>\n      <p *ngIf=\"errors.razaoSocial\" >  {{ errors['razaoSocial'].message }} </p>\n      <p *ngIf=\"errors.nomeFantasia\" >  {{ errors['nomeFantasia'].message }} </p>\n      <p *ngIf=\"errors.endereco\" >  {{ errors['endereco'].message }} </p>   \n      <!-- <p *ngIf=\"errors.contatos\" >  {{ errors['contatos'].message }} </p>        -->\n    </div>\n\n\n  <form  [formGroup] = \"clienteForm\" (submit)=\"criarCliente(clienteForm)\">\n\n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">CNPJ</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input is-focused\" \n            type=\"text\"\n            formControlName=\"cnpj\" \n            name=\"cnpj\"\n            minlength=11\n            required\n            /> \n          </p>\n        </div>\n      </div>\n    </div>\n    <!-- <div *ngIf=\"!cnpj?.valid\" class=\"purple\">CNPJ precisar ter no mínimo 11 caracteres!</div> -->\n\n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Razão Social</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input\" \n            type=\"text\" \n            formControlName=\"razaoSocial\" \n            name=\"razaoSocial\"\n            minlength=8\n            required\n            />\n          </p>\n        </div>\n      </div>\n    </div>\n    <!-- <div *ngIf=\"!razaoSocial?.valid\" class=\"purple\">Razão Social do cliente precisar ter no mínimo 8 caracteres!</div> -->\n\n    <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Nome Fantasia</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input\" \n              type=\"text\" \n              formControlName=\"nomeFantasia\"  \n              name=\"nomeFantasia\"\n              minlength=2\n              required\n              />\n            </p>\n          </div>\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!nomeFantasia?.valid\" class=\"purple\">Nome fantasia do cliente precisar ter no mínimo 2 caracteres!</div> -->\n  \n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Endereço</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input\" \n            type=\"text\"\n            formControlName=\"endereco\" \n            name=\"endereco\"  \n            minlength=6\n            required\n            />\n          </p>\n        </div>\n      </div>\n    </div>\n    <!-- <div *ngIf=\"!endereco?.valid\" class=\"purple\">Endereço do cliente precisar ter no mínimo 4 caracteres!</div> -->\n  \n\n    Dados comerciais:\n\n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Valor h/h</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input\" \n            type=\"text\"\n            formControlName=\"valorHH\" \n            name=\"valorHH\"  \n            required\n            />\n          </p>\n        </div>\n      </div>\n    </div>\n    <!-- <div *ngIf=\"!valorHH?.valid\" class=\"purple\">Valor HH do cliente precisar ter no mínimo 4 caracteres!</div> -->\n  \n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Prazo Pagamento</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input\" \n            type=\"text\"\n            formControlName=\"prazoPgto\" \n            name=\"prazoPgto\"  \n            required\n            />\n          </p>\n        </div>\n      </div>\n    </div>\n    <!-- <div *ngIf=\"!prazoPgto?.valid\" class=\"purple\">Prazo pgto do cliente precisar ter no mínimo 4 caracteres!</div> -->\n  \n    Contatos: \n\n    <div  class=\"tile is-ancestor\">\n      <div class=\"tile is-vertical is-content\">\n        <div class=\"tile\">\n          <div class=\"tile is-parent is-vertical\">\n            <article class=\"tile is-child notification is-primary\">\n\n              <div  formArrayName=\"contatos\" *ngFor=\"let brand of clienteForm.controls.contatos.controls; let i = index;\">\n                <div formGroupName =\"{{i}}\">\n                  <div class=\"field is-horizontal\">\n                    <div class=\"field-label is-normal\">\n                      {{brand.get('title').value}}\n                    </div>\n                    <div class=\"field-body\">\n                      <div class=\"field\">\n                        <p class=\"control\">\n                          <input\n                          type=\"text\"\n                          formControlName=\"value\" \n                          >\n                        </p>\n                      </div>\n                    </div>\n                  </div>\n                </div>\n              </div>\n\n              <a style=\"margin-left: 150px;\" class=\"button is-warning is-rounded is-small\" (click)=\"addContato()\">+</a>\n\n            </article>\n          </div>\n\n          <div class=\"tile is-parent\">\n            <div *ngFor=\"let c of contatosArray; let i = index; \">\n              <article class=\"tile is-child notification is-info\">\n                  {{ c[0].value }}  {{ c[1].value }}  {{ c[2].value}}  {{ c[3].value }}\n                <!-- {{ contato.nome }}  {{ contato.email }}  {{ contato.telefone }}  {{ contato.skype }} -->\n              </article>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n \n\n    <button type=\"button\" class=\"btn btn-secondary\" (click)=\"cancel()\">Cancela</button>\n    <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"clienteForm.invalid\">Confirma</button>\n      \n\n  </form>\n\n</div>"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <!-- <a class=\"navbar-brand\" href=\"#\">Torre Negra</a> -->\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" [routerLink]=\"['/clientes']\">Retornar <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n\n\n<div class=\"container\">\n\n    Dados básicos: \n\n    <div class=\"errors\" *ngIf=\"errors\">\n      <p *ngIf=\"errors.cnpj\" >  {{ errors['cnpj'].message }} </p>\n      <p *ngIf=\"errors.razaoSocial\" >  {{ errors['razaoSocial'].message }} </p>\n      <p *ngIf=\"errors.nomeFantasia\" >  {{ errors['nomeFantasia'].message }} </p>\n      <p *ngIf=\"errors.endereco\" >  {{ errors['endereco'].message }} </p>   \n      <!-- <p *ngIf=\"errors.contatos\" >  {{ errors['contatos'].message }} </p>        -->\n    </div>\n\n\n  <form class=\"example-form\" [formGroup] = \"clienteForm\" (submit)=\"criarCliente(clienteForm)\">\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"cnpj\"\n        type=\"text\"\n        formControlName=\"cnpj\" \n        name=\"cnpj\"\n        minlength=11\n        required\n        >\n      </mat-form-field></td>\n    </tr></table>\n\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"razão social\"\n        type=\"text\"\n        formControlName=\"razaoSocial\" \n        name=\"razaoSocial\"\n        minlength=8\n        required\n        />\n      </mat-form-field></td>\n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"nome fantasia\"\n        type=\"text\"\n        formControlName=\"nomeFantasia\"  \n        name=\"nomeFantasia\"\n        minlength=2\n        required\n        />\n      </mat-form-field></td>\n    </tr></table>\n\n\n    <p>\n      <mat-form-field class=\"example-full-width\">\n        <textarea \n        matInput\n        placeholder=\"endereço\"\n        type=\"text\"\n        formControlName=\"endereco\" \n        name=\"endereco\"  \n        minlength=6\n        required> \n      </textarea>\n      </mat-form-field>\n    </p>\n\n    <!-- <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">CNPJ</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input is-focused\" \n            type=\"text\"\n            formControlName=\"cnpj\" \n            name=\"cnpj\"\n            minlength=11\n            required\n            /> \n          </p>\n        </div>\n      </div>\n    </div> -->\n    <!-- <div *ngIf=\"!cnpj?.valid\" class=\"purple\">CNPJ precisar ter no mínimo 11 caracteres!</div> -->\n\n\n    <!-- <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Razão Social</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input\" \n            type=\"text\" \n            formControlName=\"razaoSocial\" \n            name=\"razaoSocial\"\n            minlength=8\n            required\n            />\n          </p>\n        </div>\n      </div>\n    </div> -->\n    <!-- <div *ngIf=\"!razaoSocial?.valid\" class=\"purple\">Razão Social do cliente precisar ter no mínimo 8 caracteres!</div> -->\n\n    <!-- <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Nome Fantasia</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input\" \n              type=\"text\" \n              formControlName=\"nomeFantasia\"  \n              name=\"nomeFantasia\"\n              minlength=2\n              required\n              />\n            </p>\n          </div>\n        </div>\n      </div> -->\n      <!-- <div *ngIf=\"!nomeFantasia?.valid\" class=\"purple\">Nome fantasia do cliente precisar ter no mínimo 2 caracteres!</div> -->\n  \n    <!-- <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Endereço</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input\" \n            type=\"text\"\n            formControlName=\"endereco\" \n            name=\"endereco\"  \n            minlength=6\n            required\n            />\n          </p>\n        </div>\n      </div>\n    </div> -->\n    <!-- <div *ngIf=\"!endereco?.valid\" class=\"purple\">Endereço do cliente precisar ter no mínimo 4 caracteres!</div> -->\n  \n\n    Dados comerciais:\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n      <td><mat-form-field class=\"example-full-width\">\n        <input matInput placeholder=\"valor HH\">\n        <input \n        matInput\n        placeholder=\"valor HH\"\n        type=\"number\"\n        formControlName=\"valorHH\" \n        name=\"valorHH\"  \n        required\n        />\n      </mat-form-field></td>\n      <td><mat-form-field class=\"example-full-width\">\n        <input matInput placeholder=\"prazo pagto\">\n        <input \n        matInput\n        placeholder=\"prazo pagto\"\n        type=\"number\"\n        formControlName=\"prazoPgto\" \n        name=\"prazoPgto\"  \n        required\n        />\n      </mat-form-field></td>\n    </tr></table>\n\n\n<!-- \n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Valor h/h</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input\" \n            type=\"text\"\n            formControlName=\"valorHH\" \n            name=\"valorHH\"  \n            required\n            />\n          </p>\n        </div>\n      </div>\n    </div> -->\n    <!-- <div *ngIf=\"!valorHH?.valid\" class=\"purple\">Valor HH do cliente precisar ter no mínimo 4 caracteres!</div> -->\n<!--   \n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Prazo Pagamento</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input\" \n            type=\"text\"\n            formControlName=\"prazoPgto\" \n            name=\"prazoPgto\"  \n            required\n            />\n          </p>\n        </div>\n      </div>\n    </div> -->\n    <!-- <div *ngIf=\"!prazoPgto?.valid\" class=\"purple\">Prazo pgto do cliente precisar ter no mínimo 4 caracteres!</div> -->\n  \n    Contatos: \n\n    <div  class=\"tile is-ancestor\">\n      <div class=\"tile is-vertical is-content\">\n        <div class=\"tile\">\n          <div class=\"tile is-parent is-vertical\">\n            <article class=\"tile is-child notification is-primary\">\n\n              <div  formArrayName=\"contatos\" *ngFor=\"let brand of clienteForm.controls.contatos.controls; let i = index;\">\n                <div formGroupName =\"{{i}}\">\n                  <div class=\"field is-horizontal\">\n                    <div class=\"field-label is-normal\">\n                      {{brand.get('title').value}}\n                    </div>\n                    <div class=\"field-body\">\n                      <div class=\"field\">\n                        <p class=\"control\">\n                          <input\n                          type=\"text\"\n                          formControlName=\"value\" \n                          >\n                        </p>\n                      </div>\n                    </div>\n                  </div>\n                </div>\n              </div>\n\n              <a style=\"margin-left: 150px;\" class=\"button is-warning is-rounded is-small\" (click)=\"addContato()\">+</a>\n\n            </article>\n          </div>\n\n          <div class=\"tile is-parent\">\n            <div *ngFor=\"let c of contatosArray; let i = index; \">\n              <article class=\"tile is-child notification is-info\">\n                  {{ c[0].value }}  {{ c[1].value }}  {{ c[2].value}}  {{ c[3].value }}\n                <!-- {{ contato.nome }}  {{ contato.email }}  {{ contato.telefone }}  {{ contato.skype }} -->\n              </article>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n \n\n    <button type=\"button\" class=\"btn btn-secondary\" (click)=\"cancel()\">Cancela</button>\n    <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"clienteForm.invalid\">Confirma</button>\n      \n\n  </form>\n\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/cliente/cliente-novo/cliente-novo.component.scss":
+/*!******************************************************************!*\
+  !*** ./src/app/cliente/cliente-novo/cliente-novo.component.scss ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".example-form {\n  min-width: 150px;\n  max-width: 500px;\n  width: 100%; }\n\n.example-full-width {\n  width: 100%; }\n"
 
 /***/ }),
 
@@ -1410,7 +1373,7 @@ var ClienteNovoComponent = /** @class */ (function () {
     ClienteNovoComponent.prototype.ngOnInit = function () {
         console.log('contato in ngOnInit:', this.contato);
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log(' ClienteNovoComponent > ', this.usuarioLogado);
+        console.log(' ClienteNovoComponent > ', this.usuarioLogado.email);
         this.createForm(this.clienteContatos);
     };
     ClienteNovoComponent.prototype.ngOnChanges = function () {
@@ -1492,7 +1455,7 @@ var ClienteNovoComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-cliente-novo',
             template: __webpack_require__(/*! ./cliente-novo.component.html */ "./src/app/cliente/cliente-novo/cliente-novo.component.html"),
-            styles: [__webpack_require__(/*! ./cliente-novo.component.css */ "./src/app/cliente/cliente-novo/cliente-novo.component.css")]
+            styles: [__webpack_require__(/*! ./cliente-novo.component.scss */ "./src/app/cliente/cliente-novo/cliente-novo.component.scss")]
         }),
         __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
             _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_4__["UsuarioService"],
@@ -1613,7 +1576,7 @@ var ClienteShowComponent = /** @class */ (function () {
     }
     ClienteShowComponent.prototype.ngOnInit = function () {
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log('ClienteShowComponent > usuario ', this.usuarioLogado);
+        console.log('ClienteShowComponent > usuario ', this.usuarioLogado.email);
         this.obterCliente(this._route.snapshot.params['id']);
     };
     // ngOnChanges() {
@@ -1911,7 +1874,7 @@ var GlobalErrorComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"hero is-info is-fullheight\">\n  <div class=\"hero-body\">\n      <div class=\"container has-text-centered\">\n          <div class=\"column is-4 is-offset-4\">\n              <!-- <h3 class=\"title has-text-grey\">Apontador!</h3>\n              <p class=\"subtitle has-text-grey\">Digite seus dados para entrar</p> -->\n              <div class=\"box\">\n                  <figure class=\"image is-480x480\">\n                      <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n                  </figure>\n\n                  <form name=\"form\" (submit)=\"login()\" #formData=\"ngForm\"> \n                      <div class=\"field\">\n                          <div class=\"control\">\n                              <input class=\"input is-large\"\n                               type=\"email\" \n                               placeholder=\"Seu Email\" \n                               autofocus=\"\"\n                               name=\"email\" \n                               required\n                               [(ngModel)]=\"usuario.email\" \n                               #email=\"ngModel\"  \n                              />\n                          </div>\n                      </div>\n\n                      <div class=\"field\">\n                          <div class=\"control\">\n                              <input class=\"input is-large\" \n                              type=\"password\" \n                              placeholder=\"Sua Senha\"\n                              name=\"senha\" \n                              required\n                              [(ngModel)]=\"usuario.senha\" \n                              #senha=\"ngModel\" \n                             />\n                          </div>\n                      </div>\n                      <div class=\"field\">\n                          <label class=\"checkbox\">\n                              <input type=\"checkbox\">\n                                  Lembrar a Senha\n                          </label>\n                      </div>\n                  <button type=\"submit\" class=\"button is-block is-info is-large is-fullwidth\" [disabled]=\"formData.invalid\">Entrar</button>\n                  </form>\n              </div>\n              <div class=\"errors\">\n                <p>{{ errors.message }} </p>      \n              </div>\n              <p class=\"has-text-grey\">\n                <a href=\"../\">Esqueci minha Senha</a> &nbsp;·&nbsp;\n                <a href=\"../\">Ajuda?</a>\n              </p>\n          </div>\n      </div>\n  </div>\n</section>\n\n"
+module.exports = "<div class=\"box\">\n\n    <mat-card class=\"example-card\">\n        <mat-card-header>\n            <div mat-card-avatar class=\"example-header-image\"></div>\n            <mat-card-title>Torre Negra</mat-card-title>\n            <mat-card-subtitle>Sistemas</mat-card-subtitle>\n        </mat-card-header>\n        <mat-card-content>\n            <form class=\"example-form\" [formGroup]=\"formLogin\" (submit)=\"login()\"> \n\n                <mat-form-field>\n\n                    <input matInput type=\"email\" placeholder=\"email\" formControlName=\"email\" />\n\n                </mat-form-field>\n\n                <mat-form-field>\n\n                    <input matInput type=\"password\" placeholder=\"senha\" formControlName=\"senha\" />\n                </mat-form-field>\n                <mat-card-actions>\n                    <button type=\"submit\" class=\"button is-block is-info is-large is-fullwidth\" [disabled]=\"formLogin.invalid\">Entrar</button>\n                </mat-card-actions>\n            </form>\n\n            <div class=\"errors\">\n                <p>{{ errors.message }} </p>      \n            </div>\n\n        </mat-card-content>\n    </mat-card>\n</div>\n"
 
 /***/ }),
 
@@ -1922,7 +1885,7 @@ module.exports = "<section class=\"hero is-info is-fullheight\">\n  <div class=\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".errors {\n  color: red; }\n"
+module.exports = ".errors {\n  color: red; }\n\n.example-card {\n  max-width: 400px; }\n\n.example-header-image {\n  background-image: url(\"/assets/images/TorreNegra-elem-mono-pos.png\");\n  background-size: cover; }\n\n.box {\n  margin: 100px;\n  display: flex;\n  justify-content: center; }\n"
 
 /***/ }),
 
@@ -1939,6 +1902,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../usuario/usuario.service */ "./src/app/usuario/usuario.service.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1951,8 +1915,10 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent(router, _usuarioService) {
+    function LoginComponent(fb, router, _usuarioService) {
+        this.fb = fb;
         this.router = router;
         this._usuarioService = _usuarioService;
         this.usuario = {
@@ -1969,14 +1935,20 @@ var LoginComponent = /** @class */ (function () {
     LoginComponent.prototype.ngOnInit = function () {
         this.usuario = { email: "", senha: "", admin: "" };
         console.log('usuario logado? ', this._usuarioService.getUserLoggedIn());
+        this.formLogin = this.fb.group({
+            email: '',
+            senha: '',
+            admin: ''
+        });
+        this.formLogin.valueChanges.subscribe(console.log);
         // if (this.usuario.senha === "torrenegra123") {
         //   this.errors = this.errors.senha.message = 'Primeiro acesso, informar sua nova senha';
         // }
     };
     LoginComponent.prototype.login = function () {
         var _this = this;
-        console.log('LoginComponent > login()', this.usuario);
-        var userObservable = this._usuarioService.login(this.usuario.email);
+        console.log('LoginComponent > login()', this.formLogin.controls.email.value);
+        var userObservable = this._usuarioService.login(this.formLogin.controls.email.value);
         userObservable.subscribe(function (usuario) {
             _this.usuario = usuario.json();
             console.log('SUCESSO em login');
@@ -1999,7 +1971,8 @@ var LoginComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./login.component.html */ "./src/app/login/login.component.html"),
             styles: [__webpack_require__(/*! ./login.component.scss */ "./src/app/login/login.component.scss")]
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
+        __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
             _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_2__["UsuarioService"]])
     ], LoginComponent);
     return LoginComponent;
@@ -2208,7 +2181,7 @@ var ProjetoEditComponent = /** @class */ (function () {
     }
     ProjetoEditComponent.prototype.ngOnInit = function () {
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log('ProjetoEditComponent > usuario: ', this.usuarioLogado);
+        console.log('ProjetoEditComponent > usuario: ', this.usuarioLogado.email);
         this.obterProjeto(this._route.snapshot.params['id']);
     };
     ProjetoEditComponent.prototype.obterProjeto = function (id) {
@@ -2236,7 +2209,7 @@ var ProjetoEditComponent = /** @class */ (function () {
         console.log('ProjetoEditComponent  > obterClienteList()');
         var clienteObservable = this._clienteService.obterTodos();
         clienteObservable.subscribe(function (clientes) {
-            console.log('clientes in obterClientes ProjetoEditComponent:', clientes.json());
+            // console.log('clientes in obterClientes ProjetoEditComponent:', clientes.json());
             _this.clientes = clientes.json();
         }, function (err) { }, function () { });
     };
@@ -2284,7 +2257,7 @@ var ProjetoEditComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item dropdown\">\n        <a class=\"nav-link dropdown-toggle  active\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n          Cadastro\n        </a>\n        <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\n          <a class=\"dropdown-item\" [routerLink]=\"['/usuarios']\">Usuário</a>\n          <a class=\"dropdown-item\" [routerLink]=\"['/clientes']\">Cliente</a>\n        </div>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" [routerLink]=\"['/apontamentos']\">Apontamento</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" [routerLink]=\"['/financeiro']\">Financeiro</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n          Relatório\n        </a>\n        <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\n          <a class=\"dropdown-item\" href=\"\">Financeiro</a>\n          <a class=\"dropdown-item\" href=\"#\">Total de horas por projeto</a>\n          <a class=\"dropdown-item\" href=\"#\">Total de horas por funcionário</a>\n          <a class=\"dropdown-item\" href=\"#\">Custo por pedido</a>\n          <div class=\"dropdown-divider\"></div>\n          <a class=\"dropdown-item\" href=\"#\">Projetos encerrados</a>\n        </div>\n      </li>\n      <li class=\"nav-item\">\n          <a class=\"nav-link\" href=\"#\">Sair <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n\n<!-- <div class=\"container\">\n  <nav class=\"level\">\n    <div class=\"level-left\">\n        <div class=\"title is-4\">Projetos</div> \n    </div>\n    <div class=\"level-right\">\n        <button type=\"button\" class=\"button is-light\" [routerLink]=\"['/projeto/novo']\">Novo projeto</button>\n    </div> \n  </nav>\n  <article class=\"media\">\n    <div class=\"media-content\">\n      <div class=\"content\">\n        <br>\n        <div id=\"scroll\">\n          <table class=\"table table-hover\" align=\"left\">\n            <thead>\n              <tr class=\"table-primary d-flex\">\n                <th class=\"col-1.5\">Código</th>\n                <th class=\"col-3\">Descrição</th>\n                <th class=\"col-2\">Cliente</th>\n                <th class=\"col-2\">Pedido</th>\n                <th class=\"col-1\">Ação</th>\n                <th class=\"col-1\"> </th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr *ngFor=\"let projeto of projetos\" class=\"d-flex\">\n                <td class=\"col-1.5\">{{ projeto['codigo'] }}</td>\n                <td class=\"col-3\">{{ projeto['descricao'] }}</td>\n                <td class=\"col-2\">{{ projeto['nomeFantasiaCliente'] }}</td>\n                <td class=\"col-2\">{{ projeto['pedido'] }}</td>\n                <td class=\"col-1\"><button type=\"button\" [routerLink]=\"['/projeto/edit/', projeto['_id'] ]\" class=\"button is-warning\">Editar</button></td>\n                <td class=\"col-1\"><button mat-button (click)=\"openDialog(projeto)\" class=\"button is-danger\" [disabled]=\"projeto['encerrado']\">Encerrar</button></td>\n              </tr>\n            </tbody>\n          </table> \n        </div>    \n      </div>\n    </div>\n  </article>\n</div> -->\n\n<div class=\"container\">\n\n  <div class=\"level-left\">\n      <div style=\"margin-top: 20px;\" class=\"title is-4\">Projetos</div> \n  </div>\n  <div class=\"level-right\">\n      <button mat-stroked-button color=\"primary\" [routerLink]=\"['/projeto/novo']\">Novo projeto</button>\n  </div> \n\n  <mat-form-field>\n    <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filtrar\">\n  </mat-form-field>\n\n  <div class=\"mat-elevation-z8\">\n    <table mat-table [dataSource]=\"dataSource\" matSort>\n      {{ dataSource }}\n      <!-- ID Column -->\n      <ng-container matColumnDef=\"codigo\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> código </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.codigo}} </td>\n      </ng-container>\n\n      <!-- Progress Column -->\n      <ng-container matColumnDef=\"descricao\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> descrição </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.descricao}} </td>\n      </ng-container>\n\n      <!-- Name Column -->\n      <ng-container matColumnDef=\"cliente\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> cliente </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.cliente}} </td>\n      </ng-container>\n\n      <!-- Pedido Column -->\n      <ng-container matColumnDef=\"pedido\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> pedido </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.pedido}} </td>\n      </ng-container>\n\n     <!-- Acao 1 Column -->\n     <ng-container matColumnDef=\"acao1\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> ação </th>\n        <td mat-cell *matCellDef=\"let row\" >\n          <div class=\"button-row\">\n            <button mat-button color=\"primary\" [routerLink]=\"['/projeto/edit/', row['_id'] ]\">editar</button>\n          </div>\n        </td>\n      </ng-container>\n\n     <!-- Acao 2 Column -->\n     <ng-container matColumnDef=\"acao2\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>\n        <td mat-cell *matCellDef=\"let row\" >\n          <div class=\"button-row\">\n            <button mat-button color=\"warn\" (click)=\"openDialog(row)\" [disabled]=\"row['encerrado']\">encerrar</button>\n          </div>\n        </td>\n      </ng-container>\n\n      <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n      <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\">\n      </tr>\n    </table>\n\n    <mat-paginator [pageSizeOptions]=\"[5, 10, 25, 100]\"></mat-paginator>\n  </div>\n</div>"
+module.exports = "<figure class=\"image is-128x128\">\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</figure>\n\n<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item dropdown\">\n        <a class=\"nav-link dropdown-toggle  active\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n          Cadastro\n        </a>\n        <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\n          <a class=\"dropdown-item\" [routerLink]=\"['/usuarios']\">Usuário</a>\n          <a class=\"dropdown-item\" [routerLink]=\"['/clientes']\">Cliente</a>\n        </div>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" [routerLink]=\"['/apontamentos']\">Apontamento</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" [routerLink]=\"['/financeiro']\">Financeiro</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n          Relatório\n        </a>\n        <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\n          <a class=\"dropdown-item\" href=\"\">Financeiro</a>\n          <a class=\"dropdown-item\" href=\"#\">Total de horas por projeto</a>\n          <a class=\"dropdown-item\" href=\"#\">Total de horas por funcionário</a>\n          <a class=\"dropdown-item\" href=\"#\">Custo por pedido</a>\n          <div class=\"dropdown-divider\"></div>\n          <a class=\"dropdown-item\" href=\"#\">Projetos encerrados</a>\n        </div>\n      </li>\n      <li class=\"nav-item\">\n          <a class=\"nav-link\" href=\"#\">Sair <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n\n<!-- <div class=\"container\">\n  <nav class=\"level\">\n    <div class=\"level-left\">\n        <div class=\"title is-4\">Projetos</div> \n    </div>\n    <div class=\"level-right\">\n        <button type=\"button\" class=\"button is-light\" [routerLink]=\"['/projeto/novo']\">Novo projeto</button>\n    </div> \n  </nav>\n  <article class=\"media\">\n    <div class=\"media-content\">\n      <div class=\"content\">\n        <br>\n        <div id=\"scroll\">\n          <table class=\"table table-hover\" align=\"left\">\n            <thead>\n              <tr class=\"table-primary d-flex\">\n                <th class=\"col-1.5\">Código</th>\n                <th class=\"col-3\">Descrição</th>\n                <th class=\"col-2\">Cliente</th>\n                <th class=\"col-2\">Pedido</th>\n                <th class=\"col-1\">Ação</th>\n                <th class=\"col-1\"> </th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr *ngFor=\"let projeto of projetos\" class=\"d-flex\">\n                <td class=\"col-1.5\">{{ projeto['codigo'] }}</td>\n                <td class=\"col-3\">{{ projeto['descricao'] }}</td>\n                <td class=\"col-2\">{{ projeto['nomeFantasiaCliente'] }}</td>\n                <td class=\"col-2\">{{ projeto['pedido'] }}</td>\n                <td class=\"col-1\"><button type=\"button\" [routerLink]=\"['/projeto/edit/', projeto['_id'] ]\" class=\"button is-warning\">Editar</button></td>\n                <td class=\"col-1\"><button mat-button (click)=\"openDialog(projeto)\" class=\"button is-danger\" [disabled]=\"projeto['encerrado']\">Encerrar</button></td>\n              </tr>\n            </tbody>\n          </table> \n        </div>    \n      </div>\n    </div>\n  </article>\n</div> -->\n\n<div class=\"container\">\n\n  <div class=\"level-left\">\n      <div style=\"margin-top: 20px;\" class=\"title is-4\">Projetos</div> \n  </div>\n  <div class=\"level-right\">\n      <button mat-stroked-button color=\"primary\" [routerLink]=\"['/projeto/novo']\">Novo projeto</button>\n  </div> \n\n  <mat-form-field>\n    <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filtrar\">\n  </mat-form-field>\n\n  <div class=\"mat-elevation-z8\">\n    <table mat-table [dataSource]=\"dataSource\" matSort>\n      {{ dataSource }}\n      <!-- ID Column -->\n      <ng-container matColumnDef=\"codigo\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> código </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.codigo}} </td>\n      </ng-container>\n\n      <!-- Progress Column -->\n      <ng-container matColumnDef=\"descricao\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> descrição </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.descricao}} </td>\n      </ng-container>\n\n      <!-- Name Column -->\n      <ng-container matColumnDef=\"cliente\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> cliente </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.cliente}} </td>\n      </ng-container>\n\n      <!-- Pedido Column -->\n      <ng-container matColumnDef=\"pedido\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> pedido </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.pedido}} </td>\n      </ng-container>\n\n     <!-- Acao 1 Column -->\n     <ng-container matColumnDef=\"acao1\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> ação </th>\n        <td mat-cell *matCellDef=\"let row\" >\n          <div class=\"button-row\">\n            <button mat-button color=\"primary\" [routerLink]=\"['/projeto/edit/', row['_id'] ]\">editar</button>\n          </div>\n        </td>\n      </ng-container>\n\n     <!-- Acao 2 Column -->\n     <ng-container matColumnDef=\"acao2\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>\n        <td mat-cell *matCellDef=\"let row\" >\n          <div class=\"button-row\">\n            <button mat-button color=\"warn\" (click)=\"openDialog(row)\" [disabled]=\"row['encerrado']\">encerrar</button>\n          </div>\n        </td>\n      </ng-container>\n\n      <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n      <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\">\n      </tr>\n    </table>\n\n    <mat-paginator [pageSizeOptions]=\"[5, 10, 25, 100]\"></mat-paginator>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -2374,7 +2347,7 @@ var ProjetoListComponent = /** @class */ (function () {
     }
     ProjetoListComponent.prototype.ngOnInit = function () {
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log('ProjetoListComponent > usuariologado ', this.usuarioLogado);
+        console.log('ProjetoListComponent > usuariologado ', this.usuarioLogado.email);
         this.obterListaProjeto();
     };
     ProjetoListComponent.prototype.applyFilter = function (filterValue) {
@@ -2558,7 +2531,7 @@ var ProjetoNovoComponent = /** @class */ (function () {
     }
     ProjetoNovoComponent.prototype.ngOnInit = function () {
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log('ProjetoNovoComponent > usuarioLogado ', this.usuarioLogado);
+        console.log('ProjetoNovoComponent > usuarioLogado ', this.usuarioLogado.email);
         this.obterListaCliente();
     };
     ProjetoNovoComponent.prototype.obterListaCliente = function () {
@@ -2887,7 +2860,7 @@ var UsuarioEditComponent = /** @class */ (function () {
     }
     UsuarioEditComponent.prototype.ngOnInit = function () {
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log('ProjetoEditComponent > usuarioLogado ', this.usuarioLogado);
+        console.log('ProjetoEditComponent > usuarioLogado ', this.usuarioLogado.email);
         this.obterUsuario(this._route.snapshot.params['id']);
     };
     UsuarioEditComponent.prototype.obterUsuario = function (id) {
@@ -2950,7 +2923,7 @@ module.exports = "img {\n    max-width: 30%;\n    height: auto;\n}"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <!-- <figure class=\"image is-128x128\">\n      <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n    </figure> -->\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n  \n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n\n  <div class=\"container\">\n      <nav class=\"level\">\n        <div class=\"level-left\">\n            <div class=\"title is-4\">Usuário</div> \n        </div>\n        <div class=\"level-right\">\n            <button type=\"button\" class=\"button is-light\" [routerLink]=\"['/usuario/novo']\">Novo usuário</button>\n        </div> \n      </nav>\n    <article class=\"media\">\n      <div class=\"media-content\">\n        <div class=\"content\">\n  \n          <br>\n          <div id=\"scroll\">\n            <table class=\"table table-hover\" align=\"left\">\n              <thead>\n                  <tr class=\"table-primary d-flex\">\n                    <th class=\"col-2\">Nome</th>\n                    <th class=\"col-3\">E-mail</th>\n                    <th class=\"col-2\">Função</th>\n                    <th class=\"col-1\">Custo/hr</th>\n                    <th class=\"col-1\">Admin</th>\n                    <th class=\"col-1\">Ação</th>\n                    <th class=\"col-1\"> </th>\n                  </tr>\n                </thead>\n                <tbody>\n                  <tr *ngFor=\"let u  of usuarios\" class=\"d-flex\">\n                    <td class=\"col-2\">{{ u['nome'] }}</td>\n                    <td class=\"col-3\">{{ u['email'] }}</td>\n                    <td class=\"col-2\">{{ u['funcao'] }}</td>\n                    <td class=\"col-1\">{{ u['custoHora'] | number : '1.2-2' }}</td>\n                    <td class=\"col-1\">\n                    <img [src]=\"u['admin'] ? frontPath : backPath\"></td>\n                    <td class=\"col-1\"><button type=\"button\" [routerLink]=\"['/usuario/edit/', u['_id'] ]\" class=\"button is-warning\">Editar</button></td>\n                    <td class=\"col-1\"><button type=\"button\" [routerLink]=\"['/usuario/show', u['_id'] ]\"  class=\"button is-danger\">Detalhes</button></td>\n                  </tr>\n                </tbody>\n              </table> \n            </div>    \n          </div>\n        </div>\n      </article>\n  </div>\n    \n  \n  "
+module.exports = "<div class=\"container\">\n  <figure class=\"image is-128x128\">\n      <img src=\"../assets/images/TorreNegra-elem-mono-pos.png\">\n  </figure>\n\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n\n  <div class=\"container\"> \n      <nav class=\"level\">\n        <div class=\"level-left\">\n            <div class=\"title is-4\">Usuário</div> \n        </div>\n        <div class=\"level-right\">\n            <button type=\"button\" class=\"button is-light\" [routerLink]=\"['/usuario/novo']\">Novo usuário</button>\n        </div> \n      </nav>\n    <article class=\"media\">\n      <div class=\"media-content\">\n        <div class=\"content\">\n  \n          <br>\n          <div id=\"scroll\">\n            <table class=\"table table-hover\" align=\"left\">\n              <thead>\n                  <tr class=\"table-primary d-flex\">\n                    <th class=\"col-2\">Nome</th>\n                    <th class=\"col-3\">E-mail</th>\n                    <th class=\"col-2\">Função</th>\n                    <th class=\"col-1\">Custo/hr</th>\n                    <th class=\"col-1\">Admin</th>\n                    <th class=\"col-1\">Ação</th>\n                    <th class=\"col-1\"> </th>\n                  </tr>\n                </thead>\n                <tbody>\n                  <tr *ngFor=\"let u  of usuarios\" class=\"d-flex\">\n                    <td class=\"col-2\">{{ u['nome'] }}</td>\n                    <td class=\"col-3\">{{ u['email'] }}</td>\n                    <td class=\"col-2\">{{ u['funcao'] }}</td>\n                    <td class=\"col-1\">{{ u['custoHora'] | number : '1.2-2' }}</td>\n                    <td class=\"col-1\">\n                    <img [src]=\"u['admin'] ? frontPath : backPath\"></td>\n                    <td class=\"col-1\"><button type=\"button\" [routerLink]=\"['/usuario/edit/', u['_id'] ]\" class=\"button is-warning\">Editar</button></td>\n                    <td class=\"col-1\"><button type=\"button\" [routerLink]=\"['/usuario/show', u['_id'] ]\"  class=\"button is-danger\">Detalhes</button></td>\n                  </tr>\n                </tbody>\n              </table> \n            </div>    \n          </div>\n        </div>\n      </article>\n  </div>\n</div>\n  \n  "
 
 /***/ }),
 
@@ -2992,7 +2965,7 @@ var UsuarioListComponent = /** @class */ (function () {
     }
     UsuarioListComponent.prototype.ngOnInit = function () {
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log('UsuarioListComponent > usuariologado', this.usuarioLogado);
+        console.log('UsuarioListComponent > usuariologado', this.usuarioLogado.email);
         this.obterListaUsuario();
     };
     UsuarioListComponent.prototype.obterListaUsuario = function () {
@@ -3001,7 +2974,6 @@ var UsuarioListComponent = /** @class */ (function () {
         var usuarioObservable = this._usuarioService.obterTodos();
         usuarioObservable.subscribe(function (usuarios) {
             _this.usuarios = usuarios.json();
-            console.log('usuarios in UsuariosListComponent:', _this.usuarios);
         }, function (err) { }, function () { });
     };
     UsuarioListComponent = __decorate([
@@ -3085,7 +3057,7 @@ var UsuarioNovoComponent = /** @class */ (function () {
     }
     UsuarioNovoComponent.prototype.ngOnInit = function () {
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log('UsuarioNovoComponent > usuariologado ', this.usuarioLogado);
+        console.log('UsuarioNovoComponent > usuariologado ', this.usuarioLogado.email);
     };
     UsuarioNovoComponent.prototype.criarUsuario = function (userForm) {
         var _this = this;
@@ -3192,7 +3164,7 @@ var UsuarioShowComponent = /** @class */ (function () {
     }
     UsuarioShowComponent.prototype.ngOnInit = function () {
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log('UsuarioShowComponent > usuarioLogado ', this.usuarioLogado);
+        console.log('UsuarioShowComponent > usuarioLogado ', this.usuarioLogado.email);
         this.obterUsuario(this._route.snapshot.params['id']);
     };
     UsuarioShowComponent.prototype.obterUsuario = function (id) {

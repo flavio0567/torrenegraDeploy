@@ -8,13 +8,13 @@ import { Contato } from './cliente-model';
 @Component({
   selector: 'app-cliente-novo',
   templateUrl: './cliente-novo.component.html',
-  styleUrls: ['./cliente-novo.component.css']
+  styleUrls: ['./cliente-novo.component.scss']
 })
 export class ClienteNovoComponent implements OnInit, OnChanges {
   usuarioLogado = {
     email: '',
     admin: ''
-  }
+  }  
   errors: any;
   contato = new Contato;
 
@@ -50,7 +50,7 @@ export class ClienteNovoComponent implements OnInit, OnChanges {
   ngOnInit() {
     console.log('contato in ngOnInit:', this.contato);
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-    console.log(' ClienteNovoComponent > ', this.usuarioLogado);
+    console.log(' ClienteNovoComponent > ', this.usuarioLogado.email);
     this.createForm(this.clienteContatos);
   }
 

@@ -55,7 +55,7 @@ export class ProjetoEditComponent implements OnInit {
 
   ngOnInit() {
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-    console.log('ProjetoEditComponent > usuario: ', this.usuarioLogado);
+    console.log('ProjetoEditComponent > usuario: ', this.usuarioLogado.email);
     this.obterProjeto(this._route.snapshot.params['id']);
   }
 
@@ -92,7 +92,7 @@ export class ProjetoEditComponent implements OnInit {
     const clienteObservable = this._clienteService.obterTodos();
     clienteObservable.subscribe(
       (clientes) => { 
-        console.log('clientes in obterClientes ProjetoEditComponent:', clientes.json());
+        // console.log('clientes in obterClientes ProjetoEditComponent:', clientes.json());
         this.clientes = clientes.json();
       },
       (err) => { },

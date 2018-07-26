@@ -27,9 +27,64 @@
     </div>
 
 
-  <form  [formGroup] = "clienteForm" (submit)="criarCliente(clienteForm)">
+  <form class="example-form" [formGroup] = "clienteForm" (submit)="criarCliente(clienteForm)">
 
-    <div class="field is-horizontal">
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td><mat-form-field class="example-full-width">
+        <input 
+        matInput 
+        placeholder="cnpj"
+        type="text"
+        formControlName="cnpj" 
+        name="cnpj"
+        minlength=11
+        required
+        >
+      </mat-form-field></td>
+    </tr></table>
+
+
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td><mat-form-field class="example-full-width">
+        <input 
+        matInput 
+        placeholder="razão social"
+        type="text"
+        formControlName="razaoSocial" 
+        name="razaoSocial"
+        minlength=8
+        required
+        />
+      </mat-form-field></td>
+      <td><mat-form-field class="example-full-width">
+        <input 
+        matInput 
+        placeholder="nome fantasia"
+        type="text"
+        formControlName="nomeFantasia"  
+        name="nomeFantasia"
+        minlength=2
+        required
+        />
+      </mat-form-field></td>
+    </tr></table>
+
+
+    <p>
+      <mat-form-field class="example-full-width">
+        <textarea 
+        matInput
+        placeholder="endereço"
+        type="text"
+        formControlName="endereco" 
+        name="endereco"  
+        minlength=6
+        required> 
+      </textarea>
+      </mat-form-field>
+    </p>
+
+    <!-- <div class="field is-horizontal">
       <div class="field-label is-normal">
         <label class="label">CNPJ</label>
       </div>
@@ -47,10 +102,11 @@
           </p>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- <div *ngIf="!cnpj?.valid" class="purple">CNPJ precisar ter no mínimo 11 caracteres!</div> -->
 
-    <div class="field is-horizontal">
+
+    <!-- <div class="field is-horizontal">
       <div class="field-label is-normal">
         <label class="label">Razão Social</label>
       </div>
@@ -68,10 +124,10 @@
           </p>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- <div *ngIf="!razaoSocial?.valid" class="purple">Razão Social do cliente precisar ter no mínimo 8 caracteres!</div> -->
 
-    <div class="field is-horizontal">
+    <!-- <div class="field is-horizontal">
         <div class="field-label is-normal">
           <label class="label">Nome Fantasia</label>
         </div>
@@ -89,10 +145,10 @@
             </p>
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- <div *ngIf="!nomeFantasia?.valid" class="purple">Nome fantasia do cliente precisar ter no mínimo 2 caracteres!</div> -->
   
-    <div class="field is-horizontal">
+    <!-- <div class="field is-horizontal">
       <div class="field-label is-normal">
         <label class="label">Endereço</label>
       </div>
@@ -110,12 +166,39 @@
           </p>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- <div *ngIf="!endereco?.valid" class="purple">Endereço do cliente precisar ter no mínimo 4 caracteres!</div> -->
   
 
     Dados comerciais:
 
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td><mat-form-field class="example-full-width">
+        <input matInput placeholder="valor HH">
+        <input 
+        matInput
+        placeholder="valor HH"
+        type="number"
+        formControlName="valorHH" 
+        name="valorHH"  
+        required
+        />
+      </mat-form-field></td>
+      <td><mat-form-field class="example-full-width">
+        <input matInput placeholder="prazo pagto">
+        <input 
+        matInput
+        placeholder="prazo pagto"
+        type="number"
+        formControlName="prazoPgto" 
+        name="prazoPgto"  
+        required
+        />
+      </mat-form-field></td>
+    </tr></table>
+
+
+<!-- 
     <div class="field is-horizontal">
       <div class="field-label is-normal">
         <label class="label">Valor h/h</label>
@@ -133,9 +216,9 @@
           </p>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- <div *ngIf="!valorHH?.valid" class="purple">Valor HH do cliente precisar ter no mínimo 4 caracteres!</div> -->
-  
+<!--   
     <div class="field is-horizontal">
       <div class="field-label is-normal">
         <label class="label">Prazo Pagamento</label>
@@ -153,7 +236,7 @@
           </p>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- <div *ngIf="!prazoPgto?.valid" class="purple">Prazo pgto do cliente precisar ter no mínimo 4 caracteres!</div> -->
   
     Contatos: 
