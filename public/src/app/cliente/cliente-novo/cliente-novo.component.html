@@ -1,5 +1,8 @@
+<mat-toolbar>
+    <img src="../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png">
+</mat-toolbar>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <!-- <a class="navbar-brand" href="#">Torre Negra</a> -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -12,7 +15,6 @@
     </ul>
   </div>
 </nav>
-
 
 <div class="container">
 
@@ -27,7 +29,7 @@
     </div>
 
 
-  <form class="example-form" [formGroup] = "clienteForm" (submit)="criarCliente(clienteForm)">
+  <form class="example-form" [formGroup] = "clienteForm">
 
     <table class="example-full-width" cellspacing="0"><tr>
       <td><mat-form-field class="example-full-width">
@@ -37,9 +39,10 @@
         type="text"
         formControlName="cnpj" 
         name="cnpj"
-        minlength=11
-        required
         >
+        <mat-error *ngIf="cnpj.invalid && cnpj.touched">
+          cnpj informado não é válido
+        </mat-error>
       </mat-form-field></td>
     </tr></table>
 
@@ -52,9 +55,10 @@
         type="text"
         formControlName="razaoSocial" 
         name="razaoSocial"
-        minlength=8
-        required
         />
+        <mat-error *ngIf="razaoSocial.invalid && razaoSocial.touched">
+            razão social informada não é válida
+        </mat-error>
       </mat-form-field></td>
       <td><mat-form-field class="example-full-width">
         <input 
@@ -63,9 +67,10 @@
         type="text"
         formControlName="nomeFantasia"  
         name="nomeFantasia"
-        minlength=2
-        required
         />
+        <mat-error *ngIf="nomeFantasia.invalid && nomeFantasia.touched">
+            nome fantasia informado não é válido
+        </mat-error>
       </mat-form-field></td>
     </tr></table>
 
@@ -77,216 +82,100 @@
         placeholder="endereço"
         type="text"
         formControlName="endereco" 
-        name="endereco"  
-        minlength=6
-        required> 
+        name="endereco">   
       </textarea>
+      <mat-error *ngIf="endereco.invalid && endereco.touched">
+          endereço informado não é válido
+      </mat-error>
       </mat-form-field>
     </p>
 
-    <!-- <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        <label class="label">CNPJ</label>
-      </div>
-      <div class="field-body">
-        <div class="field">
-          <p class="control">
-            <input 
-            class="input is-focused" 
-            type="text"
-            formControlName="cnpj" 
-            name="cnpj"
-            minlength=11
-            required
-            /> 
-          </p>
-        </div>
-      </div>
-    </div> -->
-    <!-- <div *ngIf="!cnpj?.valid" class="purple">CNPJ precisar ter no mínimo 11 caracteres!</div> -->
-
-
-    <!-- <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        <label class="label">Razão Social</label>
-      </div>
-      <div class="field-body">
-        <div class="field">
-          <p class="control">
-            <input 
-            class="input" 
-            type="text" 
-            formControlName="razaoSocial" 
-            name="razaoSocial"
-            minlength=8
-            required
-            />
-          </p>
-        </div>
-      </div>
-    </div> -->
-    <!-- <div *ngIf="!razaoSocial?.valid" class="purple">Razão Social do cliente precisar ter no mínimo 8 caracteres!</div> -->
-
-    <!-- <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">Nome Fantasia</label>
-        </div>
-        <div class="field-body">
-          <div class="field">
-            <p class="control">
-              <input 
-              class="input" 
-              type="text" 
-              formControlName="nomeFantasia"  
-              name="nomeFantasia"
-              minlength=2
-              required
-              />
-            </p>
-          </div>
-        </div>
-      </div> -->
-      <!-- <div *ngIf="!nomeFantasia?.valid" class="purple">Nome fantasia do cliente precisar ter no mínimo 2 caracteres!</div> -->
-  
-    <!-- <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        <label class="label">Endereço</label>
-      </div>
-      <div class="field-body">
-        <div class="field">
-          <p class="control">
-            <input 
-            class="input" 
-            type="text"
-            formControlName="endereco" 
-            name="endereco"  
-            minlength=6
-            required
-            />
-          </p>
-        </div>
-      </div>
-    </div> -->
     <!-- <div *ngIf="!endereco?.valid" class="purple">Endereço do cliente precisar ter no mínimo 4 caracteres!</div> -->
-  
 
     Dados comerciais:
 
     <table class="example-full-width" cellspacing="0"><tr>
       <td><mat-form-field class="example-full-width">
-        <input matInput placeholder="valor HH">
         <input 
         matInput
         placeholder="valor HH"
         type="number"
         formControlName="valorHH" 
         name="valorHH"  
-        required
         />
       </mat-form-field></td>
       <td><mat-form-field class="example-full-width">
-        <input matInput placeholder="prazo pagto">
         <input 
         matInput
         placeholder="prazo pagto"
         type="number"
         formControlName="prazoPgto" 
         name="prazoPgto"  
-        required
         />
       </mat-form-field></td>
     </tr></table>
 
-
-<!-- 
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        <label class="label">Valor h/h</label>
-      </div>
-      <div class="field-body">
-        <div class="field">
-          <p class="control">
-            <input 
-            class="input" 
-            type="text"
-            formControlName="valorHH" 
-            name="valorHH"  
-            required
-            />
-          </p>
-        </div>
-      </div>
-    </div> -->
-    <!-- <div *ngIf="!valorHH?.valid" class="purple">Valor HH do cliente precisar ter no mínimo 4 caracteres!</div> -->
-<!--   
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        <label class="label">Prazo Pagamento</label>
-      </div>
-      <div class="field-body">
-        <div class="field">
-          <p class="control">
-            <input 
-            class="input" 
-            type="text"
-            formControlName="prazoPgto" 
-            name="prazoPgto"  
-            required
-            />
-          </p>
-        </div>
-      </div>
-    </div> -->
-    <!-- <div *ngIf="!prazoPgto?.valid" class="purple">Prazo pgto do cliente precisar ter no mínimo 4 caracteres!</div> -->
-  
     Contatos: 
+    <div class="container">
+      <div formArrayName="contatos">
+          
+        <div *ngFor="let contato of contatoForms.controls; let i = index;" [formGroupName]="i">
 
-    <div  class="tile is-ancestor">
-      <div class="tile is-vertical is-content">
-        <div class="tile">
-          <div class="tile is-parent is-vertical">
-            <article class="tile is-child notification is-primary">
+          <table class="example-full-width" cellspacing="0"><tr>
+            <td><mat-form-field class="example-full-width">
+              <input 
+              matInput
+              placeholder="nome"
+              type="text"
+              formControlName="nome" 
+              name="nome"  
+              />
+            </mat-form-field></td>
 
-              <div  formArrayName="contatos" *ngFor="let brand of clienteForm.controls.contatos.controls; let i = index;">
-                <div formGroupName ="{{i}}">
-                  <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                      {{brand.get('title').value}}
-                    </div>
-                    <div class="field-body">
-                      <div class="field">
-                        <p class="control">
-                          <input
-                          type="text"
-                          formControlName="value" 
-                          >
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <td><mat-form-field class="example-full-width">
+                <input 
+                matInput
+                placeholder="email"
+                type="email"
+                formControlName="email" 
+                name="email"
+                />
+              </mat-form-field></td>
 
-              <a style="margin-left: 150px;" class="button is-warning is-rounded is-small" (click)="addContato()">+</a>
+            <td><mat-form-field class="example-full-width">
+                <input 
+                matInput
+                placeholder="fone"
+                type="number"
+                formControlName="fone" 
+                name="fone"  
+                />
+              </mat-form-field></td>
 
-            </article>
+              <td><mat-form-field class="example-full-width">
+                  <input 
+                  matInput
+                  placeholder="skype"
+                  type="text"
+                  formControlName="skype" 
+                  name="skype"  
+                  />
+                </mat-form-field></td>
+                <a  mat-mini-fab color="warn" (click)="deleteContato(i)">-</a>
+            </tr></table>
+
           </div>
 
-          <div class="tile is-parent">
-            <div *ngFor="let c of contatosArray; let i = index; ">
-              <article class="tile is-child notification is-info">
-                  {{ c[0].value }}  {{ c[1].value }}  {{ c[2].value}}  {{ c[3].value }}
-                <!-- {{ contato.nome }}  {{ contato.email }}  {{ contato.telefone }}  {{ contato.skype }} -->
-              </article>
-            </div>
-          </div>
+        
         </div>
-      </div>
-    </div>
- 
 
-    <button type="button" class="btn btn-secondary" (click)="cancel()">Cancela</button>
-    <button type="submit" class="btn btn-primary" [disabled]="clienteForm.invalid">Confirma</button>
+
+        <a mat-mini-fab color="primary" (click)="addContato()">+</a>
+
+    </div>
+    <button mat-raised-button color="basic" (click)="cancel()">Cancela</button>
+
+    <button mat-raised-button color="primary"  (click)="criarCliente(clienteForm)" [disabled]="clienteForm.invalid">Confirma</button>
       
 
   </form>

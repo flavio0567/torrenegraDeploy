@@ -1,121 +1,81 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgForm, FormGroup, FormBuilder, FormControl, Validators, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, NgForm, FormControl } from '@angular/forms';
 import { ClienteService } from '../cliente.service';
 import { UsuarioService } from '../../usuario/usuario.service';
-import { Contato } from './cliente-model';
 
 @Component({
   selector: 'app-cliente-novo',
   templateUrl: './cliente-novo.component.html',
   styleUrls: ['./cliente-novo.component.scss']
 })
-export class ClienteNovoComponent implements OnInit, OnChanges {
+export class ClienteNovoComponent implements OnInit {
   usuarioLogado = {
     email: '',
     admin: ''
   }  
   errors: any;
-  contato = new Contato;
 
-  contatosArray = [];
-  flContato: Boolean = false;
   clienteForm: FormGroup;
-  index: any = 0;
-
-  clienteContatos=[
-    {
-      'brand': "nome"
-    },
-    {
-      'brand': "email"
-    },
-    {
-      'brand': "telefone"
-    },
-    {
-      'brand': "skype"
-    }
-  ];
-
+  
   constructor(
-    private formBuilder: FormBuilder,
+    private fb: FormBuilder,
     private _usuarioService: UsuarioService,
     private _clienteService: ClienteService,
     private _router: Router
-  ) { 
-    // this.contactForm = this.createFormGroup();
-  }
+  ) {}
 
   ngOnInit() {
-    console.log('contato in ngOnInit:', this.contato);
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
     console.log(' ClienteNovoComponent > ', this.usuarioLogado.email);
-    this.createForm(this.clienteContatos);
-  }
-
-  ngOnChanges() {
-    this.rebuildForm();
-  }
-
-  rebuildForm() {
-    this.clienteForm.reset({
-      // cnpj: this.contato.nome,
-      // contatos: this.cliente.contatos[1] || new Contato()
-    });
-    // this.setContatos(this.cliente.contatos);
-  }
-
-  createForm(clienteContatos) {
-    var arr = [];
-    for (var i=0; i < clienteContatos.length; i++ ) {
-      arr.push(this.buildContato(clienteContatos[i]));
-    }
-    return this.clienteForm = this.formBuilder.group({
-      cnpj: ['', Validators.required ],
-      razaoSocial: ['', Validators.required ],
-      nomeFantasia: ['', Validators.required ],
-      endereco: ['', Validators.required ],
+    this.clienteForm = this.fb.group({
+      cnpj: ['', [ Validators.required, Validators.minLength(11) ]],
+      razaoSocial: ['', [ Validators.required ]],
+      nomeFantasia: ['', [ Validators.required ]],
+      endereco: ['', [ Validators.required ]],
       valorHH: '',
-      prazoPgto: '', 
-      contatos: this.formBuilder.array(arr)
-  })
-  } 
+      prazoPgto: '',
+      contatos: this.fb.array([])
+    })
+  }
+
+  get cnpj() {
+    return this.clienteForm.get('cnpj');
+  }
+
+  get razaoSocial() {
+    return this.clienteForm.get('razaoSocial');
+  }
+
+  get nomeFantasia() {
+    return this.clienteForm.get('nomeFantasia');
+  }
+
+  get endereco() {
+    return this.clienteForm.get('endereco');
+  }
+
+  get contatoForms() {
+    return this.clienteForm.get('contatos') as FormArray
+  }
 
   addContato() {
-    console.log('ClienteNovoComponent > >>>>>>> addContato() ', this.clienteForm.controls.contatos.value);
-    this.flContato = true;
-    this.contatosArray.push(this.clienteForm.controls.contatos.value);
-    this.contato.nome = this.contatosArray[this.index][0].value;
-    this.contato.email = this.contatosArray[this.index][1].value;
-    this.contato.telefone = this.contatosArray[this.index][2].value;
-    this.contato.skype = this.contatosArray[this.index][3].value;
-    console.log('contatos antes >>> contatosArray :', this.contatosArray );
-    this.createContatos()
-    this.index += 1;
+    const contato = this.fb.group({
+      nome: [],
+      email: [],
+      fone: [],
+      skype: []
+    })
+
+    this.contatoForms.push(contato);
   }
 
-  createContatos() {
-    console.log('ClienteNovoComponent >  createContatos() '); 
-    var arr = [];
-    for (var i=0; i < this.clienteContatos.length; i++ ) {
-      arr.push(this.buildContato(this.clienteContatos[i]));
-    }
-    // return this.clienteForm = this.formBuilder.group({
-    //   contatos: this.formBuilder.array(arr)
-    //   })
-  } 
-
-  buildContato(clienteContatos): FormGroup {
-    return this.formBuilder.group({
-      title: [clienteContatos.brand],
-      value: ['']
-    });
+  deleteContato(i) {
+    this.contatoForms.removeAt(i);
   }
 
   criarCliente(clienteForm: NgForm) {
-    console.log('ClienteNovoComponent > criarCliente(clienteForm: NgForm)', clienteForm.controls.contatos.value); 
-    if (!this.flContato) { this._router.navigate(['/cliente/novo']) };
+    console.log('ClienteNovoComponent > criarCliente(clienteForm: NgForm)', clienteForm); 
     this._clienteService.criarCliente(clienteForm.value)
       .subscribe(observable => {
         if(observable.json().errors) {
@@ -130,7 +90,6 @@ export class ClienteNovoComponent implements OnInit, OnChanges {
         throw err;
       }
     );
-    this.createForm(this.clienteContatos);
   }
 
   cancel() {

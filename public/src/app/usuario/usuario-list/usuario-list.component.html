@@ -1,67 +1,63 @@
-<div class="container">
-  <figure class="image is-128x128">
-      <img src="../assets/images/TorreNegra-elem-mono-pos.png">
-  </figure>
+<mat-toolbar>
+  <img src="../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png">
+</mat-toolbar>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" [routerLink]="['/projetos']">Retornar <span class="sr-only">(current)</span></a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-  <div class="container"> 
-      <nav class="level">
-        <div class="level-left">
-            <div class="title is-4">Usuário</div> 
-        </div>
-        <div class="level-right">
-            <button type="button" class="button is-light" [routerLink]="['/usuario/novo']">Novo usuário</button>
-        </div> 
-      </nav>
-    <article class="media">
-      <div class="media-content">
-        <div class="content">
-  
-          <br>
-          <div id="scroll">
-            <table class="table table-hover" align="left">
-              <thead>
-                  <tr class="table-primary d-flex">
-                    <th class="col-2">Nome</th>
-                    <th class="col-3">E-mail</th>
-                    <th class="col-2">Função</th>
-                    <th class="col-1">Custo/hr</th>
-                    <th class="col-1">Admin</th>
-                    <th class="col-1">Ação</th>
-                    <th class="col-1"> </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let u  of usuarios" class="d-flex">
-                    <td class="col-2">{{ u['nome'] }}</td>
-                    <td class="col-3">{{ u['email'] }}</td>
-                    <td class="col-2">{{ u['funcao'] }}</td>
-                    <td class="col-1">{{ u['custoHora'] | number : '1.2-2' }}</td>
-                    <td class="col-1">
-                    <img [src]="u['admin'] ? frontPath : backPath"></td>
-                    <td class="col-1"><button type="button" [routerLink]="['/usuario/edit/', u['_id'] ]" class="button is-warning">Editar</button></td>
-                    <td class="col-1"><button type="button" [routerLink]="['/usuario/show', u['_id'] ]"  class="button is-danger">Detalhes</button></td>
-                  </tr>
-                </tbody>
-              </table> 
-            </div>    
-          </div>
-        </div>
-      </article>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['/projetos']">Retornar <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
   </div>
+</nav>
+
+<div class="container"> 
+    <nav class="level">
+      <div class="level-left">
+          <div class="title is-4">Usuário</div> 
+      </div>
+      <div class="level-right">
+          <button type="button" class="button is-light" [routerLink]="['/usuario/novo']">Novo usuário</button>
+      </div> 
+    </nav>
+  <article class="media">
+    <div class="media-content">
+      <div class="content">
+
+        <br>
+        <div id="scroll">
+          <table class="table table-hover" align="left">
+            <thead>
+                <tr class="table-primary d-flex">
+                  <th class="col-2">Nome</th>
+                  <th class="col-3">E-mail</th>
+                  <th class="col-2">Função</th>
+                  <th class="col-1">Custo/hr</th>
+                  <th class="col-1">Admin</th>
+                  <th class="col-1">Ação</th>
+                  <th class="col-1"> </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let u  of usuarios" class="d-flex">
+                  <td class="col-2">{{ u['nome'] }}</td>
+                  <td class="col-3">{{ u['email'] }}</td>
+                  <td class="col-2">{{ u['funcao'] }}</td>
+                  <td class="col-1">{{ u['custoHora'] | number : '1.2-2' }}</td>
+                  <td class="col-1">
+                  <img [src]="u['admin'] ? frontPath : backPath"></td>
+                  <td class="col-1"><button type="button" [routerLink]="['/usuario/edit/', u['_id'] ]" class="button is-warning">Editar</button></td>
+                  <td class="col-1"><button type="button" [routerLink]="['/usuario/show', u['_id'] ]"  class="button is-danger">Detalhes</button></td>
+                </tr>
+              </tbody>
+            </table> 
+          </div>    
+        </div>
+      </div>
+    </article>
 </div>
-  
-  

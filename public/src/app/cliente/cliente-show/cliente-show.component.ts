@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, NgForm, FormControl, FormBuilder } from '@angular/forms';
-import { Contato } from '../cliente-novo/cliente-model';
+import { Contato } from '../cliente-novo/cliente';
 import { UsuarioService } from '../../usuario/usuario.service';
 import { ClienteService } from '../cliente.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-cliente-show',
   templateUrl: './cliente-show.component.html',
-  styleUrls: ['./cliente-show.component.css']
+  styleUrls: ['./cliente-show.component.scss']
 })
 export class ClienteShowComponent implements OnInit {
   usuarioLogado = {
@@ -72,17 +72,6 @@ export class ClienteShowComponent implements OnInit {
     this.obterCliente(this._route.snapshot.params['id']);
   }
   
-  // ngOnChanges() {
-  //   this.rebuildForm();
-  // }
-
-  // rebuildForm() {
-  //   this.clienteForm.reset({
-  //     // cnpj: this.contato.nome,
-  //     // contatos: this.cliente.contatos[1] || new Contato()
-  //   });
-  //   // this.setContatos(this.cliente.contatos);
-  // }
 
   createForm(contatosCliente) {
     var arr = [];

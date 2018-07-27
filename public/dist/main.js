@@ -30,7 +30,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" href=\"#\">Sair <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n\n<div class=\"container\"> \n\n  <nav class=\"level\">\n      <div class=\"level-left\">\n          <div class=\"title is-4\">Apontamentos Projeto</div>\n      </div>\n      <div class=\"level-right\">\n          <button mat-stroked-button color=\"primary\" style=\"margin-top: 15px;\" [routerLink]=\"['/apontamento/novo']\">Novo apontamento</button>\n      </div> \n  </nav>\n  <p>Olá {{ usuarioLogado }}</p>\n\n  <mat-tab-group>\n    <div class=\"container\"> \n      <!-- <mat-tab label=\"Hora\" *ngIf=\"apontamentos.hora.inicio\"> -->\n      <mat-tab label=\"Hora\">\n        <apontamento-lista-hora></apontamento-lista-hora>\n      </mat-tab>\n      <mat-tab label=\"Despesa\">\n          <apontamento-lista-despesa></apontamento-lista-despesa>\n      </mat-tab>        \n    </div>\n  </mat-tab-group>\n</div>\n\n"
+module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" href=\"#\">Sair <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n\n<div class=\"container\"> \n\n  <nav class=\"level\">\n      <div class=\"level-left\">\n          <div class=\"title is-4\">Apontamentos Projeto</div>\n      </div>\n      <div class=\"level-right\">\n          <button mat-stroked-button color=\"primary\" style=\"margin-top: 15px;\" [routerLink]=\"['/apontamento/novo']\">Novo apontamento</button>\n      </div> \n  </nav>\n  <p>Olá {{ usuarioLogado }}</p>\n\n  <mat-tab-group>\n    <div class=\"container\"> \n      <!-- <mat-tab label=\"Hora\" *ngIf=\"apontamentos.hora.inicio\"> -->\n      <mat-tab label=\"Hora\">\n        <apontamento-lista-hora></apontamento-lista-hora>\n      </mat-tab>\n      <mat-tab label=\"Despesa\">\n          <apontamento-lista-despesa></apontamento-lista-despesa>\n      </mat-tab>        \n    </div>\n  </mat-tab-group>\n</div>\n\n"
 
 /***/ }),
 
@@ -41,7 +41,7 @@ module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "img {\n  width: 18%;\n  height: auto; }\n"
 
 /***/ }),
 
@@ -321,11 +321,11 @@ var ApontamentoListaHoraComponent = /** @class */ (function () {
         var apontObservable = this._projetoService.obterApontamentosHora(this.usuarioLogado);
         apontObservable.subscribe(function (apontamentos) {
             _this.apontamentos = apontamentos.json();
-            console.log('ApontamentoListaHoraComponent > obterListaApontamento() > apontamentos ', _this.apontamentos);
+            // console.log('ApontamentoListaHoraComponent > obterListaApontamento() > apontamentos ', this.apontamentos)
             for (var i = 0; i < _this.apontamentos.length; i++) {
                 _this.obterProjeto(_this.apontamentos[i]._projeto, i);
             }
-            console.log('D E P O I S >>>> >>>> >>>ApontamentoListaHoraComponent > obterListaApontamento() > apontamentos ', _this.apontamentos);
+            // console.log('D E P O I S >>>> >>>> >>>ApontamentoListaHoraComponent > obterListaApontamento() > apontamentos ', this.apontamentos)
             _this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"](_this.apontamentos);
             _this.dataSource.paginator = _this.paginator;
             _this.dataSource.sort = _this.sort;
@@ -425,7 +425,7 @@ var DialogApontamentoHora = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <!-- <a class=\"navbar-brand\" href=\"#\">Torre Negra</a> -->\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" href=\"#\">Sair <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n\n<div class=\"container\">\n\n<div class=\"level-left\">\n    <div style=\"margin: 20px, 0px, 20px, 0px;\" class=\"title is-4\">Apontamento</div> \n</div>\n\n\n<form  #formData=\"ngForm\" [formGroup]=\"options\">\n\n\n  <div class=\"example-container\">\n      <mat-form-field>\n        <mat-select placeholder=\"Selecione o projeto\" name=\"projeto\" formControlName=\"projeto\" required>\n          <mat-option value=\"option\" *ngFor=\"let p of projetos\" [value]=\"p._id\"> {{ p.codigo }} {{ p.descricao }}</mat-option>\n        </mat-select>\n        <mat-hint align=\"end\"></mat-hint>\n      </mat-form-field>\n\n        <div>\n          <mat-radio-group formControlName=\"tipo\" [value]=\"tipo\">\n            <mat-radio-button value=\"hora\">hora</mat-radio-button>&nbsp;\n            <mat-radio-button value=\"despesa\">despesa</mat-radio-button>\n          </mat-radio-group>&nbsp;&nbsp;\n\n          <mat-form-field *ngIf=\"(options.get('tipo').value=='despesa')\">\n              <mat-select placeholder=\"Selecione o tipo\"  formControlName=\"opDespesa\">\n                <mat-option value=\"alimentacao\"> alimentação</mat-option>\n                <mat-option value=\"hospedagem\"> hospedagem</mat-option>\n                <mat-option value=\"pedagio\"> pedágio</mat-option>\n                <mat-option value=\"transporte\"> transporte</mat-option>\n                <mat-option value=\"outros\"> outros</mat-option>\n              </mat-select>\n              <mat-hint align=\"end\"></mat-hint>\n          </mat-form-field>&nbsp;&nbsp;\n\n          <mat-form-field *ngIf=\"options.get('opDespesa').value=='outros'\" hintLabel=\"Max 20 caracteres\">\n              <input matInput formControlName=\"descricao\" #input maxlength=\"20\">\n              <mat-hint align=\"end\">{{input.value?.length || 0}}/20</mat-hint>\n            </mat-form-field>&nbsp;&nbsp;\n\n          <mat-form-field *ngIf=\"(options.get('tipo').value=='despesa')\">\n            <input \n            formControlName=\"valor\"\n            matInput \n            placeholder=\"Valor\" \n            type=\"number\" \n            class=\"example-right-align\">\n            <span matPrefix>$&nbsp;</span>\n            <span matSuffix>.00</span>\n          </mat-form-field>&nbsp;&nbsp;\n\n          <mat-form-field *ngIf=\"(options.get('tipo').value=='hora')\" >\n            <mat-select placeholder=\"início\" formControlName=\"inicio\" > \n                <mat-option value=\"{{ today }}\">{{today | date:\"MMM d, y H:mm:ss\"}}</mat-option>\n              <!-- <mat-option value=\"{{ today | date:'MMM d, y H:mm' }}\">{{today | date:\"MMM d, y H:mm\"}}</mat-option> -->\n            </mat-select>\n          </mat-form-field>\n\n        </div>\n\n\n          <!-- <mat-form-field *ngIf=\"(valueTipo=='despesa')\"\n            formControlName=\"despesaValor\">\n            <input \n              matInput \n              placeholder=\"Valor\" \n              required\n              >\n          </mat-form-field> -->\n          <!-- {{ valueDespesa }} -->\n\n\n      <!-- </form> -->\n\n    </div>\n  </form>\n\n\n\n\n<!-- <div style=\"margin-top: 15px; width: 50%;\">\n        <ngbd-datepicker-popup></ngbd-datepicker-popup>\n    </div> -->\n\n\n\n\n    <!-- <h3>Tipo de apontamento</h3> -->\n    <!-- <div class=\"select is-multiple\"> -->\n        <!-- <select name=\"tipo\" [(ngModel)]=\"tipo\">\n          <option>Hora </option>\n          <option>Despesa </option>\n        </select> -->\n       \n    \n        <!-- Tipo de Apontamento: Despesa -->\n        <!-- <div class=\"control\" *ngIf=\"(tipo=='Despesa')\">\n          <div class=\"field is-horizontal\" style=\"margin-top: 20px;\" > -->\n            <!-- <select name=\"opcaoDespesa\" [(ngModel)]=\"opcaoDespesa\" > \n              <option>alimentação </option>\n              <option>hospedagem </option>\n              <option>pedágio </option>\n              <option>transporte </option>\n              <option>outros </option>\n            </select> -->\n           \n  \n          <!-- </div> -->\n              <!-- <div class=\"control\" *ngIf=\"opcaoDespesa=='outros'\">\n              <div class=\"field is-horizontal\">\n                <p class=\"control\">\n                  <textarea \n                  class=\"textarea is-warning\" \n                  type=\"text\" \n                  rows=\"2\"\n                  name=\"descricao\" \n                  placeholder=\"Descrição da despesa\"\n                  [(ngModel)]=\"apontamento.despesa.descricao\"\n                  #descricao=\"ngModel\">\n                  </textarea>\n                </p>\n              </div>\n          </div> -->\n          <!-- <div class=\"field is-horizontal\" >\n            <div class=\"field-body\">\n              <div class=\"field\">\n                <p class=\"control\">\n                  <input \n                  class=\"input\" \n                  type=\"text\" \n                  name=\"valor\" \n                  [(ngModel)]=\"apontamento.despesa.valor\"\n                  #valor=\"ngModel\"\n                  />\n                </p>\n              </div>\n            </div>\n          </div> -->\n        <!-- </div> -->\n        <!-- Tipo de Apontamento: Hora -->\n        <!-- <div *ngIf=\"(tipo=='Hora')\"> -->\n            <!-- <div style=\"border: solid 2px green; margin-top: 10px;  padding: 10px;\"> -->\n              <!-- <select name=\"inicio\" [(ngModel)]=\"apontamento.hora.inicio\" > \n                  <option>{{today | date:\"MMM d, y H:mm\"}}</option>\n                </select> -->\n                \n            <!-- </div> -->\n        <!-- </div> -->\n        <button type=\"button\" class=\"btn btn-secondary\" (click)=\"cancel()\">Cancela</button>\n        <button type=\"button\" class=\"btn btn-primary\" (click)=\"setApontamento()\" [disabled]=\"formData.invalid\">Confirma</button>\n  \n      </div>\n\n\n\n\n\n"
+module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <!-- <a class=\"navbar-brand\" href=\"#\">Torre Negra</a> -->\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" href=\"#\">Sair <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n\n<div class=\"container\">\n\n<div class=\"level-left\">\n    <div style=\"margin: 20px, 0px, 20px, 0px;\" class=\"title is-4\">Apontamento</div> \n</div>\n\n\n<form  #formData=\"ngForm\" [formGroup]=\"options\">\n\n\n  <div class=\"example-container\">\n      <mat-form-field>\n        <mat-select placeholder=\"Selecione o projeto\" name=\"projeto\" formControlName=\"projeto\" required>\n          <mat-option value=\"option\" *ngFor=\"let p of projetos\" [value]=\"p._id\"> {{ p.codigo }} {{ p.descricao }}</mat-option>\n        </mat-select>\n        <mat-hint align=\"end\"></mat-hint>\n      </mat-form-field>\n\n        <div>\n          <mat-radio-group formControlName=\"tipo\" [value]=\"tipo\">\n            <mat-radio-button value=\"hora\">hora</mat-radio-button>&nbsp;\n            <mat-radio-button value=\"despesa\">despesa</mat-radio-button>\n          </mat-radio-group>&nbsp;&nbsp;\n\n          <mat-form-field *ngIf=\"(options.get('tipo').value=='despesa')\">\n              <mat-select placeholder=\"Selecione o tipo\"  formControlName=\"opDespesa\">\n                <mat-option value=\"alimentacao\"> alimentação</mat-option>\n                <mat-option value=\"hospedagem\"> hospedagem</mat-option>\n                <mat-option value=\"pedagio\"> pedágio</mat-option>\n                <mat-option value=\"transporte\"> transporte</mat-option>\n                <mat-option value=\"outros\"> outros</mat-option>\n              </mat-select>\n              <mat-hint align=\"end\"></mat-hint>\n          </mat-form-field>&nbsp;&nbsp;\n\n          <mat-form-field *ngIf=\"options.get('opDespesa').value=='outros'\" hintLabel=\"Max 20 caracteres\">\n              <input matInput formControlName=\"descricao\" #input maxlength=\"20\">\n              <mat-hint align=\"end\">{{input.value?.length || 0}}/20</mat-hint>\n            </mat-form-field>&nbsp;&nbsp;\n\n          <mat-form-field *ngIf=\"(options.get('tipo').value=='despesa')\">\n            <input \n            formControlName=\"valor\"\n            matInput \n            placeholder=\"Valor\" \n            type=\"number\" \n            class=\"example-right-align\">\n            <span matPrefix>$&nbsp;</span>\n            <span matSuffix>.00</span>\n          </mat-form-field>&nbsp;&nbsp;\n\n          <mat-form-field *ngIf=\"(options.get('tipo').value=='hora')\" >\n            <mat-select placeholder=\"início\" formControlName=\"inicio\" > \n                <mat-option value=\"{{ today }}\">{{today | date:\"MMM d, y H:mm:ss\"}}</mat-option>\n              <!-- <mat-option value=\"{{ today | date:'MMM d, y H:mm' }}\">{{today | date:\"MMM d, y H:mm\"}}</mat-option> -->\n            </mat-select>\n          </mat-form-field>\n\n        </div>\n\n\n          <!-- <mat-form-field *ngIf=\"(valueTipo=='despesa')\"\n            formControlName=\"despesaValor\">\n            <input \n              matInput \n              placeholder=\"Valor\" \n              required\n              >\n          </mat-form-field> -->\n          <!-- {{ valueDespesa }} -->\n\n\n      <!-- </form> -->\n\n    </div>\n  </form>\n\n\n\n\n<!-- <div style=\"margin-top: 15px; width: 50%;\">\n        <ngbd-datepicker-popup></ngbd-datepicker-popup>\n    </div> -->\n\n\n\n\n    <!-- <h3>Tipo de apontamento</h3> -->\n    <!-- <div class=\"select is-multiple\"> -->\n        <!-- <select name=\"tipo\" [(ngModel)]=\"tipo\">\n          <option>Hora </option>\n          <option>Despesa </option>\n        </select> -->\n       \n    \n        <!-- Tipo de Apontamento: Despesa -->\n        <!-- <div class=\"control\" *ngIf=\"(tipo=='Despesa')\">\n          <div class=\"field is-horizontal\" style=\"margin-top: 20px;\" > -->\n            <!-- <select name=\"opcaoDespesa\" [(ngModel)]=\"opcaoDespesa\" > \n              <option>alimentação </option>\n              <option>hospedagem </option>\n              <option>pedágio </option>\n              <option>transporte </option>\n              <option>outros </option>\n            </select> -->\n           \n  \n          <!-- </div> -->\n              <!-- <div class=\"control\" *ngIf=\"opcaoDespesa=='outros'\">\n              <div class=\"field is-horizontal\">\n                <p class=\"control\">\n                  <textarea \n                  class=\"textarea is-warning\" \n                  type=\"text\" \n                  rows=\"2\"\n                  name=\"descricao\" \n                  placeholder=\"Descrição da despesa\"\n                  [(ngModel)]=\"apontamento.despesa.descricao\"\n                  #descricao=\"ngModel\">\n                  </textarea>\n                </p>\n              </div>\n          </div> -->\n          <!-- <div class=\"field is-horizontal\" >\n            <div class=\"field-body\">\n              <div class=\"field\">\n                <p class=\"control\">\n                  <input \n                  class=\"input\" \n                  type=\"text\" \n                  name=\"valor\" \n                  [(ngModel)]=\"apontamento.despesa.valor\"\n                  #valor=\"ngModel\"\n                  />\n                </p>\n              </div>\n            </div>\n          </div> -->\n        <!-- </div> -->\n        <!-- Tipo de Apontamento: Hora -->\n        <!-- <div *ngIf=\"(tipo=='Hora')\"> -->\n            <!-- <div style=\"border: solid 2px green; margin-top: 10px;  padding: 10px;\"> -->\n              <!-- <select name=\"inicio\" [(ngModel)]=\"apontamento.hora.inicio\" > \n                  <option>{{today | date:\"MMM d, y H:mm\"}}</option>\n                </select> -->\n                \n            <!-- </div> -->\n        <!-- </div> -->\n        <button type=\"button\" class=\"btn btn-secondary\" (click)=\"cancel()\">Cancela</button>\n        <button type=\"button\" class=\"btn btn-primary\" (click)=\"setApontamento()\" [disabled]=\"formData.invalid\">Confirma</button>\n  \n      </div>\n\n\n\n\n\n"
 
 /***/ }),
 
@@ -436,7 +436,7 @@ module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".example-container {\n  display: flex;\n  flex-direction: column; }\n\n.example-container > * {\n  width: 100%; }\n\nbutton {\n  margin: 10px; }\n"
+module.exports = ".example-container {\n  display: flex;\n  flex-direction: column; }\n\n.example-container > * {\n  width: 100%; }\n\nbutton {\n  margin: 10px; }\n\nimg {\n  width: 18%;\n  height: auto; }\n"
 
 /***/ }),
 
@@ -836,40 +836,42 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material/tabs */ "./node_modules/@angular/material/esm5/tabs.es5.js");
 /* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
-/* harmony import */ var _global_error_global_error_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./global-error/global-error.component */ "./src/app/global-error/global-error.component.ts");
-/* harmony import */ var _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./projeto/projeto.service */ "./src/app/projeto/projeto.service.ts");
-/* harmony import */ var _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./usuario/usuario.service */ "./src/app/usuario/usuario.service.ts");
-/* harmony import */ var _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./cliente/cliente.service */ "./src/app/cliente/cliente.service.ts");
-/* harmony import */ var _global_error_handler_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./global-error-handler.service */ "./src/app/global-error-handler.service.ts");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _cliente_cliente_edit_cliente_edit_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./cliente/cliente-edit/cliente-edit.component */ "./src/app/cliente/cliente-edit/cliente-edit.component.ts");
-/* harmony import */ var _cliente_cliente_novo_cliente_novo_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./cliente/cliente-novo/cliente-novo.component */ "./src/app/cliente/cliente-novo/cliente-novo.component.ts");
-/* harmony import */ var _cliente_cliente_show_cliente_show_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./cliente/cliente-show/cliente-show.component */ "./src/app/cliente/cliente-show/cliente-show.component.ts");
-/* harmony import */ var _usuario_usuario_list_usuario_list_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./usuario/usuario-list/usuario-list.component */ "./src/app/usuario/usuario-list/usuario-list.component.ts");
-/* harmony import */ var _usuario_usuario_edit_usuario_edit_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./usuario/usuario-edit/usuario-edit.component */ "./src/app/usuario/usuario-edit/usuario-edit.component.ts");
-/* harmony import */ var _usuario_usuario_novo_usuario_novo_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./usuario/usuario-novo/usuario-novo.component */ "./src/app/usuario/usuario-novo/usuario-novo.component.ts");
-/* harmony import */ var _usuario_usuario_show_usuario_show_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./usuario/usuario-show/usuario-show.component */ "./src/app/usuario/usuario-show/usuario-show.component.ts");
-/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
-/* harmony import */ var _financeiro_financeiro_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./financeiro/financeiro.component */ "./src/app/financeiro/financeiro.component.ts");
-/* harmony import */ var _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./projeto/projeto-list/projeto-list.component */ "./src/app/projeto/projeto-list/projeto-list.component.ts");
-/* harmony import */ var _projeto_projeto_novo_projeto_novo_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./projeto/projeto-novo/projeto-novo.component */ "./src/app/projeto/projeto-novo/projeto-novo.component.ts");
-/* harmony import */ var _projeto_projeto_show_projeto_show_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./projeto/projeto-show/projeto-show.component */ "./src/app/projeto/projeto-show/projeto-show.component.ts");
-/* harmony import */ var _projeto_projeto_edit_projeto_edit_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./projeto/projeto-edit/projeto-edit.component */ "./src/app/projeto/projeto-edit/projeto-edit.component.ts");
-/* harmony import */ var _cliente_cliente_list_cliente_list_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./cliente/cliente-list/cliente-list.component */ "./src/app/cliente/cliente-list/cliente-list.component.ts");
-/* harmony import */ var _relatorio_relatorio_financeiro_relatorio_financeiro_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./relatorio/relatorio-financeiro/relatorio-financeiro.component */ "./src/app/relatorio/relatorio-financeiro/relatorio-financeiro.component.ts");
-/* harmony import */ var _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./pagina-nao-encontrada/pagina-nao-encontrada.component */ "./src/app/pagina-nao-encontrada/pagina-nao-encontrada.component.ts");
-/* harmony import */ var _apontamento_apontamento_novo_apontamento_novo_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./apontamento/apontamento-novo/apontamento-novo.component */ "./src/app/apontamento/apontamento-novo/apontamento-novo.component.ts");
-/* harmony import */ var _material__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./material */ "./src/app/material.ts");
-/* harmony import */ var _apontamento_apontamento_dashboard_apontamento_dashboard_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./apontamento/apontamento-dashboard/apontamento-dashboard.component */ "./src/app/apontamento/apontamento-dashboard/apontamento-dashboard.component.ts");
-/* harmony import */ var _apontamento_apontamento_lista_despesa_apontamento_lista_despesa_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./apontamento/apontamento-lista-despesa/apontamento-lista-despesa.component */ "./src/app/apontamento/apontamento-lista-despesa/apontamento-lista-despesa.component.ts");
-/* harmony import */ var _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./apontamento/apontamento-lista-hora/apontamento-lista-hora.component */ "./src/app/apontamento/apontamento-lista-hora/apontamento-lista-hora.component.ts");
+/* harmony import */ var _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/toolbar */ "./node_modules/@angular/material/esm5/toolbar.es5.js");
+/* harmony import */ var _global_error_global_error_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./global-error/global-error.component */ "./src/app/global-error/global-error.component.ts");
+/* harmony import */ var _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./projeto/projeto.service */ "./src/app/projeto/projeto.service.ts");
+/* harmony import */ var _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./usuario/usuario.service */ "./src/app/usuario/usuario.service.ts");
+/* harmony import */ var _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./cliente/cliente.service */ "./src/app/cliente/cliente.service.ts");
+/* harmony import */ var _global_error_handler_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./global-error-handler.service */ "./src/app/global-error-handler.service.ts");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _cliente_cliente_edit_cliente_edit_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./cliente/cliente-edit/cliente-edit.component */ "./src/app/cliente/cliente-edit/cliente-edit.component.ts");
+/* harmony import */ var _cliente_cliente_novo_cliente_novo_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./cliente/cliente-novo/cliente-novo.component */ "./src/app/cliente/cliente-novo/cliente-novo.component.ts");
+/* harmony import */ var _cliente_cliente_show_cliente_show_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./cliente/cliente-show/cliente-show.component */ "./src/app/cliente/cliente-show/cliente-show.component.ts");
+/* harmony import */ var _usuario_usuario_list_usuario_list_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./usuario/usuario-list/usuario-list.component */ "./src/app/usuario/usuario-list/usuario-list.component.ts");
+/* harmony import */ var _usuario_usuario_edit_usuario_edit_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./usuario/usuario-edit/usuario-edit.component */ "./src/app/usuario/usuario-edit/usuario-edit.component.ts");
+/* harmony import */ var _usuario_usuario_novo_usuario_novo_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./usuario/usuario-novo/usuario-novo.component */ "./src/app/usuario/usuario-novo/usuario-novo.component.ts");
+/* harmony import */ var _usuario_usuario_show_usuario_show_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./usuario/usuario-show/usuario-show.component */ "./src/app/usuario/usuario-show/usuario-show.component.ts");
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
+/* harmony import */ var _financeiro_financeiro_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./financeiro/financeiro.component */ "./src/app/financeiro/financeiro.component.ts");
+/* harmony import */ var _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./projeto/projeto-list/projeto-list.component */ "./src/app/projeto/projeto-list/projeto-list.component.ts");
+/* harmony import */ var _projeto_projeto_novo_projeto_novo_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./projeto/projeto-novo/projeto-novo.component */ "./src/app/projeto/projeto-novo/projeto-novo.component.ts");
+/* harmony import */ var _projeto_projeto_show_projeto_show_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./projeto/projeto-show/projeto-show.component */ "./src/app/projeto/projeto-show/projeto-show.component.ts");
+/* harmony import */ var _projeto_projeto_edit_projeto_edit_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./projeto/projeto-edit/projeto-edit.component */ "./src/app/projeto/projeto-edit/projeto-edit.component.ts");
+/* harmony import */ var _cliente_cliente_list_cliente_list_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./cliente/cliente-list/cliente-list.component */ "./src/app/cliente/cliente-list/cliente-list.component.ts");
+/* harmony import */ var _relatorio_relatorio_financeiro_relatorio_financeiro_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./relatorio/relatorio-financeiro/relatorio-financeiro.component */ "./src/app/relatorio/relatorio-financeiro/relatorio-financeiro.component.ts");
+/* harmony import */ var _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./pagina-nao-encontrada/pagina-nao-encontrada.component */ "./src/app/pagina-nao-encontrada/pagina-nao-encontrada.component.ts");
+/* harmony import */ var _apontamento_apontamento_novo_apontamento_novo_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./apontamento/apontamento-novo/apontamento-novo.component */ "./src/app/apontamento/apontamento-novo/apontamento-novo.component.ts");
+/* harmony import */ var _material__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./material */ "./src/app/material.ts");
+/* harmony import */ var _apontamento_apontamento_dashboard_apontamento_dashboard_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./apontamento/apontamento-dashboard/apontamento-dashboard.component */ "./src/app/apontamento/apontamento-dashboard/apontamento-dashboard.component.ts");
+/* harmony import */ var _apontamento_apontamento_lista_despesa_apontamento_lista_despesa_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./apontamento/apontamento-lista-despesa/apontamento-lista-despesa.component */ "./src/app/apontamento/apontamento-lista-despesa/apontamento-lista-despesa.component.ts");
+/* harmony import */ var _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./apontamento/apontamento-lista-hora/apontamento-lista-hora.component */ "./src/app/apontamento/apontamento-lista-hora/apontamento-lista-hora.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -914,30 +916,30 @@ var AppModule = /** @class */ (function () {
     AppModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_14__["AppComponent"],
-                _login_login_component__WEBPACK_IMPORTED_MODULE_22__["LoginComponent"],
-                _financeiro_financeiro_component__WEBPACK_IMPORTED_MODULE_23__["FinanceiroComponent"],
-                _cliente_cliente_list_cliente_list_component__WEBPACK_IMPORTED_MODULE_28__["ClienteListComponent"],
-                _cliente_cliente_novo_cliente_novo_component__WEBPACK_IMPORTED_MODULE_16__["ClienteNovoComponent"],
-                _cliente_cliente_edit_cliente_edit_component__WEBPACK_IMPORTED_MODULE_15__["ClienteEditComponent"],
-                _cliente_cliente_show_cliente_show_component__WEBPACK_IMPORTED_MODULE_17__["ClienteShowComponent"],
-                _usuario_usuario_list_usuario_list_component__WEBPACK_IMPORTED_MODULE_18__["UsuarioListComponent"],
-                _usuario_usuario_edit_usuario_edit_component__WEBPACK_IMPORTED_MODULE_19__["UsuarioEditComponent"],
-                _usuario_usuario_novo_usuario_novo_component__WEBPACK_IMPORTED_MODULE_20__["UsuarioNovoComponent"],
-                _usuario_usuario_show_usuario_show_component__WEBPACK_IMPORTED_MODULE_21__["UsuarioShowComponent"],
-                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_24__["ProjetoListComponent"],
-                _projeto_projeto_novo_projeto_novo_component__WEBPACK_IMPORTED_MODULE_25__["ProjetoNovoComponent"],
-                _projeto_projeto_show_projeto_show_component__WEBPACK_IMPORTED_MODULE_26__["ProjetoShowComponent"],
-                _projeto_projeto_edit_projeto_edit_component__WEBPACK_IMPORTED_MODULE_27__["ProjetoEditComponent"],
-                _relatorio_relatorio_financeiro_relatorio_financeiro_component__WEBPACK_IMPORTED_MODULE_29__["RelatorioFinanceiroComponent"],
-                _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_30__["PaginaNaoEncontradaComponent"],
-                _global_error_global_error_component__WEBPACK_IMPORTED_MODULE_8__["GlobalErrorComponent"],
-                _apontamento_apontamento_novo_apontamento_novo_component__WEBPACK_IMPORTED_MODULE_31__["ApontamentoNovoComponent"],
-                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_24__["DialogProjeto"],
-                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_35__["DialogApontamentoHora"],
-                _apontamento_apontamento_dashboard_apontamento_dashboard_component__WEBPACK_IMPORTED_MODULE_33__["ApontamentoDashboardComponent"],
-                _apontamento_apontamento_lista_despesa_apontamento_lista_despesa_component__WEBPACK_IMPORTED_MODULE_34__["ApontamentoListaDespesaComponent"],
-                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_35__["ApontamentoListaHoraComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_15__["AppComponent"],
+                _login_login_component__WEBPACK_IMPORTED_MODULE_23__["LoginComponent"],
+                _financeiro_financeiro_component__WEBPACK_IMPORTED_MODULE_24__["FinanceiroComponent"],
+                _cliente_cliente_list_cliente_list_component__WEBPACK_IMPORTED_MODULE_29__["ClienteListComponent"],
+                _cliente_cliente_novo_cliente_novo_component__WEBPACK_IMPORTED_MODULE_17__["ClienteNovoComponent"],
+                _cliente_cliente_edit_cliente_edit_component__WEBPACK_IMPORTED_MODULE_16__["ClienteEditComponent"],
+                _cliente_cliente_show_cliente_show_component__WEBPACK_IMPORTED_MODULE_18__["ClienteShowComponent"],
+                _usuario_usuario_list_usuario_list_component__WEBPACK_IMPORTED_MODULE_19__["UsuarioListComponent"],
+                _usuario_usuario_edit_usuario_edit_component__WEBPACK_IMPORTED_MODULE_20__["UsuarioEditComponent"],
+                _usuario_usuario_novo_usuario_novo_component__WEBPACK_IMPORTED_MODULE_21__["UsuarioNovoComponent"],
+                _usuario_usuario_show_usuario_show_component__WEBPACK_IMPORTED_MODULE_22__["UsuarioShowComponent"],
+                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_25__["ProjetoListComponent"],
+                _projeto_projeto_novo_projeto_novo_component__WEBPACK_IMPORTED_MODULE_26__["ProjetoNovoComponent"],
+                _projeto_projeto_show_projeto_show_component__WEBPACK_IMPORTED_MODULE_27__["ProjetoShowComponent"],
+                _projeto_projeto_edit_projeto_edit_component__WEBPACK_IMPORTED_MODULE_28__["ProjetoEditComponent"],
+                _relatorio_relatorio_financeiro_relatorio_financeiro_component__WEBPACK_IMPORTED_MODULE_30__["RelatorioFinanceiroComponent"],
+                _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_31__["PaginaNaoEncontradaComponent"],
+                _global_error_global_error_component__WEBPACK_IMPORTED_MODULE_9__["GlobalErrorComponent"],
+                _apontamento_apontamento_novo_apontamento_novo_component__WEBPACK_IMPORTED_MODULE_32__["ApontamentoNovoComponent"],
+                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_25__["DialogProjeto"],
+                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_36__["DialogApontamentoHora"],
+                _apontamento_apontamento_dashboard_apontamento_dashboard_component__WEBPACK_IMPORTED_MODULE_34__["ApontamentoDashboardComponent"],
+                _apontamento_apontamento_lista_despesa_apontamento_lista_despesa_component__WEBPACK_IMPORTED_MODULE_35__["ApontamentoListaDespesaComponent"],
+                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_36__["ApontamentoListaHoraComponent"]
                 // NgbdDatepickerPopup,
             ],
             imports: [
@@ -949,45 +951,35 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatFormFieldModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatInputModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_13__["AppRoutingModule"],
-                _material__WEBPACK_IMPORTED_MODULE_32__["MaterialModule"],
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_14__["AppRoutingModule"],
+                _material__WEBPACK_IMPORTED_MODULE_33__["MaterialModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatOptionModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatSelectModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatRadioModule"],
                 _angular_material_tabs__WEBPACK_IMPORTED_MODULE_6__["MatTabsModule"],
-                _angular_material_card__WEBPACK_IMPORTED_MODULE_7__["MatCardModule"]
+                _angular_material_card__WEBPACK_IMPORTED_MODULE_7__["MatCardModule"],
+                _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_8__["MatToolbarModule"]
                 // NgbModule,
                 // NgbModule.forRoot()
             ],
             entryComponents: [
-                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_24__["DialogProjeto"],
-                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_35__["DialogApontamentoHora"]
+                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_25__["DialogProjeto"],
+                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_36__["DialogApontamentoHora"]
             ],
             providers: [
-                _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_9__["ProjetoService"],
-                _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_10__["UsuarioService"],
-                _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_11__["ClienteService"],
-                _global_error_handler_service__WEBPACK_IMPORTED_MODULE_12__["GlobalErrorHandlerService"],
-                { provide: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ErrorHandler"], useClass: _global_error_handler_service__WEBPACK_IMPORTED_MODULE_12__["GlobalErrorHandlerService"] }
+                _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_10__["ProjetoService"],
+                _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_11__["UsuarioService"],
+                _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_12__["ClienteService"],
+                _global_error_handler_service__WEBPACK_IMPORTED_MODULE_13__["GlobalErrorHandlerService"],
+                { provide: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ErrorHandler"], useClass: _global_error_handler_service__WEBPACK_IMPORTED_MODULE_13__["GlobalErrorHandlerService"] }
             ],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_14__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_15__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
 }());
 
 
-
-/***/ }),
-
-/***/ "./src/app/cliente/cliente-edit/cliente-edit.component.css":
-/*!*****************************************************************!*\
-  !*** ./src/app/cliente/cliente-edit/cliente-edit.component.css ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "button {\n    margin: 10px;\n}\n.purple {\n    color: purple;\n    margin: 0px 0px 30px 175px;\n}\n.errors {\n    color: brown;\n}\n"
 
 /***/ }),
 
@@ -998,7 +990,18 @@ module.exports = "button {\n    margin: 10px;\n}\n.purple {\n    color: purple;\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <!-- <a class=\"navbar-brand\" href=\"#\">Torre Negra</a> -->\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n  \n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/clientes']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n  \n  \n  <div class=\"container\">\n  \n      Dados básicos: \n  \n      <div class=\"errors\" *ngIf=\"errors\">\n        <p *ngIf=\"errors.cnpj\" >  {{ errors['cnpj'].message }} </p>\n        <p *ngIf=\"errors.razaoSocial\" >  {{ errors['razaoSocial'].message }} </p>\n        <p *ngIf=\"errors.nomeFantasia\" >  {{ errors['nomeFantasia'].message }} </p>\n        <p *ngIf=\"errors.endereco\" >  {{ errors['endereco'].message }} </p>   \n        <!-- <p *ngIf=\"errors.contatos\" >  {{ errors['contatos'].message }} </p>        -->\n      </div>\n  \n  \n    <form [formGroup] = \"clienteForm\" (submit)=\"editarCliente(clienteForm)\">\n  \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">CNPJ</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input is-focused\" \n              type=\"text\"\n              formControlName=\"cnpj\" \n              name=\"cnpj\"\n              minlength=11\n              required\n              />\n            </p>\n          </div>\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!cnpj?.valid\" class=\"purple\">CNPJ precisar ter no mínimo 11 caracteres!</div> -->\n  \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Razão Social</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input\" \n              type=\"text\" \n              formControlName=\"razaoSocial\" \n              name=\"razaoSocial\"\n              minlength=8\n              required\n              />\n            </p>\n          </div>\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!razaoSocial?.valid\" class=\"purple\">Razão Social do cliente precisar ter no mínimo 8 caracteres!</div> -->\n  \n      <div class=\"field is-horizontal\">\n          <div class=\"field-label is-normal\">\n            <label class=\"label\">Nome Fantasia</label>\n          </div>\n          <div class=\"field-body\">\n            <div class=\"field\">\n              <p class=\"control\">\n                <input \n                class=\"input\" \n                type=\"text\" \n                formControlName=\"nomeFantasia\"  \n                name=\"nomeFantasia\"\n                minlength=2\n                required\n                />\n              </p>\n            </div>\n          </div>\n        </div>\n        <!-- <div *ngIf=\"!nomeFantasia?.valid\" class=\"purple\">Nome fantasia do cliente precisar ter no mínimo 2 caracteres!</div> -->\n    \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Endereço</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input\" \n              type=\"text\"\n              formControlName=\"endereco\" \n              name=\"endereco\"  \n              minlength=6\n              required\n              />\n            </p>\n          </div>\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!endereco?.valid\" class=\"purple\">Endereço do cliente precisar ter no mínimo 4 caracteres!</div> -->\n    \n  \n      Dados comerciais:\n  \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Valor h/h</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input\" \n              type=\"text\"\n              formControlName=\"valorHH\" \n              name=\"valorHH\"  \n              required\n              />\n            </p>\n          </div>\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!valorHH?.valid\" class=\"purple\">Valor HH do cliente precisar ter no mínimo 4 caracteres!</div> -->\n    \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Prazo Pagamento</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input\" \n              type=\"text\"\n              formControlName=\"prazoPgto\" \n              name=\"prazoPgto\"  \n              required\n              />\n            </p>\n          </div>\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!prazoPgto?.valid\" class=\"purple\">Prazo pgto do cliente precisar ter no mínimo 4 caracteres!</div> -->\n    \n      Contatos: \n      <div  class=\"tile is-ancestor\">\n        <div class=\"tile is-vertical is-content\">\n          <div class=\"tile\">\n            <div class=\"tile is-parent is-vertical\">\n              <article class=\"tile is-child notification is-primary\">\n  \n                <div  formArrayName=\"contatos\" *ngFor=\"let brand of clienteForm.controls.contatos.controls; let i = index;\">\n                  <div formGroupName =\"{{i}}\">\n                    <div class=\"field is-horizontal\">\n                      <div class=\"field-label is-normal\">\n                        {{brand.get('title').value}}\n                      </div>\n                      <div class=\"field-body\">\n                        <div class=\"field\">\n                          <p class=\"control\">\n                            <input\n                            type=\"text\"\n                            formControlName=\"value\" \n                            >\n                          </p>\n                        </div>\n                      </div>\n                    </div>\n                  </div>\n                </div>\n  \n                <!-- <a style=\"margin-left: 150px;\" class=\"button is-warning is-rounded is-small\" (click)=\"addContato()\">+</a> -->\n  \n              </article>\n            </div>\n  \n            <div class=\"tile is-parent\">\n                <article class=\"tile is-child notification is-info\">\n                  {{ contato.nome }}  {{ contato.email }}  {{ contato.telefone }}  {{ contato.skype }}\n                </article>\n            </div>\n          </div>\n        </div>\n      </div>\n   \n  \n      <button type=\"button\" class=\"btn btn-secondary\" (click)=\"cancel()\">Cancela</button>\n      <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"clienteForm.invalid\">Confirma</button>\n        \n  \n    </form>\n  \n  </div>"
+module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" [routerLink]=\"['/clientes']\">Retornar <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n\n<div class=\"container\">\n\n    Dados básicos: \n\n    <div class=\"errors\" *ngIf=\"errors\">\n      <p *ngIf=\"errors.cnpj\" >  {{ errors['cnpj'].message }} </p>\n      <p *ngIf=\"errors.razaoSocial\" >  {{ errors['razaoSocial'].message }} </p>\n      <p *ngIf=\"errors.nomeFantasia\" >  {{ errors['nomeFantasia'].message }} </p>\n      <p *ngIf=\"errors.endereco\" >  {{ errors['endereco'].message }} </p>   \n      <!-- <p *ngIf=\"errors.contatos\" >  {{ errors['contatos'].message }} </p>        -->\n    </div>\n\n<div [formGroup] = \"clienteForm\">\n\n  <form class=\"example-form\" >\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"cnpj\"\n        type=\"text\"\n        formControlName=\"cnpj\" \n        name=\"cnpj\"\n        >\n        <mat-error *ngIf=\"cnpj.invalid && cnpj.touched\">\n          cnpj informado não é válido\n        </mat-error>\n      </mat-form-field></td>\n    </tr></table>\n\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"razão social\"\n        type=\"text\"\n        formControlName=\"razaoSocial\" \n        name=\"razaoSocial\"\n        />\n        <mat-error *ngIf=\"razaoSocial.invalid && razaoSocial.touched\">\n            razão social informada não é válida\n        </mat-error>\n      </mat-form-field></td>\n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"nome fantasia\"\n        type=\"text\"\n        formControlName=\"nomeFantasia\"  \n        name=\"nomeFantasia\"\n        />\n        <mat-error *ngIf=\"nomeFantasia.invalid && nomeFantasia.touched\">\n            nome fantasia informado não é válido\n        </mat-error>\n      </mat-form-field></td>\n    </tr></table>\n\n\n    <p>\n      <mat-form-field class=\"example-full-width\">\n        <textarea \n        matInput\n        placeholder=\"endereço\"\n        type=\"text\"\n        formControlName=\"endereco\" \n        name=\"endereco\">   \n      </textarea>\n      <mat-error *ngIf=\"endereco.invalid && endereco.touched\">\n          endereço informado não é válido\n      </mat-error>\n      </mat-form-field>\n    </p>\n\n    <!-- <div *ngIf=\"!endereco?.valid\" class=\"purple\">Endereço do cliente precisar ter no mínimo 4 caracteres!</div> -->\n\n    Dados comerciais:\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput\n        placeholder=\"valor HH\"\n        type=\"number\"\n        formControlName=\"valorHH\" \n        name=\"valorHH\"  \n        />\n      </mat-form-field></td>\n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput\n        placeholder=\"prazo pagto\"\n        type=\"number\"\n        formControlName=\"prazoPgto\" \n        name=\"prazoPgto\"  \n        />\n      </mat-form-field></td>\n    </tr></table>\n\n    Contatos: \n\n    <div formArrayName=\"contatos\">\n        \n      <div *ngFor=\"let contato of contatoForms.controls; let i = index;\" [formGroupName]=\"i\">\n\n        <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n          <td><mat-form-field class=\"example-full-width\">\n            <input \n            matInput\n            placeholder=\"nome\"\n            type=\"text\"\n            formControlName=\"nome\" \n            name=\"nome\"  \n            />\n          </mat-form-field></td>\n\n          <td><mat-form-field class=\"example-full-width\">\n              <input \n              matInput\n              placeholder=\"email\"\n              type=\"email\"\n              formControlName=\"email\" \n              name=\"email\"\n              />\n            </mat-form-field></td>\n\n          <td><mat-form-field class=\"example-full-width\">\n              <input \n              matInput\n              placeholder=\"fone\"\n              type=\"number\"\n              formControlName=\"fone\" \n              name=\"fone\"  \n              />\n            </mat-form-field></td>\n\n            <td><mat-form-field class=\"example-full-width\">\n                <input \n                matInput\n                placeholder=\"skype\"\n                type=\"text\"\n                formControlName=\"skype\" \n                name=\"skype\"  \n                />\n              </mat-form-field></td>\n\n          </tr></table>\n          <a  mat-mini-fab color=\"warn\" (click)=\"deleteContato(i)\">-</a>\n        </div>\n\n      \n      </div>\n\n\n      <a mat-mini-fab color=\"primary\" (click)=\"addContato()\">+</a>\n\n\n    <button mat-raised-button color=\"basic\" (click)=\"cancel()\">Cancela</button>\n\n    <button mat-raised-button color=\"primary\"  (click)=\"criarCliente(clienteForm)\" [disabled]=\"clienteForm.invalid\">Confirma</button>\n      \n\n  </form>\n</div>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/cliente/cliente-edit/cliente-edit.component.scss":
+/*!******************************************************************!*\
+  !*** ./src/app/cliente/cliente-edit/cliente-edit.component.scss ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "button {\n  margin: 10px; }\n\n.purple {\n  color: purple;\n  margin: 0px 0px 30px 175px; }\n\n.errors {\n  color: brown; }\n\nimg {\n  width: 18%;\n  height: auto; }\n"
 
 /***/ }),
 
@@ -1015,9 +1018,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../usuario/usuario.service */ "./src/app/usuario/usuario.service.ts");
-/* harmony import */ var _cliente_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../cliente.service */ "./src/app/cliente/cliente.service.ts");
-/* harmony import */ var _cliente_novo_cliente_model__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../cliente-novo/cliente-model */ "./src/app/cliente/cliente-novo/cliente-model.ts");
+/* harmony import */ var _cliente_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../cliente.service */ "./src/app/cliente/cliente.service.ts");
+/* harmony import */ var _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../usuario/usuario.service */ "./src/app/usuario/usuario.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1032,10 +1034,9 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-
 var ClienteEditComponent = /** @class */ (function () {
-    function ClienteEditComponent(formBuilder, _usuarioService, _clienteService, _route, _router) {
-        this.formBuilder = formBuilder;
+    function ClienteEditComponent(fb, _usuarioService, _clienteService, _route, _router) {
+        this.fb = fb;
         this._usuarioService = _usuarioService;
         this._clienteService = _clienteService;
         this._route = _route;
@@ -1044,76 +1045,11 @@ var ClienteEditComponent = /** @class */ (function () {
             email: '',
             admin: ''
         };
-        this.cliente = {
-            cnpj: 0,
-            razaoSocial: "",
-            nomeFantasia: "",
-            endereco: "",
-            valorHH: 0,
-            prazoPgto: 0,
-            contatos: [{
-                    nome: "",
-                    email: "",
-                    telefone: 0,
-                    skype: ""
-                }]
-        };
-        this.contato = new _cliente_novo_cliente_model__WEBPACK_IMPORTED_MODULE_5__["Contato"];
-        this.contatosArray = [];
-        this.flContato = false;
-        this.clienteForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
-            cnpj: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
-            razaoSocial: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
-            nomeFantasia: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
-            endereco: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
-            valorHH: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
-            prazoPgto: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
-            contatos: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]()
-        });
-        this.contatosCliente = [
-            {
-                'brand': "nome"
-            },
-            {
-                'brand': "email"
-            },
-            {
-                'brand': "telefone"
-            },
-            {
-                'brand': "skype"
-            }
-        ];
     }
     ClienteEditComponent.prototype.ngOnInit = function () {
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log('ClienteEditComponent  > usuarioLogado ', this.usuarioLogado.email);
+        console.log(' ClienteEditComponent > ', this.usuarioLogado.email);
         this.obterCliente(this._route.snapshot.params['id']);
-    };
-    // ngOnChanges() {
-    //   this.rebuildForm();
-    // }
-    // rebuildForm() {
-    //   this.clienteForm.reset({
-    //     // cnpj: this.contato.nome,
-    //     // contatos: this.cliente.contatos[1] || new Contato()
-    //   });
-    //   // this.setContatos(this.cliente.contatos);
-    // }
-    ClienteEditComponent.prototype.createForm = function (contatosCliente) {
-        var arr = [];
-        for (var i = 0; i < contatosCliente.length; i++) {
-            arr.push(this.buildContato(contatosCliente[i]));
-        }
-        return this.clienteForm = this.formBuilder.group({
-            cnpj: [this.cliente.cnpj, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
-            razaoSocial: [this.cliente.razaoSocial, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
-            nomeFantasia: [this.cliente.nomeFantasia, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
-            endereco: [this.cliente.endereco, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
-            valorHH: this.cliente.valorHH,
-            prazoPgto: this.cliente.prazoPgto,
-            contatos: this.formBuilder.array(arr)
-        });
     };
     ClienteEditComponent.prototype.obterCliente = function (id) {
         var _this = this;
@@ -1122,22 +1058,70 @@ var ClienteEditComponent = /** @class */ (function () {
         observable.subscribe(function (response) {
             _this.cliente = response.json();
             console.log('in ClienteEditComponent >>>>:', _this.cliente);
+            _this.newForm();
             // this.clienteForm = this.cliente;
-            _this.createForm(_this.contatosCliente);
         }, function (err) { }, function () { });
     };
-    ClienteEditComponent.prototype.buildContato = function (product) {
-        return this.formBuilder.group({
-            title: [product.brand],
-            value: ['']
+    ClienteEditComponent.prototype.newForm = function () {
+        this.clienteForm = this.fb.group({
+            cnpj: [this.cliente.cnpj, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(11)]],
+            razaoSocial: [this.cliente.razaoSocial, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
+            nomeFantasia: [this.cliente.nomeFantasia, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
+            endereco: [this.cliente.endereco, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
+            valorHH: this.cliente.valorHH,
+            prazoPgto: this.cliente.prazoPgto,
+            contatos: this.fb.array([this.cliente.contatos])
         });
+    };
+    Object.defineProperty(ClienteEditComponent.prototype, "cnpj", {
+        get: function () {
+            return this.clienteForm.get('cnpj');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ClienteEditComponent.prototype, "razaoSocial", {
+        get: function () {
+            return this.clienteForm.get('razaoSocial');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ClienteEditComponent.prototype, "nomeFantasia", {
+        get: function () {
+            return this.clienteForm.get('nomeFantasia');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ClienteEditComponent.prototype, "endereco", {
+        get: function () {
+            return this.clienteForm.get('endereco');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ClienteEditComponent.prototype, "contatoForms", {
+        get: function () {
+            return this.clienteForm.get('contatos');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ClienteEditComponent.prototype.addContato = function () {
+        var contato = this.fb.group({
+            nome: [],
+            email: [],
+            fone: [],
+            skype: []
+        });
+        this.contatoForms.push(contato);
+    };
+    ClienteEditComponent.prototype.deleteContato = function (i) {
+        this.contatoForms.removeAt(i);
     };
     ClienteEditComponent.prototype.editarCliente = function (clienteForm) {
         var _this = this;
-        if (!this.flContato) {
-            this._router.navigate(['/cliente/edit']);
-        }
-        ;
         console.log('ClienteEditarComponent > editarCliente(clienteForm)', clienteForm);
         this._clienteService.editarCliente(this.cliente['_id'], clienteForm.value)
             .subscribe(function (observable) {
@@ -1152,7 +1136,7 @@ var ClienteEditComponent = /** @class */ (function () {
         }, function (err) {
             throw err;
         });
-        this.createForm(this.contatosCliente);
+        // this.createForm(this.contatosCliente);
     };
     ClienteEditComponent.prototype.cancel = function () {
         this._router.navigate(['/clientes']);
@@ -1161,11 +1145,11 @@ var ClienteEditComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-cliente-edit',
             template: __webpack_require__(/*! ./cliente-edit.component.html */ "./src/app/cliente/cliente-edit/cliente-edit.component.html"),
-            styles: [__webpack_require__(/*! ./cliente-edit.component.css */ "./src/app/cliente/cliente-edit/cliente-edit.component.css")]
+            styles: [__webpack_require__(/*! ./cliente-edit.component.scss */ "./src/app/cliente/cliente-edit/cliente-edit.component.scss")]
         }),
         __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
-            _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_3__["UsuarioService"],
-            _cliente_service__WEBPACK_IMPORTED_MODULE_4__["ClienteService"],
+            _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_4__["UsuarioService"],
+            _cliente_service__WEBPACK_IMPORTED_MODULE_3__["ClienteService"],
             _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
             _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
     ], ClienteEditComponent);
@@ -1176,17 +1160,6 @@ var ClienteEditComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/cliente/cliente-list/cliente-list.component.css":
-/*!*****************************************************************!*\
-  !*** ./src/app/cliente/cliente-list/cliente-list.component.css ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ""
-
-/***/ }),
-
 /***/ "./src/app/cliente/cliente-list/cliente-list.component.html":
 /*!******************************************************************!*\
   !*** ./src/app/cliente/cliente-list/cliente-list.component.html ***!
@@ -1194,7 +1167,18 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <!-- <a class=\"navbar-brand\" href=\"#\">Torre Negra</a> -->\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n  \n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n  \n  <div class=\"container\">\n      <nav class=\"level\">\n        <div class=\"level-left\">\n            <div class=\"title is-4\">Cliente</div> \n        </div>\n        <div class=\"level-right\">\n            <button type=\"button\" class=\"button is-light\" [routerLink]=\"['/cliente/novo']\">Novo cliente</button>\n        </div> \n      </nav>\n    <article class=\"media\">\n      <div class=\"media-content\">\n        <div class=\"content\">\n  \n          <br>\n          <div id=\"scroll\">\n            <table class=\"table table-hover is-one-third\" align=\"left\">\n              <thead>\n                  <tr class=\"table-primary d-flex\">\n                    <th class=\"col-2\">Nome Fantasia</th>\n                    <th class=\"col-1\">Valor H/H</th>\n                    <th class=\"col-1\">Prazo Pgto</th>\n                    <th class=\"col-2\">Primeiro Contato </th>\n                    <th class=\"col-3\">E-mail </th>\n                    <th class=\"col-2\">Fone </th>\n                    <th class=\"col-1\">Ação</th>\n                    <th class=\"col-2\"> </th>\n                  </tr>\n                </thead>\n                <tbody>\n                  <tr *ngFor=\"let cliente of clientes\" class=\"d-flex is-small\">\n                    <td class=\"col-2\">{{ cliente['nomeFantasia'] }}</td>\n                    <td class=\"col-1\">{{ cliente['valorHH'] }}</td>\n                    <td class=\"col-1\">{{ cliente['prazoPgto'] }}</td>\n                    <td class=\"col-2\">{{ cliente.contatos[0].value }}</td>\n                    <td class=\"col-3\">{{ cliente.contatos[1].value }}</td>\n                    <td class=\"col-2\">{{ cliente.contatos[2].value }}</td>\n                    <td class=\"col-1\"><button type=\"button\" [routerLink]=\"['/cliente/edit/', cliente['_id'] ]\" class=\"button is-warning\">Editar</button></td>\n                    <td class=\"col-2\"><button type=\"button\" [routerLink]=\"['/cliente/show', cliente['_id'] ]\"  class=\"button is-danger\">Detalhes</button></td>\n                  </tr>\n                </tbody>\n              </table> \n            </div>    \n          </div>\n        </div>\n      </article>\n  </div>\n    \n  \n  "
+module.exports = "<mat-toolbar>\n  <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n  \n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n</nav>\n\n<div class=\"container\">\n\n  <div class=\"level-left\">\n      <div style=\"margin-top: 20px;\" class=\"title is-4\">Clientes</div> \n  </div>\n  <div class=\"level-right\">\n      <button mat-stroked-button color=\"primary\" [routerLink]=\"['/cliente/novo']\">Novo cliente</button>\n  </div> \n\n  <mat-form-field>\n      <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filtrar\">\n    </mat-form-field>\n  \n    <div class=\"mat-elevation-z8\">\n      <table mat-table [dataSource]=\"dataSource\" matSort>\n\n        <!-- nomeFantasia Column -->\n        <ng-container matColumnDef=\"nomeFantasia\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> nome fantasia </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.nomeFantasia}} </td>\n        </ng-container>\n  \n        <!-- valorHH Column -->\n        <ng-container matColumnDef=\"valorHH\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> valor HH </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.valorHH}} </td>\n        </ng-container>\n  \n        <!-- prazoPgto Column -->\n        <ng-container matColumnDef=\"prazoPgto\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> prazo pagto </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.prazoPgto}} </td>\n        </ng-container>\n  \n        <!-- contatos Column -->\n        <ng-container matColumnDef=\"nome\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> contato </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.nome}} </td>\n        </ng-container>\n  \n        <!-- email Column -->\n        <ng-container matColumnDef=\"email\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> email </th>\n            <td mat-cell *matCellDef=\"let row\"> {{row.email}} </td>\n        </ng-container>\n\n        <!-- fone Column -->\n        <ng-container matColumnDef=\"fone\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> fone </th>\n            <td mat-cell *matCellDef=\"let row\"> {{row.fone}} </td>\n        </ng-container>\n          \n       <!-- Acao 1 Column -->\n       <ng-container matColumnDef=\"acao1\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> ação </th>\n          <td mat-cell *matCellDef=\"let row\" >\n            <div class=\"button-row\">\n              <button mat-button color=\"primary\" >editar</button>\n              <!-- <button mat-button color=\"primary\" [routerLink]=\"['/cliente/edit/', row['_id'] ]\">editar</button> -->\n            </div>\n          </td>\n        </ng-container>\n  \n       <!-- Acao 2 Column -->\n       <ng-container matColumnDef=\"acao2\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>\n          <td mat-cell *matCellDef=\"let row\" >\n            <div class=\"button-row\">\n              <button mat-button color=\"warn\" [routerLink]=\"['/cliente/show', row['_id'] ]\">detalhes</button>\n            </div>\n          </td>\n        </ng-container>\n  \n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\">\n        </tr>\n      </table>\n  \n      <mat-paginator [pageSizeOptions]=\"[5, 10, 25, 100]\"></mat-paginator>\n    </div>\n\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/cliente/cliente-list/cliente-list.component.scss":
+/*!******************************************************************!*\
+  !*** ./src/app/cliente/cliente-list/cliente-list.component.scss ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "img {\n  width: 18%;\n  height: auto; }\n"
 
 /***/ }),
 
@@ -1210,6 +1194,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ClienteListComponent", function() { return ClienteListComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _cliente_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../cliente.service */ "./src/app/cliente/cliente.service.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _cliente_novo_cliente__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../cliente-novo/cliente */ "./src/app/cliente/cliente-novo/cliente.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1221,12 +1207,22 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
+
 var ClienteListComponent = /** @class */ (function () {
     function ClienteListComponent(_clienteService) {
         this._clienteService = _clienteService;
+        this.cliente = new _cliente_novo_cliente__WEBPACK_IMPORTED_MODULE_3__["Cliente"]();
+        this.displayedColumns = ['nomeFantasia', 'valorHH', 'nome', 'email', 'fone', 'acao1', 'acao2'];
     }
     ClienteListComponent.prototype.ngOnInit = function () {
         this.obterClientes();
+    };
+    ClienteListComponent.prototype.applyFilter = function (filterValue) {
+        this.dataSource.filter = filterValue.trim().toLowerCase();
+        if (this.dataSource.paginator) {
+            this.dataSource.paginator.firstPage();
+        }
     };
     ClienteListComponent.prototype.obterClientes = function () {
         var _this = this;
@@ -1235,13 +1231,31 @@ var ClienteListComponent = /** @class */ (function () {
         clienteObservable.subscribe(function (clientes) {
             console.log('clientes in obterClientes list:', clientes.json());
             _this.clientes = clientes.json();
+            for (var i = 0; i < _this.clientes.length; i++) {
+                _this.clientes[i].nome = _this.clientes[i].contatos[0].nome;
+                _this.clientes[i].email = _this.clientes[i].contatos[0].email;
+                _this.clientes[i].fone = _this.clientes[i].contatos[0].fone;
+                _this.clientes[i].skype = _this.clientes[i].contatos[0].skype;
+            }
+            console.log('cliente >>>> >>>> >>>>', _this.clientes);
+            _this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"](_this.clientes);
+            _this.dataSource.paginator = _this.paginator;
+            _this.dataSource.sort = _this.sort;
         }, function (err) { }, function () { });
     };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatPaginator"]),
+        __metadata("design:type", _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatPaginator"])
+    ], ClienteListComponent.prototype, "paginator", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSort"]),
+        __metadata("design:type", _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSort"])
+    ], ClienteListComponent.prototype, "sort", void 0);
     ClienteListComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-cliente-list',
             template: __webpack_require__(/*! ./cliente-list.component.html */ "./src/app/cliente/cliente-list/cliente-list.component.html"),
-            styles: [__webpack_require__(/*! ./cliente-list.component.css */ "./src/app/cliente/cliente-list/cliente-list.component.css")]
+            styles: [__webpack_require__(/*! ./cliente-list.component.scss */ "./src/app/cliente/cliente-list/cliente-list.component.scss")]
         }),
         __metadata("design:paramtypes", [_cliente_service__WEBPACK_IMPORTED_MODULE_1__["ClienteService"]])
     ], ClienteListComponent);
@@ -1252,10 +1266,170 @@ var ClienteListComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/cliente/cliente-novo/cliente-model.ts":
-/*!*******************************************************!*\
-  !*** ./src/app/cliente/cliente-novo/cliente-model.ts ***!
-  \*******************************************************/
+/***/ "./src/app/cliente/cliente-novo/cliente-novo.component.html":
+/*!******************************************************************!*\
+  !*** ./src/app/cliente/cliente-novo/cliente-novo.component.html ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" [routerLink]=\"['/clientes']\">Retornar <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n\n<div class=\"container\">\n\n    Dados básicos: \n\n    <div class=\"errors\" *ngIf=\"errors\">\n      <p *ngIf=\"errors.cnpj\" >  {{ errors['cnpj'].message }} </p>\n      <p *ngIf=\"errors.razaoSocial\" >  {{ errors['razaoSocial'].message }} </p>\n      <p *ngIf=\"errors.nomeFantasia\" >  {{ errors['nomeFantasia'].message }} </p>\n      <p *ngIf=\"errors.endereco\" >  {{ errors['endereco'].message }} </p>   \n      <!-- <p *ngIf=\"errors.contatos\" >  {{ errors['contatos'].message }} </p>        -->\n    </div>\n\n\n  <form class=\"example-form\" [formGroup] = \"clienteForm\">\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"cnpj\"\n        type=\"text\"\n        formControlName=\"cnpj\" \n        name=\"cnpj\"\n        >\n        <mat-error *ngIf=\"cnpj.invalid && cnpj.touched\">\n          cnpj informado não é válido\n        </mat-error>\n      </mat-form-field></td>\n    </tr></table>\n\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"razão social\"\n        type=\"text\"\n        formControlName=\"razaoSocial\" \n        name=\"razaoSocial\"\n        />\n        <mat-error *ngIf=\"razaoSocial.invalid && razaoSocial.touched\">\n            razão social informada não é válida\n        </mat-error>\n      </mat-form-field></td>\n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"nome fantasia\"\n        type=\"text\"\n        formControlName=\"nomeFantasia\"  \n        name=\"nomeFantasia\"\n        />\n        <mat-error *ngIf=\"nomeFantasia.invalid && nomeFantasia.touched\">\n            nome fantasia informado não é válido\n        </mat-error>\n      </mat-form-field></td>\n    </tr></table>\n\n\n    <p>\n      <mat-form-field class=\"example-full-width\">\n        <textarea \n        matInput\n        placeholder=\"endereço\"\n        type=\"text\"\n        formControlName=\"endereco\" \n        name=\"endereco\">   \n      </textarea>\n      <mat-error *ngIf=\"endereco.invalid && endereco.touched\">\n          endereço informado não é válido\n      </mat-error>\n      </mat-form-field>\n    </p>\n\n    <!-- <div *ngIf=\"!endereco?.valid\" class=\"purple\">Endereço do cliente precisar ter no mínimo 4 caracteres!</div> -->\n\n    Dados comerciais:\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput\n        placeholder=\"valor HH\"\n        type=\"number\"\n        formControlName=\"valorHH\" \n        name=\"valorHH\"  \n        />\n      </mat-form-field></td>\n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput\n        placeholder=\"prazo pagto\"\n        type=\"number\"\n        formControlName=\"prazoPgto\" \n        name=\"prazoPgto\"  \n        />\n      </mat-form-field></td>\n    </tr></table>\n\n    Contatos: \n    <div class=\"container\">\n      <div formArrayName=\"contatos\">\n          \n        <div *ngFor=\"let contato of contatoForms.controls; let i = index;\" [formGroupName]=\"i\">\n\n          <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n            <td><mat-form-field class=\"example-full-width\">\n              <input \n              matInput\n              placeholder=\"nome\"\n              type=\"text\"\n              formControlName=\"nome\" \n              name=\"nome\"  \n              />\n            </mat-form-field></td>\n\n            <td><mat-form-field class=\"example-full-width\">\n                <input \n                matInput\n                placeholder=\"email\"\n                type=\"email\"\n                formControlName=\"email\" \n                name=\"email\"\n                />\n              </mat-form-field></td>\n\n            <td><mat-form-field class=\"example-full-width\">\n                <input \n                matInput\n                placeholder=\"fone\"\n                type=\"number\"\n                formControlName=\"fone\" \n                name=\"fone\"  \n                />\n              </mat-form-field></td>\n\n              <td><mat-form-field class=\"example-full-width\">\n                  <input \n                  matInput\n                  placeholder=\"skype\"\n                  type=\"text\"\n                  formControlName=\"skype\" \n                  name=\"skype\"  \n                  />\n                </mat-form-field></td>\n                <a  mat-mini-fab color=\"warn\" (click)=\"deleteContato(i)\">-</a>\n            </tr></table>\n\n          </div>\n\n        \n        </div>\n\n\n        <a mat-mini-fab color=\"primary\" (click)=\"addContato()\">+</a>\n\n    </div>\n    <button mat-raised-button color=\"basic\" (click)=\"cancel()\">Cancela</button>\n\n    <button mat-raised-button color=\"primary\"  (click)=\"criarCliente(clienteForm)\" [disabled]=\"clienteForm.invalid\">Confirma</button>\n      \n\n  </form>\n\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/cliente/cliente-novo/cliente-novo.component.scss":
+/*!******************************************************************!*\
+  !*** ./src/app/cliente/cliente-novo/cliente-novo.component.scss ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".example-form {\n  min-width: 150px;\n  max-width: 500px;\n  width: 100%; }\n\n.example-full-width {\n  width: 100%; }\n\nimg {\n  width: 18%;\n  height: auto; }\n\n.errors {\n  color: purple; }\n\na, button {\n  margin: 10px; }\n"
+
+/***/ }),
+
+/***/ "./src/app/cliente/cliente-novo/cliente-novo.component.ts":
+/*!****************************************************************!*\
+  !*** ./src/app/cliente/cliente-novo/cliente-novo.component.ts ***!
+  \****************************************************************/
+/*! exports provided: ClienteNovoComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ClienteNovoComponent", function() { return ClienteNovoComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _cliente_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../cliente.service */ "./src/app/cliente/cliente.service.ts");
+/* harmony import */ var _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../usuario/usuario.service */ "./src/app/usuario/usuario.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var ClienteNovoComponent = /** @class */ (function () {
+    function ClienteNovoComponent(fb, _usuarioService, _clienteService, _router) {
+        this.fb = fb;
+        this._usuarioService = _usuarioService;
+        this._clienteService = _clienteService;
+        this._router = _router;
+        this.usuarioLogado = {
+            email: '',
+            admin: ''
+        };
+    }
+    ClienteNovoComponent.prototype.ngOnInit = function () {
+        this.usuarioLogado = this._usuarioService.getUserLoggedIn();
+        console.log(' ClienteNovoComponent > ', this.usuarioLogado.email);
+        this.clienteForm = this.fb.group({
+            cnpj: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(11)]],
+            razaoSocial: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
+            nomeFantasia: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
+            endereco: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
+            valorHH: '',
+            prazoPgto: '',
+            contatos: this.fb.array([])
+        });
+    };
+    Object.defineProperty(ClienteNovoComponent.prototype, "cnpj", {
+        get: function () {
+            return this.clienteForm.get('cnpj');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ClienteNovoComponent.prototype, "razaoSocial", {
+        get: function () {
+            return this.clienteForm.get('razaoSocial');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ClienteNovoComponent.prototype, "nomeFantasia", {
+        get: function () {
+            return this.clienteForm.get('nomeFantasia');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ClienteNovoComponent.prototype, "endereco", {
+        get: function () {
+            return this.clienteForm.get('endereco');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ClienteNovoComponent.prototype, "contatoForms", {
+        get: function () {
+            return this.clienteForm.get('contatos');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ClienteNovoComponent.prototype.addContato = function () {
+        var contato = this.fb.group({
+            nome: [],
+            email: [],
+            fone: [],
+            skype: []
+        });
+        this.contatoForms.push(contato);
+    };
+    ClienteNovoComponent.prototype.deleteContato = function (i) {
+        this.contatoForms.removeAt(i);
+    };
+    ClienteNovoComponent.prototype.criarCliente = function (clienteForm) {
+        var _this = this;
+        console.log('ClienteNovoComponent > criarCliente(clienteForm: NgForm)', clienteForm);
+        this._clienteService.criarCliente(clienteForm.value)
+            .subscribe(function (observable) {
+            if (observable.json().errors) {
+                _this.errors = observable.json().errors;
+                console.log('Algum erro ocorreu salvando cliente ', _this.errors);
+                _this._router.navigate(['/cliente/novo']);
+            }
+            else {
+                _this._router.navigate(['/clientes']);
+            }
+        }, function (err) {
+            throw err;
+        });
+    };
+    ClienteNovoComponent.prototype.cancel = function () {
+        this._router.navigate(['/clientes']);
+    };
+    ClienteNovoComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-cliente-novo',
+            template: __webpack_require__(/*! ./cliente-novo.component.html */ "./src/app/cliente/cliente-novo/cliente-novo.component.html"),
+            styles: [__webpack_require__(/*! ./cliente-novo.component.scss */ "./src/app/cliente/cliente-novo/cliente-novo.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
+            _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_4__["UsuarioService"],
+            _cliente_service__WEBPACK_IMPORTED_MODULE_3__["ClienteService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
+    ], ClienteNovoComponent);
+    return ClienteNovoComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/cliente/cliente-novo/cliente.ts":
+/*!*************************************************!*\
+  !*** ./src/app/cliente/cliente-novo/cliente.ts ***!
+  \*************************************************/
 /*! exports provided: Cliente, Contato */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1287,199 +1461,6 @@ var Contato = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/cliente/cliente-novo/cliente-novo.component.html":
-/*!******************************************************************!*\
-  !*** ./src/app/cliente/cliente-novo/cliente-novo.component.html ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <!-- <a class=\"navbar-brand\" href=\"#\">Torre Negra</a> -->\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" [routerLink]=\"['/clientes']\">Retornar <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n\n\n<div class=\"container\">\n\n    Dados básicos: \n\n    <div class=\"errors\" *ngIf=\"errors\">\n      <p *ngIf=\"errors.cnpj\" >  {{ errors['cnpj'].message }} </p>\n      <p *ngIf=\"errors.razaoSocial\" >  {{ errors['razaoSocial'].message }} </p>\n      <p *ngIf=\"errors.nomeFantasia\" >  {{ errors['nomeFantasia'].message }} </p>\n      <p *ngIf=\"errors.endereco\" >  {{ errors['endereco'].message }} </p>   \n      <!-- <p *ngIf=\"errors.contatos\" >  {{ errors['contatos'].message }} </p>        -->\n    </div>\n\n\n  <form class=\"example-form\" [formGroup] = \"clienteForm\" (submit)=\"criarCliente(clienteForm)\">\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"cnpj\"\n        type=\"text\"\n        formControlName=\"cnpj\" \n        name=\"cnpj\"\n        minlength=11\n        required\n        >\n      </mat-form-field></td>\n    </tr></table>\n\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"razão social\"\n        type=\"text\"\n        formControlName=\"razaoSocial\" \n        name=\"razaoSocial\"\n        minlength=8\n        required\n        />\n      </mat-form-field></td>\n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"nome fantasia\"\n        type=\"text\"\n        formControlName=\"nomeFantasia\"  \n        name=\"nomeFantasia\"\n        minlength=2\n        required\n        />\n      </mat-form-field></td>\n    </tr></table>\n\n\n    <p>\n      <mat-form-field class=\"example-full-width\">\n        <textarea \n        matInput\n        placeholder=\"endereço\"\n        type=\"text\"\n        formControlName=\"endereco\" \n        name=\"endereco\"  \n        minlength=6\n        required> \n      </textarea>\n      </mat-form-field>\n    </p>\n\n    <!-- <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">CNPJ</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input is-focused\" \n            type=\"text\"\n            formControlName=\"cnpj\" \n            name=\"cnpj\"\n            minlength=11\n            required\n            /> \n          </p>\n        </div>\n      </div>\n    </div> -->\n    <!-- <div *ngIf=\"!cnpj?.valid\" class=\"purple\">CNPJ precisar ter no mínimo 11 caracteres!</div> -->\n\n\n    <!-- <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Razão Social</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input\" \n            type=\"text\" \n            formControlName=\"razaoSocial\" \n            name=\"razaoSocial\"\n            minlength=8\n            required\n            />\n          </p>\n        </div>\n      </div>\n    </div> -->\n    <!-- <div *ngIf=\"!razaoSocial?.valid\" class=\"purple\">Razão Social do cliente precisar ter no mínimo 8 caracteres!</div> -->\n\n    <!-- <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Nome Fantasia</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input\" \n              type=\"text\" \n              formControlName=\"nomeFantasia\"  \n              name=\"nomeFantasia\"\n              minlength=2\n              required\n              />\n            </p>\n          </div>\n        </div>\n      </div> -->\n      <!-- <div *ngIf=\"!nomeFantasia?.valid\" class=\"purple\">Nome fantasia do cliente precisar ter no mínimo 2 caracteres!</div> -->\n  \n    <!-- <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Endereço</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input\" \n            type=\"text\"\n            formControlName=\"endereco\" \n            name=\"endereco\"  \n            minlength=6\n            required\n            />\n          </p>\n        </div>\n      </div>\n    </div> -->\n    <!-- <div *ngIf=\"!endereco?.valid\" class=\"purple\">Endereço do cliente precisar ter no mínimo 4 caracteres!</div> -->\n  \n\n    Dados comerciais:\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n      <td><mat-form-field class=\"example-full-width\">\n        <input matInput placeholder=\"valor HH\">\n        <input \n        matInput\n        placeholder=\"valor HH\"\n        type=\"number\"\n        formControlName=\"valorHH\" \n        name=\"valorHH\"  \n        required\n        />\n      </mat-form-field></td>\n      <td><mat-form-field class=\"example-full-width\">\n        <input matInput placeholder=\"prazo pagto\">\n        <input \n        matInput\n        placeholder=\"prazo pagto\"\n        type=\"number\"\n        formControlName=\"prazoPgto\" \n        name=\"prazoPgto\"  \n        required\n        />\n      </mat-form-field></td>\n    </tr></table>\n\n\n<!-- \n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Valor h/h</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input\" \n            type=\"text\"\n            formControlName=\"valorHH\" \n            name=\"valorHH\"  \n            required\n            />\n          </p>\n        </div>\n      </div>\n    </div> -->\n    <!-- <div *ngIf=\"!valorHH?.valid\" class=\"purple\">Valor HH do cliente precisar ter no mínimo 4 caracteres!</div> -->\n<!--   \n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Prazo Pagamento</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input\" \n            type=\"text\"\n            formControlName=\"prazoPgto\" \n            name=\"prazoPgto\"  \n            required\n            />\n          </p>\n        </div>\n      </div>\n    </div> -->\n    <!-- <div *ngIf=\"!prazoPgto?.valid\" class=\"purple\">Prazo pgto do cliente precisar ter no mínimo 4 caracteres!</div> -->\n  \n    Contatos: \n\n    <div  class=\"tile is-ancestor\">\n      <div class=\"tile is-vertical is-content\">\n        <div class=\"tile\">\n          <div class=\"tile is-parent is-vertical\">\n            <article class=\"tile is-child notification is-primary\">\n\n              <div  formArrayName=\"contatos\" *ngFor=\"let brand of clienteForm.controls.contatos.controls; let i = index;\">\n                <div formGroupName =\"{{i}}\">\n                  <div class=\"field is-horizontal\">\n                    <div class=\"field-label is-normal\">\n                      {{brand.get('title').value}}\n                    </div>\n                    <div class=\"field-body\">\n                      <div class=\"field\">\n                        <p class=\"control\">\n                          <input\n                          type=\"text\"\n                          formControlName=\"value\" \n                          >\n                        </p>\n                      </div>\n                    </div>\n                  </div>\n                </div>\n              </div>\n\n              <a style=\"margin-left: 150px;\" class=\"button is-warning is-rounded is-small\" (click)=\"addContato()\">+</a>\n\n            </article>\n          </div>\n\n          <div class=\"tile is-parent\">\n            <div *ngFor=\"let c of contatosArray; let i = index; \">\n              <article class=\"tile is-child notification is-info\">\n                  {{ c[0].value }}  {{ c[1].value }}  {{ c[2].value}}  {{ c[3].value }}\n                <!-- {{ contato.nome }}  {{ contato.email }}  {{ contato.telefone }}  {{ contato.skype }} -->\n              </article>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n \n\n    <button type=\"button\" class=\"btn btn-secondary\" (click)=\"cancel()\">Cancela</button>\n    <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"clienteForm.invalid\">Confirma</button>\n      \n\n  </form>\n\n</div>"
-
-/***/ }),
-
-/***/ "./src/app/cliente/cliente-novo/cliente-novo.component.scss":
-/*!******************************************************************!*\
-  !*** ./src/app/cliente/cliente-novo/cliente-novo.component.scss ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ".example-form {\n  min-width: 150px;\n  max-width: 500px;\n  width: 100%; }\n\n.example-full-width {\n  width: 100%; }\n"
-
-/***/ }),
-
-/***/ "./src/app/cliente/cliente-novo/cliente-novo.component.ts":
-/*!****************************************************************!*\
-  !*** ./src/app/cliente/cliente-novo/cliente-novo.component.ts ***!
-  \****************************************************************/
-/*! exports provided: ClienteNovoComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ClienteNovoComponent", function() { return ClienteNovoComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _cliente_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../cliente.service */ "./src/app/cliente/cliente.service.ts");
-/* harmony import */ var _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../usuario/usuario.service */ "./src/app/usuario/usuario.service.ts");
-/* harmony import */ var _cliente_model__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./cliente-model */ "./src/app/cliente/cliente-novo/cliente-model.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-var ClienteNovoComponent = /** @class */ (function () {
-    function ClienteNovoComponent(formBuilder, _usuarioService, _clienteService, _router) {
-        this.formBuilder = formBuilder;
-        this._usuarioService = _usuarioService;
-        this._clienteService = _clienteService;
-        this._router = _router;
-        this.usuarioLogado = {
-            email: '',
-            admin: ''
-        };
-        this.contato = new _cliente_model__WEBPACK_IMPORTED_MODULE_5__["Contato"];
-        this.contatosArray = [];
-        this.flContato = false;
-        this.index = 0;
-        this.clienteContatos = [
-            {
-                'brand': "nome"
-            },
-            {
-                'brand': "email"
-            },
-            {
-                'brand': "telefone"
-            },
-            {
-                'brand': "skype"
-            }
-        ];
-        // this.contactForm = this.createFormGroup();
-    }
-    ClienteNovoComponent.prototype.ngOnInit = function () {
-        console.log('contato in ngOnInit:', this.contato);
-        this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log(' ClienteNovoComponent > ', this.usuarioLogado.email);
-        this.createForm(this.clienteContatos);
-    };
-    ClienteNovoComponent.prototype.ngOnChanges = function () {
-        this.rebuildForm();
-    };
-    ClienteNovoComponent.prototype.rebuildForm = function () {
-        this.clienteForm.reset({});
-        // this.setContatos(this.cliente.contatos);
-    };
-    ClienteNovoComponent.prototype.createForm = function (clienteContatos) {
-        var arr = [];
-        for (var i = 0; i < clienteContatos.length; i++) {
-            arr.push(this.buildContato(clienteContatos[i]));
-        }
-        return this.clienteForm = this.formBuilder.group({
-            cnpj: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
-            razaoSocial: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
-            nomeFantasia: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
-            endereco: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
-            valorHH: '',
-            prazoPgto: '',
-            contatos: this.formBuilder.array(arr)
-        });
-    };
-    ClienteNovoComponent.prototype.addContato = function () {
-        console.log('ClienteNovoComponent > >>>>>>> addContato() ', this.clienteForm.controls.contatos.value);
-        this.flContato = true;
-        this.contatosArray.push(this.clienteForm.controls.contatos.value);
-        this.contato.nome = this.contatosArray[this.index][0].value;
-        this.contato.email = this.contatosArray[this.index][1].value;
-        this.contato.telefone = this.contatosArray[this.index][2].value;
-        this.contato.skype = this.contatosArray[this.index][3].value;
-        console.log('contatos antes >>> contatosArray :', this.contatosArray);
-        this.createContatos();
-        this.index += 1;
-    };
-    ClienteNovoComponent.prototype.createContatos = function () {
-        console.log('ClienteNovoComponent >  createContatos() ');
-        var arr = [];
-        for (var i = 0; i < this.clienteContatos.length; i++) {
-            arr.push(this.buildContato(this.clienteContatos[i]));
-        }
-        // return this.clienteForm = this.formBuilder.group({
-        //   contatos: this.formBuilder.array(arr)
-        //   })
-    };
-    ClienteNovoComponent.prototype.buildContato = function (clienteContatos) {
-        return this.formBuilder.group({
-            title: [clienteContatos.brand],
-            value: ['']
-        });
-    };
-    ClienteNovoComponent.prototype.criarCliente = function (clienteForm) {
-        var _this = this;
-        console.log('ClienteNovoComponent > criarCliente(clienteForm: NgForm)', clienteForm.controls.contatos.value);
-        if (!this.flContato) {
-            this._router.navigate(['/cliente/novo']);
-        }
-        ;
-        this._clienteService.criarCliente(clienteForm.value)
-            .subscribe(function (observable) {
-            if (observable.json().errors) {
-                _this.errors = observable.json().errors;
-                console.log('Algum erro ocorreu salvando cliente ', _this.errors);
-                _this._router.navigate(['/cliente/novo']);
-            }
-            else {
-                _this._router.navigate(['/clientes']);
-            }
-        }, function (err) {
-            throw err;
-        });
-        this.createForm(this.clienteContatos);
-    };
-    ClienteNovoComponent.prototype.cancel = function () {
-        this._router.navigate(['/clientes']);
-    };
-    ClienteNovoComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'app-cliente-novo',
-            template: __webpack_require__(/*! ./cliente-novo.component.html */ "./src/app/cliente/cliente-novo/cliente-novo.component.html"),
-            styles: [__webpack_require__(/*! ./cliente-novo.component.scss */ "./src/app/cliente/cliente-novo/cliente-novo.component.scss")]
-        }),
-        __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
-            _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_4__["UsuarioService"],
-            _cliente_service__WEBPACK_IMPORTED_MODULE_3__["ClienteService"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
-    ], ClienteNovoComponent);
-    return ClienteNovoComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/cliente/cliente-show/cliente-show.component.css":
-/*!*****************************************************************!*\
-  !*** ./src/app/cliente/cliente-show/cliente-show.component.css ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "button {\n    margin: 10px;\n}\n.down-10 {\n    margin-top: 30px;\n}"
-
-/***/ }),
-
 /***/ "./src/app/cliente/cliente-show/cliente-show.component.html":
 /*!******************************************************************!*\
   !*** ./src/app/cliente/cliente-show/cliente-show.component.html ***!
@@ -1487,7 +1468,18 @@ module.exports = "button {\n    margin: 10px;\n}\n.down-10 {\n    margin-top: 30
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <!-- <a class=\"navbar-brand\" href=\"#\">Torre Negra</a> -->\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n  \n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/clientes']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n  \n  \n  <div class=\"container\">\n  \n      Dados básicos: \n  \n    <form [formGroup] = \"clienteForm\" (submit)=\"excluirCliente(clienteForm)\">\n  \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-one-third\">\n          <label class=\"label\">CNPJ</label>\n        </div>\n        <div class=\"field-body\">\n          {{ cliente.cnpj }}\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!cnpj?.valid\" class=\"purple\">CNPJ precisar ter no mínimo 11 caracteres!</div> -->\n  \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-one-third\">\n          <label class=\"label\">Razão Social</label>\n        </div>\n        <div class=\"field-body\">\n          {{ cliente.razaoSocial }}\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!razaoSocial?.valid\" class=\"purple\">Razão Social do cliente precisar ter no mínimo 8 caracteres!</div> -->\n  \n      <div class=\"field is-horizontal\">\n          <div class=\"field-label is-one-third\">\n            <label class=\"label\">Nome Fantasia</label>\n          </div>\n          <div class=\"field-body\">\n            {{ cliente.nomeFantasia }}\n          </div>\n        </div>\n        <!-- <div *ngIf=\"!nomeFantasia?.valid\" class=\"purple\">Nome fantasia do cliente precisar ter no mínimo 2 caracteres!</div> -->\n    \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-one-third\">\n          <label class=\"label\">Endereço</label>\n        </div>\n        <div class=\"field-body\">\n          {{ cliente.endereco }}\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!endereco?.valid\" class=\"purple\">Endereço do cliente precisar ter no mínimo 4 caracteres!</div> -->\n    \n  \n      Dados comerciais:\n  \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-one-third\">\n          <label class=\"label\">Valor h/h</label>\n        </div>\n        <div class=\"field-body\">\n          {{ cliente.valorHH }}\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!valorHH?.valid\" class=\"purple\">Valor HH do cliente precisar ter no mínimo 4 caracteres!</div> -->\n    \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-one-third\">\n          <label class=\"label\">Prazo Pagamento</label>\n        </div>\n        <div class=\"field-body\">\n          {{ cliente.prazoPgto }}\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!prazoPgto?.valid\" class=\"purple\">Prazo pgto do cliente precisar ter no mínimo 4 caracteres!</div> -->\n    \n      Contatos: \n      <div  class=\"tile is-ancestor\">\n        <div class=\"tile is-vertical is-content\">\n          <div class=\"tile\">\n            <div class=\"tile is-parent is-vertical\">\n              <article class=\"tile is-child notification is-primary\">\n  \n                <div  formArrayName=\"contatos\" *ngFor=\"let brand of clienteForm.controls.contatos.controls; let i = index;\">\n                  <div formGroupName =\"{{i}}\">\n                    <div class=\"field is-horizontal\">\n                      <div class=\"field-label is-normal\">\n                        {{brand.get('title').value}}\n                      </div>\n                      <div class=\"field-body\">\n                        <div class=\"field\">\n                          <p class=\"control\">\n\n\n                            <!-- <input\n                            type=\"text\"\n                            formControlName=\"value\" \n                            > -->\n                          </p>\n                        </div>\n                      </div>\n                    </div>\n                  </div>\n                </div>\n  \n                <!-- <a style=\"margin-left: 150px;\" class=\"button is-warning is-rounded is-small\" (click)=\"addContato()\">+</a> -->\n  \n              </article>\n            </div>\n  \n            <div class=\"tile is-parent\">\n                <article class=\"tile is-child notification is-info\">\n                  {{ contato.nome }}  {{ contato.email }}  {{ contato.telefone }}  {{ contato.skype }}\n                </article>\n            </div>\n          </div>\n        </div>\n      </div>\n   \n  \n      <button type=\"button\" class=\"btn btn-secondary\" (click)=\"cancel()\">Cancela</button>\n      <button type=\"submit\" class=\"button is-danger\" [disabled]=\"clienteForm.valid\">Excluir</button>\n        \n  \n    </form>\n  \n  </div>"
+module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" [routerLink]=\"['/clientes']\">Retornar <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n  \n  \n  <div class=\"container\">\n  \n      Dados básicos: \n  \n    <form [formGroup] = \"clienteForm\" (submit)=\"excluirCliente(clienteForm)\">\n  \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-one-third\">\n          <label class=\"label\">CNPJ</label>\n        </div>\n        <div class=\"field-body\">\n          {{ cliente.cnpj }}\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!cnpj?.valid\" class=\"purple\">CNPJ precisar ter no mínimo 11 caracteres!</div> -->\n  \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-one-third\">\n          <label class=\"label\">Razão Social</label>\n        </div>\n        <div class=\"field-body\">\n          {{ cliente.razaoSocial }}\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!razaoSocial?.valid\" class=\"purple\">Razão Social do cliente precisar ter no mínimo 8 caracteres!</div> -->\n  \n      <div class=\"field is-horizontal\">\n          <div class=\"field-label is-one-third\">\n            <label class=\"label\">Nome Fantasia</label>\n          </div>\n          <div class=\"field-body\">\n            {{ cliente.nomeFantasia }}\n          </div>\n        </div>\n        <!-- <div *ngIf=\"!nomeFantasia?.valid\" class=\"purple\">Nome fantasia do cliente precisar ter no mínimo 2 caracteres!</div> -->\n    \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-one-third\">\n          <label class=\"label\">Endereço</label>\n        </div>\n        <div class=\"field-body\">\n          {{ cliente.endereco }}\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!endereco?.valid\" class=\"purple\">Endereço do cliente precisar ter no mínimo 4 caracteres!</div> -->\n    \n  \n      Dados comerciais:\n  \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-one-third\">\n          <label class=\"label\">Valor h/h</label>\n        </div>\n        <div class=\"field-body\">\n          {{ cliente.valorHH }}\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!valorHH?.valid\" class=\"purple\">Valor HH do cliente precisar ter no mínimo 4 caracteres!</div> -->\n    \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-one-third\">\n          <label class=\"label\">Prazo Pagamento</label>\n        </div>\n        <div class=\"field-body\">\n          {{ cliente.prazoPgto }}\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!prazoPgto?.valid\" class=\"purple\">Prazo pgto do cliente precisar ter no mínimo 4 caracteres!</div> -->\n    \n      Contatos: \n      <div  class=\"tile is-ancestor\">\n        <div class=\"tile is-vertical is-content\">\n          <div class=\"tile\">\n            <div class=\"tile is-parent is-vertical\">\n              <article class=\"tile is-child notification is-primary\">\n  \n                <div  formArrayName=\"contatos\" *ngFor=\"let brand of clienteForm.controls.contatos.controls; let i = index;\">\n                  <div formGroupName =\"{{i}}\">\n                    <div class=\"field is-horizontal\">\n                      <div class=\"field-label is-normal\">\n                        {{brand.get('title').value}}\n                      </div>\n                      <div class=\"field-body\">\n                        <div class=\"field\">\n                          <p class=\"control\">\n\n\n                            <!-- <input\n                            type=\"text\"\n                            formControlName=\"value\" \n                            > -->\n                          </p>\n                        </div>\n                      </div>\n                    </div>\n                  </div>\n                </div>\n  \n                <!-- <a style=\"margin-left: 150px;\" class=\"button is-warning is-rounded is-small\" (click)=\"addContato()\">+</a> -->\n  \n              </article>\n            </div>\n  \n            <div class=\"tile is-parent\">\n                <article class=\"tile is-child notification is-info\">\n                  {{ contato.nome }}  {{ contato.email }}  {{ contato.telefone }}  {{ contato.skype }}\n                </article>\n            </div>\n          </div>\n        </div>\n      </div>\n   \n  \n      <button type=\"button\" class=\"btn btn-secondary\" (click)=\"cancel()\">Cancela</button>\n      <button type=\"submit\" class=\"button is-danger\" [disabled]=\"clienteForm.valid\">Excluir</button>\n        \n  \n    </form>\n  \n  </div>"
+
+/***/ }),
+
+/***/ "./src/app/cliente/cliente-show/cliente-show.component.scss":
+/*!******************************************************************!*\
+  !*** ./src/app/cliente/cliente-show/cliente-show.component.scss ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "button {\n  margin: 10px; }\n\n.down-10 {\n  margin-top: 30px; }\n\nimg {\n  width: 18%;\n  height: auto; }\n"
 
 /***/ }),
 
@@ -1503,7 +1495,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ClienteShowComponent", function() { return ClienteShowComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _cliente_novo_cliente_model__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../cliente-novo/cliente-model */ "./src/app/cliente/cliente-novo/cliente-model.ts");
+/* harmony import */ var _cliente_novo_cliente__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../cliente-novo/cliente */ "./src/app/cliente/cliente-novo/cliente.ts");
 /* harmony import */ var _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../usuario/usuario.service */ "./src/app/usuario/usuario.service.ts");
 /* harmony import */ var _cliente_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../cliente.service */ "./src/app/cliente/cliente.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
@@ -1547,7 +1539,7 @@ var ClienteShowComponent = /** @class */ (function () {
                     skype: ""
                 }]
         };
-        this.contato = new _cliente_novo_cliente_model__WEBPACK_IMPORTED_MODULE_2__["Contato"];
+        this.contato = new _cliente_novo_cliente__WEBPACK_IMPORTED_MODULE_2__["Contato"];
         this.contatosArray = [];
         this.flContato = false;
         this.clienteForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormGroup"]({
@@ -1579,16 +1571,6 @@ var ClienteShowComponent = /** @class */ (function () {
         console.log('ClienteShowComponent > usuario ', this.usuarioLogado.email);
         this.obterCliente(this._route.snapshot.params['id']);
     };
-    // ngOnChanges() {
-    //   this.rebuildForm();
-    // }
-    // rebuildForm() {
-    //   this.clienteForm.reset({
-    //     // cnpj: this.contato.nome,
-    //     // contatos: this.cliente.contatos[1] || new Contato()
-    //   });
-    //   // this.setContatos(this.cliente.contatos);
-    // }
     ClienteShowComponent.prototype.createForm = function (contatosCliente) {
         var arr = [];
         for (var i = 0; i < contatosCliente.length; i++) {
@@ -1648,7 +1630,7 @@ var ClienteShowComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-cliente-show',
             template: __webpack_require__(/*! ./cliente-show.component.html */ "./src/app/cliente/cliente-show/cliente-show.component.html"),
-            styles: [__webpack_require__(/*! ./cliente-show.component.css */ "./src/app/cliente/cliente-show/cliente-show.component.css")]
+            styles: [__webpack_require__(/*! ./cliente-show.component.scss */ "./src/app/cliente/cliente-show/cliente-show.component.scss")]
         }),
         __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"],
             _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_3__["UsuarioService"],
@@ -1717,17 +1699,6 @@ var ClienteService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/financeiro/financeiro.component.css":
-/*!*****************************************************!*\
-  !*** ./src/app/financeiro/financeiro.component.css ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ""
-
-/***/ }),
-
 /***/ "./src/app/financeiro/financeiro.component.html":
 /*!******************************************************!*\
   !*** ./src/app/financeiro/financeiro.component.html ***!
@@ -1735,7 +1706,18 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  financeiro em construção!!!\n</p>\n"
+module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<p>\n  financeiro em construção!!!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/financeiro/financeiro.component.scss":
+/*!******************************************************!*\
+  !*** ./src/app/financeiro/financeiro.component.scss ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "img {\n  width: 20%;\n  height: auto; }\n"
 
 /***/ }),
 
@@ -1769,7 +1751,7 @@ var FinanceiroComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-financeiro',
             template: __webpack_require__(/*! ./financeiro.component.html */ "./src/app/financeiro/financeiro.component.html"),
-            styles: [__webpack_require__(/*! ./financeiro.component.css */ "./src/app/financeiro/financeiro.component.css")]
+            styles: [__webpack_require__(/*! ./financeiro.component.scss */ "./src/app/financeiro/financeiro.component.scss")]
         }),
         __metadata("design:paramtypes", [])
     ], FinanceiroComponent);
@@ -1874,7 +1856,7 @@ var GlobalErrorComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"box\">\n\n    <mat-card class=\"example-card\">\n        <mat-card-header>\n            <div mat-card-avatar class=\"example-header-image\"></div>\n            <mat-card-title>Torre Negra</mat-card-title>\n            <mat-card-subtitle>Sistemas</mat-card-subtitle>\n        </mat-card-header>\n        <mat-card-content>\n            <form class=\"example-form\" [formGroup]=\"formLogin\" (submit)=\"login()\"> \n\n                <mat-form-field>\n\n                    <input matInput type=\"email\" placeholder=\"email\" formControlName=\"email\" />\n\n                </mat-form-field>\n\n                <mat-form-field>\n\n                    <input matInput type=\"password\" placeholder=\"senha\" formControlName=\"senha\" />\n                </mat-form-field>\n                <mat-card-actions>\n                    <button type=\"submit\" class=\"button is-block is-info is-large is-fullwidth\" [disabled]=\"formLogin.invalid\">Entrar</button>\n                </mat-card-actions>\n            </form>\n\n            <div class=\"errors\">\n                <p>{{ errors.message }} </p>      \n            </div>\n\n        </mat-card-content>\n    </mat-card>\n</div>\n"
+module.exports = "<div class=\"container\">\n   <div class=\"row justify-content-center\">\n      <!-- <div class=\"media-container-column col-lg-8\"> -->\n\n        <mat-card class=\"example-card\">\n            <mat-card-header>\n                <div mat-card-avatar class=\"example-header-image\"></div>\n                <mat-card-title>Torre Negra</mat-card-title>\n                <mat-card-subtitle>Sistemas</mat-card-subtitle>\n            </mat-card-header>\n            <mat-card-content>\n                <form class=\"example-form\" [formGroup]=\"formLogin\" (submit)=\"login()\"> \n\n                    <mat-form-field>\n\n                        <input matInput type=\"email\" placeholder=\"email\" formControlName=\"email\" />\n\n                    </mat-form-field>\n\n                    <mat-form-field>\n\n                        <input matInput type=\"password\" placeholder=\"senha\" formControlName=\"senha\" />\n                    </mat-form-field>\n                    <mat-card-actions>\n                            <!-- <p><a href=\"#\" class=\"btn btn-primary\" role=\"button\"> -->\n                            <button type=\"submit\" class=\"btn btn-primary\"  [disabled]=\"formLogin.invalid\">Entrar</button>\n                        <!-- <button type=\"submit\" class=\"button is-block is-info is-large is-fullwidth\" [disabled]=\"formLogin.invalid\">Entrar</button> -->\n                    </mat-card-actions>\n                </form>\n\n                <div class=\"errors\">\n                    <p>{{ errors.message }} </p>      \n                </div>\n\n            </mat-card-content>\n         </mat-card>\n     <!-- </div> -->\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1916,10 +1898,13 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+// import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent(fb, router, _usuarioService) {
+    function LoginComponent(fb, _router, _usuarioService
+    // public dialog: MatDialog
+    ) {
         this.fb = fb;
-        this.router = router;
+        this._router = _router;
         this._usuarioService = _usuarioService;
         this.usuario = {
             email: '',
@@ -1940,10 +1925,6 @@ var LoginComponent = /** @class */ (function () {
             senha: '',
             admin: ''
         });
-        this.formLogin.valueChanges.subscribe(console.log);
-        // if (this.usuario.senha === "torrenegra123") {
-        //   this.errors = this.errors.senha.message = 'Primeiro acesso, informar sua nova senha';
-        // }
     };
     LoginComponent.prototype.login = function () {
         var _this = this;
@@ -1953,15 +1934,15 @@ var LoginComponent = /** @class */ (function () {
             _this.usuario = usuario.json();
             console.log('SUCESSO em login');
             if (_this.usuario.admin) {
-                _this.router.navigate(['/projetos']);
+                _this._router.navigate(['/projetos']);
             }
             else {
-                _this.router.navigate(['/apontamentos']);
+                _this._router.navigate(['/apontamentos']);
             }
         }, function (err) {
             _this.errors = err.json();
             console.log('ERRO em login', _this.errors);
-            _this.router.navigate(['/']);
+            _this._router.navigate(['/']);
         });
         this._usuarioService.setUserLoggedIn(this.usuarioLogado);
     };
@@ -1973,11 +1954,57 @@ var LoginComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"],
             _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
-            _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_2__["UsuarioService"]])
+            _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_2__["UsuarioService"]
+            // public dialog: MatDialog
+        ])
     ], LoginComponent);
     return LoginComponent;
 }());
 
+// @Component({
+//   selector: 'app-popup',
+//   templateUrl: '../popup/popup.component.html'
+// })
+// export class DialogUsuario {
+//   usuario = {
+//     email: '',
+//     senha: '',
+//     admin: ''
+//   };
+//   public usuarioLogado = {
+//     email: '',
+//     admin: ''
+//   }
+//   errors: any = {}
+//   constructor(private _usuarioService: UsuarioService, 
+//     private _router: Router, 
+//     public dialogRef: MatDialogRef<DialogUsuario>,
+//     @Inject(MAT_DIALOG_DATA) public data: any) { }
+//   onNoClick(): void {
+//     this.dialogRef.close();
+//   }
+//   login(data) {
+//     console.log('LoginComponent > login()',data)
+//     const userObservable = this._usuarioService.login(data);
+//     userObservable.subscribe(
+//         (usuario) => {
+//           this.usuario = usuario.json();
+//           console.log('SUCESSO em login');
+//           if (this.usuario.admin) {
+//             this._router.navigate(['/projetos']);
+//           } else {
+//             this._router.navigate(['/apontamentos']);
+//           }
+//         },
+//         (err) => { 
+//           this.errors = err.json();
+//           console.log('ERRO em login', this.errors);
+//           this._router.navigate(['/']);
+//         }
+//       )
+//       this._usuarioService.setUserLoggedIn(this.usuarioLogado);
+//     }
+// }
 
 
 /***/ }),
@@ -2084,18 +2111,7 @@ var PaginaNaoEncontradaComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h3 mat-dialog-title>Encerrar Projeto </h3>\n<h4>{{ data.codigo }} {{ data.descricao }}</h4>\n<br><br>\n<div mat-dialog-content>\n  <p>Confirma? </p>\n</div>\n<br><br>\n<div mat-dialog-actions>\n    <div class=\"button-row\">\n      <button style=\"margin: 10px;\" mat-mini-fab color=\"primary\" (click)=\"onNoClick()\"> não </button>\n      <button style=\"margin: 10px;\" mat-mini-fab color=\"warn\" (click)=\"encerrarProjeto(data.id)\" cdkFocusInitial> sim </button>\n    </div>\n</div>"
-
-/***/ }),
-
-/***/ "./src/app/projeto/projeto-edit/projeto-edit.component.css":
-/*!*****************************************************************!*\
-  !*** ./src/app/projeto/projeto-edit/projeto-edit.component.css ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "button {\n    margin: 10px;\n}\n.errors {\n    color: brown;\n}"
+module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<h3 mat-dialog-title>Encerrar Projeto </h3>\n<h4>{{ data.codigo }} {{ data.descricao }}</h4>\n<br><br>\n<div mat-dialog-content>\n  <p>Confirma? </p>\n</div>\n<br><br>\n<div mat-dialog-actions>\n    <div class=\"button-row\">\n      <button style=\"margin: 10px;\" mat-mini-fab color=\"primary\" (click)=\"onNoClick()\"> não </button>\n      <button style=\"margin: 10px;\" mat-mini-fab color=\"warn\" (click)=\"encerrarProjeto(data.id)\" cdkFocusInitial> sim </button>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -2106,7 +2122,18 @@ module.exports = "button {\n    margin: 10px;\n}\n.errors {\n    color: brown;\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <!-- <figure class=\"image is-128x128\">\n        <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n    </figure> -->\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n  \n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n  \n  <div class=\"container\">\n\n    <div class=\"errors\" *ngIf=\"errors\">\n      <p *ngIf=\"errors.descricao\" >  {{ errors['descricao'].message }} </p>\n      <p *ngIf=\"errors.cliente\" >  {{ errors['cliente'].message }} </p>\n      <p *ngIf=\"errors.pedido\" >  {{ errors['pedido'].message }} </p>   \n      <p *ngIf=\"errors.horasPLC\" >  {{ errors['horasPLC'].message }} </p>       \n      <p *ngIf=\"errors.horasIHM\" >  {{ errors['horasIHM'].message }} </p>  \n      <p *ngIf=\"errors.valorTerceiros\" >  {{ errors['valorTerceiros'].message }} </p>            \n      <p *ngIf=\"errors.valorMateriais\" >  {{ errors['valorMateriais'].message }} </p>       \n      <p *ngIf=\"errors.valorViagens\" >  {{ errors['valorViagens'].message }} </p>       \n    </div>\n\n    <form (submit)='editarProjeto()' #projForm='ngForm'>\n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Código</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p style=\"margin-top: 7px;\" class=\"control\">\n              {{ projeto.codigo }}\n            </p>\n          </div>\n        </div>\n      </div>\n  \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Descrição</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input \" \n              type=\"text\" \n              name=\"descricao\" \n              minlength=8\n              required\n              [(ngModel)]=\"projeto.descricao\"\n              #descricao=\"ngModel\"\n              />\n            </p>\n          </div>\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!projeto.descricao.valid\" class=\"purple\">Descrição do projeto precisar ter no mínimo 8 caracteres!</div> -->\n      \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Cliente</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <!-- <p style=\"margin-top: 6px\" > -->\n              <!-- {{ projeto.nomeFantasiaCliente }} -->\n            <!-- </p> -->\n            <div class=\"select is-multiple control\">\n              <select name=\"_clienteId\" [(ngModel)]=\"clienteSelecionado\" required>\n                  <option *ngFor=\"let c of clientes\" [value]=\"c._id\">\n                    {{ c.nomeFantasia }}   \n                  </option>\n              </select>\n            </div>\n          </div>\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!projeto.cliente.valid\" class=\"purple\">Cliente precisar ter no mínimo 6 caracteres!</div> -->\n    \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Pedido</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input\" \n              type=\"text\" \n              name=\"pedido\" \n              required\n              [(ngModel)]=\"projeto.pedido\"\n              #pedido=\"ngModel\"\n              />\n            </p>\n          </div>\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!projeto.pedido.valid\" class=\"purple\">Pedido do projeto precisar ter no mínimo 4 caracteres!</div> -->\n    \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Horas PLC</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input \" \n              type=\"text\" \n              name=\"horasPLC\" \n              [(ngModel)]=\"projeto.horasPLC\"\n              #horasPLC=\"ngModel\"\n              />\n            </p>\n          </div>\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!horasPLC.valid\" class=\"purple\">horasPLC precisar ter no mínimo 4 caracteres!</div> -->\n    \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Horas IHM</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input \" \n              type=\"text\" \n              name=\"horasIHM\" \n              [(ngModel)]=\"projeto.horasIHM\"\n              #descricao=\"ngModel\"\n              />\n            </p>\n          </div>\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!horasIHM.valid\" class=\"purple\">horasIHM do projeto precisar ter no mínimo 8 caracteres!</div> -->\n    \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Valor Terceiros</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input \" \n              type=\"text\" \n              name=\"valorTerceiros\" \n              [(ngModel)]=\"projeto.valorTerceiros\"\n              #valorTerceiros=\"ngModel\"\n              />\n            </p>\n          </div>\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!valorTerceiros.valid\" class=\"purple\">valorTerceiros precisar ter no mínimo 4 caracteres!</div> -->\n    \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n        <label class=\"label\">Valor Materiais</label>\n        </div>\n          <div class=\"field-body\">\n            <div class=\"field\">\n              <p class=\"control\">\n                <input \n                class=\"input \" \n                type=\"text\" \n                name=\"valorMateriais\" \n                [(ngModel)]=\"projeto.valorMateriais\"\n                #valorMateriais=\"ngModel\"\n                />\n              </p>\n            </div>\n        </div>\n      </div>\n    \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n        <label class=\"label\">Valor Viagens</label>\n        </div>\n          <div class=\"field-body\">\n            <div class=\"field\">\n              <p class=\"control\">\n                <input \n                class=\"input \" \n                type=\"text\" \n                name=\"valorViagens\" \n                [(ngModel)]=\"projeto.valorViagens\"\n                #valorViagens=\"ngModel\"\n                />\n              </p>\n            </div>\n        </div>\n      </div>\n    \n      <button type=\"button\" class=\"btn btn-secondary\" [routerLink]=\"['/projetos']\">Cancela</button>\n      <button type=\"submit\" class=\"btn btn-primary\"  [disabled]=\"projForm.invalid\">Confirma</button>\n    \n    </form>\n  </div>  "
+module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n  \n  <div class=\"container\">\n\n    <div class=\"errors\" *ngIf=\"errors\">\n      <p *ngIf=\"errors.descricao\" >  {{ errors['descricao'].message }} </p>\n      <p *ngIf=\"errors.cliente\" >  {{ errors['cliente'].message }} </p>\n      <p *ngIf=\"errors.pedido\" >  {{ errors['pedido'].message }} </p>   \n      <p *ngIf=\"errors.horasPLC\" >  {{ errors['horasPLC'].message }} </p>       \n      <p *ngIf=\"errors.horasIHM\" >  {{ errors['horasIHM'].message }} </p>  \n      <p *ngIf=\"errors.valorTerceiros\" >  {{ errors['valorTerceiros'].message }} </p>            \n      <p *ngIf=\"errors.valorMateriais\" >  {{ errors['valorMateriais'].message }} </p>       \n      <p *ngIf=\"errors.valorViagens\" >  {{ errors['valorViagens'].message }} </p>       \n    </div>\n\n    <form (submit)='editarProjeto()' #projForm='ngForm'>\n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Código</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p style=\"margin-top: 7px;\" class=\"control\">\n              {{ projeto.codigo }}\n            </p>\n          </div>\n        </div>\n      </div>\n  \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Descrição</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input \" \n              type=\"text\" \n              name=\"descricao\" \n              minlength=8\n              required\n              [(ngModel)]=\"projeto.descricao\"\n              #descricao=\"ngModel\"\n              />\n            </p>\n          </div>\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!projeto.descricao.valid\" class=\"purple\">Descrição do projeto precisar ter no mínimo 8 caracteres!</div> -->\n      \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Cliente</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <!-- <p style=\"margin-top: 6px\" > -->\n              <!-- {{ projeto.nomeFantasiaCliente }} -->\n            <!-- </p> -->\n            <div class=\"select is-multiple control\">\n              <select name=\"_clienteId\" [(ngModel)]=\"clienteSelecionado\" required>\n                  <option *ngFor=\"let c of clientes\" [value]=\"c._id\">\n                    {{ c.nomeFantasia }}   \n                  </option>\n              </select>\n            </div>\n          </div>\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!projeto.cliente.valid\" class=\"purple\">Cliente precisar ter no mínimo 6 caracteres!</div> -->\n    \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Pedido</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input\" \n              type=\"text\" \n              name=\"pedido\" \n              required\n              [(ngModel)]=\"projeto.pedido\"\n              #pedido=\"ngModel\"\n              />\n            </p>\n          </div>\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!projeto.pedido.valid\" class=\"purple\">Pedido do projeto precisar ter no mínimo 4 caracteres!</div> -->\n    \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Horas PLC</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input \" \n              type=\"text\" \n              name=\"horasPLC\" \n              [(ngModel)]=\"projeto.horasPLC\"\n              #horasPLC=\"ngModel\"\n              />\n            </p>\n          </div>\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!horasPLC.valid\" class=\"purple\">horasPLC precisar ter no mínimo 4 caracteres!</div> -->\n    \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Horas IHM</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input \" \n              type=\"text\" \n              name=\"horasIHM\" \n              [(ngModel)]=\"projeto.horasIHM\"\n              #descricao=\"ngModel\"\n              />\n            </p>\n          </div>\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!horasIHM.valid\" class=\"purple\">horasIHM do projeto precisar ter no mínimo 8 caracteres!</div> -->\n    \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Valor Terceiros</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input \" \n              type=\"text\" \n              name=\"valorTerceiros\" \n              [(ngModel)]=\"projeto.valorTerceiros\"\n              #valorTerceiros=\"ngModel\"\n              />\n            </p>\n          </div>\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!valorTerceiros.valid\" class=\"purple\">valorTerceiros precisar ter no mínimo 4 caracteres!</div> -->\n    \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n        <label class=\"label\">Valor Materiais</label>\n        </div>\n          <div class=\"field-body\">\n            <div class=\"field\">\n              <p class=\"control\">\n                <input \n                class=\"input \" \n                type=\"text\" \n                name=\"valorMateriais\" \n                [(ngModel)]=\"projeto.valorMateriais\"\n                #valorMateriais=\"ngModel\"\n                />\n              </p>\n            </div>\n        </div>\n      </div>\n    \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n        <label class=\"label\">Valor Viagens</label>\n        </div>\n          <div class=\"field-body\">\n            <div class=\"field\">\n              <p class=\"control\">\n                <input \n                class=\"input \" \n                type=\"text\" \n                name=\"valorViagens\" \n                [(ngModel)]=\"projeto.valorViagens\"\n                #valorViagens=\"ngModel\"\n                />\n              </p>\n            </div>\n        </div>\n      </div>\n    \n      <button type=\"button\" class=\"btn btn-secondary\" [routerLink]=\"['/projetos']\">Cancela</button>\n      <button type=\"submit\" class=\"btn btn-primary\"  [disabled]=\"projForm.invalid\">Confirma</button>\n    \n    </form>\n  </div>  "
+
+/***/ }),
+
+/***/ "./src/app/projeto/projeto-edit/projeto-edit.component.scss":
+/*!******************************************************************!*\
+  !*** ./src/app/projeto/projeto-edit/projeto-edit.component.scss ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "button {\n  margin: 10px; }\n\n.errors {\n  color: brown; }\n\nimg {\n  width: 18%;\n  height: auto; }\n"
 
 /***/ }),
 
@@ -2235,7 +2262,7 @@ var ProjetoEditComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-projeto-edit',
             template: __webpack_require__(/*! ./projeto-edit.component.html */ "./src/app/projeto/projeto-edit/projeto-edit.component.html"),
-            styles: [__webpack_require__(/*! ./projeto-edit.component.css */ "./src/app/projeto/projeto-edit/projeto-edit.component.css")]
+            styles: [__webpack_require__(/*! ./projeto-edit.component.scss */ "./src/app/projeto/projeto-edit/projeto-edit.component.scss")]
         }),
         __metadata("design:paramtypes", [_usuario_usuario_service__WEBPACK_IMPORTED_MODULE_2__["UsuarioService"],
             _projeto_service__WEBPACK_IMPORTED_MODULE_3__["ProjetoService"],
@@ -2257,7 +2284,7 @@ var ProjetoEditComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<figure class=\"image is-128x128\">\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</figure>\n\n<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item dropdown\">\n        <a class=\"nav-link dropdown-toggle  active\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n          Cadastro\n        </a>\n        <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\n          <a class=\"dropdown-item\" [routerLink]=\"['/usuarios']\">Usuário</a>\n          <a class=\"dropdown-item\" [routerLink]=\"['/clientes']\">Cliente</a>\n        </div>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" [routerLink]=\"['/apontamentos']\">Apontamento</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" [routerLink]=\"['/financeiro']\">Financeiro</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n          Relatório\n        </a>\n        <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\n          <a class=\"dropdown-item\" href=\"\">Financeiro</a>\n          <a class=\"dropdown-item\" href=\"#\">Total de horas por projeto</a>\n          <a class=\"dropdown-item\" href=\"#\">Total de horas por funcionário</a>\n          <a class=\"dropdown-item\" href=\"#\">Custo por pedido</a>\n          <div class=\"dropdown-divider\"></div>\n          <a class=\"dropdown-item\" href=\"#\">Projetos encerrados</a>\n        </div>\n      </li>\n      <li class=\"nav-item\">\n          <a class=\"nav-link\" href=\"#\">Sair <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n\n<!-- <div class=\"container\">\n  <nav class=\"level\">\n    <div class=\"level-left\">\n        <div class=\"title is-4\">Projetos</div> \n    </div>\n    <div class=\"level-right\">\n        <button type=\"button\" class=\"button is-light\" [routerLink]=\"['/projeto/novo']\">Novo projeto</button>\n    </div> \n  </nav>\n  <article class=\"media\">\n    <div class=\"media-content\">\n      <div class=\"content\">\n        <br>\n        <div id=\"scroll\">\n          <table class=\"table table-hover\" align=\"left\">\n            <thead>\n              <tr class=\"table-primary d-flex\">\n                <th class=\"col-1.5\">Código</th>\n                <th class=\"col-3\">Descrição</th>\n                <th class=\"col-2\">Cliente</th>\n                <th class=\"col-2\">Pedido</th>\n                <th class=\"col-1\">Ação</th>\n                <th class=\"col-1\"> </th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr *ngFor=\"let projeto of projetos\" class=\"d-flex\">\n                <td class=\"col-1.5\">{{ projeto['codigo'] }}</td>\n                <td class=\"col-3\">{{ projeto['descricao'] }}</td>\n                <td class=\"col-2\">{{ projeto['nomeFantasiaCliente'] }}</td>\n                <td class=\"col-2\">{{ projeto['pedido'] }}</td>\n                <td class=\"col-1\"><button type=\"button\" [routerLink]=\"['/projeto/edit/', projeto['_id'] ]\" class=\"button is-warning\">Editar</button></td>\n                <td class=\"col-1\"><button mat-button (click)=\"openDialog(projeto)\" class=\"button is-danger\" [disabled]=\"projeto['encerrado']\">Encerrar</button></td>\n              </tr>\n            </tbody>\n          </table> \n        </div>    \n      </div>\n    </div>\n  </article>\n</div> -->\n\n<div class=\"container\">\n\n  <div class=\"level-left\">\n      <div style=\"margin-top: 20px;\" class=\"title is-4\">Projetos</div> \n  </div>\n  <div class=\"level-right\">\n      <button mat-stroked-button color=\"primary\" [routerLink]=\"['/projeto/novo']\">Novo projeto</button>\n  </div> \n\n  <mat-form-field>\n    <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filtrar\">\n  </mat-form-field>\n\n  <div class=\"mat-elevation-z8\">\n    <table mat-table [dataSource]=\"dataSource\" matSort>\n      {{ dataSource }}\n      <!-- ID Column -->\n      <ng-container matColumnDef=\"codigo\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> código </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.codigo}} </td>\n      </ng-container>\n\n      <!-- Progress Column -->\n      <ng-container matColumnDef=\"descricao\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> descrição </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.descricao}} </td>\n      </ng-container>\n\n      <!-- Name Column -->\n      <ng-container matColumnDef=\"cliente\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> cliente </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.cliente}} </td>\n      </ng-container>\n\n      <!-- Pedido Column -->\n      <ng-container matColumnDef=\"pedido\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> pedido </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.pedido}} </td>\n      </ng-container>\n\n     <!-- Acao 1 Column -->\n     <ng-container matColumnDef=\"acao1\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> ação </th>\n        <td mat-cell *matCellDef=\"let row\" >\n          <div class=\"button-row\">\n            <button mat-button color=\"primary\" [routerLink]=\"['/projeto/edit/', row['_id'] ]\">editar</button>\n          </div>\n        </td>\n      </ng-container>\n\n     <!-- Acao 2 Column -->\n     <ng-container matColumnDef=\"acao2\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>\n        <td mat-cell *matCellDef=\"let row\" >\n          <div class=\"button-row\">\n            <button mat-button color=\"warn\" (click)=\"openDialog(row)\" [disabled]=\"row['encerrado']\">encerrar</button>\n          </div>\n        </td>\n      </ng-container>\n\n      <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n      <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\">\n      </tr>\n    </table>\n\n    <mat-paginator [pageSizeOptions]=\"[5, 10, 25, 100]\"></mat-paginator>\n  </div>\n</div>"
+module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item dropdown\">\n        <a class=\"nav-link dropdown-toggle  active\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n          Cadastro\n        </a>\n        <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\n          <a class=\"dropdown-item\" [routerLink]=\"['/usuarios']\">Usuário</a>\n          <a class=\"dropdown-item\" [routerLink]=\"['/clientes']\">Cliente</a>\n        </div>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" [routerLink]=\"['/apontamentos']\">Apontamento</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" [routerLink]=\"['/financeiro']\">Financeiro</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n          Relatório\n        </a>\n        <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\n          <a class=\"dropdown-item\" href=\"\">Financeiro</a>\n          <a class=\"dropdown-item\" href=\"#\">Total de horas por projeto</a>\n          <a class=\"dropdown-item\" href=\"#\">Total de horas por funcionário</a>\n          <a class=\"dropdown-item\" href=\"#\">Custo por pedido</a>\n          <div class=\"dropdown-divider\"></div>\n          <a class=\"dropdown-item\" href=\"#\">Projetos encerrados</a>\n        </div>\n      </li>\n      <li class=\"nav-item\">\n          <a class=\"nav-link\" href=\"#\">Sair <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n\n<!-- <div class=\"container\">\n  <nav class=\"level\">\n    <div class=\"level-left\">\n        <div class=\"title is-4\">Projetos</div> \n    </div>\n    <div class=\"level-right\">\n        <button type=\"button\" class=\"button is-light\" [routerLink]=\"['/projeto/novo']\">Novo projeto</button>\n    </div> \n  </nav>\n  <article class=\"media\">\n    <div class=\"media-content\">\n      <div class=\"content\">\n        <br>\n        <div id=\"scroll\">\n          <table class=\"table table-hover\" align=\"left\">\n            <thead>\n              <tr class=\"table-primary d-flex\">\n                <th class=\"col-1.5\">Código</th>\n                <th class=\"col-3\">Descrição</th>\n                <th class=\"col-2\">Cliente</th>\n                <th class=\"col-2\">Pedido</th>\n                <th class=\"col-1\">Ação</th>\n                <th class=\"col-1\"> </th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr *ngFor=\"let projeto of projetos\" class=\"d-flex\">\n                <td class=\"col-1.5\">{{ projeto['codigo'] }}</td>\n                <td class=\"col-3\">{{ projeto['descricao'] }}</td>\n                <td class=\"col-2\">{{ projeto['nomeFantasiaCliente'] }}</td>\n                <td class=\"col-2\">{{ projeto['pedido'] }}</td>\n                <td class=\"col-1\"><button type=\"button\" [routerLink]=\"['/projeto/edit/', projeto['_id'] ]\" class=\"button is-warning\">Editar</button></td>\n                <td class=\"col-1\"><button mat-button (click)=\"openDialog(projeto)\" class=\"button is-danger\" [disabled]=\"projeto['encerrado']\">Encerrar</button></td>\n              </tr>\n            </tbody>\n          </table> \n        </div>    \n      </div>\n    </div>\n  </article>\n</div> -->\n\n<div class=\"container\">\n\n  <div class=\"level-left\">\n      <div style=\"margin-top: 20px;\" class=\"title is-4\">Projetos</div> \n  </div>\n  <div class=\"level-right\">\n      <button mat-stroked-button color=\"primary\" [routerLink]=\"['/projeto/novo']\">Novo projeto</button>\n  </div> \n\n  <mat-form-field>\n    <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filtrar\">\n  </mat-form-field>\n\n  <div class=\"mat-elevation-z8\">\n    <table mat-table [dataSource]=\"dataSource\" matSort>\n      {{ dataSource }}\n      <!-- ID Column -->\n      <ng-container matColumnDef=\"codigo\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> código </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.codigo}} </td>\n      </ng-container>\n\n      <!-- Progress Column -->\n      <ng-container matColumnDef=\"descricao\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> descrição </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.descricao}} </td>\n      </ng-container>\n\n      <!-- Name Column -->\n      <ng-container matColumnDef=\"cliente\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> cliente </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.cliente}} </td>\n      </ng-container>\n\n      <!-- Pedido Column -->\n      <ng-container matColumnDef=\"pedido\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> pedido </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.pedido}} </td>\n      </ng-container>\n\n     <!-- Acao 1 Column -->\n     <ng-container matColumnDef=\"acao1\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> ação </th>\n        <td mat-cell *matCellDef=\"let row\" >\n          <div class=\"button-row\">\n            <button mat-button color=\"primary\" [routerLink]=\"['/projeto/edit/', row['_id'] ]\">editar</button>\n          </div>\n        </td>\n      </ng-container>\n\n     <!-- Acao 2 Column -->\n     <ng-container matColumnDef=\"acao2\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>\n        <td mat-cell *matCellDef=\"let row\" >\n          <div class=\"button-row\">\n            <button mat-button color=\"warn\" (click)=\"openDialog(row)\" [disabled]=\"row['encerrado']\">encerrar</button>\n          </div>\n        </td>\n      </ng-container>\n\n      <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n      <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\">\n      </tr>\n    </table>\n\n    <mat-paginator [pageSizeOptions]=\"[5, 10, 25, 100]\"></mat-paginator>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -2268,7 +2295,7 @@ module.exports = "<figure class=\"image is-128x128\">\n    <img src=\"../assets/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "table {\n  width: 100%; }\n\n.mat-form-field {\n  font-size: 14px;\n  width: 100%; }\n\ntd, th {\n  width: 25%; }\n\n.example-button-row {\n  display: flex;\n  align-items: center;\n  justify-content: space-around; }\n\n.example-button-row button,\n.example-button-row a {\n  margin-right: 8px; }\n\nbutton {\n  margin-top: -15px; }\n"
+module.exports = "table {\n  width: 100%; }\n\n.mat-form-field {\n  font-size: 14px;\n  width: 100%; }\n\ntd, th {\n  width: 25%; }\n\n.example-button-row {\n  display: flex;\n  align-items: center;\n  justify-content: space-around; }\n\n.example-button-row button,\n.example-button-row a {\n  margin-right: 8px; }\n\nbutton {\n  margin-top: -15px; }\n\nimg {\n  width: 18%;\n  height: auto; }\n"
 
 /***/ }),
 
@@ -2383,7 +2410,7 @@ var ProjetoListComponent = /** @class */ (function () {
         var _this = this;
         console.log('ProjetoListComponent > openDialog(projeto) ');
         var dialogRef = this.dialog.open(DialogProjeto, {
-            width: '250px',
+            width: '450px',
             data: {
                 id: projeto._id,
                 codigo: projeto.codigo,
@@ -2456,17 +2483,6 @@ var DialogProjeto = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/projeto/projeto-novo/projeto-novo.component.css":
-/*!*****************************************************************!*\
-  !*** ./src/app/projeto/projeto-novo/projeto-novo.component.css ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "button {\n    margin: 10px;\n}\nselect {\n    margin-bottom: 15px;\n}\n.purple {\n    color: purple;\n    margin: 0px 0px 30px 60px;\n}\n.errors {\n    color: brown;\n}\n\n"
-
-/***/ }),
-
 /***/ "./src/app/projeto/projeto-novo/projeto-novo.component.html":
 /*!******************************************************************!*\
   !*** ./src/app/projeto/projeto-novo/projeto-novo.component.html ***!
@@ -2474,7 +2490,18 @@ module.exports = "button {\n    margin: 10px;\n}\nselect {\n    margin-bottom: 1
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <!-- <figure class=\"image is-128x128\">\n        <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n    </figure> -->\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n  \n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n  \n  <div class=\"container\">\n\n\n    Dados básicos:\n\n    <div class=\"errors\" *ngIf=\"errors\">\n      <p *ngIf=\"errors.codigo\" >  {{ errors['codigo'].message }} </p>\n      <p *ngIf=\"errors.descricao\" >  {{ errors['descricao'].message }} </p>\n      <p *ngIf=\"errors.cliente\" >  {{ errors['cliente'].message }} </p>\n      <p *ngIf=\"errors.pedido\" >  {{ errors['pedido'].message }} </p>   \n      <p *ngIf=\"errors.horasPLC\" >  {{ errors['horasPLC'].message }} </p>       \n    </div>\n\n    <form (submit)='criarProjeto(projCreateForm)' #projCreateForm='ngForm'>\n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Código</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input is-focused\" \n              type=\"text\" \n              name=\"codigo\" \n              minlength=4\n              required\n              [(ngModel)]=\"projeto.codigo\"\n              #codigo=\"ngModel\"\n              />\n            </p>\n          </div>\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!projeto.codigo.valid\" class=\"purple\">* Código precisar ter 7 caracteres!</div> -->\n  \n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Descrição</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input \" \n            type=\"text\" \n            name=\"descricao\" \n            minlength=8\n            required\n            [(ngModel)]=\"projeto.descricao\"\n            #descricao=\"ngModel\"\n            />\n          </p>\n        </div>\n      </div>\n    </div>\n    <!-- <div *ngIf=\"!projeto.descricao.valid\" class=\"purple\">Descrição do projeto precisar ter no mínimo 8 caracteres!</div> -->\n  \n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Cliente</label>\n      </div>\n\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <div class=\"select is-multiple control\">\n            <select name=\"_clienteId\" [(ngModel)]=\"clienteSelecionado\" required>\n                <option *ngFor=\"let c of clientes\" [value]=\"c._id\">\n                  {{ c.nomeFantasia }}\n                </option>\n            </select>\n          </div>\n        </div>\n      </div>\n      <!-- <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input \" \n            type=\"text\" \n            name=\"cliente\" \n            minlength=4\n            required\n            [(ngModel)]=\"projeto.cliente\"\n            #cliente=\"ngModel\"\n            />\n          </p>\n        </div>\n      </div> -->\n    </div>\n    <!-- <div *ngIf=\"!projeto.cliente.valid\" class=\"purple\">Cliente precisar ter no mínimo 6 caracteres!</div> -->\n  \n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Pedido</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input\" \n            type=\"text\" \n            name=\"pedido\" \n            required\n            [(ngModel)]=\"projeto.pedido\"\n            #pedido=\"ngModel\"\n            />\n          </p>\n        </div>\n      </div>\n    </div>\n    <!-- <div *ngIf=\"!projeto.pedido.valid\" class=\"purple\">Pedido do projeto precisar ter no mínimo 4 caracteres!</div> -->\n  \n  Dados financeiros:\n\n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Horas PLC</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input \" \n            type=\"text\" \n            name=\"horasPLC\" \n            [(ngModel)]=\"projeto.horasPLC\"\n            #horasPLC=\"ngModel\"\n            />\n          </p>\n        </div>\n      </div>\n    </div>\n    <!-- <div *ngIf=\"!horasPLC.valid\" class=\"purple\">horasPLC precisar ter no mínimo 4 caracteres!</div> -->\n  \n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Horas IHM</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input \" \n            type=\"text\" \n            name=\"horasIHM\" \n            [(ngModel)]=\"projeto.horasIHM\"\n            #descricao=\"ngModel\"\n            />\n          </p>\n        </div>\n      </div>\n    </div>\n    <!-- <div *ngIf=\"!horasIHM.valid\" class=\"purple\">horasIHM do projeto precisar ter no mínimo 8 caracteres!</div> -->\n  \n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Valor Terceiros</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input \" \n            type=\"text\" \n            name=\"valorTerceiros\" \n            [(ngModel)]=\"projeto.valorTerceiros\"\n            #valorTerceiros=\"ngModel\"\n            />\n          </p>\n        </div>\n      </div>\n    </div>\n    <!-- <div *ngIf=\"!valorTerceiros.valid\" class=\"purple\">valorTerceiros precisar ter no mínimo 4 caracteres!</div> -->\n  \n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n      <label class=\"label\">Valor Materiais</label>\n      </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input \" \n              type=\"text\" \n              name=\"valorMateriais\" \n              [(ngModel)]=\"projeto.valorMateriais\"\n              #valorMateriais=\"ngModel\"\n              />\n            </p>\n          </div>\n      </div>\n    </div>\n  \n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n      <label class=\"label\">Valor Viagens</label>\n      </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input \" \n              type=\"text\" \n              name=\"valorViagens\" \n              [(ngModel)]=\"projeto.valorViagens\"\n              #valorViagens=\"ngModel\"\n              />\n            </p>\n          </div>\n      </div>\n    </div>\n  \n    <button type=\"button\" class=\"btn btn-secondary\" [routerLink]=\"['/projetos']\">Cancela</button>\n    <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"projCreateForm.invalid\">Confirma</button>\n  \n    </form>\n  </div>  "
+module.exports = "<mat-toolbar>\n  <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n\n<div class=\"container\">\n\n\n  Dados básicos:\n\n  <div class=\"errors\" *ngIf=\"errors\">\n    <p *ngIf=\"errors.codigo\" >  {{ errors['codigo'].message }} </p>\n    <p *ngIf=\"errors.descricao\" >  {{ errors['descricao'].message }} </p>\n    <p *ngIf=\"errors.cliente\" >  {{ errors['cliente'].message }} </p>\n    <p *ngIf=\"errors.pedido\" >  {{ errors['pedido'].message }} </p>   \n    <p *ngIf=\"errors.horasPLC\" >  {{ errors['horasPLC'].message }} </p>       \n  </div>\n\n  <form (submit)='criarProjeto(projCreateForm)' #projCreateForm='ngForm'>\n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Código</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input is-focused\" \n            type=\"text\" \n            name=\"codigo\" \n            minlength=4\n            required\n            [(ngModel)]=\"projeto.codigo\"\n            #codigo=\"ngModel\"\n            />\n          </p>\n        </div>\n      </div>\n    </div>\n    <!-- <div *ngIf=\"!projeto.codigo.valid\" class=\"purple\">* Código precisar ter 7 caracteres!</div> -->\n\n  <div class=\"field is-horizontal\">\n    <div class=\"field-label is-normal\">\n      <label class=\"label\">Descrição</label>\n    </div>\n    <div class=\"field-body\">\n      <div class=\"field\">\n        <p class=\"control\">\n          <input \n          class=\"input \" \n          type=\"text\" \n          name=\"descricao\" \n          minlength=8\n          required\n          [(ngModel)]=\"projeto.descricao\"\n          #descricao=\"ngModel\"\n          />\n        </p>\n      </div>\n    </div>\n  </div>\n  <!-- <div *ngIf=\"!projeto.descricao.valid\" class=\"purple\">Descrição do projeto precisar ter no mínimo 8 caracteres!</div> -->\n\n  <div class=\"field is-horizontal\">\n    <div class=\"field-label is-normal\">\n      <label class=\"label\">Cliente</label>\n    </div>\n\n    <div class=\"field-body\">\n      <div class=\"field\">\n        <div class=\"select is-multiple control\">\n          <select name=\"_clienteId\" [(ngModel)]=\"clienteSelecionado\" required>\n              <option *ngFor=\"let c of clientes\" [value]=\"c._id\">\n                {{ c.nomeFantasia }}\n              </option>\n          </select>\n        </div>\n      </div>\n    </div>\n    <!-- <div class=\"field-body\">\n      <div class=\"field\">\n        <p class=\"control\">\n          <input \n          class=\"input \" \n          type=\"text\" \n          name=\"cliente\" \n          minlength=4\n          required\n          [(ngModel)]=\"projeto.cliente\"\n          #cliente=\"ngModel\"\n          />\n        </p>\n      </div>\n    </div> -->\n  </div>\n  <!-- <div *ngIf=\"!projeto.cliente.valid\" class=\"purple\">Cliente precisar ter no mínimo 6 caracteres!</div> -->\n\n  <div class=\"field is-horizontal\">\n    <div class=\"field-label is-normal\">\n      <label class=\"label\">Pedido</label>\n    </div>\n    <div class=\"field-body\">\n      <div class=\"field\">\n        <p class=\"control\">\n          <input \n          class=\"input\" \n          type=\"text\" \n          name=\"pedido\" \n          required\n          [(ngModel)]=\"projeto.pedido\"\n          #pedido=\"ngModel\"\n          />\n        </p>\n      </div>\n    </div>\n  </div>\n  <!-- <div *ngIf=\"!projeto.pedido.valid\" class=\"purple\">Pedido do projeto precisar ter no mínimo 4 caracteres!</div> -->\n\nDados financeiros:\n\n  <div class=\"field is-horizontal\">\n    <div class=\"field-label is-normal\">\n      <label class=\"label\">Horas PLC</label>\n    </div>\n    <div class=\"field-body\">\n      <div class=\"field\">\n        <p class=\"control\">\n          <input \n          class=\"input \" \n          type=\"text\" \n          name=\"horasPLC\" \n          [(ngModel)]=\"projeto.horasPLC\"\n          #horasPLC=\"ngModel\"\n          />\n        </p>\n      </div>\n    </div>\n  </div>\n  <!-- <div *ngIf=\"!horasPLC.valid\" class=\"purple\">horasPLC precisar ter no mínimo 4 caracteres!</div> -->\n\n  <div class=\"field is-horizontal\">\n    <div class=\"field-label is-normal\">\n      <label class=\"label\">Horas IHM</label>\n    </div>\n    <div class=\"field-body\">\n      <div class=\"field\">\n        <p class=\"control\">\n          <input \n          class=\"input \" \n          type=\"text\" \n          name=\"horasIHM\" \n          [(ngModel)]=\"projeto.horasIHM\"\n          #descricao=\"ngModel\"\n          />\n        </p>\n      </div>\n    </div>\n  </div>\n  <!-- <div *ngIf=\"!horasIHM.valid\" class=\"purple\">horasIHM do projeto precisar ter no mínimo 8 caracteres!</div> -->\n\n  <div class=\"field is-horizontal\">\n    <div class=\"field-label is-normal\">\n      <label class=\"label\">Valor Terceiros</label>\n    </div>\n    <div class=\"field-body\">\n      <div class=\"field\">\n        <p class=\"control\">\n          <input \n          class=\"input \" \n          type=\"text\" \n          name=\"valorTerceiros\" \n          [(ngModel)]=\"projeto.valorTerceiros\"\n          #valorTerceiros=\"ngModel\"\n          />\n        </p>\n      </div>\n    </div>\n  </div>\n  <!-- <div *ngIf=\"!valorTerceiros.valid\" class=\"purple\">valorTerceiros precisar ter no mínimo 4 caracteres!</div> -->\n\n  <div class=\"field is-horizontal\">\n    <div class=\"field-label is-normal\">\n    <label class=\"label\">Valor Materiais</label>\n    </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input \" \n            type=\"text\" \n            name=\"valorMateriais\" \n            [(ngModel)]=\"projeto.valorMateriais\"\n            #valorMateriais=\"ngModel\"\n            />\n          </p>\n        </div>\n    </div>\n  </div>\n\n  <div class=\"field is-horizontal\">\n    <div class=\"field-label is-normal\">\n    <label class=\"label\">Valor Viagens</label>\n    </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input \" \n            type=\"text\" \n            name=\"valorViagens\" \n            [(ngModel)]=\"projeto.valorViagens\"\n            #valorViagens=\"ngModel\"\n            />\n          </p>\n        </div>\n    </div>\n  </div>\n\n  <button type=\"button\" class=\"btn btn-secondary\" [routerLink]=\"['/projetos']\">Cancela</button>\n  <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"projCreateForm.invalid\">Confirma</button>\n\n  </form>\n</div>  "
+
+/***/ }),
+
+/***/ "./src/app/projeto/projeto-novo/projeto-novo.component.scss":
+/*!******************************************************************!*\
+  !*** ./src/app/projeto/projeto-novo/projeto-novo.component.scss ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "button {\n  margin: 10px; }\n\nselect {\n  margin-bottom: 15px; }\n\n.purple {\n  color: purple;\n  margin: 0px 0px 30px 60px; }\n\n.errors {\n  color: brown; }\n\nimg {\n  width: 18%;\n  height: auto; }\n"
 
 /***/ }),
 
@@ -2564,7 +2591,7 @@ var ProjetoNovoComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-projeto-novo',
             template: __webpack_require__(/*! ./projeto-novo.component.html */ "./src/app/projeto/projeto-novo/projeto-novo.component.html"),
-            styles: [__webpack_require__(/*! ./projeto-novo.component.css */ "./src/app/projeto/projeto-novo/projeto-novo.component.css")]
+            styles: [__webpack_require__(/*! ./projeto-novo.component.scss */ "./src/app/projeto/projeto-novo/projeto-novo.component.scss")]
         }),
         __metadata("design:paramtypes", [_usuario_usuario_service__WEBPACK_IMPORTED_MODULE_2__["UsuarioService"],
             _projeto_service__WEBPACK_IMPORTED_MODULE_3__["ProjetoService"],
@@ -2578,17 +2605,6 @@ var ProjetoNovoComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/projeto/projeto-show/projeto-show.component.css":
-/*!*****************************************************************!*\
-  !*** ./src/app/projeto/projeto-show/projeto-show.component.css ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ""
-
-/***/ }),
-
 /***/ "./src/app/projeto/projeto-show/projeto-show.component.html":
 /*!******************************************************************!*\
   !*** ./src/app/projeto/projeto-show/projeto-show.component.html ***!
@@ -2596,7 +2612,18 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <!-- <figure class=\"image is-128x128\">\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n  </figure> -->\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" href=\"projeto/list\">Retornar <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n\n<div class=\"container\">\n\n  <article class=\"media\">\n    <div class=\"media-content\">\n      <div class=\"content\">\n\n        <br>\n        <div id=\"scroll\">\n          <table class=\"table table-hover\" align=\"left\">\n            <thead>\n                <tr class=\"table-primary d-flex\">\n                  <th class=\"col-1\">Código</th>\n                  <th class=\"col-3\">Descrição</th>\n                  <th class=\"col-2\">Cliente</th>\n                  <th class=\"col-2\">Pedido</th>\n                  <th class=\"col-1\">Ação</th>\n                  <th class=\"col-1\"> </th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr *ngFor=\"let projeto of projetos\" class=\"d-flex\">\n                  <td class=\"col-1\">{{ projeto['codigo'] }}</td>\n                  <td class=\"col-3\">{{ projeto['descricao'] }}</td>\n                  <td class=\"col-2\">{{ projeto['cliente'] }}</td>\n                  <td class=\"col-2\">{{ projeto['pedido'] }}</td>\n                  <td class=\"col-1\"><button type=\"button\" [routerLink]=\"['/projeto/edit/', projeto['_id'] ]\" class=\"button is-warning\">Editar</button></td>\n                  <td class=\"col-1\"><button type=\"button\" [routerLink]=\"['/projeto/show', projeto['_id'] ]\"  class=\"button is-danger\">Encerrar</button></td>\n                </tr>\n              </tbody>\n            </table> \n          </div>    \n        </div>\n      </div>\n    </article>\n\n  <button type=\"button\" class=\"btn btn-secondary\" (click)=\"cancel()\">Cancela</button>\n  <button type=\"button\" class=\"btn btn-primary\"(click)=\"encerrar()\">Confirma</button>\n\n        <!-- <div class=\"errors\">\n          <p *ngIf=\"errors.name\" >  {{ errors.name.message }} </p>\n          <p *ngIf=\"errors.cuisine\"> {{ errors.cuisine.message }} </p>        \n        </div> -->\n</div>  "
+module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" href=\"projeto/list\">Retornar <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n\n<div class=\"container\">\n\n  <article class=\"media\">\n    <div class=\"media-content\">\n      <div class=\"content\">\n\n        <br>\n        <div id=\"scroll\">\n          <table class=\"table table-hover\" align=\"left\">\n            <thead>\n                <tr class=\"table-primary d-flex\">\n                  <th class=\"col-1\">Código</th>\n                  <th class=\"col-3\">Descrição</th>\n                  <th class=\"col-2\">Cliente</th>\n                  <th class=\"col-2\">Pedido</th>\n                  <th class=\"col-1\">Ação</th>\n                  <th class=\"col-1\"> </th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr *ngFor=\"let projeto of projetos\" class=\"d-flex\">\n                  <td class=\"col-1\">{{ projeto['codigo'] }}</td>\n                  <td class=\"col-3\">{{ projeto['descricao'] }}</td>\n                  <td class=\"col-2\">{{ projeto['cliente'] }}</td>\n                  <td class=\"col-2\">{{ projeto['pedido'] }}</td>\n                  <td class=\"col-1\"><button type=\"button\" [routerLink]=\"['/projeto/edit/', projeto['_id'] ]\" class=\"button is-warning\">Editar</button></td>\n                  <td class=\"col-1\"><button type=\"button\" [routerLink]=\"['/projeto/show', projeto['_id'] ]\"  class=\"button is-danger\">Encerrar</button></td>\n                </tr>\n              </tbody>\n            </table> \n          </div>    \n        </div>\n      </div>\n    </article>\n\n  <button type=\"button\" class=\"btn btn-secondary\" (click)=\"cancel()\">Cancela</button>\n  <button type=\"button\" class=\"btn btn-primary\"(click)=\"encerrar()\">Confirma</button>\n\n        <!-- <div class=\"errors\">\n          <p *ngIf=\"errors.name\" >  {{ errors.name.message }} </p>\n          <p *ngIf=\"errors.cuisine\"> {{ errors.cuisine.message }} </p>        \n        </div> -->\n</div>  "
+
+/***/ }),
+
+/***/ "./src/app/projeto/projeto-show/projeto-show.component.scss":
+/*!******************************************************************!*\
+  !*** ./src/app/projeto/projeto-show/projeto-show.component.scss ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "img {\n  width: 18%;\n  height: auto; }\n"
 
 /***/ }),
 
@@ -2645,7 +2672,7 @@ var ProjetoShowComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-projeto-show',
             template: __webpack_require__(/*! ./projeto-show.component.html */ "./src/app/projeto/projeto-show/projeto-show.component.html"),
-            styles: [__webpack_require__(/*! ./projeto-show.component.css */ "./src/app/projeto/projeto-show/projeto-show.component.css")]
+            styles: [__webpack_require__(/*! ./projeto-show.component.scss */ "./src/app/projeto/projeto-show/projeto-show.component.scss")]
         }),
         __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
             _projeto_service__WEBPACK_IMPORTED_MODULE_2__["ProjetoService"]])
@@ -2731,17 +2758,6 @@ var ProjetoService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/relatorio/relatorio-financeiro/relatorio-financeiro.component.css":
-/*!***********************************************************************************!*\
-  !*** ./src/app/relatorio/relatorio-financeiro/relatorio-financeiro.component.css ***!
-  \***********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ""
-
-/***/ }),
-
 /***/ "./src/app/relatorio/relatorio-financeiro/relatorio-financeiro.component.html":
 /*!************************************************************************************!*\
   !*** ./src/app/relatorio/relatorio-financeiro/relatorio-financeiro.component.html ***!
@@ -2749,7 +2765,18 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  relatorio-financeiro works!\n</p>\n"
+module.exports = "<mat-toolbar>\n  <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n<p>\n  relatorio-financeiro works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/relatorio/relatorio-financeiro/relatorio-financeiro.component.scss":
+/*!************************************************************************************!*\
+  !*** ./src/app/relatorio/relatorio-financeiro/relatorio-financeiro.component.scss ***!
+  \************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "img {\n  width: 18%;\n  height: auto; }\n"
 
 /***/ }),
 
@@ -2783,7 +2810,7 @@ var RelatorioFinanceiroComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-relatorio-financeiro',
             template: __webpack_require__(/*! ./relatorio-financeiro.component.html */ "./src/app/relatorio/relatorio-financeiro/relatorio-financeiro.component.html"),
-            styles: [__webpack_require__(/*! ./relatorio-financeiro.component.css */ "./src/app/relatorio/relatorio-financeiro/relatorio-financeiro.component.css")]
+            styles: [__webpack_require__(/*! ./relatorio-financeiro.component.scss */ "./src/app/relatorio/relatorio-financeiro/relatorio-financeiro.component.scss")]
         }),
         __metadata("design:paramtypes", [])
     ], RelatorioFinanceiroComponent);
@@ -2794,17 +2821,6 @@ var RelatorioFinanceiroComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/usuario/usuario-edit/usuario-edit.component.css":
-/*!*****************************************************************!*\
-  !*** ./src/app/usuario/usuario-edit/usuario-edit.component.css ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "button {\n    margin: 10px;\n}\nselect {\n    margin-bottom: 15px;\n}\n.purple {\n    color: purple;\n    margin: 0px 0px 30px 60px;\n}\n.errors {\n    color: brown;\n}"
-
-/***/ }),
-
 /***/ "./src/app/usuario/usuario-edit/usuario-edit.component.html":
 /*!******************************************************************!*\
   !*** ./src/app/usuario/usuario-edit/usuario-edit.component.html ***!
@@ -2812,7 +2828,18 @@ module.exports = "button {\n    margin: 10px;\n}\nselect {\n    margin-bottom: 1
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <!-- <figure class=\"image is-128x128\">\n      <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n    </figure> -->\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n  \n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n  \n  <div class=\"container\">\n\n\n      Dados do usuário:\n\n      <div class=\"errors\" *ngIf=\"errors\">\n        <p *ngIf=\"errors.nome\" >  {{ errors['nome'].message }} </p>\n        <p *ngIf=\"errors.email\" >  {{ errors['email'].message }} </p>\n        <p *ngIf=\"errors.funcao\" >  {{ errors['funcao'].message }} </p>\n        <p *ngIf=\"errors.custoHora\" >  {{ errors['custoHora'].message }} </p>       \n      </div>\n\n    <form (submit)='editarUsuario()' #userForm='ngForm'>\n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Nome</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n              <p class=\"control\">\n                  <input \n                  class=\"input\" \n                  type=\"text\" \n                  name=\"nome\" \n                  minlength=4\n                  required\n                  [(ngModel)]=\"usuario.nome\"\n                  #nome=\"ngModel\"\n                  />\n                </p>\n          </div>\n        </div>\n      </div>\n  \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">E-mail</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input\" \n              type=\"text\" \n              name=\"email\" \n              required\n              [(ngModel)]=\"usuario.email\"\n              #email=\"ngModel\"\n              />\n            </p>\n          </div>\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!projeto.descricao.valid\" class=\"purple\">Descrição do projeto precisar ter no mínimo 8 caracteres!</div> -->\n      \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Função</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input \" \n              type=\"text\" \n              name=\"funcao\" \n              minlength=4\n              required\n              [(ngModel)]=\"usuario.funcao\"\n              #funcao=\"ngModel\"\n              />\n            </p>\n          </div>\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!projeto.cliente.valid\" class=\"purple\">Cliente precisar ter no mínimo 6 caracteres!</div> -->\n    \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Custo/hora</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input\" \n              type=\"text\" \n              name=\"custoHora\" \n              required\n              [(ngModel)]=\"usuario.custoHora\"\n              #custoHora=\"ngModel\"\n              />\n            </p>\n          </div>\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!projeto.pedido.valid\" class=\"purple\">Pedido do projeto precisar ter no mínimo 4 caracteres!</div> -->\n      \n      <div class=\"field is-horizontal\">\n          <label class=\"checkbox\">\n              <input \n              type=\"checkbox\"\n              name=\"admin\"\n              [(ngModel)]=\"usuario.admin\">\n            &nbsp; Adminstrador  \n          </label>\n        </div>\n\n    \n      <button type=\"button\" class=\"btn btn-secondary\" [routerLink]=\"['/usuarios']\">Cancela</button>\n      <button type=\"submit\" class=\"btn btn-primary\"  [disabled]=\"userForm.invalid\">Confirma</button>\n    \n    </form>\n  </div>  \n"
+module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n  \n<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n  \n  <div class=\"container\">\n\n\n      Dados do usuário:\n\n      <div class=\"errors\" *ngIf=\"errors\">\n        <p *ngIf=\"errors.nome\" >  {{ errors['nome'].message }} </p>\n        <p *ngIf=\"errors.email\" >  {{ errors['email'].message }} </p>\n        <p *ngIf=\"errors.funcao\" >  {{ errors['funcao'].message }} </p>\n        <p *ngIf=\"errors.custoHora\" >  {{ errors['custoHora'].message }} </p>       \n      </div>\n\n    <form (submit)='editarUsuario()' #userForm='ngForm'>\n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Nome</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n              <p class=\"control\">\n                  <input \n                  class=\"input\" \n                  type=\"text\" \n                  name=\"nome\" \n                  minlength=4\n                  required\n                  [(ngModel)]=\"usuario.nome\"\n                  #nome=\"ngModel\"\n                  />\n                </p>\n          </div>\n        </div>\n      </div>\n  \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">E-mail</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input\" \n              type=\"text\" \n              name=\"email\" \n              required\n              [(ngModel)]=\"usuario.email\"\n              #email=\"ngModel\"\n              />\n            </p>\n          </div>\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!projeto.descricao.valid\" class=\"purple\">Descrição do projeto precisar ter no mínimo 8 caracteres!</div> -->\n      \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Função</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input \" \n              type=\"text\" \n              name=\"funcao\" \n              minlength=4\n              required\n              [(ngModel)]=\"usuario.funcao\"\n              #funcao=\"ngModel\"\n              />\n            </p>\n          </div>\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!projeto.cliente.valid\" class=\"purple\">Cliente precisar ter no mínimo 6 caracteres!</div> -->\n    \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Custo/hora</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input\" \n              type=\"text\" \n              name=\"custoHora\" \n              required\n              [(ngModel)]=\"usuario.custoHora\"\n              #custoHora=\"ngModel\"\n              />\n            </p>\n          </div>\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!projeto.pedido.valid\" class=\"purple\">Pedido do projeto precisar ter no mínimo 4 caracteres!</div> -->\n      \n      <div class=\"field is-horizontal\">\n          <label class=\"checkbox\">\n              <input \n              type=\"checkbox\"\n              name=\"admin\"\n              [(ngModel)]=\"usuario.admin\">\n            &nbsp; Adminstrador  \n          </label>\n        </div>\n\n    \n      <button type=\"button\" class=\"btn btn-secondary\" [routerLink]=\"['/usuarios']\">Cancela</button>\n      <button type=\"submit\" class=\"btn btn-primary\"  [disabled]=\"userForm.invalid\">Confirma</button>\n    \n    </form>\n  </div>  \n"
+
+/***/ }),
+
+/***/ "./src/app/usuario/usuario-edit/usuario-edit.component.scss":
+/*!******************************************************************!*\
+  !*** ./src/app/usuario/usuario-edit/usuario-edit.component.scss ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "button {\n  margin: 10px; }\n\nselect {\n  margin-bottom: 15px; }\n\n.purple {\n  color: purple;\n  margin: 0px 0px 30px 60px; }\n\n.errors {\n  color: brown; }\n\nimg {\n  width: 18%;\n  height: auto; }\n"
 
 /***/ }),
 
@@ -2892,7 +2919,7 @@ var UsuarioEditComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-usuario-edit',
             template: __webpack_require__(/*! ./usuario-edit.component.html */ "./src/app/usuario/usuario-edit/usuario-edit.component.html"),
-            styles: [__webpack_require__(/*! ./usuario-edit.component.css */ "./src/app/usuario/usuario-edit/usuario-edit.component.css")]
+            styles: [__webpack_require__(/*! ./usuario-edit.component.scss */ "./src/app/usuario/usuario-edit/usuario-edit.component.scss")]
         }),
         __metadata("design:paramtypes", [_usuario_service__WEBPACK_IMPORTED_MODULE_1__["UsuarioService"],
             _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
@@ -2905,17 +2932,6 @@ var UsuarioEditComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/usuario/usuario-list/usuario-list.component.css":
-/*!*****************************************************************!*\
-  !*** ./src/app/usuario/usuario-list/usuario-list.component.css ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "img {\n    max-width: 30%;\n    height: auto;\n}"
-
-/***/ }),
-
 /***/ "./src/app/usuario/usuario-list/usuario-list.component.html":
 /*!******************************************************************!*\
   !*** ./src/app/usuario/usuario-list/usuario-list.component.html ***!
@@ -2923,7 +2939,18 @@ module.exports = "img {\n    max-width: 30%;\n    height: auto;\n}"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <figure class=\"image is-128x128\">\n      <img src=\"../assets/images/TorreNegra-elem-mono-pos.png\">\n  </figure>\n\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n\n  <div class=\"container\"> \n      <nav class=\"level\">\n        <div class=\"level-left\">\n            <div class=\"title is-4\">Usuário</div> \n        </div>\n        <div class=\"level-right\">\n            <button type=\"button\" class=\"button is-light\" [routerLink]=\"['/usuario/novo']\">Novo usuário</button>\n        </div> \n      </nav>\n    <article class=\"media\">\n      <div class=\"media-content\">\n        <div class=\"content\">\n  \n          <br>\n          <div id=\"scroll\">\n            <table class=\"table table-hover\" align=\"left\">\n              <thead>\n                  <tr class=\"table-primary d-flex\">\n                    <th class=\"col-2\">Nome</th>\n                    <th class=\"col-3\">E-mail</th>\n                    <th class=\"col-2\">Função</th>\n                    <th class=\"col-1\">Custo/hr</th>\n                    <th class=\"col-1\">Admin</th>\n                    <th class=\"col-1\">Ação</th>\n                    <th class=\"col-1\"> </th>\n                  </tr>\n                </thead>\n                <tbody>\n                  <tr *ngFor=\"let u  of usuarios\" class=\"d-flex\">\n                    <td class=\"col-2\">{{ u['nome'] }}</td>\n                    <td class=\"col-3\">{{ u['email'] }}</td>\n                    <td class=\"col-2\">{{ u['funcao'] }}</td>\n                    <td class=\"col-1\">{{ u['custoHora'] | number : '1.2-2' }}</td>\n                    <td class=\"col-1\">\n                    <img [src]=\"u['admin'] ? frontPath : backPath\"></td>\n                    <td class=\"col-1\"><button type=\"button\" [routerLink]=\"['/usuario/edit/', u['_id'] ]\" class=\"button is-warning\">Editar</button></td>\n                    <td class=\"col-1\"><button type=\"button\" [routerLink]=\"['/usuario/show', u['_id'] ]\"  class=\"button is-danger\">Detalhes</button></td>\n                  </tr>\n                </tbody>\n              </table> \n            </div>    \n          </div>\n        </div>\n      </article>\n  </div>\n</div>\n  \n  "
+module.exports = "<mat-toolbar>\n  <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n\n<div class=\"container\"> \n    <nav class=\"level\">\n      <div class=\"level-left\">\n          <div class=\"title is-4\">Usuário</div> \n      </div>\n      <div class=\"level-right\">\n          <button type=\"button\" class=\"button is-light\" [routerLink]=\"['/usuario/novo']\">Novo usuário</button>\n      </div> \n    </nav>\n  <article class=\"media\">\n    <div class=\"media-content\">\n      <div class=\"content\">\n\n        <br>\n        <div id=\"scroll\">\n          <table class=\"table table-hover\" align=\"left\">\n            <thead>\n                <tr class=\"table-primary d-flex\">\n                  <th class=\"col-2\">Nome</th>\n                  <th class=\"col-3\">E-mail</th>\n                  <th class=\"col-2\">Função</th>\n                  <th class=\"col-1\">Custo/hr</th>\n                  <th class=\"col-1\">Admin</th>\n                  <th class=\"col-1\">Ação</th>\n                  <th class=\"col-1\"> </th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr *ngFor=\"let u  of usuarios\" class=\"d-flex\">\n                  <td class=\"col-2\">{{ u['nome'] }}</td>\n                  <td class=\"col-3\">{{ u['email'] }}</td>\n                  <td class=\"col-2\">{{ u['funcao'] }}</td>\n                  <td class=\"col-1\">{{ u['custoHora'] | number : '1.2-2' }}</td>\n                  <td class=\"col-1\">\n                  <img [src]=\"u['admin'] ? frontPath : backPath\"></td>\n                  <td class=\"col-1\"><button type=\"button\" [routerLink]=\"['/usuario/edit/', u['_id'] ]\" class=\"button is-warning\">Editar</button></td>\n                  <td class=\"col-1\"><button type=\"button\" [routerLink]=\"['/usuario/show', u['_id'] ]\"  class=\"button is-danger\">Detalhes</button></td>\n                </tr>\n              </tbody>\n            </table> \n          </div>    \n        </div>\n      </div>\n    </article>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/usuario/usuario-list/usuario-list.component.scss":
+/*!******************************************************************!*\
+  !*** ./src/app/usuario/usuario-list/usuario-list.component.scss ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "img {\n  width: 18%;\n  height: auto; }\n"
 
 /***/ }),
 
@@ -2980,7 +3007,7 @@ var UsuarioListComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-usuario-list',
             template: __webpack_require__(/*! ./usuario-list.component.html */ "./src/app/usuario/usuario-list/usuario-list.component.html"),
-            styles: [__webpack_require__(/*! ./usuario-list.component.css */ "./src/app/usuario/usuario-list/usuario-list.component.css")]
+            styles: [__webpack_require__(/*! ./usuario-list.component.scss */ "./src/app/usuario/usuario-list/usuario-list.component.scss")]
         }),
         __metadata("design:paramtypes", [_usuario_service__WEBPACK_IMPORTED_MODULE_1__["UsuarioService"],
             _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
@@ -2992,17 +3019,6 @@ var UsuarioListComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/usuario/usuario-novo/usuario-novo.component.css":
-/*!*****************************************************************!*\
-  !*** ./src/app/usuario/usuario-novo/usuario-novo.component.css ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "button {\n    margin: 10px;\n}\nselect {\n    margin-bottom: 15px;\n}\n.purple {\n    color: purple;\n    margin: 0px 0px 30px 60px;\n}\n.errors {\n    color: brown;\n}"
-
-/***/ }),
-
 /***/ "./src/app/usuario/usuario-novo/usuario-novo.component.html":
 /*!******************************************************************!*\
   !*** ./src/app/usuario/usuario-novo/usuario-novo.component.html ***!
@@ -3010,7 +3026,18 @@ module.exports = "button {\n    margin: 10px;\n}\nselect {\n    margin-bottom: 1
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <!-- <figure class=\"image is-128x128\">\n      <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n    </figure> -->\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n  \n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/usuarios']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n  \n  <div class=\"container\">\n  \n\n  Dados do usuário:\n\n  <div class=\"errors\" *ngIf=\"errors\">\n    <p *ngIf=\"errors.nome\" >  {{ errors['nome'].message }} </p>\n    <p *ngIf=\"errors.email\" >  {{ errors['email'].message }} </p>\n    <p *ngIf=\"errors.funcao\" >  {{ errors['funcao'].message }} </p>\n    <p *ngIf=\"errors.custoHora\" >  {{ errors['custoHora'].message }} </p>       \n  </div>\n\n  <form (submit)=\"criarUsuario(userForm)\" #userForm='ngForm'>\n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Nome</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input is-focused\" \n            type=\"text\" \n            name=\"nome\" \n            minlength=4\n            required\n            [(ngModel)]=\"usuario.nome\"\n            #nome=\"ngModel\"\n            />\n          </p>\n        </div>\n      </div>\n    </div>\n    <!-- <div *ngIf=\"!codigo.valid\" class=\"purple\">Código precisar ter no mínimo 4 caracteres!</div> -->\n   \n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">e-mail</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input\" \n            type=\"text\" \n            name=\"email\" \n            required\n            pattern=\"^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$\"\n            [(ngModel)]=\"usuario.email\"\n            #email=\"ngModel\"\n            />\n          </p>\n        </div>\n      </div>\n    </div>\n<!-- <div *ngIf=\"!codigo.valid\" class=\"purple\">Código precisar ter no mínimo 4 caracteres!</div> -->\n\n  <div class=\"field is-horizontal\">\n    <div class=\"field-label is-normal\">\n      <label class=\"label\">Função</label>\n    </div>\n    <div class=\"field-body\">\n      <div class=\"field\">\n        <p class=\"control\">\n          <input \n          class=\"input\" \n          type=\"text\" \n          name=\"funcao\" \n          minlength=4\n          required\n          [(ngModel)]=\"usuario.funcao\"\n          #funcao=\"ngModel\"\n          />\n        </p>\n      </div>\n    </div>\n  </div>\n  <!-- <div *ngIf=\"!cliente.valid\" class=\"purple\">Função precisar ter no mínimo 4 caracteres!</div> -->\n  \n  \n  <div class=\"field is-horizontal\">\n    <div class=\"field-label is-normal\">\n      <label class=\"label\">Custo hora</label>\n    </div>\n    <div class=\"field-body\">\n      <div class=\"field\">\n        <p class=\"control\">\n          <input \n          class=\"input\" \n          type=\"text\" \n          name=\"custoHora\" \n          required\n          [(ngModel)]=\"usuario.custoHora\"\n          #custoHora=\"ngModel\"\n          />\n        </p>\n      </div>\n    </div>\n  </div>\n  \n  <div class=\"field is-horizontal\">\n    <label class=\"checkbox\">\n        <input \n        type=\"checkbox\"\n        name=\"admin\"\n        [(ngModel)]=\"usuario.admin\">\n       &nbsp; Administrador  \n    </label>\n  </div>\n  \n  <button type=\"button\" class=\"btn btn-secondary\" (click)=\"cancel()\">Cancela</button>\n  <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"userForm.invalid\">Confirma</button>\n  \n  </form>\n  \n  </div>"
+module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" [routerLink]=\"['/usuarios']\">Retornar <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n\n<div class=\"container\">\n  \n  Dados do usuário:\n\n  <div class=\"errors\" *ngIf=\"errors\">\n    <p *ngIf=\"errors.nome\" >  {{ errors['nome'].message }} </p>\n    <p *ngIf=\"errors.email\" >  {{ errors['email'].message }} </p>\n    <p *ngIf=\"errors.funcao\" >  {{ errors['funcao'].message }} </p>\n    <p *ngIf=\"errors.custoHora\" >  {{ errors['custoHora'].message }} </p>       \n  </div>\n\n  <form (submit)=\"criarUsuario(userForm)\" #userForm='ngForm'>\n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Nome</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input is-focused\" \n            type=\"text\" \n            name=\"nome\" \n            minlength=4\n            required\n            [(ngModel)]=\"usuario.nome\"\n            #nome=\"ngModel\"\n            />\n          </p>\n        </div>\n      </div>\n    </div>\n    <!-- <div *ngIf=\"!codigo.valid\" class=\"purple\">Código precisar ter no mínimo 4 caracteres!</div> -->\n    \n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">e-mail</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input\" \n            type=\"text\" \n            name=\"email\" \n            required\n            pattern=\"^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$\"\n            [(ngModel)]=\"usuario.email\"\n            #email=\"ngModel\"\n            />\n          </p>\n        </div>\n      </div>\n    </div>\n  <!-- <div *ngIf=\"!codigo.valid\" class=\"purple\">Código precisar ter no mínimo 4 caracteres!</div> -->\n\n  <div class=\"field is-horizontal\">\n    <div class=\"field-label is-normal\">\n      <label class=\"label\">Função</label>\n    </div>\n    <div class=\"field-body\">\n      <div class=\"field\">\n        <p class=\"control\">\n          <input \n          class=\"input\" \n          type=\"text\" \n          name=\"funcao\" \n          minlength=4\n          required\n          [(ngModel)]=\"usuario.funcao\"\n          #funcao=\"ngModel\"\n          />\n        </p>\n      </div>\n    </div>\n  </div>\n  <!-- <div *ngIf=\"!cliente.valid\" class=\"purple\">Função precisar ter no mínimo 4 caracteres!</div> -->\n\n\n  <div class=\"field is-horizontal\">\n    <div class=\"field-label is-normal\">\n      <label class=\"label\">Custo hora</label>\n    </div>\n    <div class=\"field-body\">\n      <div class=\"field\">\n        <p class=\"control\">\n          <input \n          class=\"input\" \n          type=\"text\" \n          name=\"custoHora\" \n          required\n          [(ngModel)]=\"usuario.custoHora\"\n          #custoHora=\"ngModel\"\n          />\n        </p>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"field is-horizontal\">\n    <label class=\"checkbox\">\n        <input \n        type=\"checkbox\"\n        name=\"admin\"\n        [(ngModel)]=\"usuario.admin\">\n        &nbsp; Administrador  \n    </label>\n  </div>\n\n  <button type=\"button\" class=\"btn btn-secondary\" (click)=\"cancel()\">Cancela</button>\n  <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"userForm.invalid\">Confirma</button>\n\n  </form>\n  \n</div>"
+
+/***/ }),
+
+/***/ "./src/app/usuario/usuario-novo/usuario-novo.component.scss":
+/*!******************************************************************!*\
+  !*** ./src/app/usuario/usuario-novo/usuario-novo.component.scss ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "button {\n  margin: 10px; }\n\nselect {\n  margin-bottom: 15px; }\n\n.purple {\n  color: purple;\n  margin: 0px 0px 30px 60px; }\n\n.errors {\n  color: brown; }\n\nimg {\n  width: 18%;\n  height: auto; }\n"
 
 /***/ }),
 
@@ -3084,7 +3111,7 @@ var UsuarioNovoComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-usuario-novo',
             template: __webpack_require__(/*! ./usuario-novo.component.html */ "./src/app/usuario/usuario-novo/usuario-novo.component.html"),
-            styles: [__webpack_require__(/*! ./usuario-novo.component.css */ "./src/app/usuario/usuario-novo/usuario-novo.component.css")]
+            styles: [__webpack_require__(/*! ./usuario-novo.component.scss */ "./src/app/usuario/usuario-novo/usuario-novo.component.scss")]
         }),
         __metadata("design:paramtypes", [_usuario_service__WEBPACK_IMPORTED_MODULE_1__["UsuarioService"],
             _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
@@ -3096,17 +3123,6 @@ var UsuarioNovoComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/usuario/usuario-show/usuario-show.component.css":
-/*!*****************************************************************!*\
-  !*** ./src/app/usuario/usuario-show/usuario-show.component.css ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "button {\n    margin: 10px;\n}\nselect {\n    margin-bottom: 15px;\n}\n.purple {\n    color: purple;\n    margin: 0px 0px 30px 60px;\n}\n.errors {\n    color: brown;\n}"
-
-/***/ }),
-
 /***/ "./src/app/usuario/usuario-show/usuario-show.component.html":
 /*!******************************************************************!*\
   !*** ./src/app/usuario/usuario-show/usuario-show.component.html ***!
@@ -3114,7 +3130,18 @@ module.exports = "button {\n    margin: 10px;\n}\nselect {\n    margin-bottom: 1
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <!-- <figure class=\"image is-128x128\">\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n  </figure> -->\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n\n<div class=\"container\">\n\n\n    Dados do usuário:\n\n  <form (submit)='excluirUsuario()' #userForm='ngForm'>\n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Nome</label>\n      </div>\n      <div class=\"field-body\">\n        {{ usuario.nome }}\n      </div>\n    </div>\n\n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">E-mail</label>\n      </div>\n      <div class=\"field-body\">\n        {{ usuario.email }}\n      </div>\n    </div>\n    <!-- <div *ngIf=\"!projeto.descricao.valid\" class=\"purple\">Descrição do projeto precisar ter no mínimo 8 caracteres!</div> -->\n    \n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Função</label>\n      </div>\n      <div class=\"field-body\">\n        {{ usuario.funcao }}\n      </div>\n    </div>\n    <!-- <div *ngIf=\"!projeto.cliente.valid\" class=\"purple\">Cliente precisar ter no mínimo 6 caracteres!</div> -->\n  \n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Custo/hora</label>\n      </div>\n      <div class=\"field-body\">\n        {{ usuario.custoHora }}\n      </div>\n    </div>\n    <!-- <div *ngIf=\"!projeto.pedido.valid\" class=\"purple\">Pedido do projeto precisar ter no mínimo 4 caracteres!</div> -->\n    \n    <div class=\"field is-horizontal\">\n        <label class=\"checkbox\">\n          <figure class=\"image is-32x32\">\n            <img [src]=\"usuario['admin'] ? frontPath : backPath \">\n          </figure>\n          &nbsp; Adminstrador  \n        </label>\n      </div>\n\n  \n    <button type=\"button\" class=\"btn btn-secondary\" [routerLink]=\"['/usuarios']\">Cancela</button>\n    <button type=\"submit\" class=\"button is-danger\"  [disabled]=\"userForm.invalid\">Excluir</button>\n  \n  </form>\n</div>  \n"
+module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n\n<div class=\"container\">\n\n\n    Dados do usuário:\n\n  <form (submit)='excluirUsuario()' #userForm='ngForm'>\n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Nome</label>\n      </div>\n      <div class=\"field-body\">\n        {{ usuario.nome }}\n      </div>\n    </div>\n\n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">E-mail</label>\n      </div>\n      <div class=\"field-body\">\n        {{ usuario.email }}\n      </div>\n    </div>\n    <!-- <div *ngIf=\"!projeto.descricao.valid\" class=\"purple\">Descrição do projeto precisar ter no mínimo 8 caracteres!</div> -->\n    \n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Função</label>\n      </div>\n      <div class=\"field-body\">\n        {{ usuario.funcao }}\n      </div>\n    </div>\n    <!-- <div *ngIf=\"!projeto.cliente.valid\" class=\"purple\">Cliente precisar ter no mínimo 6 caracteres!</div> -->\n  \n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Custo/hora</label>\n      </div>\n      <div class=\"field-body\">\n        {{ usuario.custoHora }}\n      </div>\n    </div>\n    <!-- <div *ngIf=\"!projeto.pedido.valid\" class=\"purple\">Pedido do projeto precisar ter no mínimo 4 caracteres!</div> -->\n    \n    <div class=\"field is-horizontal\">\n        <label class=\"checkbox\">\n          <figure class=\"image is-32x32\">\n            <img [src]=\"usuario['admin'] ? frontPath : backPath \">\n          </figure>\n          &nbsp; Adminstrador  \n        </label>\n      </div>\n\n  \n    <button type=\"button\" class=\"btn btn-secondary\" [routerLink]=\"['/usuarios']\">Cancela</button>\n    <button type=\"submit\" class=\"button is-danger\"  [disabled]=\"userForm.invalid\">Excluir</button>\n  \n  </form>\n</div>  \n"
+
+/***/ }),
+
+/***/ "./src/app/usuario/usuario-show/usuario-show.component.scss":
+/*!******************************************************************!*\
+  !*** ./src/app/usuario/usuario-show/usuario-show.component.scss ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "button {\n  margin: 10px; }\n\nselect {\n  margin-bottom: 15px; }\n\n.purple {\n  color: purple;\n  margin: 0px 0px 30px 60px; }\n\n.errors {\n  color: brown; }\n\nimg {\n  width: 18%;\n  height: auto; }\n"
 
 /***/ }),
 
@@ -3182,7 +3209,7 @@ var UsuarioShowComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-usuario-show',
             template: __webpack_require__(/*! ./usuario-show.component.html */ "./src/app/usuario/usuario-show/usuario-show.component.html"),
-            styles: [__webpack_require__(/*! ./usuario-show.component.css */ "./src/app/usuario/usuario-show/usuario-show.component.css")]
+            styles: [__webpack_require__(/*! ./usuario-show.component.scss */ "./src/app/usuario/usuario-show/usuario-show.component.scss")]
         }),
         __metadata("design:paramtypes", [_usuario_service__WEBPACK_IMPORTED_MODULE_2__["UsuarioService"],
             _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],

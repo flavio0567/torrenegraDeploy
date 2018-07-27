@@ -117,7 +117,7 @@ export class ProjetoListComponent implements OnInit {
   openDialog(projeto): void {
     console.log('ProjetoListComponent > openDialog(projeto) ')
     let dialogRef = this.dialog.open(DialogProjeto, {
-      width: '250px',
+      width: '450px',
       data: {
         id: projeto._id,
         codigo: projeto.codigo,

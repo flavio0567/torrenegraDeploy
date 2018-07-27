@@ -8,7 +8,7 @@ import { ClienteService } from '../../cliente/cliente.service';
 @Component({
   selector: 'app-projeto-novo',
   templateUrl: './projeto-novo.component.html',
-  styleUrls: ['./projeto-novo.component.css']
+  styleUrls: ['./projeto-novo.component.scss']
 })
 export class ProjetoNovoComponent implements OnInit {
   usuarioLogado = {

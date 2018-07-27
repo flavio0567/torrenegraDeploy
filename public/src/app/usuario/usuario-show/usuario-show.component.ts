@@ -5,7 +5,7 @@ import { UsuarioService } from '../usuario.service';
 @Component({
   selector: 'app-usuario-show',
   templateUrl: './usuario-show.component.html',
-  styleUrls: ['./usuario-show.component.css']
+  styleUrls: ['./usuario-show.component.scss']
 })
 export class UsuarioShowComponent implements OnInit {
   usuarioLogado = {

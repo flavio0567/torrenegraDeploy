@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-usuario-edit',
   templateUrl: './usuario-edit.component.html',
-  styleUrls: ['./usuario-edit.component.css']
+  styleUrls: ['./usuario-edit.component.scss']
 })
 export class UsuarioEditComponent implements OnInit {
   usuarioLogado = {

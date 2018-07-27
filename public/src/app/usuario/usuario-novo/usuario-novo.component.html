@@ -1,23 +1,23 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <!-- <figure class="image is-128x128">
-      <img src="../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png">
-    </figure> -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" [routerLink]="['/usuarios']">Retornar <span class="sr-only">(current)</span></a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  
-  <div class="container">
-  
+<mat-toolbar>
+    <img src="../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png">
+</mat-toolbar>
 
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['/usuarios']">Retornar <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  
   Dados do usuário:
 
   <div class="errors" *ngIf="errors">
@@ -49,7 +49,7 @@
       </div>
     </div>
     <!-- <div *ngIf="!codigo.valid" class="purple">Código precisar ter no mínimo 4 caracteres!</div> -->
-   
+    
     <div class="field is-horizontal">
       <div class="field-label is-normal">
         <label class="label">e-mail</label>
@@ -70,7 +70,7 @@
         </div>
       </div>
     </div>
-<!-- <div *ngIf="!codigo.valid" class="purple">Código precisar ter no mínimo 4 caracteres!</div> -->
+  <!-- <div *ngIf="!codigo.valid" class="purple">Código precisar ter no mínimo 4 caracteres!</div> -->
 
   <div class="field is-horizontal">
     <div class="field-label is-normal">
@@ -93,8 +93,8 @@
     </div>
   </div>
   <!-- <div *ngIf="!cliente.valid" class="purple">Função precisar ter no mínimo 4 caracteres!</div> -->
-  
-  
+
+
   <div class="field is-horizontal">
     <div class="field-label is-normal">
       <label class="label">Custo hora</label>
@@ -114,20 +114,20 @@
       </div>
     </div>
   </div>
-  
+
   <div class="field is-horizontal">
     <label class="checkbox">
         <input 
         type="checkbox"
         name="admin"
         [(ngModel)]="usuario.admin">
-       &nbsp; Administrador  
+        &nbsp; Administrador  
     </label>
   </div>
-  
+
   <button type="button" class="btn btn-secondary" (click)="cancel()">Cancela</button>
   <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">Confirma</button>
-  
+
   </form>
   
-  </div>
+</div>

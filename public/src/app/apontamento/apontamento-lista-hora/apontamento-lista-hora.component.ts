@@ -73,11 +73,11 @@ export class ApontamentoListaHoraComponent implements OnInit {
     apontObservable.subscribe(
       (apontamentos) => {
         this.apontamentos = apontamentos.json();
-        console.log('ApontamentoListaHoraComponent > obterListaApontamento() > apontamentos ', this.apontamentos)
+        // console.log('ApontamentoListaHoraComponent > obterListaApontamento() > apontamentos ', this.apontamentos)
         for (var i = 0; i < this.apontamentos.length; i++) {
           this.obterProjeto(this.apontamentos[i]._projeto, i);
         } 
-        console.log('D E P O I S >>>> >>>> >>>ApontamentoListaHoraComponent > obterListaApontamento() > apontamentos ', this.apontamentos)
+        // console.log('D E P O I S >>>> >>>> >>>ApontamentoListaHoraComponent > obterListaApontamento() > apontamentos ', this.apontamentos)
         this.dataSource = new MatTableDataSource(this.apontamentos);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;

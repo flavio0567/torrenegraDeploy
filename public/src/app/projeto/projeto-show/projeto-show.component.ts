@@ -5,7 +5,7 @@ import { ProjetoService } from '../projeto.service';
 @Component({
   selector: 'app-projeto-show',
   templateUrl: './projeto-show.component.html',
-  styleUrls: ['./projeto-show.component.css']
+  styleUrls: ['./projeto-show.component.scss']
 })
 export class ProjetoShowComponent implements OnInit {
   projeto: any;

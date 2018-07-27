@@ -1,33 +1,39 @@
-<div class="box">
+<div class="container">
+   <div class="row justify-content-center">
+      <!-- <div class="media-container-column col-lg-8"> -->
 
-    <mat-card class="example-card">
-        <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>Torre Negra</mat-card-title>
-            <mat-card-subtitle>Sistemas</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-            <form class="example-form" [formGroup]="formLogin" (submit)="login()"> 
+        <mat-card class="example-card">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>Torre Negra</mat-card-title>
+                <mat-card-subtitle>Sistemas</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <form class="example-form" [formGroup]="formLogin" (submit)="login()"> 
 
-                <mat-form-field>
+                    <mat-form-field>
 
-                    <input matInput type="email" placeholder="email" formControlName="email" />
+                        <input matInput type="email" placeholder="email" formControlName="email" />
 
-                </mat-form-field>
+                    </mat-form-field>
 
-                <mat-form-field>
+                    <mat-form-field>
 
-                    <input matInput type="password" placeholder="senha" formControlName="senha" />
-                </mat-form-field>
-                <mat-card-actions>
-                    <button type="submit" class="button is-block is-info is-large is-fullwidth" [disabled]="formLogin.invalid">Entrar</button>
-                </mat-card-actions>
-            </form>
+                        <input matInput type="password" placeholder="senha" formControlName="senha" />
+                    </mat-form-field>
+                    <mat-card-actions>
+                            <!-- <p><a href="#" class="btn btn-primary" role="button"> -->
+                            <button type="submit" class="btn btn-primary"  [disabled]="formLogin.invalid">Entrar</button>
+                        <!-- <button type="submit" class="button is-block is-info is-large is-fullwidth" [disabled]="formLogin.invalid">Entrar</button> -->
+                    </mat-card-actions>
+                </form>
 
-            <div class="errors">
-                <p>{{ errors.message }} </p>      
-            </div>
+                <div class="errors">
+                    <p>{{ errors.message }} </p>      
+                </div>
 
-        </mat-card-content>
-    </mat-card>
+            </mat-card-content>
+         </mat-card>
+     <!-- </div> -->
+  </div>
 </div>

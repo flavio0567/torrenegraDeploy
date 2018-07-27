@@ -8,7 +8,7 @@ import { ClienteService } from '../../cliente/cliente.service';
 @Component({
   selector: 'app-projeto-edit',
   templateUrl: './projeto-edit.component.html',
-  styleUrls: ['./projeto-edit.component.css']
+  styleUrls: ['./projeto-edit.component.scss']
 })
 export class ProjetoEditComponent implements OnInit {
   usuarioLogado = {
