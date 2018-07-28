@@ -105,7 +105,7 @@ export class ApontamentoListaHoraComponent implements OnInit {
   openDialog(projeto): void {
     console.log('ApontamentoListaHoraComponent > openDialog(projeto)', projeto)
     let dialogRef = this.dialog.open(DialogApontamentoHora, {
-      width: '250px',
+      width: '350px',
 
       data: {
         id: projeto._id,
@@ -128,7 +128,8 @@ export class ApontamentoListaHoraComponent implements OnInit {
 
 @Component({
   selector: 'app-popup',
-  templateUrl: '../popup/popup.component.html'
+  templateUrl: '../popup/popup.component.html',
+  styleUrls: ['../popup/popup.component.scss']
 })
 
 export class DialogApontamentoHora {

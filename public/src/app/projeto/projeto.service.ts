@@ -27,7 +27,7 @@ export class ProjetoService {
   }
 
   criarProjeto(projeto) {
-    console.log('ProjetoService > criarProjeto(projeto)', projeto);
+    console.log('ProjetoService > criarProjeto(projeto,cliente)', projeto.codigo, projeto.descricao, projeto._clienteId );
     return this._http.post('projeto/novo', projeto);
   }
 

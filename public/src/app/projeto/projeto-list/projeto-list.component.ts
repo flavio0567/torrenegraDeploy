@@ -137,7 +137,8 @@ export class ProjetoListComponent implements OnInit {
 
 @Component({
   selector: 'app-popup',
-  templateUrl: '../popup/popup.component.html'
+  templateUrl: '../popup/popup.component.html',
+  styleUrls: ['../popup/popup.component.scss']
 })
 
 export class DialogProjeto {
@@ -162,8 +163,6 @@ export class DialogProjeto {
       (err) => { },
         () => { }
     )
-    // console.log('The dialog called delete projeto!');
-    // this.dialogRef.close();
   }
 
 }

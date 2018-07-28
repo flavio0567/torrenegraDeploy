@@ -9,7 +9,7 @@ const mongoose = require('mongoose'),
 module.exports = { 
     list: (req, res) => {
         console.log("SERVER > CONTROLLER > cliente > list")
-        Cliente.find({}).sort({ 'nome': 1 })
+        Cliente.find({}).sort({ 'razaoSocial': 1 })
             .then(cliente => res.json(cliente))
             .catch(error => console.log(error));
     },

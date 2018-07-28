@@ -54,7 +54,7 @@ export class ClienteNovoComponent implements OnInit {
   get endereco() {
     return this.clienteForm.get('endereco');
   }
-
+  
   get contatoForms() {
     return this.clienteForm.get('contatos') as FormArray
   }
@@ -62,7 +62,7 @@ export class ClienteNovoComponent implements OnInit {
   addContato() {
     const contato = this.fb.group({
       nome: [],
-      email: [],
+      email: ['', Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')],
       fone: [],
       skype: []
     })

@@ -45,48 +45,6 @@
   </div>
 </nav>
 
-<!-- <div class="container">
-  <nav class="level">
-    <div class="level-left">
-        <div class="title is-4">Projetos</div> 
-    </div>
-    <div class="level-right">
-        <button type="button" class="button is-light" [routerLink]="['/projeto/novo']">Novo projeto</button>
-    </div> 
-  </nav>
-  <article class="media">
-    <div class="media-content">
-      <div class="content">
-        <br>
-        <div id="scroll">
-          <table class="table table-hover" align="left">
-            <thead>
-              <tr class="table-primary d-flex">
-                <th class="col-1.5">Código</th>
-                <th class="col-3">Descrição</th>
-                <th class="col-2">Cliente</th>
-                <th class="col-2">Pedido</th>
-                <th class="col-1">Ação</th>
-                <th class="col-1"> </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let projeto of projetos" class="d-flex">
-                <td class="col-1.5">{{ projeto['codigo'] }}</td>
-                <td class="col-3">{{ projeto['descricao'] }}</td>
-                <td class="col-2">{{ projeto['nomeFantasiaCliente'] }}</td>
-                <td class="col-2">{{ projeto['pedido'] }}</td>
-                <td class="col-1"><button type="button" [routerLink]="['/projeto/edit/', projeto['_id'] ]" class="button is-warning">Editar</button></td>
-                <td class="col-1"><button mat-button (click)="openDialog(projeto)" class="button is-danger" [disabled]="projeto['encerrado']">Encerrar</button></td>
-              </tr>
-            </tbody>
-          </table> 
-        </div>    
-      </div>
-    </div>
-  </article>
-</div> -->
-
 <div class="container">
 
   <div class="level-left">
@@ -102,7 +60,7 @@
 
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
-      {{ dataSource }}
+
       <!-- ID Column -->
       <ng-container matColumnDef="codigo">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> código </th>

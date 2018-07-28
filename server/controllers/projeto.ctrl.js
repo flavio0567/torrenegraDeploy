@@ -4,6 +4,8 @@
 const mongoose    = require('mongoose');
 const Projeto     = mongoose.model('Projeto');
 const Apontamento = mongoose.model('Apontamento');
+const Cliente     = mongoose.model('Cliente');
+const ClienteProjeto = mongoose.model('ClienteProjeto');
 
 module.exports = { 
     list: (req, res) => {
@@ -20,8 +22,25 @@ module.exports = {
                 console.log('Ocorreu erro salvando projeto', err);
                 res.json(err);
             } else { 
-                console.log('sucesso savando projeto');
-                res.json(result);
+                console.log('sucesso savando projeto', result);
+                Cliente.findOne({ _id: req.body._clienteId }).then(cliente => {
+                    let clienteProjeto = new ClienteProjeto({ codigo: req.body.codigo})
+                    clienteProjeto._cliente = cliente._id;
+                    cliente.clienteProjetos = cliente.clienteProjetos.concat([clienteProjeto]);    
+                    cliente.save()
+                        .then(cliente => {
+                            clienteProjeto.save(function(err, cliente){
+                                if(err){
+                                    console.log('Erro salvando cliente ', err);
+                                    res.json(err);
+                                } else {
+                                    console.log('Cliente salvo com sucesso after clienteProjeto!', cliente);
+                                    res.json(cliente);
+                                };
+                            });
+                        })
+                        .catch(error => console.log(error));      
+                    })
             }
         })
     },
@@ -101,7 +120,7 @@ module.exports = {
                             res.json(err);
                         } else {
                             console.log('Apontamento registrado com sucesso!');
-                            res.json(apontamento);
+                            res.json(projeto);
                         };
                     });
                 };

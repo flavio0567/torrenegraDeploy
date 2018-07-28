@@ -73,8 +73,8 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header> ação </th>
           <td mat-cell *matCellDef="let row" >
             <div class="button-row">
-              <button mat-button color="primary" >editar</button>
-              <!-- <button mat-button color="primary" [routerLink]="['/cliente/edit/', row['_id'] ]">editar</button> -->
+              <!-- <button mat-button color="primary" >editar</button> -->
+              <button mat-button color="primary" [routerLink]="['/cliente/edit/', row['_id'] ]">editar</button>
             </div>
           </td>
         </ng-container>

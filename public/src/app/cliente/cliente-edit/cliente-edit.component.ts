@@ -1,8 +1,9 @@
 import { Component, OnInit, createPlatformFactory } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, Validators, FormArray, NgForm } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, NgForm, FormControl } from '@angular/forms';
 import { ClienteService } from '../cliente.service';
 import { UsuarioService } from '../../usuario/usuario.service';
+
 
 @Component({
   selector: 'app-cliente-edit',
@@ -41,24 +42,20 @@ export class ClienteEditComponent implements OnInit {
         (response) => {
           this.cliente = response.json();
           console.log('in ClienteEditComponent >>>>:', this.cliente);
-          this.newForm();
-          // this.clienteForm = this.cliente;
+          this.clienteForm = this.fb.group({
+            'cnpj': new FormControl(this.cliente.cnpj, Validators.required),
+            'razaoSocial': new FormControl(this.cliente.razaoSocial, Validators.required),
+            'nomeFantasia': new FormControl(this.cliente.nomeFantasia, Validators.required),
+            'endereco': new FormControl(this.cliente.endereco, Validators.required),
+            'valorHH': new FormControl(this.cliente.valorHH),
+            'prazoPgto': new FormControl(this.cliente.prazoPgto),
+            'contatos': new FormControl(this.fb.array([this.cliente.contatos]))
+            })
+            this.setContato();
         },
         (err) => { },
           () => { }
       )
-  }
-
-  newForm() {
-    this.clienteForm = this.fb.group({
-      cnpj: [this.cliente.cnpj, [ Validators.required, Validators.minLength(11) ]],
-      razaoSocial: [this.cliente.razaoSocial, [ Validators.required ]],
-      nomeFantasia: [this.cliente.nomeFantasia, [ Validators.required ]],
-      endereco: [this.cliente.endereco, [ Validators.required ]],
-      valorHH: this.cliente.valorHH,
-      prazoPgto: this.cliente.prazoPgto,
-      contatos: this.fb.array([this.cliente.contatos])
-    })
   }
 
   get cnpj() {
@@ -81,14 +78,20 @@ export class ClienteEditComponent implements OnInit {
     return this.clienteForm.get('contatos') as FormArray
   }
 
+  setContato() {
+    let contatoForms = this.cliente.contatos.map(contato => this.fb.group(contato));
+    let contatoFormsArray = this.fb.array(contatoForms);
+    this.clienteForm.setControl('contatos', contatoFormsArray);
+    // this.contatoForms.push(contatoFormsArray);
+  }
+
   addContato() {
     const contato = this.fb.group({
-      nome: [],
-      email: [],
-      fone: [],
-      skype: []
+      nome: [''],
+      email: ['', Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')],
+      fone: [''],
+      skype: ['']
     })
-
     this.contatoForms.push(contato);
   }
 
