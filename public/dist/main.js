@@ -1002,7 +1002,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" [routerLink]=\"['/clientes']\">Retornar <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n\n<div class=\"container\">\n\n    Dados básicos: \n\n    <div class=\"errors\" *ngIf=\"errors\">\n      <p *ngIf=\"errors.cnpj\" >  {{ errors['cnpj'].message }} </p>\n      <p *ngIf=\"errors.razaoSocial\" >  {{ errors['razaoSocial'].message }} </p>\n      <p *ngIf=\"errors.nomeFantasia\" >  {{ errors['nomeFantasia'].message }} </p>\n      <p *ngIf=\"errors.endereco\" >  {{ errors['endereco'].message }} </p>   \n      <p *ngIf=\"errors.contatos\" >  {{ errors['contatos'].message }} </p>       \n    </div>\n\n    <form class=\"example-form\"  *ngIf=\"cliente\" [formGroup] = \"clienteForm\">\n\n\n      <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"cnpj\"\n          type=\"text\"\n          formControlName=\"cnpj\" \n          name=\"cnpj\"\n          >\n          <mat-error *ngIf=\"cnpj.invalid && cnpj.touched\">\n            cnpj informado não é válido\n          </mat-error>\n        </mat-form-field></td>\n      </tr></table>\n  \n  \n      <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"razão social\"\n          type=\"text\"\n          formControlName=\"razaoSocial\" \n          name=\"razaoSocial\"\n          />\n          <mat-error *ngIf=\"razaoSocial.invalid && razaoSocial.touched\">\n              razão social informada não é válida\n          </mat-error>\n        </mat-form-field></td>\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"nome fantasia\"\n          type=\"text\"\n          formControlName=\"nomeFantasia\"  \n          name=\"nomeFantasia\"\n          />\n          <mat-error *ngIf=\"nomeFantasia.invalid && nomeFantasia.touched\">\n              nome fantasia informado não é válido\n          </mat-error>\n        </mat-form-field></td>\n      </tr></table>\n  \n  \n      <p>\n        <mat-form-field class=\"example-full-width\">\n          <textarea \n          matInput\n          placeholder=\"endereço\"\n          type=\"text\"\n          formControlName=\"endereco\" \n          name=\"endereco\">   \n        </textarea>\n        <mat-error *ngIf=\"endereco.invalid && endereco.touched\">\n            endereço informado não é válido\n        </mat-error>\n        </mat-form-field>\n      </p>\n  \n      Dados comerciais:\n  \n      <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput\n          placeholder=\"valor HH\"\n          type=\"number\"\n          formControlName=\"valorHH\" \n          name=\"valorHH\"  \n          />\n        </mat-form-field></td>\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput\n          placeholder=\"prazo pagto\"\n          type=\"number\"\n          formControlName=\"prazoPgto\" \n          name=\"prazoPgto\"  \n          />\n        </mat-form-field></td>\n      </tr></table>\n  \n      Contatos: \n  \n      <div formArrayName=\"contatos\">\n          <!-- contatosGp: {{ contatoForms.value | json  }} -->\n\n        <div *ngFor=\"let contato of contatoForms.controls; let i = index;\" [formGroupName]=\"i\">\n  \n          <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n            <td><mat-form-field class=\"example-full-width\">\n              <input \n              matInput\n              placeholder=\"nome\"\n              type=\"text\"\n              formControlName=\"nome\" \n              name=\"nome\"  \n              />\n            </mat-form-field></td>\n  \n            <td><mat-form-field class=\"example-full-width\">\n                <input \n                matInput\n                placeholder=\"email\"\n                type=\"email\"\n                formControlName=\"email\" \n                name=\"email\"\n                />\n              </mat-form-field></td>\n  \n            <td><mat-form-field class=\"example-full-width\">\n                <input \n                matInput\n                placeholder=\"fone\"\n                type=\"number\"\n                formControlName=\"fone\" \n                name=\"fone\"  \n                />\n              </mat-form-field></td>\n  \n              <td><mat-form-field class=\"example-full-width\">\n                  <input \n                  matInput\n                  placeholder=\"skype\"\n                  type=\"text\"\n                  formControlName=\"skype\" \n                  name=\"skype\"  \n                  />\n                </mat-form-field></td>\n\n              <a  mat-mini-fab color=\"warn\" (click)=\"deleteContato(i)\">-</a>\n            \n            </tr></table>\n          </div>\n        \n        </div>  \n\n        <a mat-mini-fab color=\"primary\" (click)=\"addContato()\">+</a>\n\n      <button mat-raised-button color=\"basic\" (click)=\"cancel()\">Cancela</button>\n\n      <button mat-raised-button color=\"primary\"  (click)=\"editarCliente(clienteForm)\" [disabled]=\"clienteForm.invalid\">Confirma</button>\n        \n  \n    </form>\n\n\n</div>\n"
+module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" [routerLink]=\"['/clientes']\">Retornar <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n \n<div class=\"container\">\n\n    Dados básicos: \n\n    <div class=\"errors\" *ngIf=\"errors\">\n      <p *ngIf=\"errors.cnpj\" >  {{ errors['cnpj'].message }} </p>\n      <p *ngIf=\"errors.razaoSocial\" >  {{ errors['razaoSocial'].message }} </p>\n      <p *ngIf=\"errors.nomeFantasia\" >  {{ errors['nomeFantasia'].message }} </p>\n      <p *ngIf=\"errors['endereco.logradouro']\" >  {{ errors['endereco.logradouro'].message }} </p>   \n      <p *ngIf=\"errors['endereco.cidade']\" >  {{ errors['endereco.cidade'].message }} </p>  \n      <p *ngIf=\"errors['endereco.estado']\" >  {{ errors['endereco.estado'].message }} </p>   \n      <p *ngIf=\"errors['endereco.cep']\" >  {{ errors['endereco.cep'].message }} </p>          \n    </div>\n\n    <form class=\"example-form\"  *ngIf=\"cliente\" [formGroup] = \"clienteForm\">\n\n        <p> \n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"cnpj\"\n          type=\"text\"\n          formControlName=\"cnpj\" \n          name=\"cnpj\"\n          >\n          <mat-error *ngIf=\"cnpj.invalid && cnpj.touched\">\n            cnpj informado não é válido\n          </mat-error>\n        </mat-form-field></td>\n  \n        <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n\n            <td><mat-form-field class=\"example-full-width\">\n              <input \n              matInput \n              placeholder=\"razão social\"\n              type=\"text\"\n              maxlength=\"650\"\n              formControlName=\"razaoSocial\" \n              name=\"razaoSocial\"\n              />\n              <mat-error *ngIf=\"razaoSocial.invalid && razaoSocial.touched\">\n                  razão social informada não é válida\n              </mat-error>\n            </mat-form-field></td>\n          </tr></table>\n\n          <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n          <td><mat-form-field class=\"example-full-width\">\n            <input \n            matInput \n            placeholder=\"nome fantasia\"\n            type=\"text\"\n            formControlName=\"nomeFantasia\"  \n            name=\"nomeFantasia\"\n            />\n            <mat-error *ngIf=\"nomeFantasia.invalid && nomeFantasia.touched\">\n                nome fantasia informado não é válido\n            </mat-error>\n          </mat-form-field></td>\n        </tr></table>\n  \n  \n      <form class=\"example-form\" [formGroup]=\"endereco\">\n        <p>\n        <mat-form-field class=\"example-full-width\">\n          <textarea \n          matInput\n          placeholder=\"endereço\"\n          type=\"text\"\n          formControlName=\"logradouro\" \n          name=\"logradouro\">   \n        </textarea>\n        <!-- <mat-error *ngIf=\"logradouro.invalid && logradouro.touched\">\n            endereço informado não é válido\n        </mat-error> -->\n        </mat-form-field>\n      </p>\n  \n\n      <p>\n        <mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"complemento\"\n          type=\"text\"\n          formControlName=\"complemento\" \n          name=\"complemento\"\n          /> \n        </mat-form-field>\n      </p>\n\n      <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"cidade\"\n          type=\"text\"\n          formControlName=\"cidade\" \n          name=\"cidade\"\n          >\n          <!-- <mat-error *ngIf=\"cidade.invalid && cidade.touched\">\n              cidade informada não é válida\n          </mat-error> -->\n        </mat-form-field></td>\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"estado\"\n          type=\"text\"\n          formControlName=\"estado\"\n          name=\"estado\" \n          maxlength=\"2\"\n          >\n          <mat-hint align=\"end\" *ngIf=\"estado\">{{estado.value.length}} / 2</mat-hint>\n          <!-- <mat-error *ngIf=\"estado.invalid && estado.touched\">\n            estado informado não é válido\n          </mat-error> -->\n        </mat-form-field></td>\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"cep\"\n          type=\"number\"\n          #postalCode\n          formControlName=\"cep\" \n          maxlength=\"8\" \n          name=\"cep\" \n          >\n          <mat-hint align=\"end\" *ngIf=\"cep\">{{cep.value.length}} / 8</mat-hint>\n          <!-- <mat-error *ngIf=\"cep.invalid && cep.touched\">\n              cep informado não é válido\n          </mat-error> -->\n\n        </mat-form-field></td>\n      </tr></table>\n      </form>\n\n\n\n\n      Dados comerciais:\n  \n      <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput\n          placeholder=\"valor HH\"\n          type=\"number\"\n          formControlName=\"valorHH\" \n          name=\"valorHH\"  \n          />\n        </mat-form-field></td>\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput\n          placeholder=\"prazo pagto\"\n          type=\"number\"\n          formControlName=\"prazoPgto\" \n          name=\"prazoPgto\"  \n          />\n        </mat-form-field></td>\n      </tr></table>\n  \n      Contatos: \n  \n      <div formArrayName=\"contatos\">\n\n\n        <div *ngFor=\"let contato of contatoForms.controls; let i = index;\" [formGroupName]=\"i\">\n  \n          <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n            <td><mat-form-field class=\"example-full-width\">\n              <input \n              matInput\n              placeholder=\"nome\"\n              type=\"text\"\n              formControlName=\"nome\" \n              name=\"nome\"  \n              />\n            </mat-form-field></td>\n  \n            <td><mat-form-field class=\"example-full-width\">\n                <input \n                matInput\n                placeholder=\"email\"\n                type=\"email\"\n                formControlName=\"email\" \n                name=\"email\"\n                />\n              </mat-form-field></td>\n  \n            <td><mat-form-field class=\"example-full-width\">\n                <input \n                matInput\n                placeholder=\"fone\"\n                type=\"number\"\n                formControlName=\"fone\" \n                name=\"fone\"  \n                />\n              </mat-form-field></td>\n  \n              <td><mat-form-field class=\"example-full-width\">\n                  <input \n                  matInput\n                  placeholder=\"skype\"\n                  type=\"text\"\n                  formControlName=\"skype\" \n                  name=\"skype\"  \n                  />\n                </mat-form-field></td>\n\n              <a  mat-mini-fab color=\"warn\" (click)=\"deleteContato(i)\">-</a>\n            \n            </tr></table>\n          </div>\n        \n        </div>  \n\n        <a mat-mini-fab color=\"primary\" (click)=\"addContato()\">+</a>\n\n      <button mat-raised-button color=\"basic\" (click)=\"cancel()\">Cancela</button>\n\n      <button mat-raised-button color=\"primary\"  (click)=\"editarCliente(clienteForm, endereco)\" [disabled]=\"clienteForm.invalid || endereco.invalid\">Confirma</button>\n        \n  \n    </form>\n\n\n</div>\n"
 
 /***/ }),
 
@@ -1047,8 +1047,8 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var ClienteEditComponent = /** @class */ (function () {
-    function ClienteEditComponent(fb, _usuarioService, _clienteService, _route, _router) {
-        this.fb = fb;
+    function ClienteEditComponent(_formBuilder, _usuarioService, _clienteService, _route, _router) {
+        this._formBuilder = _formBuilder;
         this._usuarioService = _usuarioService;
         this._clienteService = _clienteService;
         this._route = _route;
@@ -1070,14 +1070,20 @@ var ClienteEditComponent = /** @class */ (function () {
         observable.subscribe(function (response) {
             _this.cliente = response.json();
             console.log('in ClienteEditComponent >>>>:', _this.cliente);
-            _this.clienteForm = _this.fb.group({
-                'cnpj': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](_this.cliente.cnpj, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
-                'razaoSocial': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](_this.cliente.razaoSocial, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
-                'nomeFantasia': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](_this.cliente.nomeFantasia, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
-                'endereco': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](_this.cliente.endereco, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
-                'valorHH': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](_this.cliente.valorHH),
-                'prazoPgto': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](_this.cliente.prazoPgto),
-                'contatos': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](_this.fb.array([_this.cliente.contatos]))
+            _this.clienteForm = _this._formBuilder.group({
+                cnpj: [_this.cliente.cnpj, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
+                razaoSocial: [_this.cliente.razaoSocial, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
+                nomeFantasia: [_this.cliente.nomeFantasia, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
+                valorHH: [_this.cliente.valorHH],
+                prazoPgto: [_this.cliente.prazoPgto],
+                contatos: [_this._formBuilder.array([_this.cliente.contatos])]
+            });
+            _this.endereco = _this._formBuilder.group({
+                logradouro: [_this.cliente.endereco.logradouro, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
+                complemento: [_this.cliente.endereco.complemento],
+                cidade: [_this.cliente.endereco.cidade, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
+                estado: [_this.cliente.endereco.estado, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
+                cep: [_this.cliente.endereco.cep, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]]
             });
             _this.setContato();
         }, function (err) { }, function () { });
@@ -1103,9 +1109,30 @@ var ClienteEditComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(ClienteEditComponent.prototype, "endereco", {
+    Object.defineProperty(ClienteEditComponent.prototype, "logradouro", {
         get: function () {
-            return this.clienteForm.get('endereco');
+            return this.clienteForm.get('logradouro');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ClienteEditComponent.prototype, "cidade", {
+        get: function () {
+            return this.clienteForm.get('cidade');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ClienteEditComponent.prototype, "estado", {
+        get: function () {
+            return this.clienteForm.get('estado');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ClienteEditComponent.prototype, "cep", {
+        get: function () {
+            return this.clienteForm.get('cep');
         },
         enumerable: true,
         configurable: true
@@ -1119,13 +1146,12 @@ var ClienteEditComponent = /** @class */ (function () {
     });
     ClienteEditComponent.prototype.setContato = function () {
         var _this = this;
-        var contatoForms = this.cliente.contatos.map(function (contato) { return _this.fb.group(contato); });
-        var contatoFormsArray = this.fb.array(contatoForms);
+        var contatoForms = this.cliente.contatos.map(function (contato) { return _this._formBuilder.group(contato); });
+        var contatoFormsArray = this._formBuilder.array(contatoForms);
         this.clienteForm.setControl('contatos', contatoFormsArray);
-        // this.contatoForms.push(contatoFormsArray);
     };
     ClienteEditComponent.prototype.addContato = function () {
-        var contato = this.fb.group({
+        var contato = this._formBuilder.group({
             nome: [''],
             email: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')],
             fone: [''],
@@ -1136,10 +1162,12 @@ var ClienteEditComponent = /** @class */ (function () {
     ClienteEditComponent.prototype.deleteContato = function (i) {
         this.contatoForms.removeAt(i);
     };
-    ClienteEditComponent.prototype.editarCliente = function (clienteForm) {
+    ClienteEditComponent.prototype.editarCliente = function (clienteForm, endereco) {
         var _this = this;
-        console.log('ClienteEditarComponent > editarCliente(clienteForm)', clienteForm);
-        this._clienteService.editarCliente(this.cliente['_id'], clienteForm.value)
+        console.log('ClienteEditarComponent > editarCliente(clienteForm)', clienteForm.value, endereco.value);
+        var cliente = clienteForm.value;
+        cliente.endereco = endereco.value;
+        this._clienteService.editarCliente(this.cliente['_id'], cliente)
             .subscribe(function (observable) {
             if (observable.json().errors) {
                 _this.errors = observable.json().errors;
@@ -1152,7 +1180,6 @@ var ClienteEditComponent = /** @class */ (function () {
         }, function (err) {
             throw err;
         });
-        // this.createForm(this.contatosCliente);
     };
     ClienteEditComponent.prototype.cancel = function () {
         this._router.navigate(['/clientes']);
@@ -1289,7 +1316,7 @@ var ClienteListComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" [routerLink]=\"['/clientes']\">Retornar <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n\n<div class=\"container\">\n\n    Dados básicos: \n\n    <div class=\"errors\" *ngIf=\"errors\">\n      <p *ngIf=\"errors.cnpj\" >  {{ errors['cnpj'].message }} </p>\n      <p *ngIf=\"errors.razaoSocial\" >  {{ errors['razaoSocial'].message }} </p>\n      <p *ngIf=\"errors.nomeFantasia\" >  {{ errors['nomeFantasia'].message }} </p>\n      <p *ngIf=\"errors.endereco\" >  {{ errors['endereco'].message }} </p>   \n      <!-- <p *ngIf=\"errors.contatos\" >  {{ errors['contatos'].message }} </p>        -->\n    </div>\n\n\n  <form class=\"example-form\" [formGroup] = \"clienteForm\">\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"cnpj\"\n        type=\"text\"\n        formControlName=\"cnpj\" \n        name=\"cnpj\"\n        >\n        <mat-error *ngIf=\"cnpj.invalid && cnpj.touched\">\n          cnpj informado não é válido\n        </mat-error>\n      </mat-form-field></td>\n    </tr></table>\n\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"razão social\"\n        type=\"text\"\n        formControlName=\"razaoSocial\" \n        name=\"razaoSocial\"\n        />\n        <mat-error *ngIf=\"razaoSocial.invalid && razaoSocial.touched\">\n            razão social informada não é válida\n        </mat-error>\n      </mat-form-field></td>\n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"nome fantasia\"\n        type=\"text\"\n        formControlName=\"nomeFantasia\"  \n        name=\"nomeFantasia\"\n        />\n        <mat-error *ngIf=\"nomeFantasia.invalid && nomeFantasia.touched\">\n            nome fantasia informado não é válido\n        </mat-error>\n      </mat-form-field></td>\n    </tr></table>\n\n\n    <p>\n      <mat-form-field class=\"example-full-width\">\n        <textarea \n        matInput\n        placeholder=\"endereço\"\n        type=\"text\"\n        formControlName=\"endereco\" \n        name=\"endereco\">   \n      </textarea>\n      <mat-error *ngIf=\"endereco.invalid && endereco.touched\">\n          endereço informado não é válido\n      </mat-error>\n      </mat-form-field>\n    </p>\n\n    <!-- <div *ngIf=\"!endereco?.valid\" class=\"purple\">Endereço do cliente precisar ter no mínimo 4 caracteres!</div> -->\n\n    Dados comerciais:\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput\n        placeholder=\"valor HH\"\n        type=\"number\"\n        formControlName=\"valorHH\" \n        name=\"valorHH\"  \n        />\n      </mat-form-field></td>\n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput\n        placeholder=\"prazo pagto\"\n        type=\"number\"\n        formControlName=\"prazoPgto\" \n        name=\"prazoPgto\"  \n        />\n      </mat-form-field></td>\n    </tr></table>\n\n    Contatos: \n    <div class=\"container\">\n      <div formArrayName=\"contatos\">\n          \n        <div *ngFor=\"let contato of contatoForms.controls; let i = index;\" [formGroupName]=\"i\">\n\n          <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n            <td><mat-form-field class=\"example-full-width\">\n              <input \n              matInput\n              placeholder=\"nome\"\n              type=\"text\"\n              formControlName=\"nome\" \n              name=\"nome\"  \n              />\n            </mat-form-field></td>\n\n            <td><mat-form-field class=\"example-full-width\">\n                <input \n                matInput\n                placeholder=\"email\"\n                type=\"email\"\n                formControlName=\"email\" \n                name=\"email\"\n                />\n              </mat-form-field></td>\n\n            <td><mat-form-field class=\"example-full-width\">\n                <input \n                matInput\n                placeholder=\"fone\"\n                type=\"number\"\n                formControlName=\"fone\" \n                name=\"fone\"  \n                />\n              </mat-form-field></td>\n\n              <td><mat-form-field class=\"example-full-width\">\n                  <input \n                  matInput\n                  placeholder=\"skype\"\n                  type=\"text\"\n                  formControlName=\"skype\" \n                  name=\"skype\"  \n                  />\n                </mat-form-field></td>\n                <a  mat-mini-fab color=\"warn\" (click)=\"deleteContato(i)\">-</a>\n            </tr></table>\n\n          </div>\n\n        \n        </div>\n\n\n        <a mat-mini-fab color=\"primary\" (click)=\"addContato()\">+</a>\n\n    </div>\n    <button mat-raised-button color=\"basic\" (click)=\"cancel()\">Cancela</button>\n\n    <button mat-raised-button color=\"primary\"  (click)=\"criarCliente(clienteForm)\" [disabled]=\"clienteForm.invalid\">Confirma</button>\n      \n\n  </form>\n\n</div>"
+module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" [routerLink]=\"['/clientes']\">Retornar <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n\n<div class=\"container\">\n\n    Dados básicos: \n\n    <div class=\"errors\" *ngIf=\"errors\">\n      <p *ngIf=\"errors.cnpj\" >  {{ errors['cnpj'].message }} </p>\n      <p *ngIf=\"errors.razaoSocial\" >  {{ errors['razaoSocial'].message }} </p>\n      <p *ngIf=\"errors.nomeFantasia\" >  {{ errors['nomeFantasia'].message }} </p>\n      <p *ngIf=\"errors['endereco.logradouro']\" >  {{ errors['endereco.logradouro'].message }} </p>   \n      <p *ngIf=\"errors['endereco.cidade']\" >  {{ errors['endereco.cidade'].message }} </p>  \n      <p *ngIf=\"errors['endereco.estado']\" >  {{ errors['endereco.estado'].message }} </p>   \n      <p *ngIf=\"errors['endereco.cep']\" >  {{ errors['endereco.cep'].message }} </p>    \n      <!-- <p *ngIf=\"errors.contatos\" >  {{ errors['contatos'].message }} </p>        -->\n    </div>\n\n\n  <form class=\"example-form\" [formGroup] = \"clienteForm\">\n\n      <p> \n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"cnpj\"\n          type=\"text\"\n          formControlName=\"cnpj\" \n          name=\"cnpj\"\n          >\n          <mat-error *ngIf=\"cnpj.invalid && cnpj.touched\">\n            cnpj informado não é válido\n          </mat-error>\n        </mat-form-field></td>\n      </p>\n\n      <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      \n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"razão social\"\n          type=\"text\"\n          formControlName=\"razaoSocial\" \n          name=\"razaoSocial\"\n          />\n          <mat-error *ngIf=\"razaoSocial.invalid && razaoSocial.touched\">\n              razão social informada não é válida\n          </mat-error>\n        </mat-form-field></td>\n      </tr></table>\n\n      <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"nome fantasia\"\n        type=\"text\"\n        formControlName=\"nomeFantasia\"  \n        name=\"nomeFantasia\"\n        />\n        <mat-error *ngIf=\"nomeFantasia.invalid && nomeFantasia.touched\">\n            nome fantasia informado não é válido\n        </mat-error>\n      </mat-form-field></td>\n    </tr></table>\n\n    <form class=\"example-form\" [formGroup]=\"endereco\">\n      <p>\n        <mat-form-field class=\"example-full-width\">\n          <textarea \n          matInput \n          placeholder=\"endereço\"\n          type=\"text\"\n          formControlName=\"logradouro\" \n          name=\"logradouro\"> \n          </textarea>\n          <!-- <mat-error *ngIf=\"logradouro.invalid && logradouro.touched\">\n            endereço informado não é válido\n          </mat-error> -->\n        </mat-form-field>\n      </p>\n    \n      <p>\n        <mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"complemento\"\n          type=\"text\"\n          formControlName=\"complemento\" \n          name=\"complemento\"\n          /> \n        </mat-form-field>\n      </p>\n\n      <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"cidade\"\n          type=\"text\"\n          formControlName=\"cidade\" \n          name=\"cidade\"\n          >\n          <!-- <mat-error *ngIf=\"cidade.invalid && cidade.touched\">\n            cidade informada não é válida\n          </mat-error> -->\n        </mat-form-field></td>\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"estado\"\n          type=\"text\"\n          formControlName=\"estado\"\n          name=\"estado\" \n          maxlength=\"2\"\n          >\n          <mat-hint align=\"end\" *ngIf=\"estado\">{{estado.value.length}} / 2</mat-hint>\n          <!-- <mat-error *ngIf=\"estado.invalid && estado.touched\">\n            estado informado não é válido\n          </mat-error> -->\n        </mat-form-field></td>\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"cep\"\n          type=\"number\"\n          #postalCode\n          formControlName=\"cep\" \n          maxlength=\"8\" \n          name=\"cep\" \n          >\n          <mat-hint align=\"end\" *ngIf=\"cep\">{{cep.value.length}} / 8</mat-hint>\n          <!-- <mat-error *ngIf=\"cep.invalid && cep.touched\">\n            cep informado não é válido\n          </mat-error>  -->\n\n        </mat-form-field></td>\n      </tr></table>\n    </form>\n\n    Dados comerciais:\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput\n        placeholder=\"valor HH\"\n        type=\"number\"\n        formControlName=\"valorHH\" \n        name=\"valorHH\"  \n        />\n      </mat-form-field></td>\n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput\n        placeholder=\"prazo pagto\"\n        type=\"number\"\n        formControlName=\"prazoPgto\" \n        name=\"prazoPgto\"  \n        />\n      </mat-form-field></td>\n    </tr></table>\n\n    Contatos: \n    <div class=\"container\">\n      <div formArrayName=\"contatos\">\n          \n        <div *ngFor=\"let contato of contatoForms.controls; let i = index;\" [formGroupName]=\"i\">\n\n          <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n            <td><mat-form-field class=\"example-full-width\">\n              <input \n              matInput\n              placeholder=\"nome\"\n              type=\"text\"\n              formControlName=\"nome\" \n              name=\"nome\"  \n              />\n            </mat-form-field></td>\n\n            <td><mat-form-field class=\"example-full-width\">\n                <input \n                matInput\n                placeholder=\"email\"\n                type=\"email\"\n                formControlName=\"email\" \n                name=\"email\"\n                />\n              </mat-form-field></td>\n\n            <td><mat-form-field class=\"example-full-width\">\n                <input \n                matInput\n                placeholder=\"fone\"\n                type=\"number\"\n                formControlName=\"fone\" \n                name=\"fone\"  \n                />\n              </mat-form-field></td>\n\n              <td><mat-form-field class=\"example-full-width\">\n                  <input \n                  matInput\n                  placeholder=\"skype\"\n                  type=\"text\"\n                  formControlName=\"skype\" \n                  name=\"skype\"  \n                  />\n                </mat-form-field></td>\n                <a  mat-mini-fab color=\"warn\" (click)=\"deleteContato(i)\">-</a>\n            </tr></table>\n\n          </div>\n\n        \n        </div>\n\n\n        <a mat-mini-fab color=\"primary\" (click)=\"addContato()\">+</a>\n\n    </div>\n    <button mat-raised-button color=\"basic\" (click)=\"cancel()\">Cancelar</button>\n\n    <button mat-raised-button color=\"primary\"  (click)=\"criarCliente(clienteForm, endereco)\" [disabled]=\"clienteForm.invalid || endereco.invalid\">Confirma</button>\n      \n\n  </form>\n\n</div>"
 
 /***/ }),
 
@@ -1334,8 +1361,8 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var ClienteNovoComponent = /** @class */ (function () {
-    function ClienteNovoComponent(fb, _usuarioService, _clienteService, _router) {
-        this.fb = fb;
+    function ClienteNovoComponent(_formBuilder, _usuarioService, _clienteService, _router) {
+        this._formBuilder = _formBuilder;
         this._usuarioService = _usuarioService;
         this._clienteService = _clienteService;
         this._router = _router;
@@ -1347,14 +1374,20 @@ var ClienteNovoComponent = /** @class */ (function () {
     ClienteNovoComponent.prototype.ngOnInit = function () {
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
         console.log(' ClienteNovoComponent > ', this.usuarioLogado.email);
-        this.clienteForm = this.fb.group({
-            cnpj: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(11)]],
-            razaoSocial: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
-            nomeFantasia: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
-            endereco: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
-            valorHH: '',
-            prazoPgto: '',
-            contatos: this.fb.array([])
+        this.clienteForm = this._formBuilder.group({
+            cnpj: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(11)]],
+            razaoSocial: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
+            nomeFantasia: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
+            valorHH: [],
+            prazoPgto: [],
+            contatos: this._formBuilder.array([])
+        });
+        this.endereco = this._formBuilder.group({
+            logradouro: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
+            complemento: [],
+            cidade: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
+            estado: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
+            cep: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]]
         });
     };
     Object.defineProperty(ClienteNovoComponent.prototype, "cnpj", {
@@ -1378,9 +1411,30 @@ var ClienteNovoComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(ClienteNovoComponent.prototype, "endereco", {
+    Object.defineProperty(ClienteNovoComponent.prototype, "logradouro", {
         get: function () {
-            return this.clienteForm.get('endereco');
+            return this.clienteForm.get('logradouro');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ClienteNovoComponent.prototype, "cidade", {
+        get: function () {
+            return this.clienteForm.get('cidade');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ClienteNovoComponent.prototype, "estado", {
+        get: function () {
+            return this.clienteForm.get('estado');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ClienteNovoComponent.prototype, "cep", {
+        get: function () {
+            return this.clienteForm.get('cep');
         },
         enumerable: true,
         configurable: true
@@ -1393,7 +1447,7 @@ var ClienteNovoComponent = /** @class */ (function () {
         configurable: true
     });
     ClienteNovoComponent.prototype.addContato = function () {
-        var contato = this.fb.group({
+        var contato = this._formBuilder.group({
             nome: [],
             email: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')],
             fone: [],
@@ -1404,10 +1458,12 @@ var ClienteNovoComponent = /** @class */ (function () {
     ClienteNovoComponent.prototype.deleteContato = function (i) {
         this.contatoForms.removeAt(i);
     };
-    ClienteNovoComponent.prototype.criarCliente = function (clienteForm) {
+    ClienteNovoComponent.prototype.criarCliente = function (clienteForm, endereco) {
         var _this = this;
-        console.log('ClienteNovoComponent > criarCliente(clienteForm: NgForm)', clienteForm);
-        this._clienteService.criarCliente(clienteForm.value)
+        console.log('ClienteNovoComponent > criarCliente(clienteForm: NgForm)', clienteForm.value, endereco.value);
+        var cliente = clienteForm.value;
+        cliente.endereco = endereco.value;
+        this._clienteService.criarCliente(cliente)
             .subscribe(function (observable) {
             if (observable.json().errors) {
                 _this.errors = observable.json().errors;
@@ -1693,7 +1749,7 @@ var ClienteService = /** @class */ (function () {
         return this._http.get('/clientes');
     };
     ClienteService.prototype.criarCliente = function (cliente) {
-        console.log('ClienteService > criarCliente(cliente)', cliente);
+        console.log('ClienteService > criarCliente(cliente, endereco)', cliente);
         return this._http.post('cliente/novo', cliente);
     };
     ClienteService.prototype.obterClienteById = function (id) {

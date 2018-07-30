@@ -24,42 +24,48 @@
       <p *ngIf="errors.cnpj" >  {{ errors['cnpj'].message }} </p>
       <p *ngIf="errors.razaoSocial" >  {{ errors['razaoSocial'].message }} </p>
       <p *ngIf="errors.nomeFantasia" >  {{ errors['nomeFantasia'].message }} </p>
-      <p *ngIf="errors.endereco" >  {{ errors['endereco'].message }} </p>   
+      <p *ngIf="errors['endereco.logradouro']" >  {{ errors['endereco.logradouro'].message }} </p>   
+      <p *ngIf="errors['endereco.cidade']" >  {{ errors['endereco.cidade'].message }} </p>  
+      <p *ngIf="errors['endereco.estado']" >  {{ errors['endereco.estado'].message }} </p>   
+      <p *ngIf="errors['endereco.cep']" >  {{ errors['endereco.cep'].message }} </p>    
       <!-- <p *ngIf="errors.contatos" >  {{ errors['contatos'].message }} </p>        -->
     </div>
 
 
   <form class="example-form" [formGroup] = "clienteForm">
 
-    <table class="example-full-width" cellspacing="0"><tr>
-      <td><mat-form-field class="example-full-width">
-        <input 
-        matInput 
-        placeholder="cnpj"
-        type="text"
-        formControlName="cnpj" 
-        name="cnpj"
-        >
-        <mat-error *ngIf="cnpj.invalid && cnpj.touched">
-          cnpj informado não é válido
-        </mat-error>
-      </mat-form-field></td>
-    </tr></table>
+      <p> 
+        <td><mat-form-field class="example-full-width">
+          <input 
+          matInput 
+          placeholder="cnpj"
+          type="text"
+          formControlName="cnpj" 
+          name="cnpj"
+          >
+          <mat-error *ngIf="cnpj.invalid && cnpj.touched">
+            cnpj informado não é válido
+          </mat-error>
+        </mat-form-field></td>
+      </p>
 
+      <table class="example-full-width" cellspacing="0"><tr> 
+      
+        <td><mat-form-field class="example-full-width">
+          <input 
+          matInput 
+          placeholder="razão social"
+          type="text"
+          formControlName="razaoSocial" 
+          name="razaoSocial"
+          />
+          <mat-error *ngIf="razaoSocial.invalid && razaoSocial.touched">
+              razão social informada não é válida
+          </mat-error>
+        </mat-form-field></td>
+      </tr></table>
 
-    <table class="example-full-width" cellspacing="0"><tr>
-      <td><mat-form-field class="example-full-width">
-        <input 
-        matInput 
-        placeholder="razão social"
-        type="text"
-        formControlName="razaoSocial" 
-        name="razaoSocial"
-        />
-        <mat-error *ngIf="razaoSocial.invalid && razaoSocial.touched">
-            razão social informada não é válida
-        </mat-error>
-      </mat-form-field></td>
+      <table class="example-full-width" cellspacing="0"><tr> 
       <td><mat-form-field class="example-full-width">
         <input 
         matInput 
@@ -74,23 +80,79 @@
       </mat-form-field></td>
     </tr></table>
 
+    <form class="example-form" [formGroup]="endereco">
+      <p>
+        <mat-form-field class="example-full-width">
+          <textarea 
+          matInput 
+          placeholder="endereço"
+          type="text"
+          formControlName="logradouro" 
+          name="logradouro"> 
+          </textarea>
+          <!-- <mat-error *ngIf="logradouro.invalid && logradouro.touched">
+            endereço informado não é válido
+          </mat-error> -->
+        </mat-form-field>
+      </p>
+    
+      <p>
+        <mat-form-field class="example-full-width">
+          <input 
+          matInput 
+          placeholder="complemento"
+          type="text"
+          formControlName="complemento" 
+          name="complemento"
+          /> 
+        </mat-form-field>
+      </p>
 
-    <p>
-      <mat-form-field class="example-full-width">
-        <textarea 
-        matInput
-        placeholder="endereço"
-        type="text"
-        formControlName="endereco" 
-        name="endereco">   
-      </textarea>
-      <mat-error *ngIf="endereco.invalid && endereco.touched">
-          endereço informado não é válido
-      </mat-error>
-      </mat-form-field>
-    </p>
+      <table class="example-full-width" cellspacing="0"><tr>
+        <td><mat-form-field class="example-full-width">
+          <input 
+          matInput 
+          placeholder="cidade"
+          type="text"
+          formControlName="cidade" 
+          name="cidade"
+          >
+          <!-- <mat-error *ngIf="cidade.invalid && cidade.touched">
+            cidade informada não é válida
+          </mat-error> -->
+        </mat-form-field></td>
+        <td><mat-form-field class="example-full-width">
+          <input 
+          matInput 
+          placeholder="estado"
+          type="text"
+          formControlName="estado"
+          name="estado" 
+          maxlength="2"
+          >
+          <mat-hint align="end" *ngIf="estado">{{estado.value.length}} / 2</mat-hint>
+          <!-- <mat-error *ngIf="estado.invalid && estado.touched">
+            estado informado não é válido
+          </mat-error> -->
+        </mat-form-field></td>
+        <td><mat-form-field class="example-full-width">
+          <input 
+          matInput 
+          placeholder="cep"
+          type="number"
+          #postalCode
+          formControlName="cep" 
+          maxlength="8" 
+          name="cep" 
+          >
+          <mat-hint align="end" *ngIf="cep">{{cep.value.length}} / 8</mat-hint>
+          <!-- <mat-error *ngIf="cep.invalid && cep.touched">
+            cep informado não é válido
+          </mat-error>  -->
 
-    <!-- <div *ngIf="!endereco?.valid" class="purple">Endereço do cliente precisar ter no mínimo 4 caracteres!</div> -->
+        </mat-form-field></td>
+      </tr></table>
+    </form>
 
     Dados comerciais:
 
@@ -173,9 +235,9 @@
         <a mat-mini-fab color="primary" (click)="addContato()">+</a>
 
     </div>
-    <button mat-raised-button color="basic" (click)="cancel()">Cancela</button>
+    <button mat-raised-button color="basic" (click)="cancel()">Cancelar</button>
 
-    <button mat-raised-button color="primary"  (click)="criarCliente(clienteForm)" [disabled]="clienteForm.invalid">Confirma</button>
+    <button mat-raised-button color="primary"  (click)="criarCliente(clienteForm, endereco)" [disabled]="clienteForm.invalid || endereco.invalid">Confirma</button>
       
 
   </form>

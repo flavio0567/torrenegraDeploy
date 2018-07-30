@@ -16,7 +16,7 @@ module.exports = {
     novo: (req, res) => {
         console.log("SERVER > CONTROLLER > cliente > novo > req.body", req.body);
         let cliente = new Cliente(req.body);
-        console.log('cliente.ctrl:', cliente);
+        console.log('cliente and endereco in ctrl: >>>> >>>> >>>>', cliente);
         cliente.save(function(err, result){
             if(err) {
                 console.log('Ocorreu erro salvando cliente', err);
@@ -46,9 +46,12 @@ module.exports = {
                 eCliente.cnpj = req.body.cnpj;
                 eCliente.razaoSocial = req.body.razaoSocial;
                 eCliente.nomeFantasia = req.body.nomeFantasia;
-                eCliente.endereco = req.body.endereco; 
                 eCliente.valorHH = req.body.valorHH; 
                 eCliente.prazoPgto = req.body.prazoPgto; 
+                eCliente.endereco.logradouro = req.body.endereco.logradouro; 
+                eCliente.endereco.cidade = req.body.endereco.cidade; 
+                eCliente.endereco.estado = req.body.endereco.estado;
+                eCliente.endereco.cep = req.body.endereco.cep;
                 eCliente.save(function(err, result){
                     if(err) {
                         console.log('Ocorreu erro editando cliente', err);
@@ -61,14 +64,6 @@ module.exports = {
             };
         });
     },
-    // apontamentoList: (req, res) => {
-    //     console.log("SERVER > CONTROLLER > apontamentoList > req.body", req.body);
-    //     Projeto.findOne({_id: req.params.id})
-    //     // .populate('reviews')
-    //     .populate({path: 'Projeto', apontamentos: { sort: { 'inicio': -1 } } })
-    //         .then(projeto => res.json(projeto))
-    //         .catch(error => console.log(error));
-    // },
     encerrar: (req, res) => {
         Projeto.update( { _id: req.params.id }, { encerrado: true })
             .then(projeto => res.json(projeto))

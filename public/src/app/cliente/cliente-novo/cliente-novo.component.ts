@@ -17,9 +17,10 @@ export class ClienteNovoComponent implements OnInit {
   errors: any;
 
   clienteForm: FormGroup;
-  
+  endereco: FormGroup;
+
   constructor(
-    private fb: FormBuilder,
+    private _formBuilder: FormBuilder,
     private _usuarioService: UsuarioService,
     private _clienteService: ClienteService,
     private _router: Router
@@ -28,14 +29,20 @@ export class ClienteNovoComponent implements OnInit {
   ngOnInit() {
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
     console.log(' ClienteNovoComponent > ', this.usuarioLogado.email);
-    this.clienteForm = this.fb.group({
-      cnpj: ['', [ Validators.required, Validators.minLength(11) ]],
-      razaoSocial: ['', [ Validators.required ]],
-      nomeFantasia: ['', [ Validators.required ]],
-      endereco: ['', [ Validators.required ]],
-      valorHH: '',
-      prazoPgto: '',
-      contatos: this.fb.array([])
+    this.clienteForm = this._formBuilder.group({
+      cnpj: [null, [ Validators.required, Validators.minLength(11) ]],
+      razaoSocial: [null, [ Validators.required ]],
+      nomeFantasia: [null, [ Validators.required ]],
+      valorHH: [],
+      prazoPgto: [],
+      contatos: this._formBuilder.array([])
+    })
+    this.endereco = this._formBuilder.group({ 
+      logradouro: [null, [ Validators.required ]],
+      complemento: [],
+      cidade: [null, [ Validators.required ]],
+      estado: [null, [ Validators.required ]],
+      cep: [null, [ Validators.required ]]
     })
   }
 
@@ -51,16 +58,28 @@ export class ClienteNovoComponent implements OnInit {
     return this.clienteForm.get('nomeFantasia');
   }
 
-  get endereco() {
-    return this.clienteForm.get('endereco');
+  get logradouro() {
+    return this.clienteForm.get('logradouro');
   }
-  
+
+  get cidade() {
+    return this.clienteForm.get('cidade');
+  }
+
+  get estado() {
+    return this.clienteForm.get('estado');
+  }
+
+  get cep() {
+    return this.clienteForm.get('cep');
+  }
+
   get contatoForms() {
     return this.clienteForm.get('contatos') as FormArray
   }
 
   addContato() {
-    const contato = this.fb.group({
+    const contato = this._formBuilder.group({
       nome: [],
       email: ['', Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')],
       fone: [],
@@ -74,9 +93,11 @@ export class ClienteNovoComponent implements OnInit {
     this.contatoForms.removeAt(i);
   }
 
-  criarCliente(clienteForm: NgForm) {
-    console.log('ClienteNovoComponent > criarCliente(clienteForm: NgForm)', clienteForm); 
-    this._clienteService.criarCliente(clienteForm.value)
+  criarCliente(clienteForm: NgForm, endereco: NgForm) {
+    console.log('ClienteNovoComponent > criarCliente(clienteForm: NgForm)', clienteForm.value, endereco.value); 
+    let cliente = clienteForm.value;
+    cliente.endereco = endereco.value;
+    this._clienteService.criarCliente(cliente)
       .subscribe(observable => {
         if(observable.json().errors) {
           this.errors = observable.json().errors;

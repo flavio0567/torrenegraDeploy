@@ -13,7 +13,7 @@ export class ClienteService {
   }
 
   criarCliente(cliente) {
-    console.log('ClienteService > criarCliente(cliente)', cliente);
+    console.log('ClienteService > criarCliente(cliente, endereco)', cliente);
     return this._http.post('cliente/novo', cliente);
   }
 

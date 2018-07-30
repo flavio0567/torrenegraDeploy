@@ -1,6 +1,6 @@
-import { Component, OnInit, createPlatformFactory } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, Validators, FormArray, NgForm, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, NgForm } from '@angular/forms';
 import { ClienteService } from '../cliente.service';
 import { UsuarioService } from '../../usuario/usuario.service';
 
@@ -20,9 +20,10 @@ export class ClienteEditComponent implements OnInit {
   cliente: any;
 
   clienteForm: FormGroup;
-  
+  endereco: FormGroup;
+
   constructor(
-    private fb: FormBuilder,
+    private _formBuilder: FormBuilder,
     private _usuarioService: UsuarioService,
     private _clienteService: ClienteService,
     private _route: ActivatedRoute,
@@ -42,14 +43,20 @@ export class ClienteEditComponent implements OnInit {
         (response) => {
           this.cliente = response.json();
           console.log('in ClienteEditComponent >>>>:', this.cliente);
-          this.clienteForm = this.fb.group({
-            'cnpj': new FormControl(this.cliente.cnpj, Validators.required),
-            'razaoSocial': new FormControl(this.cliente.razaoSocial, Validators.required),
-            'nomeFantasia': new FormControl(this.cliente.nomeFantasia, Validators.required),
-            'endereco': new FormControl(this.cliente.endereco, Validators.required),
-            'valorHH': new FormControl(this.cliente.valorHH),
-            'prazoPgto': new FormControl(this.cliente.prazoPgto),
-            'contatos': new FormControl(this.fb.array([this.cliente.contatos]))
+          this.clienteForm = this._formBuilder.group({
+            cnpj: [this.cliente.cnpj, [Validators.required]],
+            razaoSocial: [this.cliente.razaoSocial, [Validators.required]],
+            nomeFantasia: [this.cliente.nomeFantasia, [Validators.required]],
+            valorHH: [this.cliente.valorHH],
+            prazoPgto: [this.cliente.prazoPgto],
+            contatos: [this._formBuilder.array([this.cliente.contatos])]
+            })
+          this.endereco = this._formBuilder.group({ 
+              logradouro: [this.cliente.endereco.logradouro, [Validators.required]],
+              complemento: [this.cliente.endereco.complemento],
+              cidade: [this.cliente.endereco.cidade, [Validators.required]],
+              estado: [this.cliente.endereco.estado, [Validators.required]],
+              cep: [this.cliente.endereco.cep, [Validators.required]]
             })
             this.setContato();
         },
@@ -70,8 +77,20 @@ export class ClienteEditComponent implements OnInit {
     return this.clienteForm.get('nomeFantasia');
   }
 
-  get endereco() {
-    return this.clienteForm.get('endereco');
+  get logradouro() {
+    return this.clienteForm.get('logradouro');
+  }
+
+  get cidade() {
+    return this.clienteForm.get('cidade');
+  }
+
+  get estado() {
+    return this.clienteForm.get('estado');
+  }
+
+  get cep() {
+    return this.clienteForm.get('cep');
   }
 
   get contatoForms() {
@@ -79,14 +98,13 @@ export class ClienteEditComponent implements OnInit {
   }
 
   setContato() {
-    let contatoForms = this.cliente.contatos.map(contato => this.fb.group(contato));
-    let contatoFormsArray = this.fb.array(contatoForms);
+    let contatoForms = this.cliente.contatos.map(contato => this._formBuilder.group(contato));
+    let contatoFormsArray = this._formBuilder.array(contatoForms);
     this.clienteForm.setControl('contatos', contatoFormsArray);
-    // this.contatoForms.push(contatoFormsArray);
   }
 
   addContato() {
-    const contato = this.fb.group({
+    const contato = this._formBuilder.group({
       nome: [''],
       email: ['', Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')],
       fone: [''],
@@ -99,9 +117,11 @@ export class ClienteEditComponent implements OnInit {
     this.contatoForms.removeAt(i);
   }
 
-  editarCliente(clienteForm: NgForm) {
-    console.log('ClienteEditarComponent > editarCliente(clienteForm)', clienteForm); 
-    this._clienteService.editarCliente(this.cliente['_id'], clienteForm.value)
+  editarCliente(clienteForm: NgForm, endereco: NgForm) {
+    console.log('ClienteEditarComponent > editarCliente(clienteForm)', clienteForm.value, endereco.value); 
+    let cliente = clienteForm.value;
+    cliente.endereco = endereco.value;
+    this._clienteService.editarCliente(this.cliente['_id'], cliente)
       .subscribe(observable => {
         if(observable.json().errors) {
           this.errors = observable.json().errors;
@@ -115,7 +135,6 @@ export class ClienteEditComponent implements OnInit {
         throw err;
       }
     );
-    // this.createForm(this.contatosCliente);
   }
 
   cancel() {

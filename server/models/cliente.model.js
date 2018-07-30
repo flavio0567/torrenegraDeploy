@@ -24,9 +24,26 @@ const ClienteSchema = new Schema({
         minlength: 2
     },
     endereco: {
-        type: String,
-        required: [true, "Endereço é requerido"],
-        minlength: 6
+        logradouro: { 
+            type: String, 
+            required: [true, "Logradouro é requerido"]
+         },
+        complemento: { 
+            type: String
+        },
+        cidade: { 
+            type: String, 
+            required:[true, "Cidade é requerida"] 
+        },
+        estado: { 
+            type: String, 
+            required:[true, "Estado é requerido"],
+            maxlength: 2 
+        },
+        cep: { 
+            type: Number, 
+            required:[true, "CEP é requerido"] 
+        },
     },
     valorHH: {
         type: Number,
