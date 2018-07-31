@@ -1,0 +1,29 @@
+<div class='form-container'>
+
+
+        <form [formGroup]="formLogin">
+            <span class="error" *ngIf="error">{{ error }}</span>
+
+            <input 
+            matInput 
+            placeholder="e-mail"
+            type="text"
+            formControlName="email" 
+            name="email"
+            >
+
+            <input 
+            matInput 
+            placeholder="senha"
+            type="text"
+            formControlName="senha" 
+            name="email"
+            >
+
+
+
+            <button (click)="login()" id="email">entrar</button>
+
+        </form>
+
+</div>  

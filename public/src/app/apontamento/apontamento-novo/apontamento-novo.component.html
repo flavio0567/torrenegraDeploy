@@ -3,7 +3,6 @@
 </mat-toolbar>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <!-- <a class="navbar-brand" href="#">Torre Negra</a> -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -21,23 +20,23 @@
 <div class="level-left">
     <div style="margin: 20px, 0px, 20px, 0px;" class="title is-4">Apontamento</div> 
 </div>
-
+<div class="errors" *ngIf="errors">
+    <p *ngIf="errors['hora.inicio'].message" >  {{ errors['hora.inicio'].message }} </p>   
+  </div> 
 
 <form  #formData="ngForm" [formGroup]="options">
-
 
   <div class="example-container">
       <mat-form-field>
         <mat-select placeholder="Selecione o projeto" name="projeto" formControlName="projeto" required>
           <mat-option value="option" *ngFor="let p of projetos" [value]="p._id"> {{ p.codigo }} {{ p.descricao }}</mat-option>
         </mat-select>
-        <mat-hint align="end"></mat-hint>
+        <mat-hint align="end">Projetos ativos</mat-hint>
       </mat-form-field>
 
-        <div>
-          <mat-radio-group formControlName="tipo" [value]="tipo">
-            <mat-radio-button value="hora">hora</mat-radio-button>&nbsp;
-            <mat-radio-button value="despesa">despesa</mat-radio-button>
+        <div class="example-container">
+          <mat-radio-group formControlName="tipo" [value]="tipo" >
+            <mat-radio-button (change)="radioChange($event)" *ngFor="let a of array;" [value]="a"> {{ a }}&nbsp;&nbsp;</mat-radio-button>
           </mat-radio-group>&nbsp;&nbsp;
 
           <mat-form-field *ngIf="(options.get('tipo').value=='despesa')">
@@ -51,7 +50,7 @@
               <mat-hint align="end"></mat-hint>
           </mat-form-field>&nbsp;&nbsp;
 
-          <mat-form-field *ngIf="options.get('opDespesa').value=='outros'" hintLabel="Max 20 caracteres">
+          <mat-form-field *ngIf="options.get('opDespesa').value=='outros' && options.get('tipo').value=='despesa'" hintLabel="Max 20 caracteres">
               <input matInput formControlName="descricao" #input maxlength="20">
               <mat-hint align="end">{{input.value?.length || 0}}/20</mat-hint>
             </mat-form-field>&nbsp;&nbsp;
@@ -70,104 +69,18 @@
           <mat-form-field *ngIf="(options.get('tipo').value=='hora')" >
             <mat-select placeholder="início" formControlName="inicio" > 
                 <mat-option value="{{ today }}">{{today | date:"MMM d, y H:mm:ss"}}</mat-option>
-              <!-- <mat-option value="{{ today | date:'MMM d, y H:mm' }}">{{today | date:"MMM d, y H:mm"}}</mat-option> -->
             </mat-select>
           </mat-form-field>
 
         </div>
 
-
-          <!-- <mat-form-field *ngIf="(valueTipo=='despesa')"
-            formControlName="despesaValor">
-            <input 
-              matInput 
-              placeholder="Valor" 
-              required
-              >
-          </mat-form-field> -->
-          <!-- {{ valueDespesa }} -->
-
-
-      <!-- </form> -->
-
     </div>
   </form>
 
-
-
-
-<!-- <div style="margin-top: 15px; width: 50%;">
-        <ngbd-datepicker-popup></ngbd-datepicker-popup>
-    </div> -->
-
-
-
-
-    <!-- <h3>Tipo de apontamento</h3> -->
-    <!-- <div class="select is-multiple"> -->
-        <!-- <select name="tipo" [(ngModel)]="tipo">
-          <option>Hora </option>
-          <option>Despesa </option>
-        </select> -->
-       
-    
-        <!-- Tipo de Apontamento: Despesa -->
-        <!-- <div class="control" *ngIf="(tipo=='Despesa')">
-          <div class="field is-horizontal" style="margin-top: 20px;" > -->
-            <!-- <select name="opcaoDespesa" [(ngModel)]="opcaoDespesa" > 
-              <option>alimentação </option>
-              <option>hospedagem </option>
-              <option>pedágio </option>
-              <option>transporte </option>
-              <option>outros </option>
-            </select> -->
-           
-  
-          <!-- </div> -->
-              <!-- <div class="control" *ngIf="opcaoDespesa=='outros'">
-              <div class="field is-horizontal">
-                <p class="control">
-                  <textarea 
-                  class="textarea is-warning" 
-                  type="text" 
-                  rows="2"
-                  name="descricao" 
-                  placeholder="Descrição da despesa"
-                  [(ngModel)]="apontamento.despesa.descricao"
-                  #descricao="ngModel">
-                  </textarea>
-                </p>
-              </div>
-          </div> -->
-          <!-- <div class="field is-horizontal" >
-            <div class="field-body">
-              <div class="field">
-                <p class="control">
-                  <input 
-                  class="input" 
-                  type="text" 
-                  name="valor" 
-                  [(ngModel)]="apontamento.despesa.valor"
-                  #valor="ngModel"
-                  />
-                </p>
-              </div>
-            </div>
-          </div> -->
-        <!-- </div> -->
-        <!-- Tipo de Apontamento: Hora -->
-        <!-- <div *ngIf="(tipo=='Hora')"> -->
-            <!-- <div style="border: solid 2px green; margin-top: 10px;  padding: 10px;"> -->
-              <!-- <select name="inicio" [(ngModel)]="apontamento.hora.inicio" > 
-                  <option>{{today | date:"MMM d, y H:mm"}}</option>
-                </select> -->
-                
-            <!-- </div> -->
-        <!-- </div> -->
         <button type="button" class="btn btn-secondary" (click)="cancel()">Cancela</button>
         <button type="button" class="btn btn-primary" (click)="setApontamento()" [disabled]="formData.invalid">Confirma</button>
   
-      </div>
+</div>
 
 
 

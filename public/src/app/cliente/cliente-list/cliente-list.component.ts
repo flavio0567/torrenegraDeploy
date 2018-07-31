@@ -54,12 +54,13 @@ export class ClienteListComponent implements OnInit {
         console.log('clientes in obterClientes list:', clientes.json());
         this.clientes = clientes.json();
         for(var i=0;i<this.clientes.length;i++){
-          this.clientes[i].nome = this.clientes[i].contatos[0].nome;
-          this.clientes[i].email = this.clientes[i].contatos[0].email;
-          this.clientes[i].fone = this.clientes[i].contatos[0].fone;
-          this.clientes[i].skype = this.clientes[i].contatos[0].skype;
+          if (this.clientes[i].contatos[0]) {
+            this.clientes[i].nome = this.clientes[i].contatos[0].nome;
+            this.clientes[i].email = this.clientes[i].contatos[0].email;
+            this.clientes[i].fone = this.clientes[i].contatos[0].fone;
+            this.clientes[i].skype = this.clientes[i].contatos[0].skype;
+          }
         }
-        console.log('cliente >>>> >>>> >>>>', this.clientes);
         this.dataSource = new MatTableDataSource(this.clientes);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;

@@ -111,12 +111,12 @@ module.exports = {
             projeto.apontamentos = projeto.apontamentos.concat([apontamento]);            
             apontamento.save(function(err, apontamento){
                 if(err){
-                    console.log('error saving apontamento ');
+                    console.log('Ocorreu um erro salvando apontamento ', err);
                     res.json(err);
                 } else {
                     projeto.save(function(err, projeto){
                         if(err){
-                            console.log('Erro salvando projeto ', err);
+                            console.log('Erro salvando projeto após apontamento', err);
                             res.json(err);
                         } else {
                             console.log('Apontamento registrado com sucesso!');

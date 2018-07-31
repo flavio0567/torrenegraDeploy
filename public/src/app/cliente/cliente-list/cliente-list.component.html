@@ -51,11 +51,11 @@
         </ng-container>
   
         <!-- contatos Column -->
-        <ng-container matColumnDef="nome">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> contato </th>
-          <td mat-cell *matCellDef="let row"> {{row.nome}} </td>
-        </ng-container>
-  
+          <ng-container matColumnDef="nome">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> contato </th>
+            <td mat-cell *matCellDef="let row">  {{row.nome}} </td>
+          </ng-container>
+
         <!-- email Column -->
         <ng-container matColumnDef="email">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> email </th>
@@ -67,9 +67,9 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header> fone </th>
             <td mat-cell *matCellDef="let row"> {{row.fone}} </td>
         </ng-container>
-          
-       <!-- Acao 1 Column -->
-       <ng-container matColumnDef="acao1">
+
+        <!-- Acao 1 Column -->
+        <ng-container matColumnDef="acao1">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> ação </th>
           <td mat-cell *matCellDef="let row" >
             <div class="button-row">

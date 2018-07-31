@@ -1,39 +1,49 @@
-<div class="container">
-   <div class="row justify-content-center">
-      <!-- <div class="media-container-column col-lg-8"> -->
 
-        <mat-card class="example-card">
-            <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>Torre Negra</mat-card-title>
-                <mat-card-subtitle>Sistemas</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-                <form class="example-form" [formGroup]="formLogin" (submit)="login()"> 
+<div class="bg-img">
+  <div class="bg2-img"></div>
+  <form class="example-form" [formGroup] = "formLogin">
+      <div class="container">
+        <table class="example-full-width" cellspacing="0"><tr> 
+        
+          <td><mat-form-field class="example-full-width">
+            <input 
+            matInput 
+            placeholder="e-mail"
+            type="email"
+            formControlName="email" 
+            name="email"
+            />
+            <div *ngIf="email">
+              <mat-error *ngIf="email.invalid">
+                  por favor, informe um endereço de e-mail válido
+              </mat-error>
+            </div>
+            </mat-form-field></td>
+          </tr></table>
 
-                    <mat-form-field>
+          <table class="example-full-width" cellspacing="0"><tr> 
+          <td><mat-form-field class="mat-body-1">
+            <input 
+            matInput 
+            placeholder="senha"
+            type="password"
+            formControlName="senha"  
+            name="senha"
+            />
+            <div *ngIf="senha">
+            <mat-error *ngIf="senha.invalid && senha.touched">
+                senha informada não é válida
+            </mat-error>
+            </div>
+          </mat-form-field></td>
+        </tr></table>
+        <button mat-raised-button color="primary"  (click)="login(loginForm)" >entrar</button>
+        <div class="errors" *ngIf="errors">
+            <p *ngIf="errors" >  {{ errors.message }} </p>
+        </div>
+    </div>
 
-                        <input matInput type="email" placeholder="email" formControlName="email" />
-
-                    </mat-form-field>
-
-                    <mat-form-field>
-
-                        <input matInput type="password" placeholder="senha" formControlName="senha" />
-                    </mat-form-field>
-                    <mat-card-actions>
-                            <!-- <p><a href="#" class="btn btn-primary" role="button"> -->
-                            <button type="submit" class="btn btn-primary"  [disabled]="formLogin.invalid">Entrar</button>
-                        <!-- <button type="submit" class="button is-block is-info is-large is-fullwidth" [disabled]="formLogin.invalid">Entrar</button> -->
-                    </mat-card-actions>
-                </form>
-
-                <div class="errors">
-                    <p>{{ errors.message }} </p>      
-                </div>
-
-            </mat-card-content>
-         </mat-card>
-     <!-- </div> -->
-  </div>
-</div>
+  </form>
+  
+</div>  
+<a href="https://www.linkedin.com/in/fernando-carvalho-6834bbb/"  class="btn btn-linkedin btn-lg">Torre Negra Sistemas <span class="mat-body-1">- Av. Pedro Botesi, 2171 - Sala 113 - Mogi Mirim - São Paulo - Brazil</span> </a>   

@@ -35,6 +35,8 @@ module.exports = function(app){
         cliente.novo(req, res)})
     .put('/cliente/edit/:id', (req, res) => {
         cliente.edit(req, res)})
+    .delete('/cliente/excluir/:id', (req, res) => {
+        cliente.destroy(req, res)})
     .post('/usuario/novo', (req, res) => {
         usuario.novo(req, res)})
     .put('/usuario/edit/:id', (req, res) => {

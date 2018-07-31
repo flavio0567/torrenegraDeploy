@@ -17,9 +17,9 @@
 </nav>
 
 <div class="container">
-
+  <div class="mat-body-2"> 
     Dados básicos: 
-
+  </div>
     <div class="errors" *ngIf="errors">
       <p *ngIf="errors.cnpj" >  {{ errors['cnpj'].message }} </p>
       <p *ngIf="errors.razaoSocial" >  {{ errors['razaoSocial'].message }} </p>
@@ -153,9 +153,9 @@
         </mat-form-field></td>
       </tr></table>
     </form>
-
-    Dados comerciais:
-
+    <div class="mat-body-2"> 
+      Dados comerciais:
+    </div>
     <table class="example-full-width" cellspacing="0"><tr>
       <td><mat-form-field class="example-full-width">
         <input 
@@ -176,8 +176,9 @@
         />
       </mat-form-field></td>
     </tr></table>
-
-    Contatos: 
+    <div class="mat-body-2"> 
+      Contatos:
+    </div> 
     <div class="container">
       <div formArrayName="contatos">
           

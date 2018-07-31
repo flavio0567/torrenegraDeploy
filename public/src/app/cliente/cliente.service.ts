@@ -27,52 +27,10 @@ export class ClienteService {
     return this._http.put('cliente/edit/' + id, cliente);
   }
 
-  // encerrarProjeto(id) {
-  //   this._http.put('/projeto/encerrar,' + id, this.projeto).subscribe(
-  //     (res) => {
-  //       console.log('SUCESSO no encerramento do projeto: ', res.json());
-  //       this.projeto(res.json());
-  //     },
-  //     (err) => {
-  //       console.log('ERRO no encerramento do projeto: ', err);
-  //     }
-  //   );
-  // }
-
-
-  
-  // getOne(recipie, id) {
-  //   this._http.get('/recipie').subscribe(
-  //   id => id.json());
-  //   console.log('services-recipie in getOne:', id)
-  // }
-
-
-
-  // updateRecipie(ingredients, callback) {
-  //   this._http.put('/recipie/update', ingredients).subscribe(
-  //     (res) => {
-  //       console.log('SUCCESS updating recipie: ', res.json());
-  //       callback(res.json());
-  //     },
-  //     (err) => {
-  //       console.log('ERROR updating recipie: ', err);
-  //     }
-  //   );
-  // }
-
-  // likeRecipie(id, callback) {
-  //   this._http.put('/recipie/like/' + id, this.recipie ).subscribe(
-  //     (res) => {
-  //       console.log('SUCCESS Like recipie: ', res.json());
-  //       res.json();
-  //     },
-  //     (err) => {
-  //       console.log('ERROR like recipie: ', err);
-  //     }
-  //   );
-  // }
-
+  excluirCliente(id) {
+    console.log('ClienteService > excluirCliente(id)', id);
+    return this._http.delete('cliente/excluir/' + id);
+  }
 
 
   

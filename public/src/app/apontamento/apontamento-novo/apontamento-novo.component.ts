@@ -3,8 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { ProjetoService } from '../../projeto/projeto.service';
 import { UsuarioService } from '../../usuario/usuario.service';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 // import { getLocaleDateTimeFormat } from '../../../../node_modules/@angular/common';
+import { MatRadioChange } from '@angular/material';
 
 @Component({
   selector: 'app-apontamento-novo',
@@ -13,32 +14,17 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 })
 export class ApontamentoNovoComponent implements OnInit {
 
-  panelColor = new FormControl('green');
-
+  errors: any;
   options: FormGroup;
-  tipo: string = 'hora';
-  projeto: string = '';
-  opDespesa: string = '';
-  descricao: string = '';
-  inicio: string = '';
-  fim: string = '';
-  valor: number = 0;
-
   usuarioLogado = {
     email: '',
     admin: ''
   }
-
   today = new Date();
-  // today = moment(new Date()).format('MM/DD/YYYY h:mm a');
-
   projetos: any[];
   projetoSelecionado: Number;
- 
   id: any;
-  // tipo: any;
   opcaoDespesa: any;
-
   apontamento: any = {
     tipo: "",
     usuario: "",
@@ -51,7 +37,9 @@ export class ApontamentoNovoComponent implements OnInit {
       valor: 0
     }
   }
-  
+  array = ['hora', 'despesa'];
+
+
   constructor(
     private fb: FormBuilder,
     private _projetoService: ProjetoService,
@@ -59,7 +47,7 @@ export class ApontamentoNovoComponent implements OnInit {
     private _router: Router
   ) {  
     this.options = fb.group({
-      tipo: ['hora'],
+      tipo: [null, [Validators.required]],
       projeto: [null],
       opDespesa: [null],
       descricao: [null],
@@ -67,6 +55,9 @@ export class ApontamentoNovoComponent implements OnInit {
       fim: [null],
       valor: [null]
     });
+
+    this.formControlValueChanged();
+
   }
 
   ngOnInit() {
@@ -75,23 +66,61 @@ export class ApontamentoNovoComponent implements OnInit {
     this.apontamento.usuario = this.usuarioLogado;
     this.obterListaProjeto();
   }
-  
+
   obterListaProjeto() {
     console.log('ApontamentoNovoComponent > obterListaProjeto()')
     const projetoObservable = this._projetoService.obterTodos();
     projetoObservable.subscribe(
       (projetos) => { 
         this.projetos = projetos.json();
-        console.log('projetos in List apontamentos:', this.projetos);
       },
       (err) => { },
         () => { }
     )
   }
 
+  formControlValueChanged() {
+    const inicio = this.options.get('inicio');
+    const opDespesa = this.options.get('opDespesa');
+    const descricao = this.options.get('descricao');
+    const valor = this.options.get('valor');
+    this.options.get('tipo').valueChanges.subscribe(
+        (tipo: string) => {
+            if (tipo === 'hora') {
+                descricao.clearValidators();
+                valor.clearValidators();
+                inicio.setValidators([Validators.required]);
+            }
+            else if (tipo === 'despesa') {
+                this.options.get('opDespesa').valueChanges.subscribe(
+                  (opdesp: string) => {
+                    opDespesa.setValidators([Validators.required]);
+                    if (opdesp === 'outros') {
+                      descricao.setValidators([Validators.required]);
+                    } else {
+                      descricao.clearValidators();
+                    }
+                    valor.setValidators([Validators.required]);
+                    inicio.clearValidators();
+                })
+            }
+            inicio.updateValueAndValidity();
+            opDespesa.updateValueAndValidity();
+            descricao.updateValueAndValidity();
+            valor.updateValueAndValidity();
+        });
+
+  }
+
+  radioChange(event: MatRadioChange, i) {
+    if (event.value === 'despesa') {
+      this.array = ['despesa'];
+    } else {
+      this.array = ['hora'];
+    }
+  }
 
   setApontamento() {
-    console.log('debug: - tipo ',  this.options.value, this.options.controls.tipo.value );
     this.apontamento.tipo = this.options.controls.tipo.value;
     if (this.options.controls.tipo.value != 'hora') {
       this.apontamento.hora.inicio = "";
@@ -109,22 +138,23 @@ export class ApontamentoNovoComponent implements OnInit {
       this.apontamento.despesa.valor = this.options.controls.valor.value;
     }
     console.log('ApontamentoNovoComponent > setApontamento() >  this.apontamento, this.options', this.apontamento );
-    const Observable = this._projetoService.apontamentoNovo(this.options.controls.projeto.value, this.apontamento);
-    Observable.subscribe(
-      (projetos) => { 
-        this.projetos = projetos.json();
-        this._router.navigate(['/apontamentos']);
+    this._projetoService.apontamentoNovo(this.options.controls.projeto.value, this.apontamento)
+      .subscribe(observable => {
+        if(observable.json().errors) {
+          this.errors = observable.json().errors;
+          console.log('Algum erro ocorreu salvando apontamento ', this.errors);
+          this._router.navigate(['/apontamento/novo']);
+        } else {
+          this._router.navigate(['/apontamentos']);
+        }
       },
-      (err) => { },
-        () => { }
-    )
-  }
+      err => {
+        throw err;
+      })
+    }
 
   cancel() {
     this._router.navigate(['/apontamentos']);
   }
-
-
-
 
 }

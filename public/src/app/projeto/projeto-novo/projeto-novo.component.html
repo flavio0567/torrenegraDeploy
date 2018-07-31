@@ -18,9 +18,9 @@
 
 <div class="container">
 
-
-  Dados básicos:
-
+  <div class="mat-body-2"> 
+    Dados básicos:
+  </div>
   <div class="errors" *ngIf="errors">
     <p *ngIf="errors.codigo" >  {{ errors['codigo'].message }} </p>
     <p *ngIf="errors.descricao" >  {{ errors['descricao'].message }} </p>
@@ -128,9 +128,9 @@
     </div>
   </div>
   <!-- <div *ngIf="!projeto.pedido.valid" class="purple">Pedido do projeto precisar ter no mínimo 4 caracteres!</div> -->
-
-Dados financeiros:
-
+<div class="mat-body-2"> 
+  Dados financeiros:
+</div>
   <div class="field is-horizontal">
     <div class="field-label is-normal">
       <label class="label">Horas PLC</label>
