@@ -9,7 +9,6 @@ uniqueValidator  = require('mongoose-unique-validator');
  var UsuarioSchema = new mongoose.Schema({
     nome: {
         type: String, 
-        unique: true, 
         required: [true, "Nome do usuário é requerido"],
         minlength: 4 
     },
@@ -26,7 +25,7 @@ uniqueValidator  = require('mongoose-unique-validator');
     email: {
         type: String, 
         trim: true,
-        unique: [true, 'E-mail em uso'],
+        unique: true,
         uniqueCaseInsensitive: true,
         required: [true,'Email é requerido'],
         validate: {
@@ -59,6 +58,6 @@ uniqueValidator  = require('mongoose-unique-validator');
 // set model by passing his Schema
 mongoose.model('Usuario', UsuarioSchema);
 
-UsuarioSchema.plugin(uniqueValidator, {message: 'Usuario já cadastrado.'});
+UsuarioSchema.plugin(uniqueValidator, {message: 'E-mail já cadastrado.'});
 // stored model in variable
 const Usuario = mongoose.model('Usuario');

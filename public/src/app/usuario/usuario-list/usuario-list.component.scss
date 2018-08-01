@@ -1,4 +1,11 @@
-img {
+.logo {
     width: 190px;
+    height: auto;
+}
+.mat-list .mat-list-item /deep/.mat-list-item-content {
+    height: 20px;
+}
+.icon {
+    width: 25px;
     height: auto;
 }

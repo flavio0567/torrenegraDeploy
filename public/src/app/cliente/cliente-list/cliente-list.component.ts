@@ -2,11 +2,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ClienteService } from '../cliente.service';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Cliente } from '../cliente-novo/cliente';
+import { UsuarioService } from '../../usuario/usuario.service';
 
 export interface ClienteData {
   _id: string;
   nomeFantasia: string;
-  dvalorHH: string;
+  valorHH: string;
   prazoPgto: string;
   nome: string,
   email: string,
@@ -20,6 +21,10 @@ export interface ClienteData {
 })
 export class ClienteListComponent implements OnInit {
   
+  usuarioLogado = {
+    email: '',
+    admin: ''
+  }
   clientes: any;
   cliente: any = new Cliente();
 
@@ -29,21 +34,15 @@ export class ClienteListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-
   constructor(
-    private _clienteService: ClienteService
+    private _clienteService: ClienteService,
+    private _usuarioService: UsuarioService
   ) { }
 
   ngOnInit() {
+    this.usuarioLogado = this._usuarioService.getUserLoggedIn();
+    console.log('UsuarioListComponent > usuariologado',this.usuarioLogado.email)
     this.obterClientes();
-  }
-
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
   }
 
   obterClientes() {
@@ -70,5 +69,12 @@ export class ClienteListComponent implements OnInit {
     )
   }
 
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
 
 }

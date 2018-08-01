@@ -20,6 +20,7 @@
   <div class="mat-body-2"> 
     Dados do usuário:
   </div>
+
   <div class="errors" *ngIf="errors">
     <p *ngIf="errors.nome" >  {{ errors['nome'].message }} </p>
     <p *ngIf="errors.email" >  {{ errors['email'].message }} </p>
@@ -27,106 +28,78 @@
     <p *ngIf="errors.custoHora" >  {{ errors['custoHora'].message }} </p>       
   </div>
 
-  <form (submit)="criarUsuario(userForm)" #userForm='ngForm'>
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        <label class="label">Nome</label>
-      </div>
-      <div class="field-body">
-        <div class="field">
-          <p class="control">
-            <input 
-            class="input is-focused" 
-            type="text" 
-            name="nome" 
-            minlength=4
-            required
-            [(ngModel)]="usuario.nome"
-            #nome="ngModel"
-            />
-          </p>
-        </div>
-      </div>
-    </div>
-    <!-- <div *ngIf="!codigo.valid" class="purple">Código precisar ter no mínimo 4 caracteres!</div> -->
+  <form class="example-form" [formGroup] = "userForm">
+
+    <table class="example-full-width" cellspacing="0"><tr> 
     
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        <label class="label">e-mail</label>
-      </div>
-      <div class="field-body">
-        <div class="field">
-          <p class="control">
-            <input 
-            class="input" 
-            type="text" 
-            name="email" 
-            required
-            pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-            [(ngModel)]="usuario.email"
-            #email="ngModel"
-            />
-          </p>
-        </div>
-      </div>
-    </div>
-  <!-- <div *ngIf="!codigo.valid" class="purple">Código precisar ter no mínimo 4 caracteres!</div> -->
-
-  <div class="field is-horizontal">
-    <div class="field-label is-normal">
-      <label class="label">Função</label>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <p class="control">
-          <input 
-          class="input" 
-          type="text" 
-          name="funcao" 
-          minlength=4
-          required
-          [(ngModel)]="usuario.funcao"
-          #funcao="ngModel"
-          />
-        </p>
-      </div>
-    </div>
-  </div>
-  <!-- <div *ngIf="!cliente.valid" class="purple">Função precisar ter no mínimo 4 caracteres!</div> -->
-
-
-  <div class="field is-horizontal">
-    <div class="field-label is-normal">
-      <label class="label">Custo hora</label>
-    </div>
-    <div class="field-body">
-      <div class="field">
-        <p class="control">
-          <input 
-          class="input" 
-          type="text" 
-          name="custoHora" 
-          required
-          [(ngModel)]="usuario.custoHora"
-          #custoHora="ngModel"
-          />
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <div class="field is-horizontal">
-    <label class="checkbox">
+      <td><mat-form-field class="example-full-width">
         <input 
-        type="checkbox"
-        name="admin"
-        [(ngModel)]="usuario.admin">
-        &nbsp; Administrador  
-    </label>
-  </div>
+        matInput 
+        placeholder="nome"
+        type="text"
+        formControlName="nome" 
+        name="nome"
+        >
+        <mat-error *ngIf="nome.invalid && nome.touched">
+            nome informado não é válido
+        </mat-error>
+      </mat-form-field></td>
+    </tr></table>
 
-  <button type="button" class="btn btn-secondary" (click)="cancel()">Cancela</button>
-  <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">Confirma</button>
+    <table class="example-full-width" cellspacing="0"><tr> 
+      <td><mat-form-field class="example-full-width">
+        <input 
+        matInput 
+        placeholder="email"
+        type="email"
+        formControlName="email" 
+        name="email"
+        />
+        <mat-error *ngIf="email.invalid && email.touched">
+            email informado não é válido
+        </mat-error>
+      </mat-form-field></td>
+    </tr></table>
+
+    <table class="example-full-width" cellspacing="0"><tr> 
+      <td><mat-form-field class="example-full-width">
+        <input 
+        matInput 
+        placeholder="funcao"
+        type="text"
+        formControlName="funcao" 
+        name="funcao"
+        />
+        <mat-error *ngIf="funcao.invalid && funcao.touched">
+            funcao informada não é válida
+        </mat-error>
+      </mat-form-field></td>
+    </tr></table>
+
+    <table class="example-full-width" cellspacing="0"><tr> 
+      <td><mat-form-field class="example-full-width">
+        <input 
+        matInput
+        placeholder="custo hora"
+        type="number"
+        formControlName="custoHora" 
+        name="custoHora"  
+        />
+        <mat-error *ngIf="custoHora.invalid && custoHora.touched">
+            custo Hora informado não é válido
+        </mat-error>
+      </mat-form-field></td>
+    </tr></table>
+
+    <table class="example-full-width" cellspacing="0"><tr> 
+      <td>
+        <mat-checkbox color="warn" formControlName="admin">Administrador
+        </mat-checkbox>
+      </td>
+    </tr></table>
+
+    <button mat-raised-button color="basic"  (click)="cancel()">Cancela</button>
+    <button mat-raised-button color="primary" (click)="criarUsuario(userForm)" [disabled]="userForm.invalid">Confirma</button>
 
   </form>
   

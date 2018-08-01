@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../usuario.service';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-usuario-novo',
@@ -13,16 +13,12 @@ export class UsuarioNovoComponent implements OnInit {
     email: '',
     admin: ''
   }
-  usuario = { 
-    nome: "",
-    email: "",
-    funcao: "",
-    custoHora: 0,
-    admin: false
-  };
+
   errors: any;
+  userForm: FormGroup;
 
   constructor(
+    private _formBuilder: FormBuilder,
     private _usuarioService: UsuarioService,
     private _router: Router
   ) { }
@@ -30,10 +26,33 @@ export class UsuarioNovoComponent implements OnInit {
   ngOnInit() {
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
     console.log('UsuarioNovoComponent > usuariologado ', this.usuarioLogado.email);
+    this.userForm = this._formBuilder.group({
+      nome: [null, [ Validators.required, Validators.minLength(4) ]],
+      email: [null, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')],
+      funcao: [null, [ Validators.required ]],
+      custoHora: [null, [ Validators.required ]],
+      admin: []
+    })
+  }
+
+  get nome() {
+    return this.userForm.get('nome');
+  }
+
+  get email() {
+    return this.userForm.get('email');
+  }
+
+  get funcao() {
+    return this.userForm.get('funcao');
+  }
+
+  get custoHora() {
+    return this.userForm.get('custoHora');
   }
 
   criarUsuario(userForm: NgForm) {
-  console.log('UsuarioNovoComponent > criarUsuario(userForm)', userForm); 
+  console.log('UsuarioNovoComponent > criarUsuario(userForm)', userForm.value); 
   this._usuarioService.criarUsuario(userForm.value)
     .subscribe(observable => {
       if(observable.json().errors) {
@@ -48,7 +67,6 @@ export class UsuarioNovoComponent implements OnInit {
         throw err;
       }
     );
-    userForm.resetForm();
   }
 
   cancel(){

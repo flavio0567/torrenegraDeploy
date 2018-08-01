@@ -7,6 +7,7 @@ import { MatDialogModule, MatFormFieldModule, MatInputModule, MatOptionModule, M
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { GlobalErrorComponent } from './global-error/global-error.component';
 
@@ -86,7 +87,8 @@ import { ApontamentoListaHoraComponent, DialogApontamentoHora } from './apontame
     MatRadioModule,
     MatTabsModule,
     MatCardModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatCheckboxModule
     // NgbModule,
     // NgbModule.forRoot()
   ],

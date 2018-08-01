@@ -887,40 +887,42 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material/tabs */ "./node_modules/@angular/material/esm5/tabs.es5.js");
 /* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
 /* harmony import */ var _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/toolbar */ "./node_modules/@angular/material/esm5/toolbar.es5.js");
-/* harmony import */ var _global_error_global_error_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./global-error/global-error.component */ "./src/app/global-error/global-error.component.ts");
-/* harmony import */ var _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./projeto/projeto.service */ "./src/app/projeto/projeto.service.ts");
-/* harmony import */ var _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./usuario/usuario.service */ "./src/app/usuario/usuario.service.ts");
-/* harmony import */ var _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./cliente/cliente.service */ "./src/app/cliente/cliente.service.ts");
-/* harmony import */ var _global_error_handler_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./global-error-handler.service */ "./src/app/global-error-handler.service.ts");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _cliente_cliente_edit_cliente_edit_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./cliente/cliente-edit/cliente-edit.component */ "./src/app/cliente/cliente-edit/cliente-edit.component.ts");
-/* harmony import */ var _cliente_cliente_novo_cliente_novo_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./cliente/cliente-novo/cliente-novo.component */ "./src/app/cliente/cliente-novo/cliente-novo.component.ts");
-/* harmony import */ var _cliente_cliente_show_cliente_show_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./cliente/cliente-show/cliente-show.component */ "./src/app/cliente/cliente-show/cliente-show.component.ts");
-/* harmony import */ var _usuario_usuario_list_usuario_list_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./usuario/usuario-list/usuario-list.component */ "./src/app/usuario/usuario-list/usuario-list.component.ts");
-/* harmony import */ var _usuario_usuario_edit_usuario_edit_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./usuario/usuario-edit/usuario-edit.component */ "./src/app/usuario/usuario-edit/usuario-edit.component.ts");
-/* harmony import */ var _usuario_usuario_novo_usuario_novo_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./usuario/usuario-novo/usuario-novo.component */ "./src/app/usuario/usuario-novo/usuario-novo.component.ts");
-/* harmony import */ var _usuario_usuario_show_usuario_show_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./usuario/usuario-show/usuario-show.component */ "./src/app/usuario/usuario-show/usuario-show.component.ts");
-/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
-/* harmony import */ var _financeiro_financeiro_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./financeiro/financeiro.component */ "./src/app/financeiro/financeiro.component.ts");
-/* harmony import */ var _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./projeto/projeto-list/projeto-list.component */ "./src/app/projeto/projeto-list/projeto-list.component.ts");
-/* harmony import */ var _projeto_projeto_novo_projeto_novo_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./projeto/projeto-novo/projeto-novo.component */ "./src/app/projeto/projeto-novo/projeto-novo.component.ts");
-/* harmony import */ var _projeto_projeto_show_projeto_show_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./projeto/projeto-show/projeto-show.component */ "./src/app/projeto/projeto-show/projeto-show.component.ts");
-/* harmony import */ var _projeto_projeto_edit_projeto_edit_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./projeto/projeto-edit/projeto-edit.component */ "./src/app/projeto/projeto-edit/projeto-edit.component.ts");
-/* harmony import */ var _cliente_cliente_list_cliente_list_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./cliente/cliente-list/cliente-list.component */ "./src/app/cliente/cliente-list/cliente-list.component.ts");
-/* harmony import */ var _relatorio_relatorio_financeiro_relatorio_financeiro_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./relatorio/relatorio-financeiro/relatorio-financeiro.component */ "./src/app/relatorio/relatorio-financeiro/relatorio-financeiro.component.ts");
-/* harmony import */ var _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./pagina-nao-encontrada/pagina-nao-encontrada.component */ "./src/app/pagina-nao-encontrada/pagina-nao-encontrada.component.ts");
-/* harmony import */ var _apontamento_apontamento_novo_apontamento_novo_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./apontamento/apontamento-novo/apontamento-novo.component */ "./src/app/apontamento/apontamento-novo/apontamento-novo.component.ts");
-/* harmony import */ var _material__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./material */ "./src/app/material.ts");
-/* harmony import */ var _apontamento_apontamento_dashboard_apontamento_dashboard_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./apontamento/apontamento-dashboard/apontamento-dashboard.component */ "./src/app/apontamento/apontamento-dashboard/apontamento-dashboard.component.ts");
-/* harmony import */ var _apontamento_apontamento_lista_despesa_apontamento_lista_despesa_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./apontamento/apontamento-lista-despesa/apontamento-lista-despesa.component */ "./src/app/apontamento/apontamento-lista-despesa/apontamento-lista-despesa.component.ts");
-/* harmony import */ var _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./apontamento/apontamento-lista-hora/apontamento-lista-hora.component */ "./src/app/apontamento/apontamento-lista-hora/apontamento-lista-hora.component.ts");
+/* harmony import */ var _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/material/checkbox */ "./node_modules/@angular/material/esm5/checkbox.es5.js");
+/* harmony import */ var _global_error_global_error_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./global-error/global-error.component */ "./src/app/global-error/global-error.component.ts");
+/* harmony import */ var _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./projeto/projeto.service */ "./src/app/projeto/projeto.service.ts");
+/* harmony import */ var _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./usuario/usuario.service */ "./src/app/usuario/usuario.service.ts");
+/* harmony import */ var _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./cliente/cliente.service */ "./src/app/cliente/cliente.service.ts");
+/* harmony import */ var _global_error_handler_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./global-error-handler.service */ "./src/app/global-error-handler.service.ts");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _cliente_cliente_edit_cliente_edit_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./cliente/cliente-edit/cliente-edit.component */ "./src/app/cliente/cliente-edit/cliente-edit.component.ts");
+/* harmony import */ var _cliente_cliente_novo_cliente_novo_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./cliente/cliente-novo/cliente-novo.component */ "./src/app/cliente/cliente-novo/cliente-novo.component.ts");
+/* harmony import */ var _cliente_cliente_show_cliente_show_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./cliente/cliente-show/cliente-show.component */ "./src/app/cliente/cliente-show/cliente-show.component.ts");
+/* harmony import */ var _usuario_usuario_list_usuario_list_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./usuario/usuario-list/usuario-list.component */ "./src/app/usuario/usuario-list/usuario-list.component.ts");
+/* harmony import */ var _usuario_usuario_edit_usuario_edit_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./usuario/usuario-edit/usuario-edit.component */ "./src/app/usuario/usuario-edit/usuario-edit.component.ts");
+/* harmony import */ var _usuario_usuario_novo_usuario_novo_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./usuario/usuario-novo/usuario-novo.component */ "./src/app/usuario/usuario-novo/usuario-novo.component.ts");
+/* harmony import */ var _usuario_usuario_show_usuario_show_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./usuario/usuario-show/usuario-show.component */ "./src/app/usuario/usuario-show/usuario-show.component.ts");
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
+/* harmony import */ var _financeiro_financeiro_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./financeiro/financeiro.component */ "./src/app/financeiro/financeiro.component.ts");
+/* harmony import */ var _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./projeto/projeto-list/projeto-list.component */ "./src/app/projeto/projeto-list/projeto-list.component.ts");
+/* harmony import */ var _projeto_projeto_novo_projeto_novo_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./projeto/projeto-novo/projeto-novo.component */ "./src/app/projeto/projeto-novo/projeto-novo.component.ts");
+/* harmony import */ var _projeto_projeto_show_projeto_show_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./projeto/projeto-show/projeto-show.component */ "./src/app/projeto/projeto-show/projeto-show.component.ts");
+/* harmony import */ var _projeto_projeto_edit_projeto_edit_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./projeto/projeto-edit/projeto-edit.component */ "./src/app/projeto/projeto-edit/projeto-edit.component.ts");
+/* harmony import */ var _cliente_cliente_list_cliente_list_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./cliente/cliente-list/cliente-list.component */ "./src/app/cliente/cliente-list/cliente-list.component.ts");
+/* harmony import */ var _relatorio_relatorio_financeiro_relatorio_financeiro_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./relatorio/relatorio-financeiro/relatorio-financeiro.component */ "./src/app/relatorio/relatorio-financeiro/relatorio-financeiro.component.ts");
+/* harmony import */ var _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./pagina-nao-encontrada/pagina-nao-encontrada.component */ "./src/app/pagina-nao-encontrada/pagina-nao-encontrada.component.ts");
+/* harmony import */ var _apontamento_apontamento_novo_apontamento_novo_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./apontamento/apontamento-novo/apontamento-novo.component */ "./src/app/apontamento/apontamento-novo/apontamento-novo.component.ts");
+/* harmony import */ var _material__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./material */ "./src/app/material.ts");
+/* harmony import */ var _apontamento_apontamento_dashboard_apontamento_dashboard_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./apontamento/apontamento-dashboard/apontamento-dashboard.component */ "./src/app/apontamento/apontamento-dashboard/apontamento-dashboard.component.ts");
+/* harmony import */ var _apontamento_apontamento_lista_despesa_apontamento_lista_despesa_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./apontamento/apontamento-lista-despesa/apontamento-lista-despesa.component */ "./src/app/apontamento/apontamento-lista-despesa/apontamento-lista-despesa.component.ts");
+/* harmony import */ var _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./apontamento/apontamento-lista-hora/apontamento-lista-hora.component */ "./src/app/apontamento/apontamento-lista-hora/apontamento-lista-hora.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -966,30 +968,30 @@ var AppModule = /** @class */ (function () {
     AppModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_15__["AppComponent"],
-                _login_login_component__WEBPACK_IMPORTED_MODULE_23__["LoginComponent"],
-                _financeiro_financeiro_component__WEBPACK_IMPORTED_MODULE_24__["FinanceiroComponent"],
-                _cliente_cliente_list_cliente_list_component__WEBPACK_IMPORTED_MODULE_29__["ClienteListComponent"],
-                _cliente_cliente_novo_cliente_novo_component__WEBPACK_IMPORTED_MODULE_17__["ClienteNovoComponent"],
-                _cliente_cliente_edit_cliente_edit_component__WEBPACK_IMPORTED_MODULE_16__["ClienteEditComponent"],
-                _cliente_cliente_show_cliente_show_component__WEBPACK_IMPORTED_MODULE_18__["ClienteShowComponent"],
-                _usuario_usuario_list_usuario_list_component__WEBPACK_IMPORTED_MODULE_19__["UsuarioListComponent"],
-                _usuario_usuario_edit_usuario_edit_component__WEBPACK_IMPORTED_MODULE_20__["UsuarioEditComponent"],
-                _usuario_usuario_novo_usuario_novo_component__WEBPACK_IMPORTED_MODULE_21__["UsuarioNovoComponent"],
-                _usuario_usuario_show_usuario_show_component__WEBPACK_IMPORTED_MODULE_22__["UsuarioShowComponent"],
-                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_25__["ProjetoListComponent"],
-                _projeto_projeto_novo_projeto_novo_component__WEBPACK_IMPORTED_MODULE_26__["ProjetoNovoComponent"],
-                _projeto_projeto_show_projeto_show_component__WEBPACK_IMPORTED_MODULE_27__["ProjetoShowComponent"],
-                _projeto_projeto_edit_projeto_edit_component__WEBPACK_IMPORTED_MODULE_28__["ProjetoEditComponent"],
-                _relatorio_relatorio_financeiro_relatorio_financeiro_component__WEBPACK_IMPORTED_MODULE_30__["RelatorioFinanceiroComponent"],
-                _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_31__["PaginaNaoEncontradaComponent"],
-                _global_error_global_error_component__WEBPACK_IMPORTED_MODULE_9__["GlobalErrorComponent"],
-                _apontamento_apontamento_novo_apontamento_novo_component__WEBPACK_IMPORTED_MODULE_32__["ApontamentoNovoComponent"],
-                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_25__["DialogProjeto"],
-                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_36__["DialogApontamentoHora"],
-                _apontamento_apontamento_dashboard_apontamento_dashboard_component__WEBPACK_IMPORTED_MODULE_34__["ApontamentoDashboardComponent"],
-                _apontamento_apontamento_lista_despesa_apontamento_lista_despesa_component__WEBPACK_IMPORTED_MODULE_35__["ApontamentoListaDespesaComponent"],
-                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_36__["ApontamentoListaHoraComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_16__["AppComponent"],
+                _login_login_component__WEBPACK_IMPORTED_MODULE_24__["LoginComponent"],
+                _financeiro_financeiro_component__WEBPACK_IMPORTED_MODULE_25__["FinanceiroComponent"],
+                _cliente_cliente_list_cliente_list_component__WEBPACK_IMPORTED_MODULE_30__["ClienteListComponent"],
+                _cliente_cliente_novo_cliente_novo_component__WEBPACK_IMPORTED_MODULE_18__["ClienteNovoComponent"],
+                _cliente_cliente_edit_cliente_edit_component__WEBPACK_IMPORTED_MODULE_17__["ClienteEditComponent"],
+                _cliente_cliente_show_cliente_show_component__WEBPACK_IMPORTED_MODULE_19__["ClienteShowComponent"],
+                _usuario_usuario_list_usuario_list_component__WEBPACK_IMPORTED_MODULE_20__["UsuarioListComponent"],
+                _usuario_usuario_edit_usuario_edit_component__WEBPACK_IMPORTED_MODULE_21__["UsuarioEditComponent"],
+                _usuario_usuario_novo_usuario_novo_component__WEBPACK_IMPORTED_MODULE_22__["UsuarioNovoComponent"],
+                _usuario_usuario_show_usuario_show_component__WEBPACK_IMPORTED_MODULE_23__["UsuarioShowComponent"],
+                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_26__["ProjetoListComponent"],
+                _projeto_projeto_novo_projeto_novo_component__WEBPACK_IMPORTED_MODULE_27__["ProjetoNovoComponent"],
+                _projeto_projeto_show_projeto_show_component__WEBPACK_IMPORTED_MODULE_28__["ProjetoShowComponent"],
+                _projeto_projeto_edit_projeto_edit_component__WEBPACK_IMPORTED_MODULE_29__["ProjetoEditComponent"],
+                _relatorio_relatorio_financeiro_relatorio_financeiro_component__WEBPACK_IMPORTED_MODULE_31__["RelatorioFinanceiroComponent"],
+                _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_32__["PaginaNaoEncontradaComponent"],
+                _global_error_global_error_component__WEBPACK_IMPORTED_MODULE_10__["GlobalErrorComponent"],
+                _apontamento_apontamento_novo_apontamento_novo_component__WEBPACK_IMPORTED_MODULE_33__["ApontamentoNovoComponent"],
+                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_26__["DialogProjeto"],
+                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_37__["DialogApontamentoHora"],
+                _apontamento_apontamento_dashboard_apontamento_dashboard_component__WEBPACK_IMPORTED_MODULE_35__["ApontamentoDashboardComponent"],
+                _apontamento_apontamento_lista_despesa_apontamento_lista_despesa_component__WEBPACK_IMPORTED_MODULE_36__["ApontamentoListaDespesaComponent"],
+                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_37__["ApontamentoListaHoraComponent"]
                 // NgbdDatepickerPopup,
             ],
             imports: [
@@ -1001,29 +1003,30 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatFormFieldModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatInputModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_14__["AppRoutingModule"],
-                _material__WEBPACK_IMPORTED_MODULE_33__["MaterialModule"],
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_15__["AppRoutingModule"],
+                _material__WEBPACK_IMPORTED_MODULE_34__["MaterialModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatOptionModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatSelectModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatRadioModule"],
                 _angular_material_tabs__WEBPACK_IMPORTED_MODULE_6__["MatTabsModule"],
                 _angular_material_card__WEBPACK_IMPORTED_MODULE_7__["MatCardModule"],
-                _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_8__["MatToolbarModule"]
+                _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_8__["MatToolbarModule"],
+                _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_9__["MatCheckboxModule"]
                 // NgbModule,
                 // NgbModule.forRoot()
             ],
             entryComponents: [
-                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_25__["DialogProjeto"],
-                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_36__["DialogApontamentoHora"]
+                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_26__["DialogProjeto"],
+                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_37__["DialogApontamentoHora"]
             ],
             providers: [
-                _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_10__["ProjetoService"],
-                _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_11__["UsuarioService"],
-                _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_12__["ClienteService"],
-                _global_error_handler_service__WEBPACK_IMPORTED_MODULE_13__["GlobalErrorHandlerService"],
-                { provide: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ErrorHandler"], useClass: _global_error_handler_service__WEBPACK_IMPORTED_MODULE_13__["GlobalErrorHandlerService"] }
+                _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_11__["ProjetoService"],
+                _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_12__["UsuarioService"],
+                _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_13__["ClienteService"],
+                _global_error_handler_service__WEBPACK_IMPORTED_MODULE_14__["GlobalErrorHandlerService"],
+                { provide: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ErrorHandler"], useClass: _global_error_handler_service__WEBPACK_IMPORTED_MODULE_14__["GlobalErrorHandlerService"] }
             ],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_15__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_16__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -1277,6 +1280,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _cliente_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../cliente.service */ "./src/app/cliente/cliente.service.ts");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _cliente_novo_cliente__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../cliente-novo/cliente */ "./src/app/cliente/cliente-novo/cliente.ts");
+/* harmony import */ var _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../usuario/usuario.service */ "./src/app/usuario/usuario.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1290,20 +1294,22 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var ClienteListComponent = /** @class */ (function () {
-    function ClienteListComponent(_clienteService) {
+    function ClienteListComponent(_clienteService, _usuarioService) {
         this._clienteService = _clienteService;
+        this._usuarioService = _usuarioService;
+        this.usuarioLogado = {
+            email: '',
+            admin: ''
+        };
         this.cliente = new _cliente_novo_cliente__WEBPACK_IMPORTED_MODULE_3__["Cliente"]();
         this.displayedColumns = ['nomeFantasia', 'valorHH', 'nome', 'email', 'fone', 'acao1', 'acao2'];
     }
     ClienteListComponent.prototype.ngOnInit = function () {
+        this.usuarioLogado = this._usuarioService.getUserLoggedIn();
+        console.log('UsuarioListComponent > usuariologado', this.usuarioLogado.email);
         this.obterClientes();
-    };
-    ClienteListComponent.prototype.applyFilter = function (filterValue) {
-        this.dataSource.filter = filterValue.trim().toLowerCase();
-        if (this.dataSource.paginator) {
-            this.dataSource.paginator.firstPage();
-        }
     };
     ClienteListComponent.prototype.obterClientes = function () {
         var _this = this;
@@ -1325,6 +1331,12 @@ var ClienteListComponent = /** @class */ (function () {
             _this.dataSource.sort = _this.sort;
         }, function (err) { }, function () { });
     };
+    ClienteListComponent.prototype.applyFilter = function (filterValue) {
+        this.dataSource.filter = filterValue.trim().toLowerCase();
+        if (this.dataSource.paginator) {
+            this.dataSource.paginator.firstPage();
+        }
+    };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatPaginator"]),
         __metadata("design:type", _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatPaginator"])
@@ -1339,7 +1351,8 @@ var ClienteListComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./cliente-list.component.html */ "./src/app/cliente/cliente-list/cliente-list.component.html"),
             styles: [__webpack_require__(/*! ./cliente-list.component.scss */ "./src/app/cliente/cliente-list/cliente-list.component.scss")]
         }),
-        __metadata("design:paramtypes", [_cliente_service__WEBPACK_IMPORTED_MODULE_1__["ClienteService"]])
+        __metadata("design:paramtypes", [_cliente_service__WEBPACK_IMPORTED_MODULE_1__["ClienteService"],
+            _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_4__["UsuarioService"]])
     ], ClienteListComponent);
     return ClienteListComponent;
 }());
@@ -1355,7 +1368,7 @@ var ClienteListComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" [routerLink]=\"['/clientes']\">Retornar <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n\n<div class=\"container\">\n  <div class=\"mat-body-2\"> \n    Dados básicos: \n  </div>\n    <div class=\"errors\" *ngIf=\"errors\">\n      <p *ngIf=\"errors.cnpj\" >  {{ errors['cnpj'].message }} </p>\n      <p *ngIf=\"errors.razaoSocial\" >  {{ errors['razaoSocial'].message }} </p>\n      <p *ngIf=\"errors.nomeFantasia\" >  {{ errors['nomeFantasia'].message }} </p>\n      <p *ngIf=\"errors['endereco.logradouro']\" >  {{ errors['endereco.logradouro'].message }} </p>   \n      <p *ngIf=\"errors['endereco.cidade']\" >  {{ errors['endereco.cidade'].message }} </p>  \n      <p *ngIf=\"errors['endereco.estado']\" >  {{ errors['endereco.estado'].message }} </p>   \n      <p *ngIf=\"errors['endereco.cep']\" >  {{ errors['endereco.cep'].message }} </p>    \n      <!-- <p *ngIf=\"errors.contatos\" >  {{ errors['contatos'].message }} </p>        -->\n    </div>\n\n\n  <form class=\"example-form\" [formGroup] = \"clienteForm\">\n\n      <p> \n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"cnpj\"\n          type=\"text\"\n          formControlName=\"cnpj\" \n          name=\"cnpj\"\n          >\n          <mat-error *ngIf=\"cnpj.invalid && cnpj.touched\">\n            cnpj informado não é válido\n          </mat-error>\n        </mat-form-field></td>\n      </p>\n\n      <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      \n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"razão social\"\n          type=\"text\"\n          formControlName=\"razaoSocial\" \n          name=\"razaoSocial\"\n          />\n          <mat-error *ngIf=\"razaoSocial.invalid && razaoSocial.touched\">\n              razão social informada não é válida\n          </mat-error>\n        </mat-form-field></td>\n      </tr></table>\n\n      <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"nome fantasia\"\n        type=\"text\"\n        formControlName=\"nomeFantasia\"  \n        name=\"nomeFantasia\"\n        />\n        <mat-error *ngIf=\"nomeFantasia.invalid && nomeFantasia.touched\">\n            nome fantasia informado não é válido\n        </mat-error>\n      </mat-form-field></td>\n    </tr></table>\n\n    <form class=\"example-form\" [formGroup]=\"endereco\">\n      <p>\n        <mat-form-field class=\"example-full-width\">\n          <textarea \n          matInput \n          placeholder=\"endereço\"\n          type=\"text\"\n          formControlName=\"logradouro\" \n          name=\"logradouro\"> \n          </textarea>\n          <!-- <mat-error *ngIf=\"logradouro.invalid && logradouro.touched\">\n            endereço informado não é válido\n          </mat-error> -->\n        </mat-form-field>\n      </p>\n    \n      <p>\n        <mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"complemento\"\n          type=\"text\"\n          formControlName=\"complemento\" \n          name=\"complemento\"\n          /> \n        </mat-form-field>\n      </p>\n\n      <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"cidade\"\n          type=\"text\"\n          formControlName=\"cidade\" \n          name=\"cidade\"\n          >\n          <!-- <mat-error *ngIf=\"cidade.invalid && cidade.touched\">\n            cidade informada não é válida\n          </mat-error> -->\n        </mat-form-field></td>\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"estado\"\n          type=\"text\"\n          formControlName=\"estado\"\n          name=\"estado\" \n          maxlength=\"2\"\n          >\n          <mat-hint align=\"end\" *ngIf=\"estado\">{{estado.value.length}} / 2</mat-hint>\n          <!-- <mat-error *ngIf=\"estado.invalid && estado.touched\">\n            estado informado não é válido\n          </mat-error> -->\n        </mat-form-field></td>\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"cep\"\n          type=\"number\"\n          #postalCode\n          formControlName=\"cep\" \n          maxlength=\"8\" \n          name=\"cep\" \n          >\n          <mat-hint align=\"end\" *ngIf=\"cep\">{{cep.value.length}} / 8</mat-hint>\n          <!-- <mat-error *ngIf=\"cep.invalid && cep.touched\">\n            cep informado não é válido\n          </mat-error>  -->\n\n        </mat-form-field></td>\n      </tr></table>\n    </form>\n    <div class=\"mat-body-2\"> \n      Dados comerciais:\n    </div>\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput\n        placeholder=\"valor HH\"\n        type=\"number\"\n        formControlName=\"valorHH\" \n        name=\"valorHH\"  \n        />\n      </mat-form-field></td>\n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput\n        placeholder=\"prazo pagto\"\n        type=\"number\"\n        formControlName=\"prazoPgto\" \n        name=\"prazoPgto\"  \n        />\n      </mat-form-field></td>\n    </tr></table>\n    <div class=\"mat-body-2\"> \n      Contatos:\n    </div> \n    <div class=\"container\">\n      <div formArrayName=\"contatos\">\n          \n        <div *ngFor=\"let contato of contatoForms.controls; let i = index;\" [formGroupName]=\"i\">\n\n          <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n            <td><mat-form-field class=\"example-full-width\">\n              <input \n              matInput\n              placeholder=\"nome\"\n              type=\"text\"\n              formControlName=\"nome\" \n              name=\"nome\"  \n              />\n            </mat-form-field></td>\n\n            <td><mat-form-field class=\"example-full-width\">\n                <input \n                matInput\n                placeholder=\"email\"\n                type=\"email\"\n                formControlName=\"email\" \n                name=\"email\"\n                />\n              </mat-form-field></td>\n\n            <td><mat-form-field class=\"example-full-width\">\n                <input \n                matInput\n                placeholder=\"fone\"\n                type=\"number\"\n                formControlName=\"fone\" \n                name=\"fone\"  \n                />\n              </mat-form-field></td>\n\n              <td><mat-form-field class=\"example-full-width\">\n                  <input \n                  matInput\n                  placeholder=\"skype\"\n                  type=\"text\"\n                  formControlName=\"skype\" \n                  name=\"skype\"  \n                  />\n                </mat-form-field></td>\n                <a  mat-mini-fab color=\"warn\" (click)=\"deleteContato(i)\">-</a>\n            </tr></table>\n\n          </div>\n\n        \n        </div>\n\n\n        <a mat-mini-fab color=\"primary\" (click)=\"addContato()\">+</a>\n\n    </div>\n    <button mat-raised-button color=\"basic\" (click)=\"cancel()\">Cancelar</button>\n\n    <button mat-raised-button color=\"primary\"  (click)=\"criarCliente(clienteForm, endereco)\" [disabled]=\"clienteForm.invalid || endereco.invalid\">Confirma</button>\n      \n\n  </form>\n\n</div>"
+module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" [routerLink]=\"['/clientes']\">Retornar <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n  \n<div class=\"container\">\n  <div class=\"mat-body-2\"> \n    Dados básicos: \n  </div>\n    <div class=\"errors\" *ngIf=\"errors\">\n      <p *ngIf=\"errors.cnpj\" >  {{ errors['cnpj'].message }} </p>\n      <p *ngIf=\"errors.razaoSocial\" >  {{ errors['razaoSocial'].message }} </p>\n      <p *ngIf=\"errors.nomeFantasia\" >  {{ errors['nomeFantasia'].message }} </p>\n      <p *ngIf=\"errors['endereco.logradouro']\" >  {{ errors['endereco.logradouro'].message }} </p>   \n      <p *ngIf=\"errors['endereco.cidade']\" >  {{ errors['endereco.cidade'].message }} </p>  \n      <p *ngIf=\"errors['endereco.estado']\" >  {{ errors['endereco.estado'].message }} </p>   \n      <p *ngIf=\"errors['endereco.cep']\" >  {{ errors['endereco.cep'].message }} </p>    \n      <!-- <p *ngIf=\"errors.contatos\" >  {{ errors['contatos'].message }} </p>        -->\n    </div>\n\n\n  <form class=\"example-form\" [formGroup] = \"clienteForm\">\n\n      <p> \n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"cnpj\"\n          type=\"text\"\n          formControlName=\"cnpj\" \n          name=\"cnpj\"\n          />\n          <mat-error *ngIf=\"cnpj.invalid && cnpj.touched\">\n            cnpj informado não é válido\n          </mat-error>\n        </mat-form-field></td>\n      </p>\n\n      <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      \n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"razão social\"\n          type=\"text\"\n          formControlName=\"razaoSocial\" \n          name=\"razaoSocial\"\n          />\n          <mat-error *ngIf=\"razaoSocial.invalid && razaoSocial.touched\">\n              razão social informada não é válida\n          </mat-error>\n        </mat-form-field></td>\n      </tr></table>\n\n      <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"nome fantasia\"\n        type=\"text\"\n        formControlName=\"nomeFantasia\"  \n        name=\"nomeFantasia\"\n        />\n        <mat-error *ngIf=\"nomeFantasia.invalid && nomeFantasia.touched\">\n            nome fantasia informado não é válido\n        </mat-error>\n      </mat-form-field></td>\n    </tr></table>\n\n    <form class=\"example-form\" [formGroup]=\"endereco\">\n      <p>\n        <mat-form-field class=\"example-full-width\">\n          <textarea \n          matInput \n          placeholder=\"endereço\"\n          type=\"text\"\n          formControlName=\"logradouro\" \n          name=\"logradouro\"> \n          </textarea>\n          <!-- <mat-error *ngIf=\"logradouro.invalid && logradouro.touched\">\n            endereço informado não é válido\n          </mat-error> -->\n        </mat-form-field>\n      </p>\n    \n      <p>\n        <mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"complemento\"\n          type=\"text\"\n          formControlName=\"complemento\" \n          name=\"complemento\"\n          /> \n        </mat-form-field>\n      </p>\n\n      <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"cidade\"\n          type=\"text\"\n          formControlName=\"cidade\" \n          name=\"cidade\"\n          >\n          <!-- <mat-error *ngIf=\"cidade.invalid && cidade.touched\">\n            cidade informada não é válida\n          </mat-error> -->\n        </mat-form-field></td>\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"estado\"\n          type=\"text\"\n          formControlName=\"estado\"\n          name=\"estado\" \n          maxlength=\"2\"\n          >\n          <mat-hint align=\"end\" *ngIf=\"estado\">{{estado.value.length}} / 2</mat-hint>\n          <!-- <mat-error *ngIf=\"estado.invalid && estado.touched\">\n            estado informado não é válido\n          </mat-error> -->\n        </mat-form-field></td>\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"cep\"\n          type=\"number\"\n          #postalCode\n          formControlName=\"cep\" \n          maxlength=\"8\" \n          name=\"cep\" \n          >\n          <mat-hint align=\"end\" *ngIf=\"cep\">{{cep.value.length}} / 8</mat-hint>\n          <!-- <mat-error *ngIf=\"cep.invalid && cep.touched\">\n            cep informado não é válido\n          </mat-error>  -->\n\n        </mat-form-field></td>\n      </tr></table>\n    </form>\n    <div class=\"mat-body-2\"> \n      Dados comerciais:\n    </div>\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput\n        placeholder=\"valor HH\"\n        type=\"number\"\n        formControlName=\"valorHH\" \n        name=\"valorHH\"  \n        />\n      </mat-form-field></td>\n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput\n        placeholder=\"prazo pagto\"\n        type=\"number\"\n        formControlName=\"prazoPgto\" \n        name=\"prazoPgto\"  \n        />\n      </mat-form-field></td>\n    </tr></table>\n    <div class=\"mat-body-2\"> \n      Contatos:\n    </div> \n    <div class=\"container\">\n      <div formArrayName=\"contatos\">\n          \n        <div *ngFor=\"let contato of contatoForms.controls; let i = index;\" [formGroupName]=\"i\">\n\n          <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n            <td><mat-form-field class=\"example-full-width\">\n              <input \n              matInput\n              placeholder=\"nome\"\n              type=\"text\"\n              formControlName=\"nome\" \n              name=\"nome\"  \n              />\n            </mat-form-field></td>\n\n            <td><mat-form-field class=\"example-full-width\">\n                <input \n                matInput\n                placeholder=\"email\"\n                type=\"email\"\n                formControlName=\"email\" \n                name=\"email\"\n                />\n              </mat-form-field></td>\n\n            <td><mat-form-field class=\"example-full-width\">\n                <input \n                matInput\n                placeholder=\"fone\"\n                type=\"number\"\n                formControlName=\"fone\" \n                name=\"fone\"  \n                />\n              </mat-form-field></td>\n\n              <td><mat-form-field class=\"example-full-width\">\n                  <input \n                  matInput\n                  placeholder=\"skype\"\n                  type=\"text\"\n                  formControlName=\"skype\" \n                  name=\"skype\"  \n                  />\n                </mat-form-field></td>\n                <a  mat-mini-fab color=\"warn\" (click)=\"deleteContato(i)\">-</a>\n            </tr></table>\n\n          </div>\n\n        \n        </div>\n\n\n        <a mat-mini-fab color=\"primary\" (click)=\"addContato()\">+</a>\n\n    </div>\n    <button mat-raised-button color=\"basic\" (click)=\"cancel()\">Cancelar</button>\n\n    <button mat-raised-button color=\"primary\"  (click)=\"criarCliente(clienteForm, endereco)\" [disabled]=\"clienteForm.invalid || endereco.invalid\">Confirma</button>\n      \n\n  </form>\n\n</div>"
 
 /***/ }),
 
@@ -1412,7 +1425,7 @@ var ClienteNovoComponent = /** @class */ (function () {
     }
     ClienteNovoComponent.prototype.ngOnInit = function () {
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log(' ClienteNovoComponent > ', this.usuarioLogado.email);
+        console.log(' ClienteNovoComponent > usuariologado ', this.usuarioLogado.email);
         this.clienteForm = this._formBuilder.group({
             cnpj: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(11)]],
             razaoSocial: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
@@ -2891,7 +2904,7 @@ var RelatorioFinanceiroComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n  \n<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n  \n  <div class=\"container\">\n\n    <div class=\"mat-body-2\"> \n      Dados do usuário:\n    </div>\n      <div class=\"errors\" *ngIf=\"errors\">\n        <p *ngIf=\"errors.nome\" >  {{ errors['nome'].message }} </p>\n        <p *ngIf=\"errors.email\" >  {{ errors['email'].message }} </p>\n        <p *ngIf=\"errors.funcao\" >  {{ errors['funcao'].message }} </p>\n        <p *ngIf=\"errors.custoHora\" >  {{ errors['custoHora'].message }} </p>       \n      </div>\n\n    <form (submit)='editarUsuario()' #userForm='ngForm'>\n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Nome</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n              <p class=\"control\">\n                  <input \n                  class=\"input\" \n                  type=\"text\" \n                  name=\"nome\" \n                  minlength=4\n                  required\n                  [(ngModel)]=\"usuario.nome\"\n                  #nome=\"ngModel\"\n                  />\n                </p>\n          </div>\n        </div>\n      </div>\n  \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">E-mail</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input\" \n              type=\"text\" \n              name=\"email\" \n              required\n              [(ngModel)]=\"usuario.email\"\n              #email=\"ngModel\"\n              />\n            </p>\n          </div>\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!projeto.descricao.valid\" class=\"purple\">Descrição do projeto precisar ter no mínimo 8 caracteres!</div> -->\n      \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Função</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input \" \n              type=\"text\" \n              name=\"funcao\" \n              minlength=4\n              required\n              [(ngModel)]=\"usuario.funcao\"\n              #funcao=\"ngModel\"\n              />\n            </p>\n          </div>\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!projeto.cliente.valid\" class=\"purple\">Cliente precisar ter no mínimo 6 caracteres!</div> -->\n    \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Custo/hora</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input\" \n              type=\"text\" \n              name=\"custoHora\" \n              required\n              [(ngModel)]=\"usuario.custoHora\"\n              #custoHora=\"ngModel\"\n              />\n            </p>\n          </div>\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!projeto.pedido.valid\" class=\"purple\">Pedido do projeto precisar ter no mínimo 4 caracteres!</div> -->\n      \n      <div class=\"field is-horizontal\">\n          <label class=\"checkbox\">\n              <input \n              type=\"checkbox\"\n              name=\"admin\"\n              [(ngModel)]=\"usuario.admin\">\n            &nbsp; Adminstrador  \n          </label>\n        </div>\n\n    \n      <button type=\"button\" class=\"btn btn-secondary\" [routerLink]=\"['/usuarios']\">Cancela</button>\n      <button type=\"submit\" class=\"btn btn-primary\"  [disabled]=\"userForm.invalid\">Confirma</button>\n    \n    </form>\n  </div>  \n"
+module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n  \n<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" [routerLink]=\"['/usuarios']\">Retornar <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n  \n  <div class=\"container\">\n\n    <div class=\"mat-body-2\"> \n      Dados do usuário:\n    </div>\n      <div class=\"errors\" *ngIf=\"errors\">\n        <p *ngIf=\"errors.nome\" >  {{ errors['nome'].message }} </p>\n        <p *ngIf=\"errors.email\" >  {{ errors['email'].message }} </p>\n        <p *ngIf=\"errors.funcao\" >  {{ errors['funcao'].message }} </p>\n        <p *ngIf=\"errors.custoHora\" >  {{ errors['custoHora'].message }} </p>       \n      </div>\n\n    <form (submit)='editarUsuario()' #userForm='ngForm'>\n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Nome</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n              <p class=\"control\">\n                  <input \n                  class=\"input\" \n                  type=\"text\" \n                  name=\"nome\" \n                  minlength=4\n                  required\n                  [(ngModel)]=\"usuario.nome\"\n                  #nome=\"ngModel\"\n                  />\n                </p>\n          </div>\n        </div>\n      </div>\n  \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">E-mail</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input\" \n              type=\"text\" \n              name=\"email\" \n              required\n              [(ngModel)]=\"usuario.email\"\n              #email=\"ngModel\"\n              />\n            </p>\n          </div>\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!projeto.descricao.valid\" class=\"purple\">Descrição do projeto precisar ter no mínimo 8 caracteres!</div> -->\n      \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Função</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input \" \n              type=\"text\" \n              name=\"funcao\" \n              minlength=4\n              required\n              [(ngModel)]=\"usuario.funcao\"\n              #funcao=\"ngModel\"\n              />\n            </p>\n          </div>\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!projeto.cliente.valid\" class=\"purple\">Cliente precisar ter no mínimo 6 caracteres!</div> -->\n    \n      <div class=\"field is-horizontal\">\n        <div class=\"field-label is-normal\">\n          <label class=\"label\">Custo/hora</label>\n        </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input\" \n              type=\"text\" \n              name=\"custoHora\" \n              required\n              [(ngModel)]=\"usuario.custoHora\"\n              #custoHora=\"ngModel\"\n              />\n            </p>\n          </div>\n        </div>\n      </div>\n      <!-- <div *ngIf=\"!projeto.pedido.valid\" class=\"purple\">Pedido do projeto precisar ter no mínimo 4 caracteres!</div> -->\n      \n      <div class=\"field is-horizontal\">\n          <label class=\"checkbox\">\n              <input \n              type=\"checkbox\"\n              name=\"admin\"\n              [(ngModel)]=\"usuario.admin\">\n            &nbsp; Adminstrador  \n          </label>\n        </div>\n\n    \n      <button type=\"button\" class=\"btn btn-secondary\" [routerLink]=\"['/usuarios']\">Cancela</button>\n      <button type=\"submit\" class=\"btn btn-primary\"  [disabled]=\"userForm.invalid\">Confirma</button>\n    \n    </form>\n  </div>  \n"
 
 /***/ }),
 
@@ -3002,7 +3015,7 @@ var UsuarioEditComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n  <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n\n<div class=\"container\"> \n    <nav class=\"level\">\n      <div class=\"level-left\">\n          <div class=\"title is-4\">Usuário</div> \n      </div>\n      <div class=\"level-right\">\n          <button type=\"button\" class=\"button is-light\" [routerLink]=\"['/usuario/novo']\">Novo usuário</button>\n      </div> \n    </nav>\n  <article class=\"media\">\n    <div class=\"media-content\">\n      <div class=\"content\">\n\n        <br>\n        <div id=\"scroll\">\n          <table class=\"table table-hover\" align=\"left\">\n            <thead>\n                <tr class=\"table-primary d-flex\">\n                  <th class=\"col-2\">Nome</th>\n                  <th class=\"col-3\">E-mail</th>\n                  <th class=\"col-2\">Função</th>\n                  <th class=\"col-1\">Custo/hr</th>\n                  <th class=\"col-1\">Admin</th>\n                  <th class=\"col-1\">Ação</th>\n                  <th class=\"col-1\"> </th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr *ngFor=\"let u  of usuarios\" class=\"d-flex\">\n                  <td class=\"col-2\">{{ u['nome'] }}</td>\n                  <td class=\"col-3\">{{ u['email'] }}</td>\n                  <td class=\"col-2\">{{ u['funcao'] }}</td>\n                  <td class=\"col-1\">{{ u['custoHora'] | number : '1.2-2' }}</td>\n                  <td class=\"col-1\">\n                  <img [src]=\"u['admin'] ? frontPath : backPath\"></td>\n                  <td class=\"col-1\"><button type=\"button\" [routerLink]=\"['/usuario/edit/', u['_id'] ]\" class=\"button is-warning\">Editar</button></td>\n                  <td class=\"col-1\"><button type=\"button\" [routerLink]=\"['/usuario/show', u['_id'] ]\"  class=\"button is-danger\">Detalhes</button></td>\n                </tr>\n              </tbody>\n            </table> \n          </div>    \n        </div>\n      </div>\n    </article>\n</div>"
+module.exports = "<mat-toolbar>\n  <img class=\"logo\" src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n\n<div class=\"container\">\n\n  <div class=\"level-left\">\n      <div style=\"margin-top: 20px;\" class=\"title is-4\">Usuários</div>  \n  </div>\n  <div class=\"level-right\">\n      <button mat-stroked-button color=\"primary\" [routerLink]=\"['/usuario/novo']\">Novo usuário</button>\n  </div> \n\n  <mat-form-field>\n      <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filtrar\">\n    </mat-form-field>\n  \n    <div class=\"mat-elevation-z8\">\n      <table mat-table [dataSource]=\"dataSource\" matSort>\n\n        <!-- nome Column -->\n        <ng-container matColumnDef=\"nome\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> nome </th>\n            <td mat-cell *matCellDef=\"let row\"> {{row.nome}} </td>\n          </ng-container>\n    \n          <!-- email Column -->\n          <ng-container matColumnDef=\"email\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> e-mail </th>\n            <td mat-cell *matCellDef=\"let row\"> {{row.email}} </td>\n          </ng-container>\n    \n          <!-- funcao Column -->\n          <ng-container matColumnDef=\"funcao\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> função </th>\n            <td mat-cell *matCellDef=\"let row\"> {{row.funcao}} </td>\n          </ng-container>\n    \n          <!-- custoHora Column -->\n          <ng-container matColumnDef=\"custoHora\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> custo hr </th>\n            <td mat-cell *matCellDef=\"let row\">  {{row.custoHora}} </td>\n          </ng-container>\n  \n          <!-- admin Column -->\n          <ng-container matColumnDef=\"admin\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> admin </th>\n            <td class=\"icon\" mat-cell *matCellDef=\"let row\"> \n                <img style=\"size: 20px;\" [src]=\"row['admin'] ? frontPath : backPath\"></td>\n          </ng-container>\n\n          <!-- Acao 1 Column -->\n          <ng-container matColumnDef=\"acao1\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> ação </th>\n            <td mat-cell *matCellDef=\"let row\" >\n              <div class=\"button-row\">\n                <!-- <button mat-button color=\"primary\" >editar</button> -->\n                <button mat-button color=\"primary\" [routerLink]=\"['/usuario/edit/', row['_id'] ]\">editar</button>\n              </div>\n            </td>\n          </ng-container>\n    \n         <!-- Acao 2 Column -->\n         <ng-container matColumnDef=\"acao2\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>\n            <td mat-cell *matCellDef=\"let row\" >\n              <div class=\"button-row\">\n                <button mat-button color=\"warn\" [routerLink]=\"['/usuario/show', row['_id'] ]\">detalhes</button>\n              </div>\n            </td>\n          </ng-container>\n    \n          <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n          <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\">\n          </tr>\n        </table>\n    \n        <mat-paginator [pageSizeOptions]=\"[5, 10, 25, 100]\"></mat-paginator>\n      </div>\n\n</div>"
 
 /***/ }),
 
@@ -3013,7 +3026,7 @@ module.exports = "<mat-toolbar>\n  <img src=\"../assets/images/TorreNegra-logo-c
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "img {\n  width: 190px;\n  height: auto; }\n"
+module.exports = ".logo {\n  width: 190px;\n  height: auto; }\n\n.mat-list .mat-list-item /deep/ .mat-list-item-content {\n  height: 20px; }\n\n.icon {\n  width: 25px;\n  height: auto; }\n"
 
 /***/ }),
 
@@ -3029,7 +3042,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UsuarioListComponent", function() { return UsuarioListComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _usuario_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../usuario.service */ "./src/app/usuario/usuario.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3043,15 +3056,15 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var UsuarioListComponent = /** @class */ (function () {
-    function UsuarioListComponent(_usuarioService, _router) {
+    function UsuarioListComponent(_usuarioService) {
         this._usuarioService = _usuarioService;
-        this._router = _router;
         this.usuarioLogado = {
             email: '',
             admin: ''
         };
-        this.frontPath = "../../assets/images/check.png";
+        this.frontPath = "../../assets/svg/baseline-how.svg";
         this.backPath = "";
+        this.displayedColumns = ['nome', 'email', 'funcao', 'custoHora', 'admin', 'acao1', 'acao2'];
     }
     UsuarioListComponent.prototype.ngOnInit = function () {
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
@@ -3060,20 +3073,37 @@ var UsuarioListComponent = /** @class */ (function () {
     };
     UsuarioListComponent.prototype.obterListaUsuario = function () {
         var _this = this;
-        console.log('ProjetoListComponent > obterListaUsuario()');
+        console.log('UsuarioListComponent > obterListaUsuario()');
         var usuarioObservable = this._usuarioService.obterTodos();
         usuarioObservable.subscribe(function (usuarios) {
+            console.log('usuario in obterUsuario list:', usuarios.json());
             _this.usuarios = usuarios.json();
+            _this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"](_this.usuarios);
+            _this.dataSource.paginator = _this.paginator;
+            _this.dataSource.sort = _this.sort;
         }, function (err) { }, function () { });
     };
+    UsuarioListComponent.prototype.applyFilter = function (filterValue) {
+        this.dataSource.filter = filterValue.trim().toLowerCase();
+        if (this.dataSource.paginator) {
+            this.dataSource.paginator.firstPage();
+        }
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatPaginator"]),
+        __metadata("design:type", _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatPaginator"])
+    ], UsuarioListComponent.prototype, "paginator", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSort"]),
+        __metadata("design:type", _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSort"])
+    ], UsuarioListComponent.prototype, "sort", void 0);
     UsuarioListComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-usuario-list',
             template: __webpack_require__(/*! ./usuario-list.component.html */ "./src/app/usuario/usuario-list/usuario-list.component.html"),
             styles: [__webpack_require__(/*! ./usuario-list.component.scss */ "./src/app/usuario/usuario-list/usuario-list.component.scss")]
         }),
-        __metadata("design:paramtypes", [_usuario_service__WEBPACK_IMPORTED_MODULE_1__["UsuarioService"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+        __metadata("design:paramtypes", [_usuario_service__WEBPACK_IMPORTED_MODULE_1__["UsuarioService"]])
     ], UsuarioListComponent);
     return UsuarioListComponent;
 }());
@@ -3089,7 +3119,7 @@ var UsuarioListComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" [routerLink]=\"['/usuarios']\">Retornar <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n\n<div class=\"container\">\n  <div class=\"mat-body-2\"> \n    Dados do usuário:\n  </div>\n  <div class=\"errors\" *ngIf=\"errors\">\n    <p *ngIf=\"errors.nome\" >  {{ errors['nome'].message }} </p>\n    <p *ngIf=\"errors.email\" >  {{ errors['email'].message }} </p>\n    <p *ngIf=\"errors.funcao\" >  {{ errors['funcao'].message }} </p>\n    <p *ngIf=\"errors.custoHora\" >  {{ errors['custoHora'].message }} </p>       \n  </div>\n\n  <form (submit)=\"criarUsuario(userForm)\" #userForm='ngForm'>\n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Nome</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input is-focused\" \n            type=\"text\" \n            name=\"nome\" \n            minlength=4\n            required\n            [(ngModel)]=\"usuario.nome\"\n            #nome=\"ngModel\"\n            />\n          </p>\n        </div>\n      </div>\n    </div>\n    <!-- <div *ngIf=\"!codigo.valid\" class=\"purple\">Código precisar ter no mínimo 4 caracteres!</div> -->\n    \n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">e-mail</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input\" \n            type=\"text\" \n            name=\"email\" \n            required\n            pattern=\"^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$\"\n            [(ngModel)]=\"usuario.email\"\n            #email=\"ngModel\"\n            />\n          </p>\n        </div>\n      </div>\n    </div>\n  <!-- <div *ngIf=\"!codigo.valid\" class=\"purple\">Código precisar ter no mínimo 4 caracteres!</div> -->\n\n  <div class=\"field is-horizontal\">\n    <div class=\"field-label is-normal\">\n      <label class=\"label\">Função</label>\n    </div>\n    <div class=\"field-body\">\n      <div class=\"field\">\n        <p class=\"control\">\n          <input \n          class=\"input\" \n          type=\"text\" \n          name=\"funcao\" \n          minlength=4\n          required\n          [(ngModel)]=\"usuario.funcao\"\n          #funcao=\"ngModel\"\n          />\n        </p>\n      </div>\n    </div>\n  </div>\n  <!-- <div *ngIf=\"!cliente.valid\" class=\"purple\">Função precisar ter no mínimo 4 caracteres!</div> -->\n\n\n  <div class=\"field is-horizontal\">\n    <div class=\"field-label is-normal\">\n      <label class=\"label\">Custo hora</label>\n    </div>\n    <div class=\"field-body\">\n      <div class=\"field\">\n        <p class=\"control\">\n          <input \n          class=\"input\" \n          type=\"text\" \n          name=\"custoHora\" \n          required\n          [(ngModel)]=\"usuario.custoHora\"\n          #custoHora=\"ngModel\"\n          />\n        </p>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"field is-horizontal\">\n    <label class=\"checkbox\">\n        <input \n        type=\"checkbox\"\n        name=\"admin\"\n        [(ngModel)]=\"usuario.admin\">\n        &nbsp; Administrador  \n    </label>\n  </div>\n\n  <button type=\"button\" class=\"btn btn-secondary\" (click)=\"cancel()\">Cancela</button>\n  <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"userForm.invalid\">Confirma</button>\n\n  </form>\n  \n</div>"
+module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" [routerLink]=\"['/usuarios']\">Retornar <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n\n<div class=\"container\">\n  <div class=\"mat-body-2\"> \n    Dados do usuário:\n  </div>\n\n  <div class=\"errors\" *ngIf=\"errors\">\n    <p *ngIf=\"errors.nome\" >  {{ errors['nome'].message }} </p>\n    <p *ngIf=\"errors.email\" >  {{ errors['email'].message }} </p>\n    <p *ngIf=\"errors.funcao\" >  {{ errors['funcao'].message }} </p>\n    <p *ngIf=\"errors.custoHora\" >  {{ errors['custoHora'].message }} </p>       \n  </div>\n\n  <form class=\"example-form\" [formGroup] = \"userForm\">\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n    \n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"nome\"\n        type=\"text\"\n        formControlName=\"nome\" \n        name=\"nome\"\n        >\n        <mat-error *ngIf=\"nome.invalid && nome.touched\">\n            nome informado não é válido\n        </mat-error>\n      </mat-form-field></td>\n    </tr></table>\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"email\"\n        type=\"email\"\n        formControlName=\"email\" \n        name=\"email\"\n        />\n        <mat-error *ngIf=\"email.invalid && email.touched\">\n            email informado não é válido\n        </mat-error>\n      </mat-form-field></td>\n    </tr></table>\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"funcao\"\n        type=\"text\"\n        formControlName=\"funcao\" \n        name=\"funcao\"\n        />\n        <mat-error *ngIf=\"funcao.invalid && funcao.touched\">\n            funcao informada não é válida\n        </mat-error>\n      </mat-form-field></td>\n    </tr></table>\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput\n        placeholder=\"custo hora\"\n        type=\"number\"\n        formControlName=\"custoHora\" \n        name=\"custoHora\"  \n        />\n        <mat-error *ngIf=\"custoHora.invalid && custoHora.touched\">\n            custo Hora informado não é válido\n        </mat-error>\n      </mat-form-field></td>\n    </tr></table>\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td>\n        <mat-checkbox color=\"warn\" formControlName=\"admin\">Administrador\n        </mat-checkbox>\n      </td>\n    </tr></table>\n\n    <button mat-raised-button color=\"basic\"  (click)=\"cancel()\">Cancela</button>\n    <button mat-raised-button color=\"primary\" (click)=\"criarUsuario(userForm)\" [disabled]=\"userForm.invalid\">Confirma</button>\n\n  </form>\n  \n</div>"
 
 /***/ }),
 
@@ -3117,6 +3147,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _usuario_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../usuario.service */ "./src/app/usuario/usuario.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3129,29 +3160,59 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var UsuarioNovoComponent = /** @class */ (function () {
-    function UsuarioNovoComponent(_usuarioService, _router) {
+    function UsuarioNovoComponent(_formBuilder, _usuarioService, _router) {
+        this._formBuilder = _formBuilder;
         this._usuarioService = _usuarioService;
         this._router = _router;
         this.usuarioLogado = {
             email: '',
             admin: ''
         };
-        this.usuario = {
-            nome: "",
-            email: "",
-            funcao: "",
-            custoHora: 0,
-            admin: false
-        };
     }
     UsuarioNovoComponent.prototype.ngOnInit = function () {
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
         console.log('UsuarioNovoComponent > usuariologado ', this.usuarioLogado.email);
+        this.userForm = this._formBuilder.group({
+            nome: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(4)]],
+            email: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')],
+            funcao: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]],
+            custoHora: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]],
+            admin: []
+        });
     };
+    Object.defineProperty(UsuarioNovoComponent.prototype, "nome", {
+        get: function () {
+            return this.userForm.get('nome');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(UsuarioNovoComponent.prototype, "email", {
+        get: function () {
+            return this.userForm.get('email');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(UsuarioNovoComponent.prototype, "funcao", {
+        get: function () {
+            return this.userForm.get('funcao');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(UsuarioNovoComponent.prototype, "custoHora", {
+        get: function () {
+            return this.userForm.get('custoHora');
+        },
+        enumerable: true,
+        configurable: true
+    });
     UsuarioNovoComponent.prototype.criarUsuario = function (userForm) {
         var _this = this;
-        console.log('UsuarioNovoComponent > criarUsuario(userForm)', userForm);
+        console.log('UsuarioNovoComponent > criarUsuario(userForm)', userForm.value);
         this._usuarioService.criarUsuario(userForm.value)
             .subscribe(function (observable) {
             if (observable.json().errors) {
@@ -3165,7 +3226,6 @@ var UsuarioNovoComponent = /** @class */ (function () {
         }, function (err) {
             throw err;
         });
-        userForm.resetForm();
     };
     UsuarioNovoComponent.prototype.cancel = function () {
         this._router.navigate(['/usuarios']);
@@ -3176,7 +3236,8 @@ var UsuarioNovoComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./usuario-novo.component.html */ "./src/app/usuario/usuario-novo/usuario-novo.component.html"),
             styles: [__webpack_require__(/*! ./usuario-novo.component.scss */ "./src/app/usuario/usuario-novo/usuario-novo.component.scss")]
         }),
-        __metadata("design:paramtypes", [_usuario_service__WEBPACK_IMPORTED_MODULE_1__["UsuarioService"],
+        __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"],
+            _usuario_service__WEBPACK_IMPORTED_MODULE_1__["UsuarioService"],
             _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], UsuarioNovoComponent);
     return UsuarioNovoComponent;
@@ -3193,7 +3254,7 @@ var UsuarioNovoComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n\n<div class=\"container\">\n\n  <div class=\"mat-body-2\"> \n    Dados do usuário:\n  </div>\n  <form (submit)='excluirUsuario()' #userForm='ngForm'>\n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Nome</label>\n      </div>\n      <div class=\"field-body\">\n        {{ usuario.nome }}\n      </div>\n    </div>\n\n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">E-mail</label>\n      </div>\n      <div class=\"field-body\">\n        {{ usuario.email }}\n      </div>\n    </div>\n    <!-- <div *ngIf=\"!projeto.descricao.valid\" class=\"purple\">Descrição do projeto precisar ter no mínimo 8 caracteres!</div> -->\n    \n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Função</label>\n      </div>\n      <div class=\"field-body\">\n        {{ usuario.funcao }}\n      </div>\n    </div>\n    <!-- <div *ngIf=\"!projeto.cliente.valid\" class=\"purple\">Cliente precisar ter no mínimo 6 caracteres!</div> -->\n  \n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Custo/hora</label>\n      </div>\n      <div class=\"field-body\">\n        {{ usuario.custoHora }}\n      </div>\n    </div>\n    <!-- <div *ngIf=\"!projeto.pedido.valid\" class=\"purple\">Pedido do projeto precisar ter no mínimo 4 caracteres!</div> -->\n    \n    <div class=\"field is-horizontal\">\n        <label class=\"checkbox\">\n          <figure class=\"image is-32x32\">\n            <img [src]=\"usuario['admin'] ? frontPath : backPath \">\n          </figure>\n          &nbsp; Adminstrador  \n        </label>\n      </div>\n\n  \n    <button type=\"button\" class=\"btn btn-secondary\" [routerLink]=\"['/usuarios']\">Cancela</button>\n    <button type=\"submit\" class=\"button is-danger\"  [disabled]=\"userForm.invalid\">Excluir</button>\n  \n  </form>\n</div>  \n"
+module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" [routerLink]=\"['/usuarios']\">Retornar <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n\n<div class=\"container\">\n\n  <div class=\"mat-body-2\"> \n    Dados do usuário:\n  </div>\n  <form (submit)='excluirUsuario()' #userForm='ngForm'>\n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Nome</label>\n      </div>\n      <div class=\"field-body\">\n        {{ usuario.nome }}\n      </div>\n    </div>\n\n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">E-mail</label>\n      </div>\n      <div class=\"field-body\">\n        {{ usuario.email }}\n      </div>\n    </div>\n    <!-- <div *ngIf=\"!projeto.descricao.valid\" class=\"purple\">Descrição do projeto precisar ter no mínimo 8 caracteres!</div> -->\n    \n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Função</label>\n      </div>\n      <div class=\"field-body\">\n        {{ usuario.funcao }}\n      </div>\n    </div>\n    <!-- <div *ngIf=\"!projeto.cliente.valid\" class=\"purple\">Cliente precisar ter no mínimo 6 caracteres!</div> -->\n  \n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Custo/hora</label>\n      </div>\n      <div class=\"field-body\">\n        {{ usuario.custoHora }}\n      </div>\n    </div>\n    <!-- <div *ngIf=\"!projeto.pedido.valid\" class=\"purple\">Pedido do projeto precisar ter no mínimo 4 caracteres!</div> -->\n    \n    <div class=\"field is-horizontal\">\n        <label class=\"checkbox\">\n          <figure class=\"image is-32x32\">\n            <img [src]=\"usuario['admin'] ? frontPath : backPath \">\n          </figure>\n          &nbsp; Adminstrador  \n        </label>\n      </div>\n\n  \n    <button type=\"button\" class=\"btn btn-secondary\" [routerLink]=\"['/usuarios']\">Cancela</button>\n    <button type=\"submit\" class=\"button is-danger\"  [disabled]=\"userForm.invalid\">Excluir</button>\n  \n  </form>\n</div>  \n"
 
 /***/ }),
 

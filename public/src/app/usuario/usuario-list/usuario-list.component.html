@@ -1,5 +1,5 @@
 <mat-toolbar>
-  <img src="../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png">
+  <img class="logo" src="../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png">
 </mat-toolbar>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -16,48 +16,80 @@
   </div>
 </nav>
 
-<div class="container"> 
-    <nav class="level">
-      <div class="level-left">
-          <div class="title is-4">Usuário</div> 
-      </div>
-      <div class="level-right">
-          <button type="button" class="button is-light" [routerLink]="['/usuario/novo']">Novo usuário</button>
-      </div> 
-    </nav>
-  <article class="media">
-    <div class="media-content">
-      <div class="content">
+<div class="container">
 
-        <br>
-        <div id="scroll">
-          <table class="table table-hover" align="left">
-            <thead>
-                <tr class="table-primary d-flex">
-                  <th class="col-2">Nome</th>
-                  <th class="col-3">E-mail</th>
-                  <th class="col-2">Função</th>
-                  <th class="col-1">Custo/hr</th>
-                  <th class="col-1">Admin</th>
-                  <th class="col-1">Ação</th>
-                  <th class="col-1"> </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let u  of usuarios" class="d-flex">
-                  <td class="col-2">{{ u['nome'] }}</td>
-                  <td class="col-3">{{ u['email'] }}</td>
-                  <td class="col-2">{{ u['funcao'] }}</td>
-                  <td class="col-1">{{ u['custoHora'] | number : '1.2-2' }}</td>
-                  <td class="col-1">
-                  <img [src]="u['admin'] ? frontPath : backPath"></td>
-                  <td class="col-1"><button type="button" [routerLink]="['/usuario/edit/', u['_id'] ]" class="button is-warning">Editar</button></td>
-                  <td class="col-1"><button type="button" [routerLink]="['/usuario/show', u['_id'] ]"  class="button is-danger">Detalhes</button></td>
-                </tr>
-              </tbody>
-            </table> 
-          </div>    
-        </div>
+  <div class="level-left">
+      <div style="margin-top: 20px;" class="title is-4">Usuários</div>  
+  </div>
+  <div class="level-right">
+      <button mat-stroked-button color="primary" [routerLink]="['/usuario/novo']">Novo usuário</button>
+  </div> 
+
+  <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrar">
+    </mat-form-field>
+  
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort>
+
+        <!-- nome Column -->
+        <ng-container matColumnDef="nome">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> nome </th>
+            <td mat-cell *matCellDef="let row"> {{row.nome}} </td>
+          </ng-container>
+    
+          <!-- email Column -->
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> e-mail </th>
+            <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+          </ng-container>
+    
+          <!-- funcao Column -->
+          <ng-container matColumnDef="funcao">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> função </th>
+            <td mat-cell *matCellDef="let row"> {{row.funcao}} </td>
+          </ng-container>
+    
+          <!-- custoHora Column -->
+          <ng-container matColumnDef="custoHora">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> custo hr </th>
+            <td mat-cell *matCellDef="let row">  {{row.custoHora}} </td>
+          </ng-container>
+  
+          <!-- admin Column -->
+          <ng-container matColumnDef="admin">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> admin </th>
+            <td class="icon" mat-cell *matCellDef="let row"> 
+                <img style="size: 20px;" [src]="row['admin'] ? frontPath : backPath"></td>
+          </ng-container>
+
+          <!-- Acao 1 Column -->
+          <ng-container matColumnDef="acao1">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ação </th>
+            <td mat-cell *matCellDef="let row" >
+              <div class="button-row">
+                <!-- <button mat-button color="primary" >editar</button> -->
+                <button mat-button color="primary" [routerLink]="['/usuario/edit/', row['_id'] ]">editar</button>
+              </div>
+            </td>
+          </ng-container>
+    
+         <!-- Acao 2 Column -->
+         <ng-container matColumnDef="acao2">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+            <td mat-cell *matCellDef="let row" >
+              <div class="button-row">
+                <button mat-button color="warn" [routerLink]="['/usuario/show', row['_id'] ]">detalhes</button>
+              </div>
+            </td>
+          </ng-container>
+    
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+          </tr>
+        </table>
+    
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
       </div>
-    </article>
+
 </div>

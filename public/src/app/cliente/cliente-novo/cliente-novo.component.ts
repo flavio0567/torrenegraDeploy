@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators, FormArray, NgForm, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, NgForm } from '@angular/forms';
 import { ClienteService } from '../cliente.service';
 import { UsuarioService } from '../../usuario/usuario.service';
 
@@ -28,7 +28,7 @@ export class ClienteNovoComponent implements OnInit {
 
   ngOnInit() {
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-    console.log(' ClienteNovoComponent > ', this.usuarioLogado.email);
+    console.log(' ClienteNovoComponent > usuariologado ', this.usuarioLogado.email);
     this.clienteForm = this._formBuilder.group({
       cnpj: [null, [ Validators.required, Validators.minLength(11) ]],
       razaoSocial: [null, [ Validators.required ]],
