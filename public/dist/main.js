@@ -2199,7 +2199,7 @@ module.exports = "img {\n  width: 150px;\n  height: auto; }\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n<div class=\"mat-elevation-z8\"> \n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<div class=\"container\">\n\n  <div class=\"errors\" *ngIf=\"errors\">\n    <p *ngIf=\"errors.descricao\" >  {{ errors['descricao'].message }} </p>\n    <p *ngIf=\"errors.cliente\" >  {{ errors['cliente'].message }} </p>\n    <p *ngIf=\"errors.pedido\" >  {{ errors['pedido'].message }} </p>   \n    <p *ngIf=\"errors.horasPLC\" >  {{ errors['horasPLC'].message }} </p>       \n    <p *ngIf=\"errors.horasIHM\" >  {{ errors['horasIHM'].message }} </p>  \n    <p *ngIf=\"errors.valorTerceiros\" >  {{ errors['valorTerceiros'].message }} </p>            \n    <p *ngIf=\"errors.valorMateriais\" >  {{ errors['valorMateriais'].message }} </p>       \n    <p *ngIf=\"errors.valorViagens\" >  {{ errors['valorViagens'].message }} </p>       \n  </div>\n\n  <form (submit)='editarProjeto()' #projForm='ngForm'>\n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Código</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p style=\"margin-top: 7px;\" class=\"control\">\n            {{ projeto.codigo }}\n          </p>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Descrição</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input \" \n            type=\"text\" \n            name=\"descricao\" \n            minlength=8\n            required\n            [(ngModel)]=\"projeto.descricao\"\n            #descricao=\"ngModel\"\n            />\n          </p>\n        </div>\n      </div>\n    </div>\n    <!-- <div *ngIf=\"!projeto.descricao.valid\" class=\"purple\">Descrição do projeto precisar ter no mínimo 8 caracteres!</div> -->\n    \n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Cliente</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <!-- <p style=\"margin-top: 6px\" > -->\n            <!-- {{ projeto.nomeFantasiaCliente }} -->\n          <!-- </p> -->\n          <div class=\"select is-multiple control\">\n            <select name=\"_clienteId\" [(ngModel)]=\"clienteSelecionado\" required>\n                <option *ngFor=\"let c of clientes\" [value]=\"c._id\">\n                  {{ c.nomeFantasia }}   \n                </option>\n            </select>\n          </div>\n        </div>\n      </div>\n    </div>\n    <!-- <div *ngIf=\"!projeto.cliente.valid\" class=\"purple\">Cliente precisar ter no mínimo 6 caracteres!</div> -->\n  \n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Pedido</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input\" \n            type=\"text\" \n            name=\"pedido\" \n            required\n            [(ngModel)]=\"projeto.pedido\"\n            #pedido=\"ngModel\"\n            />\n          </p>\n        </div>\n      </div>\n    </div>\n    <!-- <div *ngIf=\"!projeto.pedido.valid\" class=\"purple\">Pedido do projeto precisar ter no mínimo 4 caracteres!</div> -->\n  \n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Horas PLC</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input \" \n            type=\"text\" \n            name=\"horasPLC\" \n            [(ngModel)]=\"projeto.horasPLC\"\n            #horasPLC=\"ngModel\"\n            />\n          </p>\n        </div>\n      </div>\n    </div>\n    <!-- <div *ngIf=\"!horasPLC.valid\" class=\"purple\">horasPLC precisar ter no mínimo 4 caracteres!</div> -->\n  \n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Horas IHM</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input \" \n            type=\"text\" \n            name=\"horasIHM\" \n            [(ngModel)]=\"projeto.horasIHM\"\n            #descricao=\"ngModel\"\n            />\n          </p>\n        </div>\n      </div>\n    </div>\n    <!-- <div *ngIf=\"!horasIHM.valid\" class=\"purple\">horasIHM do projeto precisar ter no mínimo 8 caracteres!</div> -->\n  \n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n        <label class=\"label\">Valor Terceiros</label>\n      </div>\n      <div class=\"field-body\">\n        <div class=\"field\">\n          <p class=\"control\">\n            <input \n            class=\"input \" \n            type=\"text\" \n            name=\"valorTerceiros\" \n            [(ngModel)]=\"projeto.valorTerceiros\"\n            #valorTerceiros=\"ngModel\"\n            />\n          </p>\n        </div>\n      </div>\n    </div>\n    <!-- <div *ngIf=\"!valorTerceiros.valid\" class=\"purple\">valorTerceiros precisar ter no mínimo 4 caracteres!</div> -->\n  \n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n      <label class=\"label\">Valor Materiais</label>\n      </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input \" \n              type=\"text\" \n              name=\"valorMateriais\" \n              [(ngModel)]=\"projeto.valorMateriais\"\n              #valorMateriais=\"ngModel\"\n              />\n            </p>\n          </div>\n      </div>\n    </div>\n  \n    <div class=\"field is-horizontal\">\n      <div class=\"field-label is-normal\">\n      <label class=\"label\">Valor Viagens</label>\n      </div>\n        <div class=\"field-body\">\n          <div class=\"field\">\n            <p class=\"control\">\n              <input \n              class=\"input \" \n              type=\"text\" \n              name=\"valorViagens\" \n              [(ngModel)]=\"projeto.valorViagens\"\n              #valorViagens=\"ngModel\"\n              />\n            </p>\n          </div>\n      </div>\n    </div>\n  \n    <button type=\"button\" class=\"btn btn-secondary\" [routerLink]=\"['/projetos']\">Cancela</button>\n    <button type=\"submit\" class=\"btn btn-primary\"  [disabled]=\"projForm.invalid\">Confirma</button>\n  \n  </form>\n</div>  "
+module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n<div class=\"mat-elevation-z8\"> \n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n<div class=\"container\">\n\n  <div class=\"mat-body-2\"> \n    Dados básicos:\n  </div>\n\n  <div class=\"errors\" *ngIf=\"errors\">\n    <p *ngIf=\"errors.descricao\" >  {{ errors['descricao'].message }} </p>\n    <p *ngIf=\"errors._clienteId\" >  {{ errors['_clienteId'].message }} </p>\n    <p *ngIf=\"errors.pedido\" >  {{ errors['pedido'].message }} </p>   \n    <p *ngIf=\"errors.horasPLC\" >  {{ errors['horasPLC'].message }} </p>       \n    <p *ngIf=\"errors.horasIHM\" >  {{ errors['horasIHM'].message }} </p>     \n  </div>\n\n  <form class=\"example-form\" *ngIf=\"projeto\" [formGroup] = \"projetoForm\">\n\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field  style=\"width:200px !important;\" class=\"example-full-width\">\n          <input \n          matInput\n          placeholder=\"código\"\n          disabled\n          value=\"{{projeto.codigo}}\"\n          />\n      </mat-form-field></td>\n    </tr></table>\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field style=\"width:400px !important;\" class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"descrição\"\n        type=\"text\"\n        formControlName=\"descricao\" \n        name=\"descricao\"\n        />\n        <!-- <mat-error *ngIf=\"descricao.invalid && descricao.touched\">\n            descricao informada não é válida\n        </mat-error> -->\n      </mat-form-field></td>\n    </tr></table>\n    \n    <mat-form-field style=\"width:400px !important;\" class=\"example-full-width\">\n      <mat-select placeholder=\"Selecione o cliente\" name=\"_clienteId\" formControlName=\"_clienteId\">\n        <mat-option value=\"option\" *ngFor=\"let c of clientes\" [value]=\"c._id\">\n            {{ c.nomeFantasia }}\n        </mat-option>\n      </mat-select>\n      <mat-hint align=\"end\">clientes ativos</mat-hint>\n    </mat-form-field>\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field  style=\"width:200px !important;\" class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"pedido\"\n          type=\"text\"\n          formControlName=\"pedido\" \n          name=\"pedido\"\n          />\n          <!-- <mat-error *ngIf=\"pedido.invalid && pedido.touched\">\n              descricao informada não é válida\n          </mat-error> -->\n      </mat-form-field></td>\n    </tr></table>\n    <br>\n\n    <div class=\"mat-body-2\"> \n      Dados financeiros:\n    </div>\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n        <td><mat-form-field style=\"width:200px !important;\" class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"horas PLC\"\n          type=\"text\"\n          formControlName=\"horasPLC\" \n          name=\"horasPLC\"\n          />\n          <!-- <mat-error *ngIf=\"horasPLC.invalid && horasPLC.touched\">\n              horas PLC informadas não são válidas\n          </mat-error> -->\n        </mat-form-field></td>\n      </tr></table>\n  \n      <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n        <td><mat-form-field style=\"width:200px !important;\" class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"horas IHM\"\n          type=\"text\"\n          formControlName=\"horasIHM\" \n          name=\"horasIHM\"\n          />\n          <!-- <mat-error *ngIf=\"horasIHM.invalid && horasIHM.touched\">\n            horas IHM informadas não são válidas\n          </mat-error> -->\n        </mat-form-field></td>\n      </tr></table>\n  \n  \n      <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n        <td><mat-form-field style=\"width:200px !important;\" class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"valor terceiros\"\n          type=\"text\"\n          formControlName=\"valorTerceiros\" \n          name=\"valorTerceiros\"\n          />\n          <!-- <mat-error *ngIf=\"valorTerceiros.invalid && valorTerceiros.touched\">\n            valor terceiros informado não é válido\n          </mat-error> -->\n        </mat-form-field></td>\n      </tr></table>\n  \n      <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n        <td><mat-form-field style=\"width:200px !important;\" class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"valor materiais\"\n          type=\"text\"\n          formControlName=\"valorMateriais\" \n          name=\"valorMateriais\"\n          />\n        </mat-form-field></td>\n      </tr></table>\n  \n  \n      <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n        <td><mat-form-field style=\"width:200px !important;\" class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"valor viagens\"\n          type=\"text\"\n          formControlName=\"valorViagens\" \n          name=\"valorViagens\"\n          />\n        </mat-form-field></td>\n      </tr></table> \n  \n      <button mat-raised-button color=\"basic\" (click)=\"cancel()\">cancela</button>\n  \n      <button mat-raised-button color=\"primary\"  (click)=\"editarProjeto(projetoForm)\" [disabled]=\"projetoForm.invalid\">confirma</button>\n  \n  </form>\n</div>  "
 
 /***/ }),
 
@@ -2229,6 +2229,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../usuario/usuario.service */ "./src/app/usuario/usuario.service.ts");
 /* harmony import */ var _projeto_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../projeto.service */ "./src/app/projeto/projeto.service.ts");
 /* harmony import */ var _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../cliente/cliente.service */ "./src/app/cliente/cliente.service.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2240,12 +2241,13 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
-// import { NgForm } from '@angular/forms';
+
 
 
 
 var ProjetoEditComponent = /** @class */ (function () {
-    function ProjetoEditComponent(_usuarioService, _projetoService, _clienteService, _route, _router) {
+    function ProjetoEditComponent(_formBuilder, _usuarioService, _projetoService, _clienteService, _route, _router) {
+        this._formBuilder = _formBuilder;
         this._usuarioService = _usuarioService;
         this._projetoService = _projetoService;
         this._clienteService = _clienteService;
@@ -2254,18 +2256,6 @@ var ProjetoEditComponent = /** @class */ (function () {
         this.usuarioLogado = {
             email: '',
             admin: ''
-        };
-        this.projeto = {
-            codigo: "",
-            descricao: "",
-            _clienteId: "",
-            nomeFantasiaCliente: "",
-            pedido: "",
-            horasPLC: 0,
-            horasIHM: 0,
-            valorTerceiros: 0,
-            valorMateriais: 0,
-            valorViagens: 0
         };
         this.cliente = {
             _id: "",
@@ -2294,6 +2284,21 @@ var ProjetoEditComponent = /** @class */ (function () {
         var observable = this._projetoService.obterProjetoById(id);
         observable.subscribe(function (response) {
             _this.projeto = response.json();
+            console.log('projeto in edit >>>> >>>>>>: ', _this.projeto);
+            _this.projetoForm = _this._formBuilder.group({
+                _id: [_this.projeto._id],
+                codigo: [_this.projeto.codigo],
+                descricao: [_this.projeto.descricao, [_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required]],
+                _clienteId: [_this.projeto._clienteId, [_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required]],
+                pedido: [_this.projeto.pedido, [_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required]],
+                horasPLC: [_this.projeto.horasPLC, [_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required]],
+                horasIHM: [_this.projeto.horasIHM, [_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required]],
+                valorTerceiros: [_this.projeto.valorTerceiros || 0, [_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required]],
+                valorMateriais: [_this.projeto.valorMateriais || 0, [_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required]],
+                valorViagens: [_this.projeto.valorViagens || 0, [_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required]]
+            });
+            _this.projeto.nomeFantasiaCliente = _this.cliente.nomeFantasia;
+            _this.clienteSelecionado = _this.cliente._id;
             _this.obterClienteNomeFantasia(_this.projeto._clienteId);
             _this.obterClientes();
         }, function (err) { }, function () { });
@@ -2304,8 +2309,6 @@ var ProjetoEditComponent = /** @class */ (function () {
         var clienteObservable = this._clienteService.obterClienteById(id);
         clienteObservable.subscribe(function (cliente) {
             _this.cliente = cliente.json();
-            _this.projeto.nomeFantasiaCliente = _this.cliente.nomeFantasia;
-            _this.clienteSelecionado = _this.cliente._id;
         }, function (err) { }, function () { });
     };
     ProjetoEditComponent.prototype.obterClientes = function () {
@@ -2317,11 +2320,11 @@ var ProjetoEditComponent = /** @class */ (function () {
             _this.clientes = clientes.json();
         }, function (err) { }, function () { });
     };
-    ProjetoEditComponent.prototype.editarProjeto = function () {
+    ProjetoEditComponent.prototype.editarProjeto = function (projetoForm) {
         var _this = this;
-        console.log('ProjetoEditComponent > editarProjeto', this.projeto);
+        console.log('ProjetoEditComponent > editarProjeto', projetoForm);
         this.projeto._clienteId = this.clienteSelecionado;
-        this._projetoService.editarProjeto(this.projeto)
+        this._projetoService.editarProjeto(projetoForm.value)
             .subscribe(function (observable) {
             if (observable.json().errors) {
                 _this.errors = observable.json().errors;
@@ -2335,13 +2338,17 @@ var ProjetoEditComponent = /** @class */ (function () {
             throw err;
         });
     };
+    ProjetoEditComponent.prototype.cancel = function () {
+        this._router.navigate(['/projetos']);
+    };
     ProjetoEditComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-projeto-edit',
             template: __webpack_require__(/*! ./projeto-edit.component.html */ "./src/app/projeto/projeto-edit/projeto-edit.component.html"),
             styles: [__webpack_require__(/*! ./projeto-edit.component.scss */ "./src/app/projeto/projeto-edit/projeto-edit.component.scss")]
         }),
-        __metadata("design:paramtypes", [_usuario_usuario_service__WEBPACK_IMPORTED_MODULE_2__["UsuarioService"],
+        __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormBuilder"],
+            _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_2__["UsuarioService"],
             _projeto_service__WEBPACK_IMPORTED_MODULE_3__["ProjetoService"],
             _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_4__["ClienteService"],
             _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
@@ -2585,12 +2592,11 @@ module.exports = "button {\n  margin: 10px; }\n\nselect {\n  margin-bottom: 15px
 /*!****************************************************************!*\
   !*** ./src/app/projeto/projeto-novo/projeto-novo.component.ts ***!
   \****************************************************************/
-/*! exports provided: CodigoCliente, ProjetoNovoComponent */
+/*! exports provided: ProjetoNovoComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CodigoCliente", function() { return CodigoCliente; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProjetoNovoComponent", function() { return ProjetoNovoComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
@@ -2612,16 +2618,6 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-
-/** Data structure for holding codigo number. */
-var CodigoCliente = /** @class */ (function () {
-    function CodigoCliente(ordem, sequancial, ano) {
-        this.ordem = ordem;
-        this.sequancial = sequancial;
-        this.ano = ano;
-    }
-    return CodigoCliente;
-}());
 
 var ProjetoNovoComponent = /** @class */ (function () {
     function ProjetoNovoComponent(_formBuilder, _usuarioService, _projetoService, _clienteService, _router) {

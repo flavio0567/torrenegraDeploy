@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-// import { NgForm } from '@angular/forms';
 import { UsuarioService } from '../../usuario/usuario.service';
 import { ProjetoService } from '../projeto.service';
 import { ClienteService } from '../../cliente/cliente.service';
+import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-projeto-edit',
@@ -16,18 +16,9 @@ export class ProjetoEditComponent implements OnInit {
     admin: ''
   }
   errors: any;
-  projeto = {
-    codigo: "",
-    descricao: "",
-    _clienteId:  "",
-    nomeFantasiaCliente: "",
-    pedido:  "",
-    horasPLC:  0,
-    horasIHM:  0,
-    valorTerceiros:  0,
-    valorMateriais:  0,
-    valorViagens:  0
-  };
+  projeto: any;
+  projetoForm: FormGroup;
+
   clientes: any;
   cliente = {
     _id: "",
@@ -46,12 +37,14 @@ export class ProjetoEditComponent implements OnInit {
   clienteSelecionado: any;
 
   constructor(
+    private _formBuilder: FormBuilder,
     private _usuarioService: UsuarioService,
     private _projetoService: ProjetoService,
     private _clienteService: ClienteService,
     private _route: ActivatedRoute,
     private _router: Router
-  ) { }
+  ) { 
+  }
 
   ngOnInit() {
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
@@ -65,6 +58,21 @@ export class ProjetoEditComponent implements OnInit {
       observable.subscribe(
         (response) => {
           this.projeto = response.json();
+          console.log('projeto in edit >>>> >>>>>>: ', this.projeto);   
+          this.projetoForm = this._formBuilder.group({
+            _id: [this.projeto._id],
+            codigo: [this.projeto.codigo],
+            descricao: [this.projeto.descricao, [Validators.required]],
+            _clienteId: [this.projeto._clienteId, [Validators.required]],
+            pedido: [this.projeto.pedido, [Validators.required]],
+            horasPLC: [this.projeto.horasPLC, [Validators.required]],
+            horasIHM: [this.projeto.horasIHM, [Validators.required]],
+            valorTerceiros: [this.projeto.valorTerceiros || 0, [Validators.required]],
+            valorMateriais: [this.projeto.valorMateriais || 0, [Validators.required]],
+            valorViagens: [this.projeto.valorViagens || 0, [Validators.required]]
+          })
+          this.projeto.nomeFantasiaCliente = this.cliente.nomeFantasia;
+          this.clienteSelecionado = this.cliente._id;
           this.obterClienteNomeFantasia(this.projeto._clienteId);
           this.obterClientes();
         },
@@ -78,9 +86,7 @@ export class ProjetoEditComponent implements OnInit {
     const clienteObservable = this._clienteService.obterClienteById(id);
     clienteObservable.subscribe(
       (cliente) => { 
-        this.cliente = cliente.json();
-        this.projeto.nomeFantasiaCliente = this.cliente.nomeFantasia;
-        this.clienteSelecionado = this.cliente._id;
+        this.cliente = cliente.json();   
       },
       (err) => { },
         () => { }
@@ -100,10 +106,10 @@ export class ProjetoEditComponent implements OnInit {
     )
   }
 
-  editarProjeto() {
-      console.log('ProjetoEditComponent > editarProjeto', this.projeto);
+  editarProjeto(projetoForm: NgForm) {
+      console.log('ProjetoEditComponent > editarProjeto', projetoForm);
       this.projeto._clienteId = this.clienteSelecionado; 
-      this._projetoService.editarProjeto(this.projeto)
+      this._projetoService.editarProjeto(projetoForm.value)
       .subscribe(observable => {
         if(observable.json().errors) {
           this.errors = observable.json().errors;
@@ -118,6 +124,9 @@ export class ProjetoEditComponent implements OnInit {
       }
     );
   }
-
+  
+  cancel() {
+    this._router.navigate(['/projetos']);
+  }
 
 }

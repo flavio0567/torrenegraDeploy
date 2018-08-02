@@ -16,197 +16,153 @@
     </div>
   </nav>
 </div>
+<br>
 <div class="container">
+
+  <div class="mat-body-2"> 
+    Dados básicos:
+  </div>
 
   <div class="errors" *ngIf="errors">
     <p *ngIf="errors.descricao" >  {{ errors['descricao'].message }} </p>
-    <p *ngIf="errors.cliente" >  {{ errors['cliente'].message }} </p>
+    <p *ngIf="errors._clienteId" >  {{ errors['_clienteId'].message }} </p>
     <p *ngIf="errors.pedido" >  {{ errors['pedido'].message }} </p>   
     <p *ngIf="errors.horasPLC" >  {{ errors['horasPLC'].message }} </p>       
-    <p *ngIf="errors.horasIHM" >  {{ errors['horasIHM'].message }} </p>  
-    <p *ngIf="errors.valorTerceiros" >  {{ errors['valorTerceiros'].message }} </p>            
-    <p *ngIf="errors.valorMateriais" >  {{ errors['valorMateriais'].message }} </p>       
-    <p *ngIf="errors.valorViagens" >  {{ errors['valorViagens'].message }} </p>       
+    <p *ngIf="errors.horasIHM" >  {{ errors['horasIHM'].message }} </p>     
   </div>
 
-  <form (submit)='editarProjeto()' #projForm='ngForm'>
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        <label class="label">Código</label>
-      </div>
-      <div class="field-body">
-        <div class="field">
-          <p style="margin-top: 7px;" class="control">
-            {{ projeto.codigo }}
-          </p>
-        </div>
-      </div>
+  <form class="example-form" *ngIf="projeto" [formGroup] = "projetoForm">
+
+
+    <table class="example-full-width" cellspacing="0"><tr> 
+      <td><mat-form-field  style="width:200px !important;" class="example-full-width">
+          <input 
+          matInput
+          placeholder="código"
+          disabled
+          value="{{projeto.codigo}}"
+          />
+      </mat-form-field></td>
+    </tr></table>
+
+    <table class="example-full-width" cellspacing="0"><tr> 
+      <td><mat-form-field style="width:400px !important;" class="example-full-width">
+        <input 
+        matInput 
+        placeholder="descrição"
+        type="text"
+        formControlName="descricao" 
+        name="descricao"
+        />
+        <!-- <mat-error *ngIf="descricao.invalid && descricao.touched">
+            descricao informada não é válida
+        </mat-error> -->
+      </mat-form-field></td>
+    </tr></table>
+    
+    <mat-form-field style="width:400px !important;" class="example-full-width">
+      <mat-select placeholder="Selecione o cliente" name="_clienteId" formControlName="_clienteId">
+        <mat-option value="option" *ngFor="let c of clientes" [value]="c._id">
+            {{ c.nomeFantasia }}
+        </mat-option>
+      </mat-select>
+      <mat-hint align="end">clientes ativos</mat-hint>
+    </mat-form-field>
+
+    <table class="example-full-width" cellspacing="0"><tr> 
+      <td><mat-form-field  style="width:200px !important;" class="example-full-width">
+          <input 
+          matInput 
+          placeholder="pedido"
+          type="text"
+          formControlName="pedido" 
+          name="pedido"
+          />
+          <!-- <mat-error *ngIf="pedido.invalid && pedido.touched">
+              descricao informada não é válida
+          </mat-error> -->
+      </mat-form-field></td>
+    </tr></table>
+    <br>
+
+    <div class="mat-body-2"> 
+      Dados financeiros:
     </div>
 
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        <label class="label">Descrição</label>
-      </div>
-      <div class="field-body">
-        <div class="field">
-          <p class="control">
-            <input 
-            class="input " 
-            type="text" 
-            name="descricao" 
-            minlength=8
-            required
-            [(ngModel)]="projeto.descricao"
-            #descricao="ngModel"
-            />
-          </p>
-        </div>
-      </div>
-    </div>
-    <!-- <div *ngIf="!projeto.descricao.valid" class="purple">Descrição do projeto precisar ter no mínimo 8 caracteres!</div> -->
-    
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        <label class="label">Cliente</label>
-      </div>
-      <div class="field-body">
-        <div class="field">
-          <!-- <p style="margin-top: 6px" > -->
-            <!-- {{ projeto.nomeFantasiaCliente }} -->
-          <!-- </p> -->
-          <div class="select is-multiple control">
-            <select name="_clienteId" [(ngModel)]="clienteSelecionado" required>
-                <option *ngFor="let c of clientes" [value]="c._id">
-                  {{ c.nomeFantasia }}   
-                </option>
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- <div *ngIf="!projeto.cliente.valid" class="purple">Cliente precisar ter no mínimo 6 caracteres!</div> -->
+    <table class="example-full-width" cellspacing="0"><tr> 
+        <td><mat-form-field style="width:200px !important;" class="example-full-width">
+          <input 
+          matInput 
+          placeholder="horas PLC"
+          type="text"
+          formControlName="horasPLC" 
+          name="horasPLC"
+          />
+          <!-- <mat-error *ngIf="horasPLC.invalid && horasPLC.touched">
+              horas PLC informadas não são válidas
+          </mat-error> -->
+        </mat-form-field></td>
+      </tr></table>
   
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        <label class="label">Pedido</label>
-      </div>
-      <div class="field-body">
-        <div class="field">
-          <p class="control">
-            <input 
-            class="input" 
-            type="text" 
-            name="pedido" 
-            required
-            [(ngModel)]="projeto.pedido"
-            #pedido="ngModel"
-            />
-          </p>
-        </div>
-      </div>
-    </div>
-    <!-- <div *ngIf="!projeto.pedido.valid" class="purple">Pedido do projeto precisar ter no mínimo 4 caracteres!</div> -->
+      <table class="example-full-width" cellspacing="0"><tr> 
+        <td><mat-form-field style="width:200px !important;" class="example-full-width">
+          <input 
+          matInput 
+          placeholder="horas IHM"
+          type="text"
+          formControlName="horasIHM" 
+          name="horasIHM"
+          />
+          <!-- <mat-error *ngIf="horasIHM.invalid && horasIHM.touched">
+            horas IHM informadas não são válidas
+          </mat-error> -->
+        </mat-form-field></td>
+      </tr></table>
   
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        <label class="label">Horas PLC</label>
-      </div>
-      <div class="field-body">
-        <div class="field">
-          <p class="control">
-            <input 
-            class="input " 
-            type="text" 
-            name="horasPLC" 
-            [(ngModel)]="projeto.horasPLC"
-            #horasPLC="ngModel"
-            />
-          </p>
-        </div>
-      </div>
-    </div>
-    <!-- <div *ngIf="!horasPLC.valid" class="purple">horasPLC precisar ter no mínimo 4 caracteres!</div> -->
   
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        <label class="label">Horas IHM</label>
-      </div>
-      <div class="field-body">
-        <div class="field">
-          <p class="control">
-            <input 
-            class="input " 
-            type="text" 
-            name="horasIHM" 
-            [(ngModel)]="projeto.horasIHM"
-            #descricao="ngModel"
-            />
-          </p>
-        </div>
-      </div>
-    </div>
-    <!-- <div *ngIf="!horasIHM.valid" class="purple">horasIHM do projeto precisar ter no mínimo 8 caracteres!</div> -->
+      <table class="example-full-width" cellspacing="0"><tr> 
+        <td><mat-form-field style="width:200px !important;" class="example-full-width">
+          <input 
+          matInput 
+          placeholder="valor terceiros"
+          type="text"
+          formControlName="valorTerceiros" 
+          name="valorTerceiros"
+          />
+          <!-- <mat-error *ngIf="valorTerceiros.invalid && valorTerceiros.touched">
+            valor terceiros informado não é válido
+          </mat-error> -->
+        </mat-form-field></td>
+      </tr></table>
   
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        <label class="label">Valor Terceiros</label>
-      </div>
-      <div class="field-body">
-        <div class="field">
-          <p class="control">
-            <input 
-            class="input " 
-            type="text" 
-            name="valorTerceiros" 
-            [(ngModel)]="projeto.valorTerceiros"
-            #valorTerceiros="ngModel"
-            />
-          </p>
-        </div>
-      </div>
-    </div>
-    <!-- <div *ngIf="!valorTerceiros.valid" class="purple">valorTerceiros precisar ter no mínimo 4 caracteres!</div> -->
+      <table class="example-full-width" cellspacing="0"><tr> 
+        <td><mat-form-field style="width:200px !important;" class="example-full-width">
+          <input 
+          matInput 
+          placeholder="valor materiais"
+          type="text"
+          formControlName="valorMateriais" 
+          name="valorMateriais"
+          />
+        </mat-form-field></td>
+      </tr></table>
   
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
-      <label class="label">Valor Materiais</label>
-      </div>
-        <div class="field-body">
-          <div class="field">
-            <p class="control">
-              <input 
-              class="input " 
-              type="text" 
-              name="valorMateriais" 
-              [(ngModel)]="projeto.valorMateriais"
-              #valorMateriais="ngModel"
-              />
-            </p>
-          </div>
-      </div>
-    </div>
   
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
-      <label class="label">Valor Viagens</label>
-      </div>
-        <div class="field-body">
-          <div class="field">
-            <p class="control">
-              <input 
-              class="input " 
-              type="text" 
-              name="valorViagens" 
-              [(ngModel)]="projeto.valorViagens"
-              #valorViagens="ngModel"
-              />
-            </p>
-          </div>
-      </div>
-    </div>
+      <table class="example-full-width" cellspacing="0"><tr> 
+        <td><mat-form-field style="width:200px !important;" class="example-full-width">
+          <input 
+          matInput 
+          placeholder="valor viagens"
+          type="text"
+          formControlName="valorViagens" 
+          name="valorViagens"
+          />
+        </mat-form-field></td>
+      </tr></table> 
   
-    <button type="button" class="btn btn-secondary" [routerLink]="['/projetos']">Cancela</button>
-    <button type="submit" class="btn btn-primary"  [disabled]="projForm.invalid">Confirma</button>
+      <button mat-raised-button color="basic" (click)="cancel()">cancela</button>
+  
+      <button mat-raised-button color="primary"  (click)="editarProjeto(projetoForm)" [disabled]="projetoForm.invalid">confirma</button>
   
   </form>
 </div>  

@@ -5,10 +5,6 @@ import { UsuarioService } from '../../usuario/usuario.service';
 import { ProjetoService } from '../projeto.service';
 import { ClienteService } from '../../cliente/cliente.service';
 
-/** Data structure for holding codigo number. */
-export class CodigoCliente {
-  constructor(public ordem: number, public sequancial: number, public ano: number) {}
-}
 
 @Component({
   selector: 'app-projeto-novo',
@@ -23,7 +19,6 @@ export class ProjetoNovoComponent implements OnInit {
   clientes: any;
   errors: any;
   projetos: any;
-  clienteSelecionado: Number;
 
   projetoForm: FormGroup;
 
