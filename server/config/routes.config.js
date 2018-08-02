@@ -41,6 +41,8 @@ module.exports = function(app){
         usuario.novo(req, res)})
     .put('/usuario/edit/:id', (req, res) => {
         usuario.edit(req, res)})
+    .put('/usuario/mudarSituacao/:id', (req, res) => {
+        usuario.mudarSituacao(req, res)})
     .get('/login/', (req, res) => {
         usuario.login(req, res)})
     .get('/usuarios', (req, res) => {

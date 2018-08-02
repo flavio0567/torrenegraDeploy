@@ -20,3 +20,8 @@ img {
 a, button {
   margin: 10px;
 }
+
+/* class repeated for increased specificity */
+.mat-form-field.mat-form-field {
+  width: auto;
+}

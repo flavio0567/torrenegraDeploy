@@ -1,21 +1,22 @@
 <mat-toolbar>
-    <img src="../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png">
+  <img src="../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png">
 </mat-toolbar>
+<div class="mat-elevation-z8">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" [routerLink]="['/clientes']">Retornar <span class="sr-only">(current)</span></a>
-      </li>
-    </ul>
-  </div>
-</nav>
-  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" [routerLink]="['/clientes']">Retornar <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+<br>
 <div class="container">
   <div class="mat-body-2"> 
     Dados básicos: 
@@ -28,7 +29,6 @@
       <p *ngIf="errors['endereco.cidade']" >  {{ errors['endereco.cidade'].message }} </p>  
       <p *ngIf="errors['endereco.estado']" >  {{ errors['endereco.estado'].message }} </p>   
       <p *ngIf="errors['endereco.cep']" >  {{ errors['endereco.cep'].message }} </p>    
-      <!-- <p *ngIf="errors.contatos" >  {{ errors['contatos'].message }} </p>        -->
     </div>
 
 
@@ -51,7 +51,7 @@
 
       <table class="example-full-width" cellspacing="0"><tr> 
       
-        <td><mat-form-field class="example-full-width">
+        <td><mat-form-field style="width:400px !important;" class="example-full-width">
           <input 
           matInput 
           placeholder="razão social"
@@ -66,7 +66,7 @@
       </tr></table>
 
       <table class="example-full-width" cellspacing="0"><tr> 
-      <td><mat-form-field class="example-full-width">
+      <td><mat-form-field style="width:400px !important;" class="example-full-width">
         <input 
         matInput 
         placeholder="nome fantasia"
@@ -82,22 +82,19 @@
 
     <form class="example-form" [formGroup]="endereco">
       <p>
-        <mat-form-field class="example-full-width">
-          <textarea 
+        <mat-form-field style="width:400px !important;" class="example-full-width">
+          <input 
           matInput 
           placeholder="endereço"
           type="text"
           formControlName="logradouro" 
-          name="logradouro"> 
-          </textarea>
-          <!-- <mat-error *ngIf="logradouro.invalid && logradouro.touched">
-            endereço informado não é válido
-          </mat-error> -->
+          name="logradouro"
+          />
         </mat-form-field>
       </p>
     
       <p>
-        <mat-form-field class="example-full-width">
+        <mat-form-field style="width:200px !important;" class="example-full-width">
           <input 
           matInput 
           placeholder="complemento"
@@ -117,9 +114,6 @@
           formControlName="cidade" 
           name="cidade"
           >
-          <!-- <mat-error *ngIf="cidade.invalid && cidade.touched">
-            cidade informada não é válida
-          </mat-error> -->
         </mat-form-field></td>
         <td><mat-form-field class="example-full-width">
           <input 
@@ -131,9 +125,6 @@
           maxlength="2"
           >
           <mat-hint align="end" *ngIf="estado">{{estado.value.length}} / 2</mat-hint>
-          <!-- <mat-error *ngIf="estado.invalid && estado.touched">
-            estado informado não é válido
-          </mat-error> -->
         </mat-form-field></td>
         <td><mat-form-field class="example-full-width">
           <input 
@@ -146,9 +137,6 @@
           name="cep" 
           >
           <mat-hint align="end" *ngIf="cep">{{cep.value.length}} / 8</mat-hint>
-          <!-- <mat-error *ngIf="cep.invalid && cep.touched">
-            cep informado não é válido
-          </mat-error>  -->
 
         </mat-form-field></td>
       </tr></table>
@@ -229,16 +217,14 @@
 
           </div>
 
-        
         </div>
-
 
         <a mat-mini-fab color="primary" (click)="addContato()">+</a>
 
     </div>
-    <button mat-raised-button color="basic" (click)="cancel()">Cancelar</button>
+    <button mat-raised-button color="basic" (click)="cancel()">cancela</button>
 
-    <button mat-raised-button color="primary"  (click)="criarCliente(clienteForm, endereco)" [disabled]="clienteForm.invalid || endereco.invalid">Confirma</button>
+    <button mat-raised-button color="primary"  (click)="criarCliente(clienteForm, endereco)" [disabled]="clienteForm.invalid || endereco.invalid">confirma</button>
       
 
   </form>

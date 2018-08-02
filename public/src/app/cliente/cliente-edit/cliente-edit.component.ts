@@ -42,7 +42,6 @@ export class ClienteEditComponent implements OnInit {
       observable.subscribe(
         (response) => {
           this.cliente = response.json();
-          console.log('in ClienteEditComponent >>>>:', this.cliente);
           this.clienteForm = this._formBuilder.group({
             cnpj: [this.cliente.cnpj, [Validators.required]],
             razaoSocial: [this.cliente.razaoSocial, [Validators.required]],

@@ -1,85 +1,87 @@
 <mat-toolbar>
     <img src="../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png">
 </mat-toolbar>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Sair <span class="sr-only">(current)</span></a>
-      </li>
-    </ul>
-  </div>
-</nav>
-
+<div class="mat-elevation-z8"> 
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Sair <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+<br>
 <div class="container">
 
-<div class="level-left">
-    <div style="margin: 20px, 0px, 20px, 0px;" class="title is-4">Apontamento</div> 
-</div>
-<div class="errors" *ngIf="errors">
+  <div class="level-left">
+      <div style="margin: 20px, 0px, 20px, 0px;" class="title is-4">Apontamento</div> 
+  </div>
+  <div class="errors" *ngIf="errors">
     <p *ngIf="errors['hora.inicio'].message" >  {{ errors['hora.inicio'].message }} </p>   
   </div> 
 
-<form  #formData="ngForm" [formGroup]="options">
+  <!-- <form  #formData="ngForm" [formGroup]="options"> -->
+  <form class="example-form" [formGroup] = "options">
 
-  <div class="example-container">
-      <mat-form-field>
-        <mat-select placeholder="Selecione o projeto" name="projeto" formControlName="projeto" required>
-          <mat-option value="option" *ngFor="let p of projetos" [value]="p._id"> {{ p.codigo }} {{ p.descricao }}</mat-option>
-        </mat-select>
-        <mat-hint align="end">Projetos ativos</mat-hint>
-      </mat-form-field>
+    <div class="example-container">
+        <mat-form-field>
+          <mat-select placeholder="Selecione o projeto" name="projeto" formControlName="projeto" required>
+            <mat-option value="option" *ngFor="let p of projetos" [value]="p._id"> {{ p.codigo }} {{ p.descricao }}</mat-option>
+          </mat-select>
+          <mat-hint align="end">Projetos ativos</mat-hint>
+        </mat-form-field>
 
-        <div class="example-container">
-          <mat-radio-group formControlName="tipo" [value]="tipo" >
-            <mat-radio-button (change)="radioChange($event)" *ngFor="let a of array;" [value]="a"> {{ a }}&nbsp;&nbsp;</mat-radio-button>
-          </mat-radio-group>&nbsp;&nbsp;
+          <div class="example-container">
+            <mat-radio-group formControlName="tipo" [value]="tipo" >
+              <mat-radio-button (change)="radioChange($event)" *ngFor="let a of array;" [value]="a"> {{ a }}&nbsp;&nbsp;</mat-radio-button>
+            </mat-radio-group>&nbsp;&nbsp;
 
-          <mat-form-field *ngIf="(options.get('tipo').value=='despesa')">
-              <mat-select placeholder="Selecione o tipo"  formControlName="opDespesa">
-                <mat-option value="alimentacao"> alimentação</mat-option>
-                <mat-option value="hospedagem"> hospedagem</mat-option>
-                <mat-option value="pedagio"> pedágio</mat-option>
-                <mat-option value="transporte"> transporte</mat-option>
-                <mat-option value="outros"> outros</mat-option>
-              </mat-select>
-              <mat-hint align="end"></mat-hint>
-          </mat-form-field>&nbsp;&nbsp;
-
-          <mat-form-field *ngIf="options.get('opDespesa').value=='outros' && options.get('tipo').value=='despesa'" hintLabel="Max 20 caracteres">
-              <input matInput formControlName="descricao" #input maxlength="20">
-              <mat-hint align="end">{{input.value?.length || 0}}/20</mat-hint>
+            <mat-form-field *ngIf="(options.get('tipo').value=='despesa')">
+                <mat-select placeholder="Selecione o tipo"  formControlName="opDespesa">
+                  <mat-option value="alimentacao"> alimentação</mat-option>
+                  <mat-option value="hospedagem"> hospedagem</mat-option>
+                  <mat-option value="pedagio"> pedágio</mat-option>
+                  <mat-option value="transporte"> transporte</mat-option>
+                  <mat-option value="outros"> outros</mat-option>
+                </mat-select>
+                <mat-hint align="end"></mat-hint>
             </mat-form-field>&nbsp;&nbsp;
 
-          <mat-form-field *ngIf="(options.get('tipo').value=='despesa')">
-            <input 
-            formControlName="valor"
-            matInput 
-            placeholder="Valor" 
-            type="number" 
-            class="example-right-align">
-            <span matPrefix>$&nbsp;</span>
-            <span matSuffix>.00</span>
-          </mat-form-field>&nbsp;&nbsp;
+            <mat-form-field *ngIf="options.get('opDespesa').value=='outros' && options.get('tipo').value=='despesa'" hintLabel="Max 20 caracteres">
+                <input matInput formControlName="descricao" #input maxlength="20">
+                <mat-hint align="end">{{input.value?.length || 0}}/20</mat-hint>
+              </mat-form-field>&nbsp;&nbsp;
 
-          <mat-form-field *ngIf="(options.get('tipo').value=='hora')" >
-            <mat-select placeholder="início" formControlName="inicio" > 
-                <mat-option value="{{ today }}">{{today | date:"MMM d, y H:mm:ss"}}</mat-option>
-            </mat-select>
-          </mat-form-field>
+            <mat-form-field *ngIf="(options.get('tipo').value=='despesa')">
+              <input 
+              formControlName="valor"
+              matInput 
+              placeholder="Valor" 
+              type="number" 
+              class="example-right-align">
+              <span matPrefix>$&nbsp;</span>
+              <span matSuffix>.00</span>
+            </mat-form-field>&nbsp;&nbsp;
 
-        </div>
+            <mat-form-field *ngIf="(options.get('tipo').value=='hora')" >
+              <mat-select placeholder="início" formControlName="inicio" > 
+                  <mat-option value="{{ today }}">{{today | date:"MMM d, y H:mm:ss"}}</mat-option>
+              </mat-select>
+            </mat-form-field>
 
-    </div>
-  </form>
+          </div>
 
-        <button type="button" class="btn btn-secondary" (click)="cancel()">Cancela</button>
-        <button type="button" class="btn btn-primary" (click)="setApontamento()" [disabled]="formData.invalid">Confirma</button>
-  
+      </div>
+    </form>
+
+    <button mat-raised-button color="basic"   (click)="cancel()">cancela</button>
+    <button mat-raised-button color="primary" (click)="setApontamento()" [disabled]="options.invalid">confirma</button>
+    
 </div>
 
 

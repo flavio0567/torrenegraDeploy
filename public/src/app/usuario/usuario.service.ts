@@ -52,6 +52,11 @@ export class UsuarioService {
     return this._http.put('usuario/edit/' + usuario['_id'], usuario);
   }
 
+  mudarSituacao(usuario) {
+    console.log('UsuarioService > mudarSituacao(usuario)',  usuario);
+    return this._http.put('usuario/mudarSituacao/' + usuario['_id'], usuario);
+  }
+
   // login(user, callback) {
   //   this._http.post('/login/', user).subscribe(
   //     (res) => {

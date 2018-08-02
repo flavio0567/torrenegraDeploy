@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UsuarioService } from '../usuario.service';
 
 @Component({
@@ -12,15 +12,8 @@ export class UsuarioShowComponent implements OnInit {
     email: '',
     admin: ''
   }
-  usuario = { 
-    nome: "",
-    email: "",
-    funcao: "",
-    custoHora: 0,
-    admin: ""
-  };
+  usuario: any;
   frontPath:string = "../../assets/images/check.png";
-
   backPath:string =  "";
 
   constructor(
@@ -35,19 +28,34 @@ export class UsuarioShowComponent implements OnInit {
     this.obterUsuario(this._route.snapshot.params['id']);
   }
 
+  isChecked(): boolean {
+    return this.usuario.admin;
+  }
+
+  isFalse(): boolean {
+    return false;
+  }
+
   obterUsuario(id){
-    console.log('UsuarioEditComponent > obterUsuario'); 
+    console.log('UsuarioShowComponent > obterUsuario', id); 
     const observable = this._usuarioService.obterUsuarioById(id);
     observable.subscribe((response) => {
       this.usuario = response.json();
     });
   }
 
-  excluirUsuario(id){
-    console.log('excluir Usuario OK!!!');
-  
+  mudarSituacao(event){
+    console.log('UsuarioShowComponent > mudarSituacao'); 
+    this.usuario.ativo = event;
+    this._usuarioService.mudarSituacao(this.usuario)
+      .subscribe((response) => {
+      this.usuario = response.json();
+      this._router.navigate(['/usuarios']);
+    });
   }
 
+  cancel() {
+    this._router.navigate(['/usuarios']);
+  }
 
-  
 }

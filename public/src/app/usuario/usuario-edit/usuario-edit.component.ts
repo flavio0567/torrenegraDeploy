@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../usuario.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FormGroup, FormBuilder, Validators, NgForm } from '../../../../node_modules/@angular/forms';
 
 @Component({
   selector: 'app-usuario-edit',
@@ -12,16 +13,13 @@ export class UsuarioEditComponent implements OnInit {
     email: '',
     admin: ''
   }
-  usuario = { 
-    nome: "",
-    email: "",
-    funcao: "",
-    custoHora: 0,
-    admin: false
-  };
+
   errors: any;
-  
+  usuario: any;
+  userForm: FormGroup;
+
   constructor(
+    private _formBuilder: FormBuilder,
     private _usuarioService: UsuarioService,
     private _router: Router,
     private _route: ActivatedRoute
@@ -36,14 +34,42 @@ export class UsuarioEditComponent implements OnInit {
   obterUsuario(id){
     console.log('UsuarioEditComponent > obterUsuario'); 
     const observable = this._usuarioService.obterUsuarioById(id);
-    observable.subscribe((response) => {
+    observable.subscribe(
+      (response) => {
       this.usuario = response.json();
+      console.log('in UsuarioEditComponent >>>>:', this.usuario);
+      this.userForm = this._formBuilder.group({
+        _id: [this.usuario._id],
+        nome: [this.usuario.nome, [Validators.required]],
+        funcao: [this.usuario.funcao, [Validators.required]],
+        email: [this.usuario.email, [Validators.required]],
+        custoHora: [this.usuario.custoHora, [Validators.required]],
+        admin: [this.usuario.admin, [Validators.required]]
+      })
+
     });
   }
 
-  editarUsuario() {
-    console.log('UsuarioEditComponent > obterUsuario()', this.usuario); 
-    this._usuarioService.editarUsuario(this.usuario)
+  get nome() {
+    return this.userForm.get('nome');
+  }
+
+  get funcao() {
+    return this.userForm.get('funcao');
+  }
+
+  get email() {
+    return this.userForm.get('email');
+  }
+
+  get custoHora() {
+    return this.userForm.get('custoHora');
+  }
+
+
+  editarUsuario(userForm: NgForm) {
+    console.log('UsuarioEditComponent > obterUsuario(userForm)', userForm.value); 
+    this._usuarioService.editarUsuario(userForm.value)
     .subscribe(observable => {
       if(observable.json().errors) {
         this.errors = observable.json().errors;
@@ -59,5 +85,8 @@ export class UsuarioEditComponent implements OnInit {
   );
 }
 
+cancel() {
+  this._router.navigate(['/usuarios']);
+}
 
 }

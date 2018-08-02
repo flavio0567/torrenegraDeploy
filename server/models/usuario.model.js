@@ -51,6 +51,10 @@ uniqueValidator  = require('mongoose-unique-validator');
         type: Boolean,
         default: false
     },
+    ativo: {
+        type: Boolean,
+        default: true
+    },
     }, { timestamps: true },
        { autoIndex: false }
 );

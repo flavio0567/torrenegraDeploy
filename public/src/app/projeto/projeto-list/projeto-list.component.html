@@ -2,49 +2,50 @@
     <img src="../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png">
 </mat-toolbar>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<div class="mat-elevation-z8">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle  active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Cadastro
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" [routerLink]="['/usuarios']">Usuário</a>
-          <a class="dropdown-item" [routerLink]="['/clientes']">Cliente</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/apontamentos']">Apontamento</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/financeiro']">Financeiro</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Relatório
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="">Financeiro</a>
-          <a class="dropdown-item" href="#">Total de horas por projeto</a>
-          <a class="dropdown-item" href="#">Total de horas por funcionário</a>
-          <a class="dropdown-item" href="#">Custo por pedido</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Projetos encerrados</a>
-        </div>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link" href="#">Sair <span class="sr-only">(current)</span></a>
-      </li>
-    </ul>
-  </div>
-</nav>
-
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle  active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Cadastro
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" [routerLink]="['/usuarios']">Usuário</a>
+            <a class="dropdown-item" [routerLink]="['/clientes']">Cliente</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/apontamentos']">Apontamento</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/financeiro']">Financeiro</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Relatório
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="">Financeiro</a>
+            <a class="dropdown-item" href="#">Total de horas por projeto</a>
+            <a class="dropdown-item" href="#">Total de horas por funcionário</a>
+            <a class="dropdown-item" href="#">Custo por pedido</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Projetos encerrados</a>
+          </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Sair <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
 <div class="container">
 
   <div class="level-left">

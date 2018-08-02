@@ -1,132 +1,111 @@
 <mat-toolbar>
     <img src="../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png">
 </mat-toolbar>
-  
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<div class="mat-elevation-z8">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" [routerLink]="['/usuarios']">Retornar <span class="sr-only">(current)</span></a>
-      </li>
-    </ul>
-  </div>
-</nav>
-  
-  <div class="container">
-
-    <div class="mat-body-2"> 
-      Dados do usuário:
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" [routerLink]="['/usuarios']">Retornar <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
     </div>
-      <div class="errors" *ngIf="errors">
-        <p *ngIf="errors.nome" >  {{ errors['nome'].message }} </p>
-        <p *ngIf="errors.email" >  {{ errors['email'].message }} </p>
-        <p *ngIf="errors.funcao" >  {{ errors['funcao'].message }} </p>
-        <p *ngIf="errors.custoHora" >  {{ errors['custoHora'].message }} </p>       
-      </div>
+  </nav>
+</div>
+<br>
+<div class="container">
 
-    <form (submit)='editarUsuario()' #userForm='ngForm'>
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">Nome</label>
-        </div>
-        <div class="field-body">
-          <div class="field">
-              <p class="control">
-                  <input 
-                  class="input" 
-                  type="text" 
-                  name="nome" 
-                  minlength=4
-                  required
-                  [(ngModel)]="usuario.nome"
-                  #nome="ngModel"
-                  />
-                </p>
-          </div>
-        </div>
-      </div>
+  <div class="mat-body-2"> 
+    Dados do usuário:
+  </div>
+  <br>
+  <div class="errors" *ngIf="errors">
+    <p *ngIf="errors.nome" >  {{ errors['nome'].message }} </p>
+    <p *ngIf="errors.email" >  {{ errors['email'].message }} </p>
+    <p *ngIf="errors.funcao" >  {{ errors['funcao'].message }} </p>
+    <p *ngIf="errors.custoHora" >  {{ errors['custoHora'].message }} </p>       
+  </div>
+
+  <form class="example-form" *ngIf="usuario" [formGroup] = "userForm">
+
+
+    <table class="example-full-width" cellspacing="0"><tr> 
+    
+      <td><mat-form-field style="width:400px !important;" class="example-full-width">
+        <input 
+        matInput 
+        placeholder="nome"
+        type="text"
+        formControlName="nome" 
+        name="nome"
+        />
+        <mat-error *ngIf="nome.invalid && nome.touched">
+            nome informado não é válido
+        </mat-error>
+      </mat-form-field></td>
+    </tr></table>
+
+
+    <table class="example-full-width" cellspacing="0"><tr> 
+      <td><mat-form-field class="example-full-width">
+        <input 
+        matInput 
+        placeholder="email"
+        type="email"
+        formControlName="email" 
+        name="email"
+        />
+        <mat-error *ngIf="email.invalid && email.touched">
+            email informado não é válido
+        </mat-error>
+      </mat-form-field></td>
+    </tr></table>
+
+
+    <table class="example-full-width" cellspacing="0"><tr> 
+      <td><mat-form-field class="example-full-width">
+        <input 
+        matInput 
+        placeholder="funcao"
+        type="text"
+        formControlName="funcao" 
+        name="funcao"
+        />
+        <mat-error *ngIf="funcao.invalid && funcao.touched">
+            funcao informada não é válida
+        </mat-error>
+      </mat-form-field></td>
+    </tr></table>
+
+    <table class="example-full-width" cellspacing="0"><tr> 
+      <td><mat-form-field class="example-full-width">
+        <input 
+        matInput
+        placeholder="custo hora"
+        type="number"
+        formControlName="custoHora" 
+        name="custoHora"  
+        />
+        <mat-error *ngIf="custoHora.invalid && custoHora.touched">
+            custo Hora informado não é válido
+        </mat-error>
+      </mat-form-field></td>
+    </tr></table>
+    <br>
+    <table class="example-full-width" cellspacing="0"><tr> 
+      <td>
+        <mat-checkbox color="warn" formControlName="admin">Administrador
+        </mat-checkbox>
+      </td>
+    </tr></table>
+    <br>
+    <button mat-raised-button color="basic"  (click)="cancel()">cancela</button>
+    <button mat-raised-button color="primary" (click)="editarUsuario(userForm)" [disabled]="userForm.invalid">confirma</button>
   
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">E-mail</label>
-        </div>
-        <div class="field-body">
-          <div class="field">
-            <p class="control">
-              <input 
-              class="input" 
-              type="text" 
-              name="email" 
-              required
-              [(ngModel)]="usuario.email"
-              #email="ngModel"
-              />
-            </p>
-          </div>
-        </div>
-      </div>
-      <!-- <div *ngIf="!projeto.descricao.valid" class="purple">Descrição do projeto precisar ter no mínimo 8 caracteres!</div> -->
-      
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">Função</label>
-        </div>
-        <div class="field-body">
-          <div class="field">
-            <p class="control">
-              <input 
-              class="input " 
-              type="text" 
-              name="funcao" 
-              minlength=4
-              required
-              [(ngModel)]="usuario.funcao"
-              #funcao="ngModel"
-              />
-            </p>
-          </div>
-        </div>
-      </div>
-      <!-- <div *ngIf="!projeto.cliente.valid" class="purple">Cliente precisar ter no mínimo 6 caracteres!</div> -->
+  </form>
     
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">Custo/hora</label>
-        </div>
-        <div class="field-body">
-          <div class="field">
-            <p class="control">
-              <input 
-              class="input" 
-              type="text" 
-              name="custoHora" 
-              required
-              [(ngModel)]="usuario.custoHora"
-              #custoHora="ngModel"
-              />
-            </p>
-          </div>
-        </div>
-      </div>
-      <!-- <div *ngIf="!projeto.pedido.valid" class="purple">Pedido do projeto precisar ter no mínimo 4 caracteres!</div> -->
-      
-      <div class="field is-horizontal">
-          <label class="checkbox">
-              <input 
-              type="checkbox"
-              name="admin"
-              [(ngModel)]="usuario.admin">
-            &nbsp; Adminstrador  
-          </label>
-        </div>
-
-    
-      <button type="button" class="btn btn-secondary" [routerLink]="['/usuarios']">Cancela</button>
-      <button type="submit" class="btn btn-primary"  [disabled]="userForm.invalid">Confirma</button>
-    
-    </form>
-  </div>  
+</div>

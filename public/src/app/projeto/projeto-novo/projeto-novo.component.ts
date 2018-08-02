@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UsuarioService } from '../../usuario/usuario.service';
 import { ProjetoService } from '../projeto.service';
 import { ClienteService } from '../../cliente/cliente.service';
+
+/** Data structure for holding codigo number. */
+export class CodigoCliente {
+  constructor(public ordem: number, public sequancial: number, public ano: number) {}
+}
 
 @Component({
   selector: 'app-projeto-novo',
@@ -18,20 +23,13 @@ export class ProjetoNovoComponent implements OnInit {
   clientes: any;
   errors: any;
   projetos: any;
-  projeto = {
-    codigo: "",
-    descricao: "",
-    cliente:  "",
-    pedido:  "",
-    horasPLC:  0,
-    horasIHM:  0,
-    valorTerceiros:  0,
-    valorMateriais:  0,
-    valorViagens:  0
-  };
   clienteSelecionado: Number;
 
+  projetoForm: FormGroup;
+
+
   constructor(
+    private _formBuilder: FormBuilder,
     private _usuarioService: UsuarioService,
     private _projetoService: ProjetoService,
     private _clienteService: ClienteService,
@@ -42,6 +40,17 @@ export class ProjetoNovoComponent implements OnInit {
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
     console.log('ProjetoNovoComponent > usuarioLogado ', this.usuarioLogado.email);
     this.obterListaCliente();
+    this.projetoForm = this._formBuilder.group({
+      codigo: [null, [ Validators.required, Validators.pattern("OR-[0-9]{3}-[1-9]{2}") ]],
+      descricao: [null, [ Validators.required ]],
+      _clienteId: [null],
+      pedido:  [null, [ Validators.required ]],
+      horasPLC: [null],
+      horasIHM: [null],
+      valorTerceiros: [null],
+      valorMateriais: [null],
+      valorViagens: [null]
+    });
   }
 
   obterListaCliente() {
@@ -56,9 +65,29 @@ export class ProjetoNovoComponent implements OnInit {
     )
   }
 
-  criarProjeto(projForm: NgForm) {
-    console.log('ProjetoNovoComponent > novoProjeto(nProjForm)', projForm); 
-    this._projetoService.criarProjeto(projForm.value)
+  get codigo() {
+    return this.projetoForm.get('codigo');
+  }
+
+  get descricao() {
+    return this.projetoForm.get('descricao');
+  }
+
+  get pedido() {
+    return this.projetoForm.get('pedido');
+  }
+
+  get horasPLC() {
+    return this.projetoForm.get('horasPLC');
+  }
+
+  get horasIHM() {
+    return this.projetoForm.get('horasIHM');
+  }
+
+  criarProjeto(projetoForm: NgForm) {
+    console.log('ProjetoNovoComponent > novoProjeto(nProjForm)', projetoForm); 
+    this._projetoService.criarProjeto(projetoForm.value)
       .subscribe(observable => {
         if(observable.json().errors) {
           this.errors = observable.json().errors;
@@ -72,7 +101,9 @@ export class ProjetoNovoComponent implements OnInit {
         throw err;
       }
     );
-    projForm.resetForm();
+  }
+  cancel() {
+    this._router.navigate(['/projetos']);
   }
 
 }

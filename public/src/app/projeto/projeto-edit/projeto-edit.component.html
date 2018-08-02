@@ -1,212 +1,212 @@
 <mat-toolbar>
     <img src="../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png">
 </mat-toolbar>
+<div class="mat-elevation-z8"> 
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" [routerLink]="['/projetos']">Retornar <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+<div class="container">
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" [routerLink]="['/projetos']">Retornar <span class="sr-only">(current)</span></a>
-      </li>
-    </ul>
+  <div class="errors" *ngIf="errors">
+    <p *ngIf="errors.descricao" >  {{ errors['descricao'].message }} </p>
+    <p *ngIf="errors.cliente" >  {{ errors['cliente'].message }} </p>
+    <p *ngIf="errors.pedido" >  {{ errors['pedido'].message }} </p>   
+    <p *ngIf="errors.horasPLC" >  {{ errors['horasPLC'].message }} </p>       
+    <p *ngIf="errors.horasIHM" >  {{ errors['horasIHM'].message }} </p>  
+    <p *ngIf="errors.valorTerceiros" >  {{ errors['valorTerceiros'].message }} </p>            
+    <p *ngIf="errors.valorMateriais" >  {{ errors['valorMateriais'].message }} </p>       
+    <p *ngIf="errors.valorViagens" >  {{ errors['valorViagens'].message }} </p>       
   </div>
-</nav>
-  
-  <div class="container">
 
-    <div class="errors" *ngIf="errors">
-      <p *ngIf="errors.descricao" >  {{ errors['descricao'].message }} </p>
-      <p *ngIf="errors.cliente" >  {{ errors['cliente'].message }} </p>
-      <p *ngIf="errors.pedido" >  {{ errors['pedido'].message }} </p>   
-      <p *ngIf="errors.horasPLC" >  {{ errors['horasPLC'].message }} </p>       
-      <p *ngIf="errors.horasIHM" >  {{ errors['horasIHM'].message }} </p>  
-      <p *ngIf="errors.valorTerceiros" >  {{ errors['valorTerceiros'].message }} </p>            
-      <p *ngIf="errors.valorMateriais" >  {{ errors['valorMateriais'].message }} </p>       
-      <p *ngIf="errors.valorViagens" >  {{ errors['valorViagens'].message }} </p>       
+  <form (submit)='editarProjeto()' #projForm='ngForm'>
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label">Código</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p style="margin-top: 7px;" class="control">
+            {{ projeto.codigo }}
+          </p>
+        </div>
+      </div>
     </div>
 
-    <form (submit)='editarProjeto()' #projForm='ngForm'>
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">Código</label>
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label">Descrição</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control">
+            <input 
+            class="input " 
+            type="text" 
+            name="descricao" 
+            minlength=8
+            required
+            [(ngModel)]="projeto.descricao"
+            #descricao="ngModel"
+            />
+          </p>
         </div>
-        <div class="field-body">
-          <div class="field">
-            <p style="margin-top: 7px;" class="control">
-              {{ projeto.codigo }}
-            </p>
+      </div>
+    </div>
+    <!-- <div *ngIf="!projeto.descricao.valid" class="purple">Descrição do projeto precisar ter no mínimo 8 caracteres!</div> -->
+    
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label">Cliente</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <!-- <p style="margin-top: 6px" > -->
+            <!-- {{ projeto.nomeFantasiaCliente }} -->
+          <!-- </p> -->
+          <div class="select is-multiple control">
+            <select name="_clienteId" [(ngModel)]="clienteSelecionado" required>
+                <option *ngFor="let c of clientes" [value]="c._id">
+                  {{ c.nomeFantasia }}   
+                </option>
+            </select>
           </div>
         </div>
       </div>
+    </div>
+    <!-- <div *ngIf="!projeto.cliente.valid" class="purple">Cliente precisar ter no mínimo 6 caracteres!</div> -->
   
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">Descrição</label>
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label">Pedido</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control">
+            <input 
+            class="input" 
+            type="text" 
+            name="pedido" 
+            required
+            [(ngModel)]="projeto.pedido"
+            #pedido="ngModel"
+            />
+          </p>
         </div>
+      </div>
+    </div>
+    <!-- <div *ngIf="!projeto.pedido.valid" class="purple">Pedido do projeto precisar ter no mínimo 4 caracteres!</div> -->
+  
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label">Horas PLC</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control">
+            <input 
+            class="input " 
+            type="text" 
+            name="horasPLC" 
+            [(ngModel)]="projeto.horasPLC"
+            #horasPLC="ngModel"
+            />
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- <div *ngIf="!horasPLC.valid" class="purple">horasPLC precisar ter no mínimo 4 caracteres!</div> -->
+  
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label">Horas IHM</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control">
+            <input 
+            class="input " 
+            type="text" 
+            name="horasIHM" 
+            [(ngModel)]="projeto.horasIHM"
+            #descricao="ngModel"
+            />
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- <div *ngIf="!horasIHM.valid" class="purple">horasIHM do projeto precisar ter no mínimo 8 caracteres!</div> -->
+  
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label">Valor Terceiros</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control">
+            <input 
+            class="input " 
+            type="text" 
+            name="valorTerceiros" 
+            [(ngModel)]="projeto.valorTerceiros"
+            #valorTerceiros="ngModel"
+            />
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- <div *ngIf="!valorTerceiros.valid" class="purple">valorTerceiros precisar ter no mínimo 4 caracteres!</div> -->
+  
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+      <label class="label">Valor Materiais</label>
+      </div>
         <div class="field-body">
           <div class="field">
             <p class="control">
               <input 
               class="input " 
               type="text" 
-              name="descricao" 
-              minlength=8
-              required
-              [(ngModel)]="projeto.descricao"
-              #descricao="ngModel"
+              name="valorMateriais" 
+              [(ngModel)]="projeto.valorMateriais"
+              #valorMateriais="ngModel"
               />
             </p>
           </div>
-        </div>
       </div>
-      <!-- <div *ngIf="!projeto.descricao.valid" class="purple">Descrição do projeto precisar ter no mínimo 8 caracteres!</div> -->
-      
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">Cliente</label>
-        </div>
-        <div class="field-body">
-          <div class="field">
-            <!-- <p style="margin-top: 6px" > -->
-              <!-- {{ projeto.nomeFantasiaCliente }} -->
-            <!-- </p> -->
-            <div class="select is-multiple control">
-              <select name="_clienteId" [(ngModel)]="clienteSelecionado" required>
-                  <option *ngFor="let c of clientes" [value]="c._id">
-                    {{ c.nomeFantasia }}   
-                  </option>
-              </select>
-            </div>
-          </div>
-        </div>
+    </div>
+  
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+      <label class="label">Valor Viagens</label>
       </div>
-      <!-- <div *ngIf="!projeto.cliente.valid" class="purple">Cliente precisar ter no mínimo 6 caracteres!</div> -->
-    
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">Pedido</label>
-        </div>
-        <div class="field-body">
-          <div class="field">
-            <p class="control">
-              <input 
-              class="input" 
-              type="text" 
-              name="pedido" 
-              required
-              [(ngModel)]="projeto.pedido"
-              #pedido="ngModel"
-              />
-            </p>
-          </div>
-        </div>
-      </div>
-      <!-- <div *ngIf="!projeto.pedido.valid" class="purple">Pedido do projeto precisar ter no mínimo 4 caracteres!</div> -->
-    
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">Horas PLC</label>
-        </div>
         <div class="field-body">
           <div class="field">
             <p class="control">
               <input 
               class="input " 
               type="text" 
-              name="horasPLC" 
-              [(ngModel)]="projeto.horasPLC"
-              #horasPLC="ngModel"
+              name="valorViagens" 
+              [(ngModel)]="projeto.valorViagens"
+              #valorViagens="ngModel"
               />
             </p>
           </div>
-        </div>
       </div>
-      <!-- <div *ngIf="!horasPLC.valid" class="purple">horasPLC precisar ter no mínimo 4 caracteres!</div> -->
-    
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">Horas IHM</label>
-        </div>
-        <div class="field-body">
-          <div class="field">
-            <p class="control">
-              <input 
-              class="input " 
-              type="text" 
-              name="horasIHM" 
-              [(ngModel)]="projeto.horasIHM"
-              #descricao="ngModel"
-              />
-            </p>
-          </div>
-        </div>
-      </div>
-      <!-- <div *ngIf="!horasIHM.valid" class="purple">horasIHM do projeto precisar ter no mínimo 8 caracteres!</div> -->
-    
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">Valor Terceiros</label>
-        </div>
-        <div class="field-body">
-          <div class="field">
-            <p class="control">
-              <input 
-              class="input " 
-              type="text" 
-              name="valorTerceiros" 
-              [(ngModel)]="projeto.valorTerceiros"
-              #valorTerceiros="ngModel"
-              />
-            </p>
-          </div>
-        </div>
-      </div>
-      <!-- <div *ngIf="!valorTerceiros.valid" class="purple">valorTerceiros precisar ter no mínimo 4 caracteres!</div> -->
-    
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-        <label class="label">Valor Materiais</label>
-        </div>
-          <div class="field-body">
-            <div class="field">
-              <p class="control">
-                <input 
-                class="input " 
-                type="text" 
-                name="valorMateriais" 
-                [(ngModel)]="projeto.valorMateriais"
-                #valorMateriais="ngModel"
-                />
-              </p>
-            </div>
-        </div>
-      </div>
-    
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-        <label class="label">Valor Viagens</label>
-        </div>
-          <div class="field-body">
-            <div class="field">
-              <p class="control">
-                <input 
-                class="input " 
-                type="text" 
-                name="valorViagens" 
-                [(ngModel)]="projeto.valorViagens"
-                #valorViagens="ngModel"
-                />
-              </p>
-            </div>
-        </div>
-      </div>
-    
-      <button type="button" class="btn btn-secondary" [routerLink]="['/projetos']">Cancela</button>
-      <button type="submit" class="btn btn-primary"  [disabled]="projForm.invalid">Confirma</button>
-    
-    </form>
-  </div>  
+    </div>
+  
+    <button type="button" class="btn btn-secondary" [routerLink]="['/projetos']">Cancela</button>
+    <button type="submit" class="btn btn-primary"  [disabled]="projForm.invalid">Confirma</button>
+  
+  </form>
+</div>  

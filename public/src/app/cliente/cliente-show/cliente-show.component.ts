@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, NgForm, FormBuilder } from '@angular/forms';
 import { UsuarioService } from '../../usuario/usuario.service';
 import { ClienteService } from '../cliente.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -31,7 +30,7 @@ export class ClienteShowComponent implements OnInit {
   }
   
   obterCliente(id) {
-    console.log('ClienteEditComponent > obterCliente', id); 
+    console.log('ClienteShowComponent > obterCliente', id); 
       const observable = this._clienteService.obterClienteById(id);
       observable.subscribe(
         (response) => {
@@ -44,6 +43,7 @@ export class ClienteShowComponent implements OnInit {
   }
 
   excluirCliente() {
+    console.log('ClienteShowComponent > excluirCliente'); 
     if (!this.cliente.clienteProjetos[0]) {
       console.log('Cliente E X C L U I D O', this.cliente.clienteProjetos);
       const observable = this._clienteService.excluirCliente(this.cliente._id);

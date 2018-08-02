@@ -48,7 +48,7 @@ module.exports = {
             }
         })
     },
-    obterUsuarioById: function(req, res) {
+    obterUsuarioById: (req, res) => {
         console.log("SERVER > CONTROLLER > obterUsarioById > req.params.id", req.params.id);
         Usuario.findById({_id: req.params.id})
         .then(usuario => res.json(usuario))
@@ -79,9 +79,10 @@ module.exports = {
             };
         });
     },    
-    // destroy: (req, res) => {
-    //     Restaurant.findByIdAndRemove({_id: req.params.id})
-    //         .then(restaurant => res.json(restaurant))
-    //         .catch(error => console.log(error));
-    // }
+    mudarSituacao: (req, res) => {
+        console.log("SERVER > CONTROLLER > usuario > mudarSituacao > req.params.id", req.params.id, req.body);
+        Usuario.findOneAndUpdate({_id: req.params.id},{$set:{ativo: req.body.ativo}})
+            .then(usuario => res.json(usuario))
+            .catch(error => console.log(error));
+    }
 }
