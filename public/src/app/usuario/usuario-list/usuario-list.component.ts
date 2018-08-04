@@ -6,6 +6,7 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 export interface UsuarioData {
   _id: string;
   nome: string;
+  sobrenome: string;
   email: string;
   funcao: string;
   custoHora: string,
@@ -27,7 +28,7 @@ export class UsuarioListComponent implements OnInit {
   frontPath:string = "../../assets/svg/baseline-how.svg";
   backPath:string =  "";
 
-  displayedColumns: string[] = ['nome', 'email', 'funcao', 'custoHora', 'admin', 'acao1', 'acao2' ];
+  displayedColumns: string[] = ['nome', 'sobrenome', 'email', 'funcao', 'custoHora', 'admin', 'acao1', 'acao2' ];
   dataSource: MatTableDataSource<UsuarioData>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

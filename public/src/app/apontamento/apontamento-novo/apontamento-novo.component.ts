@@ -38,7 +38,7 @@ export class ApontamentoNovoComponent implements OnInit {
     }
   }
   array = ['hora', 'despesa'];
-
+  isSelected: Boolean = false; 
 
   constructor(
     private fb: FormBuilder,
@@ -65,6 +65,7 @@ export class ApontamentoNovoComponent implements OnInit {
     console.log(' ApontamentoNovoComponent > usuarioLogado ', this.usuarioLogado.email);
     this.apontamento.usuario = this.usuarioLogado;
     this.obterListaProjeto();
+ 
   }
 
   obterListaProjeto() {
@@ -84,6 +85,7 @@ export class ApontamentoNovoComponent implements OnInit {
     const opDespesa = this.options.get('opDespesa');
     const descricao = this.options.get('descricao');
     const valor = this.options.get('valor');
+    // this.cdRef.detectChanges();  
     this.options.get('tipo').valueChanges.subscribe(
         (tipo: string) => {
             if (tipo === 'hora') {
@@ -96,9 +98,10 @@ export class ApontamentoNovoComponent implements OnInit {
                   (opdesp: string) => {
                     opDespesa.setValidators([Validators.required]);
                     if (opdesp === 'outros') {
-                      descricao.setValidators([Validators.required]);
-                    } else {
-                      descricao.clearValidators();
+                      this.isSelected = true;
+                    //   descricao.setValidators([Validators.required]);
+                    // } else {
+                    //   descricao.clearValidators();
                     }
                     valor.setValidators([Validators.required]);
                     inicio.clearValidators();

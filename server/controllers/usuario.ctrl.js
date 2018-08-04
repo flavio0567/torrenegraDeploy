@@ -8,15 +8,18 @@ module.exports = {
     login: function(req, res) {
         console.log("SERVER > CONTROLLER > login > req.query", req.query.usuario);
         Usuario.findOne({ email: req.query.usuario })
-        // .then(usuario => res.json(usuario))
-        // .catch(error => console.log(error));
         .then(usuario => {
             if(!usuario) {
                 return res.status(404).send({
                     message: "Usuário não encontrado para o email " + req.query.usuario
                 });
             }
-            res.send(usuario);
+            let result = {
+                email: usuario.email,
+                ativo: usuario.ativo,
+                admin: usuario.admin
+            }
+            res.send(result);
         })
         .catch(err => {
             if(err.kind === 'ObjectId') {
@@ -63,6 +66,7 @@ module.exports = {
                 console.log('Ocorreu erro lendo cliente antes da edição', err);
             } else { 
                 eUsuario.nome = req.body.nome;
+                eUsuario.sobrenome = req.body.sobrenome;
                 eUsuario.email = req.body.email;
                 eUsuario.funcao = req.body.funcao;
                 eUsuario.custoHora = req.body.custoHora;

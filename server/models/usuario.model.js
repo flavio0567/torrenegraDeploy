@@ -10,7 +10,12 @@ uniqueValidator  = require('mongoose-unique-validator');
     nome: {
         type: String, 
         required: [true, "Nome do usuário é requerido"],
-        minlength: 4 
+        minlength: 2 
+    },
+    sobrenome: {
+        type: String, 
+        required: [true, "Sobrenome do usuário é requerido"],
+        minlength: 2 
     },
     funcao: {
         type: String, 

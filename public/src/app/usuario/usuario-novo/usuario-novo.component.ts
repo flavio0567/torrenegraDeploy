@@ -27,7 +27,8 @@ export class UsuarioNovoComponent implements OnInit {
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
     console.log('UsuarioNovoComponent > usuariologado ', this.usuarioLogado.email);
     this.userForm = this._formBuilder.group({
-      nome: [null, [ Validators.required, Validators.minLength(4) ]],
+      nome: [null, [ Validators.required, Validators.minLength(2) ]],
+      sobrenome: [null, [ Validators.required, Validators.minLength(2) ]],
       email: [null, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')],
       funcao: [null, [ Validators.required ]],
       custoHora: [null, [ Validators.required ]],
@@ -37,6 +38,10 @@ export class UsuarioNovoComponent implements OnInit {
 
   get nome() {
     return this.userForm.get('nome');
+  }
+
+  get sobrenome() {
+    return this.userForm.get('sobrenome');
   }
 
   get email() {

@@ -37,10 +37,10 @@ export class UsuarioEditComponent implements OnInit {
     observable.subscribe(
       (response) => {
       this.usuario = response.json();
-      console.log('in UsuarioEditComponent >>>>:', this.usuario);
       this.userForm = this._formBuilder.group({
         _id: [this.usuario._id],
-        nome: [this.usuario.nome, [Validators.required]],
+        nome: [this.usuario.nome, [ Validators.required, Validators.minLength(2) ]],
+        sobrenome: [this.usuario.sobrenome, [ Validators.required, Validators.minLength(2) ]],
         funcao: [this.usuario.funcao, [Validators.required]],
         email: [this.usuario.email, [Validators.required]],
         custoHora: [this.usuario.custoHora, [Validators.required]],
@@ -52,6 +52,10 @@ export class UsuarioEditComponent implements OnInit {
 
   get nome() {
     return this.userForm.get('nome');
+  }
+
+  get sobrenome() {
+    return this.userForm.get('sobrenome');
   }
 
   get funcao() {

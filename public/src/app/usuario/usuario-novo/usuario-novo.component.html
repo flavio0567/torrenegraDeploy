@@ -25,6 +25,7 @@
 
   <div class="errors" *ngIf="errors">
     <p *ngIf="errors.nome" >  {{ errors['nome'].message }} </p>
+    <p *ngIf="errors.sobrenome" >  {{ errors['sobrenome'].message }} </p>
     <p *ngIf="errors.email" >  {{ errors['email'].message }} </p>
     <p *ngIf="errors.funcao" >  {{ errors['funcao'].message }} </p>
     <p *ngIf="errors.custoHora" >  {{ errors['custoHora'].message }} </p>       
@@ -33,19 +34,31 @@
   <form class="example-form" [formGroup] = "userForm">
 
     <table class="example-full-width" cellspacing="0"><tr> 
-    
       <td><mat-form-field style="width:400px !important;" class="example-full-width">
         <input 
         matInput 
         placeholder="nome"
         type="text"
         formControlName="nome" 
-        name="nome"
         />
         <mat-error *ngIf="nome.invalid && nome.touched">
             nome informado não é válido
         </mat-error>
       </mat-form-field></td>
+
+      <td><mat-form-field style="width:400px !important;" class="example-full-width">
+          <input 
+          matInput 
+          placeholder="sobrenome"
+          type="text"
+          formControlName="sobrenome" 
+          />
+          <mat-error *ngIf="sobrenome.invalid && sobrenome.touched">
+              sobrenome informado não é válido
+          </mat-error>
+        </mat-form-field></td>
+
+
     </tr></table>
 
     <table class="example-full-width" cellspacing="0"><tr> 
@@ -55,7 +68,6 @@
         placeholder="email"
         type="email"
         formControlName="email" 
-        name="email"
         />
         <mat-error *ngIf="email.invalid && email.touched">
             email informado não é válido
@@ -70,7 +82,6 @@
         placeholder="funcao"
         type="text"
         formControlName="funcao" 
-        name="funcao"
         />
         <mat-error *ngIf="funcao.invalid && funcao.touched">
             funcao informada não é válida
@@ -84,8 +95,7 @@
         matInput
         placeholder="custo hora"
         type="number"
-        formControlName="custoHora" 
-        name="custoHora"  
+        formControlName="custoHora"  
         />
         <mat-error *ngIf="custoHora.invalid && custoHora.touched">
             custo Hora informado não é válido

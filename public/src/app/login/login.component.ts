@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   usuario = {
     email: '',
     senha: '',
+    ativo: '',
     admin: ''
   };
   public usuarioLogado = {
@@ -28,15 +29,16 @@ export class LoginComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _router: Router,
     private _usuarioService: UsuarioService
-  ) {}
-
-  ngOnInit() {
-    this.usuario = { email: "", senha: "", admin: ""};
-    console.log('usuario logado? ', this._usuarioService.getUserLoggedIn());
+  ) {
     this.formLogin = this._formBuilder.group({
       email: [null, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')],
       senha: [null, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]
     })
+  }
+
+  ngOnInit() {
+    this.usuario = { email: "", senha: "", admin: "", ativo: ""};
+    console.log('usuario logado? ', this._usuarioService.getUserLoggedIn());
   }
 
   get email() {
@@ -50,15 +52,21 @@ export class LoginComponent implements OnInit {
 
   login(loginForm: NgForm) {
     console.log('LoginComponent > login()',this.formLogin.controls.email.value)
-    const userObservable = this._usuarioService.login(this.formLogin.controls.email.value);
-    userObservable.subscribe(
-        (usuario) => {
+    this._usuarioService.login(this.formLogin.controls.email.value)
+    .subscribe((usuario) => {
           this.usuario = usuario.json();
-          console.log('SUCESSO em login');
-          if (this.usuario.admin) {
-            this._router.navigate(['/projetos']);
+          if (this.usuario.ativo) {
+            console.log('SUCESSO em login', usuario);
+            if (this.usuario.admin) {
+              this._router.navigate(['/projetos']);
+            } else {
+              this._router.navigate(['/apontamentos']);
+            }
           } else {
-            this._router.navigate(['/apontamentos']);
+            // this.errors = 'Usuário inativo!'
+            this.errors.message = 'Usuário inativo!'
+            console.log('ERRO em login', this.errors);
+            this._router.navigate(['/']);
           }
         },
         (err) => { 

@@ -25,7 +25,6 @@
     <p *ngIf="errors['hora.inicio'].message" >  {{ errors['hora.inicio'].message }} </p>   
   </div> 
 
-  <!-- <form  #formData="ngForm" [formGroup]="options"> -->
   <form class="example-form" [formGroup] = "options">
 
     <div class="example-container">
@@ -42,7 +41,7 @@
             </mat-radio-group>&nbsp;&nbsp;
 
             <mat-form-field *ngIf="(options.get('tipo').value=='despesa')">
-                <mat-select placeholder="Selecione o tipo"  formControlName="opDespesa">
+                <mat-select placeholder="Selecione o tipo"  formControlName="opDespesa"  [disabled]="isSelected">
                   <mat-option value="alimentacao"> alimentação</mat-option>
                   <mat-option value="hospedagem"> hospedagem</mat-option>
                   <mat-option value="pedagio"> pedágio</mat-option>
