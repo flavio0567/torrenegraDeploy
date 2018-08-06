@@ -1263,7 +1263,7 @@ module.exports = "<mat-toolbar>\n  <img src=\"../assets/images/TorreNegra-logo-c
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "img {\n  width: 190px;\n  height: auto; }\n\n.mat-list .mat-list-item /deep/ .mat-list-item-content {\n  height: 20px; }\n"
+module.exports = "img {\n  width: 190px;\n  height: auto; }\n\n.mat-list .mat-list-item /deep/ .mat-list-item-content {\n  height: 20px; }\n\ntd, th {\n  width: 25%; }\n"
 
 /***/ }),
 
@@ -1923,7 +1923,7 @@ module.exports = "\n<div class=\"bg-img\">\n  <div class=\"bg2-img\"></div>\n  <
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "body, html {\n  height: 100%;\n  font-family: Arial, Helvetica, sans-serif; }\n\n* {\n  box-sizing: border-box; }\n\n.bg-img {\n  /* The image used */\n  background-image: url(\"/assets/images/simone-hutsch-669693-unsplash.jpg\");\n  min-height: 680px;\n  /* Center and scale the image nicely */\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover; }\n\n/* Add styles to the form container */\n\n.container {\n  position: absolute;\n  right: 0;\n  margin: 20px;\n  max-width: 260px;\n  padding: 16px;\n  background-color: white; }\n\n/* Full-width input fields */\n\ninput[type=email], input[type=password] {\n  width: 100%;\n  height: 50%;\n  margin: 5px 0 22px 0px;\n  border: none; }\n\n/* Set a style for the submit button */\n\n.btn {\n  background-color: #4CAF50;\n  color: white;\n  padding: 16px 20px;\n  border: none;\n  cursor: pointer;\n  width: 100%;\n  opacity: 0.9; }\n\n.btn:hover {\n  opacity: 1; }\n\n.bg2-img {\n  /* The image used */\n  background-image: url(\"/assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\");\n  min-height: 140px;\n  /* Center and scale the image nicely */\n  background-position: left;\n  background-repeat: no-repeat;\n  background-size: 25%; }\n\n.btn-linkedin {\n  background: #0E76A8;\n  border-radius: 0;\n  color: #fff;\n  border-width: 1px;\n  border-style: solid;\n  border-color: #084461; }\n\n.btn-linkedin:link, .btn-linkedin:visited {\n  color: #fff; }\n\n.btn-linkedin:active, .btn-linkedin:hover {\n  background: #084461;\n  color: #fff; }\n"
+module.exports = "body, html {\n  height: 100%;\n  font-family: Arial, Helvetica, sans-serif; }\n\n* {\n  box-sizing: border-box; }\n\n.bg-img {\n  /* The image used */\n  background-image: url(\"/assets/images/simone-hutsch-669693-unsplash.jpg\");\n  min-height: 680px;\n  /* Center and scale the image nicely */\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover; }\n\n/* Add styles to the form container */\n\n.container {\n  position: absolute;\n  right: 0;\n  margin: 20px;\n  max-width: 260px;\n  padding: 16px;\n  background-color: white; }\n\n/* Full-width input fields */\n\ninput[type=email], input[type=password] {\n  width: 100%;\n  height: 50%;\n  padding: 15px;\n  margin: 15px 0 22px 0px;\n  border: none; }\n\n.example-form {\n  min-width: 150px;\n  max-width: 500px;\n  width: 100%; }\n\n.example-full-width {\n  width: 100%; }\n\n/* Set a style for the submit button */\n\n.btn {\n  background-color: #4CAF50;\n  color: white;\n  padding: 16px 20px;\n  border: none;\n  cursor: pointer;\n  width: 100%;\n  opacity: 0.9; }\n\n.btn:hover {\n  opacity: 1; }\n\n.bg2-img {\n  /* The image used */\n  background-image: url(\"/assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\");\n  min-height: 140px;\n  /* Center and scale the image nicely */\n  background-position: left;\n  background-repeat: no-repeat;\n  background-size: 25%; }\n\n.btn-linkedin {\n  background: #0E76A8;\n  border-radius: 0;\n  color: #fff;\n  border-width: 1px;\n  border-style: solid;\n  border-color: #084461; }\n\n.btn-linkedin:link, .btn-linkedin:visited {\n  color: #fff; }\n\n.btn-linkedin:active, .btn-linkedin:hover {\n  background: #084461;\n  color: #fff; }\n"
 
 /***/ }),
 
@@ -3129,7 +3129,7 @@ module.exports = "<mat-toolbar>\n  <img class=\"logo\" src=\"../assets/images/To
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".logo {\n  width: 190px;\n  height: auto; }\n\n.mat-list .mat-list-item /deep/ .mat-list-item-content {\n  height: 20px; }\n\n.icon {\n  width: 25px;\n  height: auto; }\n\nmat-paginator .mat-form-field.mat-form-field {\n  width: 56px; }\n"
+module.exports = ".logo {\n  width: 190px;\n  height: auto; }\n\n.mat-list .mat-list-item /deep/ .mat-list-item-content {\n  height: 20px; }\n\n.icon {\n  width: 25px;\n  height: auto; }\n\nmat-paginator .mat-form-field.mat-form-field {\n  width: 56px; }\n\ntd, th {\n  width: 25%; }\n"
 
 /***/ }),
 
