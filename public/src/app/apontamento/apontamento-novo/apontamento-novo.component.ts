@@ -99,7 +99,7 @@ export class ApontamentoNovoComponent implements OnInit {
                     opDespesa.setValidators([Validators.required]);
                     if (opdesp === 'outros') {
                       this.isSelected = true;
-                    //   descricao.setValidators([Validators.required]);
+                      // descricao.setValidators([Validators.required]);
                     // } else {
                     //   descricao.clearValidators();
                     }

@@ -51,12 +51,12 @@
                 <mat-hint align="end"></mat-hint>
             </mat-form-field>&nbsp;&nbsp;
 
-            <mat-form-field *ngIf="options.get('opDespesa').value=='outros' && options.get('tipo').value=='despesa'" hintLabel="Max 20 caracteres">
+            <mat-form-field *ngIf="options.get('tipo').value=='despesa' && options.get('opDespesa').value=='outros'" hintLabel="Max 20 caracteres">
                 <input matInput formControlName="descricao" #input maxlength="20">
                 <mat-hint align="end">{{input.value?.length || 0}}/20</mat-hint>
               </mat-form-field>&nbsp;&nbsp;
 
-            <mat-form-field *ngIf="(options.get('tipo').value=='despesa')">
+            <mat-form-field *ngIf="options.get('tipo').value=='despesa'" >
               <input 
               formControlName="valor"
               matInput 
