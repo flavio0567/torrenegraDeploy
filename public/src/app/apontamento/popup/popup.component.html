@@ -5,8 +5,8 @@
 <h3 mat-dialog-title>Encerrar Apontamento </h3>
 <h5>{{ data.usuario }}</h5>
 <p>{{ data.codigo }} {{ data.descricao }}</p>
-<p>Inicio: {{ data.inicio | date:"MMM d, y H:mm:ss" }}</p>
-<p>Fim: {{ data.fim | date:"MMM d, y H:mm:ss" }}</p>
+<p>Inicio: {{ data.inicio | date:'d/M/yy H:mm' }}</p>
+<p>Fim: {{ data.fim | date:'d/M/yy H:mm' }}</p>
 <br><br>
 <div mat-dialog-content>
   <p>Confirma? </p>

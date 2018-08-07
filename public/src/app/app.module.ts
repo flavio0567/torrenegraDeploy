@@ -8,6 +8,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { CurrencyMaskModule } from "ng2-currency-mask";
 
 import { GlobalErrorComponent } from './global-error/global-error.component';
 
@@ -42,6 +43,18 @@ import { MaterialModule } from './material';
 import { ApontamentoDashboardComponent } from './apontamento/apontamento-dashboard/apontamento-dashboard.component';
 import { ApontamentoListaDespesaComponent } from './apontamento/apontamento-lista-despesa/apontamento-lista-despesa.component';
 import { ApontamentoListaHoraComponent, DialogApontamentoHora } from './apontamento/apontamento-lista-hora/apontamento-lista-hora.component';
+import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask/src/currency-mask.config';
+
+export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
+  align: "right",
+  allowNegative: true,
+  decimal: ",",
+  precision: 2,
+  prefix: "R$ ",
+  suffix: "",
+  thousands: "."
+};
+
 
 @NgModule({
   declarations: [
@@ -88,7 +101,8 @@ import { ApontamentoListaHoraComponent, DialogApontamentoHora } from './apontame
     MatTabsModule,
     MatCardModule,
     MatToolbarModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    CurrencyMaskModule
     // NgbModule,
     // NgbModule.forRoot()
   ],
@@ -101,7 +115,8 @@ import { ApontamentoListaHoraComponent, DialogApontamentoHora } from './apontame
     UsuarioService,
     ClienteService,
     GlobalErrorHandlerService,
-    { provide: ErrorHandler, useClass: GlobalErrorHandlerService }    
+    { provide: ErrorHandler, useClass: GlobalErrorHandlerService },
+    { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig } 
   ],
   bootstrap: [AppComponent]
 })

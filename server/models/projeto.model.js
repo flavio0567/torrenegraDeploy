@@ -89,7 +89,13 @@ var ApontamentoSchema = new mongoose.Schema({
         },
         valor: {
             type: Number
-        }
+        },
+        data: {
+            type: String
+        },
+        reembolso: {
+            type: Boolean
+        },
     },
     }, { timestamps: true }, 
         { autoIndex: false }

@@ -60,13 +60,13 @@
   
         <!-- custoHora Column -->
         <ng-container matColumnDef="custoHora">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> custo hr </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> hh </th>
           <td mat-cell *matCellDef="let row">  {{row.custoHora}} </td>
         </ng-container>
 
         <!-- admin Column -->
         <ng-container matColumnDef="admin">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> admin </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> adm </th>
           <td class="icon" mat-cell *matCellDef="let row"> 
               <img style="size: 20px;" [src]="row['admin'] ? frontPath : backPath"></td>
         </ng-container>

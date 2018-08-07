@@ -22,13 +22,13 @@
       <div style="margin: 20px, 0px, 20px, 0px;" class="title is-4">Apontamento</div> 
   </div>
   <div class="errors" *ngIf="errors">
-    <p *ngIf="errors['hora.inicio'].message" >  {{ errors['hora.inicio'].message }} </p>   
+    <p *ngIf="errors['descricao'].message" >  {{ errors['descricao'].message }} </p>   
   </div> 
 
   <form class="example-form" [formGroup] = "options">
 
     <div class="example-container">
-        <mat-form-field>
+        <mat-form-field style="width:400px !important;"> 
           <mat-select placeholder="Selecione o projeto" name="projeto" formControlName="projeto" required>
             <mat-option value="option" *ngFor="let p of projetos" [value]="p._id"> {{ p.codigo }} {{ p.descricao }}</mat-option>
           </mat-select>
@@ -40,7 +40,13 @@
               <mat-radio-button (change)="radioChange($event)" *ngFor="let a of array;" [value]="a"> {{ a }}&nbsp;&nbsp;</mat-radio-button>
             </mat-radio-group>&nbsp;&nbsp;
 
-            <mat-form-field *ngIf="(options.get('tipo').value=='despesa')">
+            <div *ngIf="options.get('tipo').value=='despesa'" class="example-full-width" cellspacing="0">
+              <mat-checkbox color="warn" formControlName="reembolso">Reembolso
+              </mat-checkbox>
+              <br><br>
+            </div>
+
+            <mat-form-field *ngIf="(options.get('tipo').value=='despesa')" style="width:300px !important;">
                 <mat-select placeholder="Selecione o tipo"  formControlName="opDespesa"  [disabled]="isSelected">
                   <mat-option value="alimentacao"> alimentação</mat-option>
                   <mat-option value="hospedagem"> hospedagem</mat-option>
@@ -51,26 +57,29 @@
                 <mat-hint align="end"></mat-hint>
             </mat-form-field>&nbsp;&nbsp;
 
-            <mat-form-field *ngIf="options.get('tipo').value=='despesa' && options.get('opDespesa').value=='outros'" hintLabel="Max 20 caracteres">
-                <input matInput formControlName="descricao" #input maxlength="20">
-                <mat-hint align="end">{{input.value?.length || 0}}/20</mat-hint>
-              </mat-form-field>&nbsp;&nbsp;
+            <mat-form-field *ngIf="options.get('tipo').value=='despesa' && options.get('opDespesa').value=='outros'" style="width:300px !important;" hintLabel="Max 40 caracteres">
+                <input matInput formControlName="descricao" #input maxlength="40">
+                <mat-hint align="end">{{input.value?.length || 0}}/40</mat-hint>
+              </mat-form-field>
 
-            <mat-form-field *ngIf="options.get('tipo').value=='despesa'" >
+            <mat-form-field *ngIf="options.get('tipo').value=='despesa'" style="width:200px !important;">
+              <br>
               <input 
-              formControlName="valor"
               matInput 
-              placeholder="Valor" 
+              placeholder="Valor"
+              formControlName="valor"
               type="number" 
               class="example-right-align">
-              <span matPrefix>$&nbsp;</span>
-              <span matSuffix>.00</span>
-            </mat-form-field>&nbsp;&nbsp;
-
-            <mat-form-field *ngIf="(options.get('tipo').value=='hora')" >
+              <span matPrefix>R$&nbsp;</span>
+              <span matSuffix></span>
+              <br>
+            </mat-form-field>
+            <br>
+            <mat-form-field *ngIf="(options.get('tipo').value=='hora')" style="width:100px !important;">
               <mat-select placeholder="início" formControlName="inicio" > 
-                  <mat-option value="{{ today }}">{{today | date:"MMM d, y H:mm:ss"}}</mat-option>
+                  <mat-option value="{{ today }}">{{today | date:'d/M/yy H:mm'}}</mat-option>
               </mat-select>
+              <br>
             </mat-form-field>
 
           </div>

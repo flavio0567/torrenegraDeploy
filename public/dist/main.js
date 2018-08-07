@@ -41,7 +41,7 @@ module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "img {\n  width: 190px;\n  height: auto; }\n"
+module.exports = "img {\n  width: 190px;\n  height: auto; }\n\ntd, th {\n  width: 25%; }\n"
 
 /***/ }),
 
@@ -102,7 +102,7 @@ var ApontamentoDashboardComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-form-field>\n    <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filter\">\n  </mat-form-field>\n  \n  <div class=\"mat-elevation-z8\">\n    <table mat-table [dataSource]=\"dataSource\" matSort>\n      \n      <!-- Codigo Column -->\n      <ng-container matColumnDef=\"codigo\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> código </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.codigo}} </td>\n      </ng-container> \n \n      <!-- Descricao Column -->\n      <ng-container matColumnDef=\"descricao\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> descricao </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.descricao}} </td>\n      </ng-container> \n \n      <!-- Despesa Descrição Column -->\n      <ng-container matColumnDef=\"descricaoDespesa\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> despesa </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.despesa.descricao}} </td>\n      </ng-container> \n \n      <!-- Despesa Valor Column -->\n      <ng-container matColumnDef=\"despesaValor\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> valor </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.despesa.valor}} </td>\n        </ng-container> \n \n      <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n      <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\">\n      </tr>\n    </table>\n  \n<mat-paginator [pageSizeOptions]=\"[5, 10, 25, 100]\"></mat-paginator>\n  </div>\n\n"
+module.exports = "<mat-form-field>\n    <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filter\">\n  </mat-form-field>\n  \n  <div class=\"mat-elevation-z8\">\n    <table mat-table [dataSource]=\"dataSource\" matSort>\n      \n      <!-- Codigo Column -->\n      <ng-container matColumnDef=\"codigo\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> código </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.codigo}} </td>\n      </ng-container> \n \n      <!-- Descricao Column -->\n      <ng-container matColumnDef=\"descricao\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> descricao </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.descricao}} </td>\n      </ng-container> \n \n      <!-- Despesa Descrição Column -->\n      <ng-container matColumnDef=\"descricaoDespesa\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> despesa </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.despesa.descricao}} </td>\n      </ng-container> \n \n      <!-- Despesa Valor Column -->\n      <ng-container matColumnDef=\"despesaValor\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> valor </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.despesa.valor | currency:'BRL'}} </td>\n        </ng-container> \n\n      <!-- Despesa Data Column -->\n      <ng-container matColumnDef=\"despesaData\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> data </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.despesa.data | date:'d/M/yy'}} </td>\n      </ng-container> \n\n      <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n      <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\">\n      </tr>\n    </table>\n  \n<mat-paginator [pageSizeOptions]=\"[5, 10, 25, 100]\"></mat-paginator>\n  </div>\n\n"
 
 /***/ }),
 
@@ -113,7 +113,7 @@ module.exports = "<mat-form-field>\n    <input matInput (keyup)=\"applyFilter($e
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "td, th {\n  width: 30%; }\n"
 
 /***/ }),
 
@@ -150,7 +150,7 @@ var ApontamentoListaDespesaComponent = /** @class */ (function () {
         this._projetoService = _projetoService;
         this._usuarioService = _usuarioService;
         this.dialog = dialog;
-        this.displayedColumns = ['codigo', 'descricao', 'descricaoDespesa', 'despesaValor'];
+        this.displayedColumns = ['codigo', 'descricao', 'descricaoDespesa', 'despesaValor', 'despesaData'];
         this.usuarioLogado = {
             email: '',
             admin: ''
@@ -160,7 +160,8 @@ var ApontamentoListaDespesaComponent = /** @class */ (function () {
                 descricao: "",
                 despesa: {
                     descricao: "",
-                    valor: ""
+                    valor: "",
+                    data: ""
                 },
                 _projeto: ""
             }];
@@ -234,7 +235,7 @@ var ApontamentoListaDespesaComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-form-field>\n    <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filter\">\n  </mat-form-field>\n  <!-- {{ apontamentos[0] | json }} -->\n  <div class=\"mat-elevation-z8 linha\">\n    <table mat-table [dataSource]=\"dataSource\" matSort>\n\n      <!-- Codigo Column -->\n      <ng-container matColumnDef=\"codigo\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> código </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.codigo}} </td>\n      </ng-container>\n  \n      <!-- Descricao Column -->\n      <ng-container matColumnDef=\"descricao\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> descricao </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.descricao}} </td>\n      </ng-container>\n  \n      <!-- Inicio Column -->\n      <ng-container matColumnDef=\"inicio\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> início </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.hora.inicio | date:\"MMM d, y H:mm:ss\"}} </td>\n      </ng-container>\n  \n    <!-- Ação Column -->\n    <ng-container matColumnDef=\"acao\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> ação </th>\n        <td mat-cell *matCellDef=\"let row\"> \n          <div class=\"button-row\">\n            <button mat-button color=\"warn\" style=\"margin-top: -15px\" (click)=\"openDialog(row)\">encerrar</button>\n          </div>\n        </td>\n      </ng-container>\n\n      <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n      <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\">\n      </tr>\n    </table>\n  \n<mat-paginator [pageSizeOptions]=\"[5, 10, 25, 100]\"></mat-paginator>\n  </div>\n\n"
+module.exports = "<mat-form-field>\n    <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filter\">\n  </mat-form-field>\n  <!-- {{ apontamentos[0] | json }} -->\n  <div class=\"mat-elevation-z8 linha\">\n    <table mat-table [dataSource]=\"dataSource\" matSort>\n\n      <!-- Codigo Column -->\n      <ng-container matColumnDef=\"codigo\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> código </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.codigo}} </td>\n      </ng-container>\n  \n      <!-- Descricao Column -->\n      <ng-container matColumnDef=\"descricao\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> descricao </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.descricao}} </td>\n      </ng-container>\n  \n      <!-- Inicio Column -->\n      <ng-container matColumnDef=\"inicio\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> início </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.hora.inicio | date:'d/M/yy H:mm'}} </td>\n      </ng-container>\n  \n    <!-- Ação Column -->\n    <ng-container matColumnDef=\"acao\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> ação </th>\n        <td mat-cell *matCellDef=\"let row\"> \n          <div class=\"button-row\">\n            <button mat-button color=\"warn\" style=\"margin-top: -15px\" (click)=\"openDialog(row)\">encerrar</button>\n          </div>\n        </td>\n      </ng-container>\n\n      <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n      <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\">\n      </tr>\n    </table>\n  \n<mat-paginator [pageSizeOptions]=\"[5, 10, 25, 100]\"></mat-paginator>\n  </div>\n\n"
 
 /***/ }),
 
@@ -245,7 +246,7 @@ module.exports = "<mat-form-field>\n    <input matInput (keyup)=\"applyFilter($e
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "td, th {\n  width: 30%; }\n"
 
 /***/ }),
 
@@ -426,7 +427,7 @@ var DialogApontamentoHora = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n<div class=\"mat-elevation-z8\"> \n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" href=\"#\">Sair <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n<div class=\"container\">\n\n  <div class=\"level-left\">\n      <div style=\"margin: 20px, 0px, 20px, 0px;\" class=\"title is-4\">Apontamento</div> \n  </div>\n  <div class=\"errors\" *ngIf=\"errors\">\n    <p *ngIf=\"errors['hora.inicio'].message\" >  {{ errors['hora.inicio'].message }} </p>   \n  </div> \n\n  <form class=\"example-form\" [formGroup] = \"options\">\n\n    <div class=\"example-container\">\n        <mat-form-field>\n          <mat-select placeholder=\"Selecione o projeto\" name=\"projeto\" formControlName=\"projeto\" required>\n            <mat-option value=\"option\" *ngFor=\"let p of projetos\" [value]=\"p._id\"> {{ p.codigo }} {{ p.descricao }}</mat-option>\n          </mat-select>\n          <mat-hint align=\"end\">Projetos ativos</mat-hint>\n        </mat-form-field>\n\n          <div class=\"example-container\">\n            <mat-radio-group formControlName=\"tipo\" [value]=\"tipo\" >\n              <mat-radio-button (change)=\"radioChange($event)\" *ngFor=\"let a of array;\" [value]=\"a\"> {{ a }}&nbsp;&nbsp;</mat-radio-button>\n            </mat-radio-group>&nbsp;&nbsp;\n\n            <mat-form-field *ngIf=\"(options.get('tipo').value=='despesa')\">\n                <mat-select placeholder=\"Selecione o tipo\"  formControlName=\"opDespesa\"  [disabled]=\"isSelected\">\n                  <mat-option value=\"alimentacao\"> alimentação</mat-option>\n                  <mat-option value=\"hospedagem\"> hospedagem</mat-option>\n                  <mat-option value=\"pedagio\"> pedágio</mat-option>\n                  <mat-option value=\"transporte\"> transporte</mat-option>\n                  <mat-option value=\"outros\"> outros</mat-option>\n                </mat-select>\n                <mat-hint align=\"end\"></mat-hint>\n            </mat-form-field>&nbsp;&nbsp;\n\n            <mat-form-field *ngIf=\"options.get('tipo').value=='despesa' && options.get('opDespesa').value=='outros'\" hintLabel=\"Max 20 caracteres\">\n                <input matInput formControlName=\"descricao\" #input maxlength=\"20\">\n                <mat-hint align=\"end\">{{input.value?.length || 0}}/20</mat-hint>\n              </mat-form-field>&nbsp;&nbsp;\n\n            <mat-form-field *ngIf=\"options.get('tipo').value=='despesa'\" >\n              <input \n              formControlName=\"valor\"\n              matInput \n              placeholder=\"Valor\" \n              type=\"number\" \n              class=\"example-right-align\">\n              <span matPrefix>$&nbsp;</span>\n              <span matSuffix>.00</span>\n            </mat-form-field>&nbsp;&nbsp;\n\n            <mat-form-field *ngIf=\"(options.get('tipo').value=='hora')\" >\n              <mat-select placeholder=\"início\" formControlName=\"inicio\" > \n                  <mat-option value=\"{{ today }}\">{{today | date:\"MMM d, y H:mm:ss\"}}</mat-option>\n              </mat-select>\n            </mat-form-field>\n\n          </div>\n\n      </div>\n    </form>\n\n    <button mat-raised-button color=\"basic\"   (click)=\"cancel()\">cancela</button>\n    <button mat-raised-button color=\"primary\" (click)=\"setApontamento()\" [disabled]=\"options.invalid\">confirma</button>\n    \n</div>\n\n\n\n\n\n"
+module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n<div class=\"mat-elevation-z8\"> \n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" href=\"#\">Sair <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n<div class=\"container\">\n\n  <div class=\"level-left\">\n      <div style=\"margin: 20px, 0px, 20px, 0px;\" class=\"title is-4\">Apontamento</div> \n  </div>\n  <div class=\"errors\" *ngIf=\"errors\">\n    <p *ngIf=\"errors['descricao'].message\" >  {{ errors['descricao'].message }} </p>   \n  </div> \n\n  <form class=\"example-form\" [formGroup] = \"options\">\n\n    <div class=\"example-container\">\n        <mat-form-field style=\"width:400px !important;\"> \n          <mat-select placeholder=\"Selecione o projeto\" name=\"projeto\" formControlName=\"projeto\" required>\n            <mat-option value=\"option\" *ngFor=\"let p of projetos\" [value]=\"p._id\"> {{ p.codigo }} {{ p.descricao }}</mat-option>\n          </mat-select>\n          <mat-hint align=\"end\">Projetos ativos</mat-hint>\n        </mat-form-field>\n\n          <div class=\"example-container\">\n            <mat-radio-group formControlName=\"tipo\" [value]=\"tipo\" >\n              <mat-radio-button (change)=\"radioChange($event)\" *ngFor=\"let a of array;\" [value]=\"a\"> {{ a }}&nbsp;&nbsp;</mat-radio-button>\n            </mat-radio-group>&nbsp;&nbsp;\n\n            <div *ngIf=\"options.get('tipo').value=='despesa'\" class=\"example-full-width\" cellspacing=\"0\">\n              <mat-checkbox color=\"warn\" formControlName=\"reembolso\">Reembolso\n              </mat-checkbox>\n              <br><br>\n            </div>\n\n            <mat-form-field *ngIf=\"(options.get('tipo').value=='despesa')\" style=\"width:300px !important;\">\n                <mat-select placeholder=\"Selecione o tipo\"  formControlName=\"opDespesa\"  [disabled]=\"isSelected\">\n                  <mat-option value=\"alimentacao\"> alimentação</mat-option>\n                  <mat-option value=\"hospedagem\"> hospedagem</mat-option>\n                  <mat-option value=\"pedagio\"> pedágio</mat-option>\n                  <mat-option value=\"transporte\"> transporte</mat-option>\n                  <mat-option value=\"outros\"> outros</mat-option>\n                </mat-select>\n                <mat-hint align=\"end\"></mat-hint>\n            </mat-form-field>&nbsp;&nbsp;\n\n            <mat-form-field *ngIf=\"options.get('tipo').value=='despesa' && options.get('opDespesa').value=='outros'\" style=\"width:300px !important;\" hintLabel=\"Max 40 caracteres\">\n                <input matInput formControlName=\"descricao\" #input maxlength=\"40\">\n                <mat-hint align=\"end\">{{input.value?.length || 0}}/40</mat-hint>\n              </mat-form-field>\n\n            <mat-form-field *ngIf=\"options.get('tipo').value=='despesa'\" style=\"width:200px !important;\">\n              <br>\n              <input \n              matInput \n              placeholder=\"Valor\"\n              formControlName=\"valor\"\n              type=\"number\" \n              class=\"example-right-align\">\n              <span matPrefix>R$&nbsp;</span>\n              <span matSuffix></span>\n              <br>\n            </mat-form-field>\n            <br>\n            <mat-form-field *ngIf=\"(options.get('tipo').value=='hora')\" style=\"width:100px !important;\">\n              <mat-select placeholder=\"início\" formControlName=\"inicio\" > \n                  <mat-option value=\"{{ today }}\">{{today | date:'d/M/yy H:mm'}}</mat-option>\n              </mat-select>\n              <br>\n            </mat-form-field>\n\n          </div>\n\n      </div>\n    </form>\n\n    <button mat-raised-button color=\"basic\"   (click)=\"cancel()\">cancela</button>\n    <button mat-raised-button color=\"primary\" (click)=\"setApontamento()\" [disabled]=\"options.invalid\">confirma</button>\n    \n</div>\n\n\n\n\n\n"
 
 /***/ }),
 
@@ -437,7 +438,7 @@ module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".example-container {\n  display: flex;\n  flex-direction: column; }\n\n.example-container > * {\n  width: 100%; }\n\nbutton {\n  margin: 10px; }\n\nimg {\n  width: 190px;\n  height: auto; }\n\n.errors {\n  color: purple; }\n"
+module.exports = ".example-container {\n  display: flex;\n  flex-direction: column; }\n\n.example-container > * {\n  width: 100%; }\n\nbutton {\n  margin: 10px; }\n\nimg {\n  width: 190px;\n  height: auto; }\n\n.errors {\n  color: purple; }\n\n.example-container {\n  display: flex;\n  flex-direction: column; }\n\n.example-right-align {\n  text-align: right; }\n\ninput.example-right-align::-webkit-outer-spin-button,\ninput.example-right-align::-webkit-inner-spin-button {\n  display: none; }\n\ninput.example-right-align {\n  -moz-appearance: textfield; }\n"
 
 /***/ }),
 
@@ -491,7 +492,9 @@ var ApontamentoNovoComponent = /** @class */ (function () {
             },
             despesa: {
                 descricao: "",
-                valor: 0
+                valor: 0,
+                data: "",
+                reembolso: ""
             }
         };
         this.array = ['hora', 'despesa'];
@@ -503,7 +506,8 @@ var ApontamentoNovoComponent = /** @class */ (function () {
             descricao: [null],
             inicio: [null],
             fim: [null],
-            valor: [null]
+            valor: [null],
+            reembolso: [null]
         });
         this.formControlValueChanged();
     }
@@ -527,7 +531,6 @@ var ApontamentoNovoComponent = /** @class */ (function () {
         var opDespesa = this.options.get('opDespesa');
         var descricao = this.options.get('descricao');
         var valor = this.options.get('valor');
-        // this.cdRef.detectChanges();  
         this.options.get('tipo').valueChanges.subscribe(function (tipo) {
             if (tipo === 'hora') {
                 descricao.clearValidators();
@@ -565,6 +568,7 @@ var ApontamentoNovoComponent = /** @class */ (function () {
         var _this = this;
         this.apontamento.tipo = this.options.controls.tipo.value;
         if (this.options.controls.tipo.value != 'hora') {
+            this.apontamento.despesa.data = this.today;
             this.apontamento.hora.inicio = "";
             this.apontamento.hora.fim = "";
         }
@@ -577,8 +581,15 @@ var ApontamentoNovoComponent = /** @class */ (function () {
             this.apontamento.despesa.valor = this.options.controls.valor.value;
         }
         if (this.options.controls.tipo.value == 'despesa' && this.options.controls.opDespesa.value == 'outros') {
-            this.apontamento.despesa.descricao = this.options.controls.descricao.value;
-            this.apontamento.despesa.valor = this.options.controls.valor.value;
+            if (this.options.controls.descricao.value) {
+                this.apontamento.despesa.descricao = this.options.controls.descricao.value;
+                this.apontamento.despesa.valor = this.options.controls.valor.value;
+            }
+            else {
+                this.errors = { descricao: { message: "Descrição da despesa é requerida" } };
+                this._router.navigate(['../apontamento/novo']);
+                return false;
+            }
         }
         console.log('ApontamentoNovoComponent > setApontamento() >  this.apontamento, this.options', this.apontamento);
         this._projetoService.apontamentoNovo(this.options.controls.projeto.value, this.apontamento)
@@ -623,7 +634,7 @@ var ApontamentoNovoComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n  <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<h3 mat-dialog-title>Encerrar Apontamento </h3>\n<h5>{{ data.usuario }}</h5>\n<p>{{ data.codigo }} {{ data.descricao }}</p>\n<p>Inicio: {{ data.inicio | date:\"MMM d, y H:mm:ss\" }}</p>\n<p>Fim: {{ data.fim | date:\"MMM d, y H:mm:ss\" }}</p>\n<br><br>\n<div mat-dialog-content>\n  <p>Confirma? </p>\n</div>\n<br><br>\n<div mat-dialog-actions>\n    <div class=\"button-row\">\n      <button style=\"margin: 10px;\" mat-mini-fab color=\"primary\" (click)=\"onNoClick()\"> não </button>\n      <button style=\"margin: 10px;\" mat-mini-fab color=\"warn\" (click)=\"encerrarApontamento(data)\" cdkFocusInitial> sim </button>\n    </div>\n</div>\n"
+module.exports = "<mat-toolbar>\n  <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<h3 mat-dialog-title>Encerrar Apontamento </h3>\n<h5>{{ data.usuario }}</h5>\n<p>{{ data.codigo }} {{ data.descricao }}</p>\n<p>Inicio: {{ data.inicio | date:'d/M/yy H:mm' }}</p>\n<p>Fim: {{ data.fim | date:'d/M/yy H:mm' }}</p>\n<br><br>\n<div mat-dialog-content>\n  <p>Confirma? </p>\n</div>\n<br><br>\n<div mat-dialog-actions>\n    <div class=\"button-row\">\n      <button style=\"margin: 10px;\" mat-mini-fab color=\"primary\" (click)=\"onNoClick()\"> não </button>\n      <button style=\"margin: 10px;\" mat-mini-fab color=\"warn\" (click)=\"encerrarApontamento(data)\" cdkFocusInitial> sim </button>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -874,11 +885,12 @@ var AppComponent = /** @class */ (function () {
 /*!*******************************!*\
   !*** ./src/app/app.module.ts ***!
   \*******************************/
-/*! exports provided: AppModule */
+/*! exports provided: CustomCurrencyMaskConfig, AppModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomCurrencyMaskConfig", function() { return CustomCurrencyMaskConfig; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppModule", function() { return AppModule; });
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
@@ -890,40 +902,45 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
 /* harmony import */ var _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/toolbar */ "./node_modules/@angular/material/esm5/toolbar.es5.js");
 /* harmony import */ var _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/material/checkbox */ "./node_modules/@angular/material/esm5/checkbox.es5.js");
-/* harmony import */ var _global_error_global_error_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./global-error/global-error.component */ "./src/app/global-error/global-error.component.ts");
-/* harmony import */ var _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./projeto/projeto.service */ "./src/app/projeto/projeto.service.ts");
-/* harmony import */ var _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./usuario/usuario.service */ "./src/app/usuario/usuario.service.ts");
-/* harmony import */ var _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./cliente/cliente.service */ "./src/app/cliente/cliente.service.ts");
-/* harmony import */ var _global_error_handler_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./global-error-handler.service */ "./src/app/global-error-handler.service.ts");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _cliente_cliente_edit_cliente_edit_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./cliente/cliente-edit/cliente-edit.component */ "./src/app/cliente/cliente-edit/cliente-edit.component.ts");
-/* harmony import */ var _cliente_cliente_novo_cliente_novo_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./cliente/cliente-novo/cliente-novo.component */ "./src/app/cliente/cliente-novo/cliente-novo.component.ts");
-/* harmony import */ var _cliente_cliente_show_cliente_show_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./cliente/cliente-show/cliente-show.component */ "./src/app/cliente/cliente-show/cliente-show.component.ts");
-/* harmony import */ var _usuario_usuario_list_usuario_list_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./usuario/usuario-list/usuario-list.component */ "./src/app/usuario/usuario-list/usuario-list.component.ts");
-/* harmony import */ var _usuario_usuario_edit_usuario_edit_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./usuario/usuario-edit/usuario-edit.component */ "./src/app/usuario/usuario-edit/usuario-edit.component.ts");
-/* harmony import */ var _usuario_usuario_novo_usuario_novo_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./usuario/usuario-novo/usuario-novo.component */ "./src/app/usuario/usuario-novo/usuario-novo.component.ts");
-/* harmony import */ var _usuario_usuario_show_usuario_show_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./usuario/usuario-show/usuario-show.component */ "./src/app/usuario/usuario-show/usuario-show.component.ts");
-/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
-/* harmony import */ var _financeiro_financeiro_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./financeiro/financeiro.component */ "./src/app/financeiro/financeiro.component.ts");
-/* harmony import */ var _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./projeto/projeto-list/projeto-list.component */ "./src/app/projeto/projeto-list/projeto-list.component.ts");
-/* harmony import */ var _projeto_projeto_novo_projeto_novo_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./projeto/projeto-novo/projeto-novo.component */ "./src/app/projeto/projeto-novo/projeto-novo.component.ts");
-/* harmony import */ var _projeto_projeto_show_projeto_show_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./projeto/projeto-show/projeto-show.component */ "./src/app/projeto/projeto-show/projeto-show.component.ts");
-/* harmony import */ var _projeto_projeto_edit_projeto_edit_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./projeto/projeto-edit/projeto-edit.component */ "./src/app/projeto/projeto-edit/projeto-edit.component.ts");
-/* harmony import */ var _cliente_cliente_list_cliente_list_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./cliente/cliente-list/cliente-list.component */ "./src/app/cliente/cliente-list/cliente-list.component.ts");
-/* harmony import */ var _relatorio_relatorio_financeiro_relatorio_financeiro_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./relatorio/relatorio-financeiro/relatorio-financeiro.component */ "./src/app/relatorio/relatorio-financeiro/relatorio-financeiro.component.ts");
-/* harmony import */ var _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./pagina-nao-encontrada/pagina-nao-encontrada.component */ "./src/app/pagina-nao-encontrada/pagina-nao-encontrada.component.ts");
-/* harmony import */ var _apontamento_apontamento_novo_apontamento_novo_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./apontamento/apontamento-novo/apontamento-novo.component */ "./src/app/apontamento/apontamento-novo/apontamento-novo.component.ts");
-/* harmony import */ var _material__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./material */ "./src/app/material.ts");
-/* harmony import */ var _apontamento_apontamento_dashboard_apontamento_dashboard_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./apontamento/apontamento-dashboard/apontamento-dashboard.component */ "./src/app/apontamento/apontamento-dashboard/apontamento-dashboard.component.ts");
-/* harmony import */ var _apontamento_apontamento_lista_despesa_apontamento_lista_despesa_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./apontamento/apontamento-lista-despesa/apontamento-lista-despesa.component */ "./src/app/apontamento/apontamento-lista-despesa/apontamento-lista-despesa.component.ts");
-/* harmony import */ var _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./apontamento/apontamento-lista-hora/apontamento-lista-hora.component */ "./src/app/apontamento/apontamento-lista-hora/apontamento-lista-hora.component.ts");
+/* harmony import */ var ng2_currency_mask__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ng2-currency-mask */ "./node_modules/ng2-currency-mask/index.js");
+/* harmony import */ var ng2_currency_mask__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(ng2_currency_mask__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _global_error_global_error_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./global-error/global-error.component */ "./src/app/global-error/global-error.component.ts");
+/* harmony import */ var _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./projeto/projeto.service */ "./src/app/projeto/projeto.service.ts");
+/* harmony import */ var _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./usuario/usuario.service */ "./src/app/usuario/usuario.service.ts");
+/* harmony import */ var _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./cliente/cliente.service */ "./src/app/cliente/cliente.service.ts");
+/* harmony import */ var _global_error_handler_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./global-error-handler.service */ "./src/app/global-error-handler.service.ts");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _cliente_cliente_edit_cliente_edit_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./cliente/cliente-edit/cliente-edit.component */ "./src/app/cliente/cliente-edit/cliente-edit.component.ts");
+/* harmony import */ var _cliente_cliente_novo_cliente_novo_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./cliente/cliente-novo/cliente-novo.component */ "./src/app/cliente/cliente-novo/cliente-novo.component.ts");
+/* harmony import */ var _cliente_cliente_show_cliente_show_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./cliente/cliente-show/cliente-show.component */ "./src/app/cliente/cliente-show/cliente-show.component.ts");
+/* harmony import */ var _usuario_usuario_list_usuario_list_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./usuario/usuario-list/usuario-list.component */ "./src/app/usuario/usuario-list/usuario-list.component.ts");
+/* harmony import */ var _usuario_usuario_edit_usuario_edit_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./usuario/usuario-edit/usuario-edit.component */ "./src/app/usuario/usuario-edit/usuario-edit.component.ts");
+/* harmony import */ var _usuario_usuario_novo_usuario_novo_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./usuario/usuario-novo/usuario-novo.component */ "./src/app/usuario/usuario-novo/usuario-novo.component.ts");
+/* harmony import */ var _usuario_usuario_show_usuario_show_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./usuario/usuario-show/usuario-show.component */ "./src/app/usuario/usuario-show/usuario-show.component.ts");
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
+/* harmony import */ var _financeiro_financeiro_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./financeiro/financeiro.component */ "./src/app/financeiro/financeiro.component.ts");
+/* harmony import */ var _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./projeto/projeto-list/projeto-list.component */ "./src/app/projeto/projeto-list/projeto-list.component.ts");
+/* harmony import */ var _projeto_projeto_novo_projeto_novo_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./projeto/projeto-novo/projeto-novo.component */ "./src/app/projeto/projeto-novo/projeto-novo.component.ts");
+/* harmony import */ var _projeto_projeto_show_projeto_show_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./projeto/projeto-show/projeto-show.component */ "./src/app/projeto/projeto-show/projeto-show.component.ts");
+/* harmony import */ var _projeto_projeto_edit_projeto_edit_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./projeto/projeto-edit/projeto-edit.component */ "./src/app/projeto/projeto-edit/projeto-edit.component.ts");
+/* harmony import */ var _cliente_cliente_list_cliente_list_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./cliente/cliente-list/cliente-list.component */ "./src/app/cliente/cliente-list/cliente-list.component.ts");
+/* harmony import */ var _relatorio_relatorio_financeiro_relatorio_financeiro_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./relatorio/relatorio-financeiro/relatorio-financeiro.component */ "./src/app/relatorio/relatorio-financeiro/relatorio-financeiro.component.ts");
+/* harmony import */ var _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./pagina-nao-encontrada/pagina-nao-encontrada.component */ "./src/app/pagina-nao-encontrada/pagina-nao-encontrada.component.ts");
+/* harmony import */ var _apontamento_apontamento_novo_apontamento_novo_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./apontamento/apontamento-novo/apontamento-novo.component */ "./src/app/apontamento/apontamento-novo/apontamento-novo.component.ts");
+/* harmony import */ var _material__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./material */ "./src/app/material.ts");
+/* harmony import */ var _apontamento_apontamento_dashboard_apontamento_dashboard_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./apontamento/apontamento-dashboard/apontamento-dashboard.component */ "./src/app/apontamento/apontamento-dashboard/apontamento-dashboard.component.ts");
+/* harmony import */ var _apontamento_apontamento_lista_despesa_apontamento_lista_despesa_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./apontamento/apontamento-lista-despesa/apontamento-lista-despesa.component */ "./src/app/apontamento/apontamento-lista-despesa/apontamento-lista-despesa.component.ts");
+/* harmony import */ var _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./apontamento/apontamento-lista-hora/apontamento-lista-hora.component */ "./src/app/apontamento/apontamento-lista-hora/apontamento-lista-hora.component.ts");
+/* harmony import */ var ng2_currency_mask_src_currency_mask_config__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ng2-currency-mask/src/currency-mask.config */ "./node_modules/ng2-currency-mask/src/currency-mask.config.js");
+/* harmony import */ var ng2_currency_mask_src_currency_mask_config__WEBPACK_IMPORTED_MODULE_39___default = /*#__PURE__*/__webpack_require__.n(ng2_currency_mask_src_currency_mask_config__WEBPACK_IMPORTED_MODULE_39__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -964,36 +981,46 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+var CustomCurrencyMaskConfig = {
+    align: "right",
+    allowNegative: true,
+    decimal: ",",
+    precision: 2,
+    prefix: "R$ ",
+    suffix: "",
+    thousands: "."
+};
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_16__["AppComponent"],
-                _login_login_component__WEBPACK_IMPORTED_MODULE_24__["LoginComponent"],
-                _financeiro_financeiro_component__WEBPACK_IMPORTED_MODULE_25__["FinanceiroComponent"],
-                _cliente_cliente_list_cliente_list_component__WEBPACK_IMPORTED_MODULE_30__["ClienteListComponent"],
-                _cliente_cliente_novo_cliente_novo_component__WEBPACK_IMPORTED_MODULE_18__["ClienteNovoComponent"],
-                _cliente_cliente_edit_cliente_edit_component__WEBPACK_IMPORTED_MODULE_17__["ClienteEditComponent"],
-                _cliente_cliente_show_cliente_show_component__WEBPACK_IMPORTED_MODULE_19__["ClienteShowComponent"],
-                _usuario_usuario_list_usuario_list_component__WEBPACK_IMPORTED_MODULE_20__["UsuarioListComponent"],
-                _usuario_usuario_edit_usuario_edit_component__WEBPACK_IMPORTED_MODULE_21__["UsuarioEditComponent"],
-                _usuario_usuario_novo_usuario_novo_component__WEBPACK_IMPORTED_MODULE_22__["UsuarioNovoComponent"],
-                _usuario_usuario_show_usuario_show_component__WEBPACK_IMPORTED_MODULE_23__["UsuarioShowComponent"],
-                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_26__["ProjetoListComponent"],
-                _projeto_projeto_novo_projeto_novo_component__WEBPACK_IMPORTED_MODULE_27__["ProjetoNovoComponent"],
-                _projeto_projeto_show_projeto_show_component__WEBPACK_IMPORTED_MODULE_28__["ProjetoShowComponent"],
-                _projeto_projeto_edit_projeto_edit_component__WEBPACK_IMPORTED_MODULE_29__["ProjetoEditComponent"],
-                _relatorio_relatorio_financeiro_relatorio_financeiro_component__WEBPACK_IMPORTED_MODULE_31__["RelatorioFinanceiroComponent"],
-                _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_32__["PaginaNaoEncontradaComponent"],
-                _global_error_global_error_component__WEBPACK_IMPORTED_MODULE_10__["GlobalErrorComponent"],
-                _apontamento_apontamento_novo_apontamento_novo_component__WEBPACK_IMPORTED_MODULE_33__["ApontamentoNovoComponent"],
-                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_26__["DialogProjeto"],
-                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_37__["DialogApontamentoHora"],
-                _apontamento_apontamento_dashboard_apontamento_dashboard_component__WEBPACK_IMPORTED_MODULE_35__["ApontamentoDashboardComponent"],
-                _apontamento_apontamento_lista_despesa_apontamento_lista_despesa_component__WEBPACK_IMPORTED_MODULE_36__["ApontamentoListaDespesaComponent"],
-                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_37__["ApontamentoListaHoraComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_17__["AppComponent"],
+                _login_login_component__WEBPACK_IMPORTED_MODULE_25__["LoginComponent"],
+                _financeiro_financeiro_component__WEBPACK_IMPORTED_MODULE_26__["FinanceiroComponent"],
+                _cliente_cliente_list_cliente_list_component__WEBPACK_IMPORTED_MODULE_31__["ClienteListComponent"],
+                _cliente_cliente_novo_cliente_novo_component__WEBPACK_IMPORTED_MODULE_19__["ClienteNovoComponent"],
+                _cliente_cliente_edit_cliente_edit_component__WEBPACK_IMPORTED_MODULE_18__["ClienteEditComponent"],
+                _cliente_cliente_show_cliente_show_component__WEBPACK_IMPORTED_MODULE_20__["ClienteShowComponent"],
+                _usuario_usuario_list_usuario_list_component__WEBPACK_IMPORTED_MODULE_21__["UsuarioListComponent"],
+                _usuario_usuario_edit_usuario_edit_component__WEBPACK_IMPORTED_MODULE_22__["UsuarioEditComponent"],
+                _usuario_usuario_novo_usuario_novo_component__WEBPACK_IMPORTED_MODULE_23__["UsuarioNovoComponent"],
+                _usuario_usuario_show_usuario_show_component__WEBPACK_IMPORTED_MODULE_24__["UsuarioShowComponent"],
+                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_27__["ProjetoListComponent"],
+                _projeto_projeto_novo_projeto_novo_component__WEBPACK_IMPORTED_MODULE_28__["ProjetoNovoComponent"],
+                _projeto_projeto_show_projeto_show_component__WEBPACK_IMPORTED_MODULE_29__["ProjetoShowComponent"],
+                _projeto_projeto_edit_projeto_edit_component__WEBPACK_IMPORTED_MODULE_30__["ProjetoEditComponent"],
+                _relatorio_relatorio_financeiro_relatorio_financeiro_component__WEBPACK_IMPORTED_MODULE_32__["RelatorioFinanceiroComponent"],
+                _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_33__["PaginaNaoEncontradaComponent"],
+                _global_error_global_error_component__WEBPACK_IMPORTED_MODULE_11__["GlobalErrorComponent"],
+                _apontamento_apontamento_novo_apontamento_novo_component__WEBPACK_IMPORTED_MODULE_34__["ApontamentoNovoComponent"],
+                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_27__["DialogProjeto"],
+                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_38__["DialogApontamentoHora"],
+                _apontamento_apontamento_dashboard_apontamento_dashboard_component__WEBPACK_IMPORTED_MODULE_36__["ApontamentoDashboardComponent"],
+                _apontamento_apontamento_lista_despesa_apontamento_lista_despesa_component__WEBPACK_IMPORTED_MODULE_37__["ApontamentoListaDespesaComponent"],
+                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_38__["ApontamentoListaHoraComponent"]
                 // NgbdDatepickerPopup,
             ],
             imports: [
@@ -1005,30 +1032,32 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatFormFieldModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatInputModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_15__["AppRoutingModule"],
-                _material__WEBPACK_IMPORTED_MODULE_34__["MaterialModule"],
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_16__["AppRoutingModule"],
+                _material__WEBPACK_IMPORTED_MODULE_35__["MaterialModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatOptionModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatSelectModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatRadioModule"],
                 _angular_material_tabs__WEBPACK_IMPORTED_MODULE_6__["MatTabsModule"],
                 _angular_material_card__WEBPACK_IMPORTED_MODULE_7__["MatCardModule"],
                 _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_8__["MatToolbarModule"],
-                _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_9__["MatCheckboxModule"]
+                _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_9__["MatCheckboxModule"],
+                ng2_currency_mask__WEBPACK_IMPORTED_MODULE_10__["CurrencyMaskModule"]
                 // NgbModule,
                 // NgbModule.forRoot()
             ],
             entryComponents: [
-                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_26__["DialogProjeto"],
-                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_37__["DialogApontamentoHora"]
+                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_27__["DialogProjeto"],
+                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_38__["DialogApontamentoHora"]
             ],
             providers: [
-                _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_11__["ProjetoService"],
-                _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_12__["UsuarioService"],
-                _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_13__["ClienteService"],
-                _global_error_handler_service__WEBPACK_IMPORTED_MODULE_14__["GlobalErrorHandlerService"],
-                { provide: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ErrorHandler"], useClass: _global_error_handler_service__WEBPACK_IMPORTED_MODULE_14__["GlobalErrorHandlerService"] }
+                _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_12__["ProjetoService"],
+                _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_13__["UsuarioService"],
+                _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_14__["ClienteService"],
+                _global_error_handler_service__WEBPACK_IMPORTED_MODULE_15__["GlobalErrorHandlerService"],
+                { provide: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ErrorHandler"], useClass: _global_error_handler_service__WEBPACK_IMPORTED_MODULE_15__["GlobalErrorHandlerService"] },
+                { provide: ng2_currency_mask_src_currency_mask_config__WEBPACK_IMPORTED_MODULE_39__["CURRENCY_MASK_CONFIG"], useValue: CustomCurrencyMaskConfig }
             ],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_16__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_17__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -1923,7 +1952,7 @@ module.exports = "\n<div class=\"bg-img\">\n  <div class=\"bg2-img\"></div>\n  <
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "body, html {\n  height: 100%;\n  font-family: Arial, Helvetica, sans-serif; }\n\n* {\n  box-sizing: border-box; }\n\n.bg-img {\n  /* The image used */\n  background-image: url(\"/assets/images/simone-hutsch-669693-unsplash.jpg\");\n  min-height: 680px;\n  /* Center and scale the image nicely */\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover; }\n\n/* Add styles to the form container */\n\n.container {\n  position: absolute;\n  right: 0;\n  margin: 20px;\n  max-width: 260px;\n  padding: 16px;\n  background-color: white; }\n\n/* Full-width input fields */\n\ninput[type=email], input[type=password] {\n  width: 100%;\n  height: 50%;\n  padding: 15px;\n  margin: 15px 0 22px 0px;\n  border: none; }\n\n.example-form {\n  min-width: 150px;\n  max-width: 500px;\n  width: 100%; }\n\n.example-full-width {\n  width: 100%; }\n\n/* Set a style for the submit button */\n\n.btn {\n  background-color: #4CAF50;\n  color: white;\n  padding: 16px 20px;\n  border: none;\n  cursor: pointer;\n  width: 100%;\n  opacity: 0.9; }\n\n.btn:hover {\n  opacity: 1; }\n\n.bg2-img {\n  /* The image used */\n  background-image: url(\"/assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\");\n  min-height: 140px;\n  /* Center and scale the image nicely */\n  background-position: left;\n  background-repeat: no-repeat;\n  background-size: 25%; }\n\n.btn-linkedin {\n  background: #0E76A8;\n  border-radius: 0;\n  color: #fff;\n  border-width: 1px;\n  border-style: solid;\n  border-color: #084461; }\n\n.btn-linkedin:link, .btn-linkedin:visited {\n  color: #fff; }\n\n.btn-linkedin:active, .btn-linkedin:hover {\n  background: #084461;\n  color: #fff; }\n"
+module.exports = "body, html {\n  height: 100%;\n  font-family: Arial, Helvetica, sans-serif; }\n\n* {\n  box-sizing: border-box; }\n\n.bg-img {\n  /* The image used */\n  background-image: url(\"/assets/images/TorreNegra-elem-mono-pos.png\");\n  min-height: 680px;\n  /* Center and scale the image nicely */\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: 35%; }\n\n/* Add styles to the form container */\n\n.container {\n  position: absolute;\n  right: 0;\n  margin: 20px;\n  max-width: 260px;\n  padding: 16px;\n  background-color: white; }\n\n/* Full-width input fields */\n\ninput[type=email], input[type=password] {\n  width: 100%;\n  height: 50%;\n  padding: 15px;\n  margin: 15px 0 22px 0px;\n  border: none; }\n\n.example-form {\n  min-width: 150px;\n  max-width: 500px;\n  width: 100%; }\n\n.example-full-width {\n  width: 100%; }\n\n/* Set a style for the submit button */\n\n.btn {\n  background-color: #4CAF50;\n  color: white;\n  padding: 16px 20px;\n  border: none;\n  cursor: pointer;\n  width: 100%;\n  opacity: 0.9; }\n\n.btn:hover {\n  opacity: 1; }\n\n.bg2-img {\n  /* The image used */\n  background-image: url(\"/assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\");\n  min-height: 140px;\n  /* Center and scale the image nicely */\n  background-position: left;\n  background-repeat: no-repeat;\n  background-size: 25%; }\n\n.btn-linkedin {\n  background: #0E76A8;\n  border-radius: 0;\n  color: #fff;\n  border-width: 1px;\n  border-style: solid;\n  border-color: #084461; }\n\n.btn-linkedin:link, .btn-linkedin:visited {\n  color: #fff; }\n\n.btn-linkedin:active, .btn-linkedin:hover {\n  background: #084461;\n  color: #fff; }\n"
 
 /***/ }),
 
@@ -3118,7 +3147,7 @@ var UsuarioEditComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n  <img class=\"logo\" src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n<div class=\"mat-elevation-z8\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<div class=\"container\">\n\n  <div class=\"level-left\">\n      <div style=\"margin-top: 20px;\" class=\"title is-4\">Usuários</div>  \n  </div>\n  <div class=\"level-right\">\n      <button mat-stroked-button color=\"primary\" [routerLink]=\"['/usuario/novo']\">Novo usuário</button>\n  </div> \n\n  <mat-form-field>\n      <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filtrar\">\n  </mat-form-field>\n\n  <div class=\"mat-elevation-z8\">\n\n    <table mat-table [dataSource]=\"dataSource\" matSort>\n\n      <!-- nome Column -->\n      <ng-container matColumnDef=\"nome\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> nome </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.nome}} </td>\n        </ng-container>\n  \n\n      <!-- sobrenome Column -->\n      <ng-container matColumnDef=\"sobrenome\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> sobrenome </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.sobrenome}} </td>\n      </ng-container>\n\n        <!-- email Column -->\n        <ng-container matColumnDef=\"email\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> e-mail </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.email}} </td>\n        </ng-container>\n  \n        <!-- funcao Column -->\n        <ng-container matColumnDef=\"funcao\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> função </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.funcao}} </td>\n        </ng-container>\n  \n        <!-- custoHora Column -->\n        <ng-container matColumnDef=\"custoHora\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> custo hr </th>\n          <td mat-cell *matCellDef=\"let row\">  {{row.custoHora}} </td>\n        </ng-container>\n\n        <!-- admin Column -->\n        <ng-container matColumnDef=\"admin\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> admin </th>\n          <td class=\"icon\" mat-cell *matCellDef=\"let row\"> \n              <img style=\"size: 20px;\" [src]=\"row['admin'] ? frontPath : backPath\"></td>\n        </ng-container>\n\n        <!-- Acao 1 Column -->\n        <ng-container matColumnDef=\"acao1\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> ação </th>\n          <td mat-cell *matCellDef=\"let row\" >\n            <div class=\"button-row\">\n              <!-- <button mat-button color=\"primary\" >editar</button> -->\n              <button mat-button color=\"primary\" [routerLink]=\"['/usuario/edit/', row['_id'] ]\" [disabled]=\"!(row['ativo'])\">editar</button>\n            </div>\n          </td>\n        </ng-container>\n  \n        <!-- Acao 2 Column -->\n        <ng-container matColumnDef=\"acao2\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>\n          <td mat-cell *matCellDef=\"let row\" >\n            <div class=\"button-row\">\n              <button mat-button color=\"warn\" [routerLink]=\"['/usuario/show', row['_id'] ]\">detalhes</button>\n            </div>\n          </td>\n        </ng-container>\n  \n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\">\n        </tr>\n      </table>\n  \n      <mat-paginator [pageSizeOptions]=\"[5, 10, 25, 100]\"></mat-paginator>\n    </div>\n\n</div>"
+module.exports = "<mat-toolbar>\n  <img class=\"logo\" src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n<div class=\"mat-elevation-z8\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<div class=\"container\">\n\n  <div class=\"level-left\">\n      <div style=\"margin-top: 20px;\" class=\"title is-4\">Usuários</div>  \n  </div>\n  <div class=\"level-right\">\n      <button mat-stroked-button color=\"primary\" [routerLink]=\"['/usuario/novo']\">Novo usuário</button>\n  </div> \n\n  <mat-form-field>\n      <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filtrar\">\n  </mat-form-field>\n\n  <div class=\"mat-elevation-z8\">\n\n    <table mat-table [dataSource]=\"dataSource\" matSort>\n\n      <!-- nome Column -->\n      <ng-container matColumnDef=\"nome\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> nome </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.nome}} </td>\n        </ng-container>\n  \n\n      <!-- sobrenome Column -->\n      <ng-container matColumnDef=\"sobrenome\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> sobrenome </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.sobrenome}} </td>\n      </ng-container>\n\n        <!-- email Column -->\n        <ng-container matColumnDef=\"email\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> e-mail </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.email}} </td>\n        </ng-container>\n  \n        <!-- funcao Column -->\n        <ng-container matColumnDef=\"funcao\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> função </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.funcao}} </td>\n        </ng-container>\n  \n        <!-- custoHora Column -->\n        <ng-container matColumnDef=\"custoHora\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> hh </th>\n          <td mat-cell *matCellDef=\"let row\">  {{row.custoHora}} </td>\n        </ng-container>\n\n        <!-- admin Column -->\n        <ng-container matColumnDef=\"admin\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> adm </th>\n          <td class=\"icon\" mat-cell *matCellDef=\"let row\"> \n              <img style=\"size: 20px;\" [src]=\"row['admin'] ? frontPath : backPath\"></td>\n        </ng-container>\n\n        <!-- Acao 1 Column -->\n        <ng-container matColumnDef=\"acao1\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> ação </th>\n          <td mat-cell *matCellDef=\"let row\" >\n            <div class=\"button-row\">\n              <!-- <button mat-button color=\"primary\" >editar</button> -->\n              <button mat-button color=\"primary\" [routerLink]=\"['/usuario/edit/', row['_id'] ]\" [disabled]=\"!(row['ativo'])\">editar</button>\n            </div>\n          </td>\n        </ng-container>\n  \n        <!-- Acao 2 Column -->\n        <ng-container matColumnDef=\"acao2\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>\n          <td mat-cell *matCellDef=\"let row\" >\n            <div class=\"button-row\">\n              <button mat-button color=\"warn\" [routerLink]=\"['/usuario/show', row['_id'] ]\">detalhes</button>\n            </div>\n          </td>\n        </ng-container>\n  \n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\">\n        </tr>\n      </table>\n  \n      <mat-paginator [pageSizeOptions]=\"[5, 10, 25, 100]\"></mat-paginator>\n    </div>\n\n</div>"
 
 /***/ }),
 

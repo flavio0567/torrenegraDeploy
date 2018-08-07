@@ -34,7 +34,9 @@ export class ApontamentoNovoComponent implements OnInit {
       },
     despesa: {
       descricao: "",
-      valor: 0
+      valor: 0,
+      data: "",
+      reembolso: ""
     }
   }
   array = ['hora', 'despesa'];
@@ -53,7 +55,8 @@ export class ApontamentoNovoComponent implements OnInit {
       descricao: [null],
       inicio: [null],
       fim: [null],
-      valor: [null]
+      valor: [null],
+      reembolso: [null]
     });
 
     this.formControlValueChanged();
@@ -85,7 +88,6 @@ export class ApontamentoNovoComponent implements OnInit {
     const opDespesa = this.options.get('opDespesa');
     const descricao = this.options.get('descricao');
     const valor = this.options.get('valor');
-    // this.cdRef.detectChanges();  
     this.options.get('tipo').valueChanges.subscribe(
         (tipo: string) => {
             if (tipo === 'hora') {
@@ -126,6 +128,7 @@ export class ApontamentoNovoComponent implements OnInit {
   setApontamento() {
     this.apontamento.tipo = this.options.controls.tipo.value;
     if (this.options.controls.tipo.value != 'hora') {
+      this.apontamento.despesa.data = this.today;
       this.apontamento.hora.inicio = "";
       this.apontamento.hora.fim = "";
     } else {
@@ -137,8 +140,14 @@ export class ApontamentoNovoComponent implements OnInit {
       this.apontamento.despesa.valor = this.options.controls.valor.value;
     }
     if (this.options.controls.tipo.value == 'despesa' && this.options.controls.opDespesa.value == 'outros') {
-      this.apontamento.despesa.descricao = this.options.controls.descricao.value;
-      this.apontamento.despesa.valor = this.options.controls.valor.value;
+      if (this.options.controls.descricao.value) {
+        this.apontamento.despesa.descricao = this.options.controls.descricao.value;
+        this.apontamento.despesa.valor = this.options.controls.valor.value;
+      } else {
+        this.errors = {descricao: {message: "Descrição da despesa é requerida"}};
+        this._router.navigate(['../apontamento/novo']);
+        return false;
+      }
     }
     console.log('ApontamentoNovoComponent > setApontamento() >  this.apontamento, this.options', this.apontamento );
     this._projetoService.apontamentoNovo(this.options.controls.projeto.value, this.apontamento)

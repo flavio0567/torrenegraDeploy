@@ -20,7 +20,7 @@
       <!-- Inicio Column -->
       <ng-container matColumnDef="inicio">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> início </th>
-        <td mat-cell *matCellDef="let row"> {{row.hora.inicio | date:"MMM d, y H:mm:ss"}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.hora.inicio | date:'d/M/yy H:mm'}} </td>
       </ng-container>
   
     <!-- Ação Column -->

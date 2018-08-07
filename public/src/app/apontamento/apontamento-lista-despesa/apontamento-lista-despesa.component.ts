@@ -9,7 +9,8 @@ export interface ApontamentoData {
   descricao: string;
   despesa: {
     descricao: string, 
-    valor: string}
+    valor: string,
+    data: string}
 }
 
 @Component({
@@ -19,7 +20,7 @@ export interface ApontamentoData {
 })
 export class ApontamentoListaDespesaComponent implements OnInit {
 
-  displayedColumns: string[] = ['codigo', 'descricao', 'descricaoDespesa', 'despesaValor'];
+  displayedColumns: string[] = ['codigo', 'descricao', 'descricaoDespesa', 'despesaValor', 'despesaData'];
   dataSource: MatTableDataSource<ApontamentoData>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -35,7 +36,8 @@ export class ApontamentoListaDespesaComponent implements OnInit {
     descricao: "",
     despesa: {
       descricao: "",
-      valor: ""},
+      valor: "",
+      data: ""},
     _projeto: ""
   }] 
 
