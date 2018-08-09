@@ -37,6 +37,11 @@ export class UsuarioService {
     return this._http.get('/usuarios');
   }
 
+  obterUsuario(usuario) {
+    console.log('UsuarioService > obterUsuario', usuario);
+    return this._http.get('/usuario/', {params: {usuario: usuario } });
+  }
+
   obterUsuarioById(id) {
     console.log('UsuarioService > obterUsuarioById', id);
     return this._http.get('/usuario/' + id );

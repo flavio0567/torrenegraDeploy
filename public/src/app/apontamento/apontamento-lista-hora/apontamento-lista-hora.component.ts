@@ -68,7 +68,7 @@ export class ApontamentoListaHoraComponent implements OnInit {
   }
 
   obterListaApontamento(){
-    console.log('ApontamentoListaHoraComponent > obterListaApontamento()', this.usuarioLogado)
+    // console.log('ApontamentoListaHoraComponent > obterListaApontamento()', this.usuarioLogado)
     const apontObservable = this._projetoService.obterApontamentosHora(this.usuarioLogado);
     apontObservable.subscribe(
       (apontamentos) => {
@@ -88,7 +88,7 @@ export class ApontamentoListaHoraComponent implements OnInit {
   }
 
   obterProjeto(id, i) {
-    console.log('ApontamentoListaHoraComponent > obterProjeto()')
+    // console.log('ApontamentoListaHoraComponent > obterProjeto()')
     const observable = this._projetoService.obterProjetoById(id);
     observable.subscribe(
       (response) => {

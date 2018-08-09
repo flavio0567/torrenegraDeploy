@@ -18,6 +18,8 @@
 <br>
 <div class="container">
 
+  {{ today | date:'EEEE, d MMMM, y' }}
+  <br><br>
   <div class="level-left">
       <div style="margin: 20px, 0px, 20px, 0px;" class="title is-4">Apontamento</div> 
   </div>
@@ -41,7 +43,7 @@
             </mat-radio-group>&nbsp;&nbsp;
 
             <div *ngIf="options.get('tipo').value=='despesa'" class="example-full-width" cellspacing="0">
-              <mat-checkbox color="warn" formControlName="reembolso">Reembolso
+              <mat-checkbox color="warn" formControlName="reembolso">reembolso
               </mat-checkbox>
               <br><br>
             </div>

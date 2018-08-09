@@ -59,8 +59,14 @@ const ProjetoSchema = new Schema({
     bloquearApontamento: {                 
         type: Boolean, default: false
     },
-    encerrado: {
-        type: Boolean, default: false
+    situacao: {
+        type: Number,
+        min: 0,
+        max: 5,
+        default: 0
+    },
+    updated: { 
+        type: Date, default: Date.now 
     },
     apontamentos: [{type: Schema.Types.ObjectId, ref: 'Apontamento'}]
     }, { timestamps: true },
@@ -74,6 +80,9 @@ var ApontamentoSchema = new mongoose.Schema({
     },
     usuario: {
         type: String,
+    },
+    valorHH: {
+        type: Number
     },
     hora: {                              
         inicio: {

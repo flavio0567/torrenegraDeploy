@@ -51,6 +51,12 @@ module.exports = {
             }
         })
     },
+    obterUsuario: (req, res) => {
+        console.log("SERVER > CONTROLLER > obterUsario > req.query.usuario", req.query.usuario);
+        Usuario.findOne({email: req.query.usuario })
+        .then(usuario => res.json(usuario))
+        .catch(error => console.log(error));
+    },
     obterUsuarioById: (req, res) => {
         console.log("SERVER > CONTROLLER > obterUsarioById > req.params.id", req.params.id);
         Usuario.findById({_id: req.params.id})
@@ -83,8 +89,8 @@ module.exports = {
             };
         });
     },    
-    mudarSituacao: (req, res) => {
-        console.log("SERVER > CONTROLLER > usuario > mudarSituacao > req.params.id", req.params.id, req.body);
+    mudarSituacaoUsuario: (req, res) => {
+        console.log("SERVER > CONTROLLER > usuario > mudarSituacaoUsuario", req.params.id, req.body);
         Usuario.findOneAndUpdate({_id: req.params.id},{$set:{ativo: req.body.ativo}})
             .then(usuario => res.json(usuario))
             .catch(error => console.log(error));

@@ -5,7 +5,6 @@ import { Http } from '@angular/http';
 export class ProjetoService {
   projeto: any;
   projetos: any;
-  apontamentos: any;
 
   constructor(private _http: Http) { }
 
@@ -37,13 +36,19 @@ export class ProjetoService {
   }
 
   apontamentoNovo(id, apontamento) {
-    console.log('ProjetoService > apontamentoNovo(id, apontamento)', id, apontamento);
+    console.log('ProjetoService > apontamentoNovo(valorHH)', id, apontamento);
     return this._http.put('apontamento/novo/' + id, apontamento);
   }
 
-  encerrarProjeto(id) {
-    console.log('ProjetoService > encerrarProjeto(id)', id);
-    return this._http.put('/projeto/encerrar/' + id, this.projeto);
+  obterTotalApontamentos(id) {
+    console.log('ProjetoService > obterTotalApontamentos', id);
+    return this._http.get('apontamento/total/hora/' + id);
+  }
+
+
+  mudarSituacao(id, situacao) {
+    console.log('ProjetoService > mudarSituacao(id, situacao)', id, situacao);
+    return this._http.put('/projeto/mudarsituacao/' + id, situacao);
   }
 
   obterProjetoById(id) {

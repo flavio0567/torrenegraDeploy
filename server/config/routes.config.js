@@ -12,21 +12,23 @@ module.exports = function(app){
     .get('/projetos', (req, res) => {
         projeto.list(req, res)})
     .get('/apontamentos/hora/', (req, res) => {
-        projeto.apontamentosHora(req, res)})
+        projeto.obterApontamentoHoraPorUsuario(req, res)})
     .get('/apontamentos/despesa/', (req, res) => {
-        projeto.apontamentosDespesa(req, res)})
+        projeto.obterApontamentoDespesaPorUsuario(req, res)})
     .put('/apontamento/novo/:id', (req, res) => {
         projeto.apontamentoNovo(req, res)})
     .put('/apontamento/encerrar/:id', (req, res) => {
         projeto.encerrarApontamento(req, res)})
     .get('/projeto/:id', (req, res) => {
         projeto.obterProjetoById(req, res)})
+    .get('/apontamento/total/hora/:id', (req, res) => {
+        projeto.obterApontamentoTotalHora(req, res)})
     .post('/projeto/novo', (req, res) => {
         projeto.novo(req, res)})
     .put('/projeto/edit/:id', (req, res) => {
         projeto.edit(req, res)})
-    .put('/projeto/encerrar/:id', (req, res) => {
-        projeto.encerrar(req, res)})
+    .put('/projeto/mudarsituacao/:id', (req, res) => {
+        projeto.mudarSituacaoProjeto(req, res)})
     .get('/clientes', (req, res) => {
         cliente.list(req, res)})
     .get('/cliente/:id', (req, res) => {
@@ -42,11 +44,13 @@ module.exports = function(app){
     .put('/usuario/edit/:id', (req, res) => {
         usuario.edit(req, res)})
     .put('/usuario/mudarSituacao/:id', (req, res) => {
-        usuario.mudarSituacao(req, res)})
+        usuario.mudarSituacaoUsuario(req, res)})
     .get('/login/', (req, res) => {
         usuario.login(req, res)})
     .get('/usuarios', (req, res) => {
         usuario.list(req, res)})
+    .get('/usuario', (req, res) => {
+        usuario.obterUsuario(req, res)})
     .get('/usuario/:id', (req, res) => {
         usuario.obterUsuarioById(req, res)})
     .all("*", (req, res) => { 

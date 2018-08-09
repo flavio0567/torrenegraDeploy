@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UsuarioService } from '../../usuario/usuario.service';
 import { ProjetoService } from '../projeto.service';
 import { ClienteService } from '../../cliente/cliente.service';
@@ -44,7 +44,8 @@ export class ProjetoNovoComponent implements OnInit {
       horasIHM: [null],
       valorTerceiros: [null],
       valorMateriais: [null],
-      valorViagens: [null]
+      valorViagens: [null],
+      situacao: [0]
     });
   }
 
@@ -80,8 +81,8 @@ export class ProjetoNovoComponent implements OnInit {
     return this.projetoForm.get('horasIHM');
   }
 
-  criarProjeto(projetoForm: NgForm) {
-    console.log('ProjetoNovoComponent > novoProjeto(nProjForm)', projetoForm); 
+  criarProjeto(projetoForm) {
+    console.log('ProjetoNovoComponent > novoProjeto(nProjForm)', projetoForm);
     this._projetoService.criarProjeto(projetoForm.value)
       .subscribe(observable => {
         if(observable.json().errors) {

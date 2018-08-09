@@ -28,6 +28,7 @@ export class ApontamentoNovoComponent implements OnInit {
   apontamento: any = {
     tipo: "",
     usuario: "",
+    valorHH: 0,
     hora: {
       inicio: "",
       fim: ""
@@ -41,6 +42,7 @@ export class ApontamentoNovoComponent implements OnInit {
   }
   array = ['hora', 'despesa'];
   isSelected: Boolean = false; 
+  usuario: any;
 
   constructor(
     private fb: FormBuilder,
@@ -67,8 +69,16 @@ export class ApontamentoNovoComponent implements OnInit {
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
     console.log(' ApontamentoNovoComponent > usuarioLogado ', this.usuarioLogado.email);
     this.apontamento.usuario = this.usuarioLogado;
+    this._usuarioService.obterUsuario(this.apontamento.usuario)
+    .subscribe(
+      (usuario) => { 
+        this.usuario = usuario.json();
+        this.apontamento.valorHH = this.usuario.custoHora;
+      },
+      (err) => { },
+        () => { }
+    )
     this.obterListaProjeto();
- 
   }
 
   obterListaProjeto() {
@@ -101,9 +111,6 @@ export class ApontamentoNovoComponent implements OnInit {
                     opDespesa.setValidators([Validators.required]);
                     if (opdesp === 'outros') {
                       this.isSelected = true;
-                      // descricao.setValidators([Validators.required]);
-                    // } else {
-                    //   descricao.clearValidators();
                     }
                     valor.setValidators([Validators.required]);
                     inicio.clearValidators();
@@ -132,7 +139,7 @@ export class ApontamentoNovoComponent implements OnInit {
       this.apontamento.hora.inicio = "";
       this.apontamento.hora.fim = "";
     } else {
-      this.apontamento.hora.inicio = this.options.controls.inicio.value;
+      this.apontamento.hora.inicio = this.today;
       this.apontamento.hora.fim = "";
     }
     if (this.options.controls.tipo.value == 'despesa' && this.options.controls.opDespesa.value != 'outros') {
@@ -149,7 +156,7 @@ export class ApontamentoNovoComponent implements OnInit {
         return false;
       }
     }
-    console.log('ApontamentoNovoComponent > setApontamento() >  this.apontamento, this.options', this.apontamento );
+    console.log('ApontamentoNovoComponent > setApontamento() >  this.apontamento, valorHH', this.options.controls.projeto.value, this.apontamento.valorHH );
     this._projetoService.apontamentoNovo(this.options.controls.projeto.value, this.apontamento)
       .subscribe(observable => {
         if(observable.json().errors) {

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule, ErrorHandler, LOCALE_ID,  } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -8,7 +8,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { CurrencyMaskModule } from "ng2-currency-mask";
+import { registerLocaleData } from '@angular/common';
+import ptBr from '@angular/common/locales/pt';
 
 import { GlobalErrorComponent } from './global-error/global-error.component';
 
@@ -17,7 +18,7 @@ import { UsuarioService } from './usuario/usuario.service';
 import { ClienteService } from './cliente/cliente.service';
 import { GlobalErrorHandlerService } from './global-error-handler.service';
 
-// import { NgbdDatepickerPopup } from './apontamento/datepicker-popup';
+import { NgbdDatepickerPopup } from './apontamento/datepicker-popup';
 // import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -33,7 +34,6 @@ import { LoginComponent } from './login/login.component';
 import { FinanceiroComponent } from './financeiro/financeiro.component';
 import { ProjetoListComponent, DialogProjeto } from './projeto/projeto-list/projeto-list.component';
 import { ProjetoNovoComponent } from './projeto/projeto-novo/projeto-novo.component';
-import { ProjetoShowComponent } from './projeto/projeto-show/projeto-show.component';
 import { ProjetoEditComponent } from './projeto/projeto-edit/projeto-edit.component';
 import { ClienteListComponent } from './cliente/cliente-list/cliente-list.component';
 import { RelatorioFinanceiroComponent } from './relatorio/relatorio-financeiro/relatorio-financeiro.component';
@@ -43,18 +43,12 @@ import { MaterialModule } from './material';
 import { ApontamentoDashboardComponent } from './apontamento/apontamento-dashboard/apontamento-dashboard.component';
 import { ApontamentoListaDespesaComponent } from './apontamento/apontamento-lista-despesa/apontamento-lista-despesa.component';
 import { ApontamentoListaHoraComponent, DialogApontamentoHora } from './apontamento/apontamento-lista-hora/apontamento-lista-hora.component';
-import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask/src/currency-mask.config';
+import { RelatorioApontamentoProjetoComponent } from './relatorio/relatorio-apontamento-projeto/relatorio-apontamento-projeto.component';
+import { RelatorioApontamentoHorasUsuarioComponent } from './relatorio/relatorio-apontamento-horas-usuario/relatorio-apontamento-horas-usuario.component';
+import { RelatorioApontamentoDespesasUsuarioComponent } from './relatorio/relatorio-apontamento-despesas-usuario/relatorio-apontamento-despesas-usuario.component';
+import { RelatorioCustoProjetoComponent } from './relatorio/relatorio-custo-projeto/relatorio-custo-projeto.component';
 
-export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
-  align: "right",
-  allowNegative: true,
-  decimal: ",",
-  precision: 2,
-  prefix: "R$ ",
-  suffix: "",
-  thousands: "."
-};
-
+registerLocaleData(ptBr);
 
 @NgModule({
   declarations: [
@@ -71,7 +65,6 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     UsuarioShowComponent,
     ProjetoListComponent,
     ProjetoNovoComponent,
-    ProjetoShowComponent,
     ProjetoEditComponent,
     RelatorioFinanceiroComponent,
     PaginaNaoEncontradaComponent,
@@ -81,8 +74,12 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     DialogApontamentoHora,
     ApontamentoDashboardComponent,
     ApontamentoListaDespesaComponent,
-    ApontamentoListaHoraComponent
-    // NgbdDatepickerPopup,
+    ApontamentoListaHoraComponent,
+    NgbdDatepickerPopup,
+    RelatorioApontamentoProjetoComponent,
+    RelatorioApontamentoHorasUsuarioComponent,
+    RelatorioApontamentoDespesasUsuarioComponent,
+    RelatorioCustoProjetoComponent
   ],
   imports: [
     BrowserModule,
@@ -101,8 +98,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     MatTabsModule,
     MatCardModule,
     MatToolbarModule,
-    MatCheckboxModule,
-    CurrencyMaskModule
+    MatCheckboxModule
     // NgbModule,
     // NgbModule.forRoot()
   ],
@@ -116,7 +112,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     ClienteService,
     GlobalErrorHandlerService,
     { provide: ErrorHandler, useClass: GlobalErrorHandlerService },
-    { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig } 
+    { provide: LOCALE_ID, useValue: 'pt' } 
   ],
   bootstrap: [AppComponent]
 })

@@ -7,11 +7,13 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 
 
-export interface PedidoData {
+export interface ProjetoData {
   codigo: string;
   descricao: string;
   cliente: string;
   pedido: string;
+  situacao: number;
+  sitDesc: string;
   acao: string;
 }
 
@@ -23,8 +25,8 @@ export interface PedidoData {
 export class ProjetoListComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['codigo', 'descricao', 'cliente', 'pedido', 'acao1', 'acao2'];
-  dataSource: MatTableDataSource<PedidoData>;
+  displayedColumns: string[] = ['codigo', 'descricao', 'cliente', 'pedido', 'situacao', 'acao1', 'acao2'];
+  dataSource: MatTableDataSource<ProjetoData>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -41,8 +43,9 @@ export class ProjetoListComponent implements OnInit {
     _clienteId: "",
     cliente: "",
     pedido: "",
-    acao: "",
-    encerrado: ""
+    situacao: 0,
+    sitDesc: "",
+    acao: "" 
   }];
   cliente = {
     _id: "",
@@ -58,7 +61,6 @@ export class ProjetoListComponent implements OnInit {
       telefone: 0,
       skype: ""}]
   }
-
 
   constructor(
     private _usuarioService: UsuarioService,
@@ -89,8 +91,10 @@ export class ProjetoListComponent implements OnInit {
     projetoObservable.subscribe(
       (projetos) => { 
         this.projetos = projetos.json();
+        console.log('ProjetoListComponent > obterListaProjeto()', projetos);
         for (var i = 0; i < this.projetos.length; i++) {
           this.obterCliente(this.projetos[i]._clienteId, i);
+          this.obterSituacao(this.projetos[i].situacao, i);
         }
         this.dataSource = new MatTableDataSource(this.projetos);
         this.dataSource.paginator = this.paginator;
@@ -114,6 +118,33 @@ export class ProjetoListComponent implements OnInit {
     )
   }
 
+  obterSituacao(situacao, i) {
+    console.log('ProjetoListComponent > obterSituacao()');
+    switch (this.projetos[i].situacao) {
+      case 0:
+        this.projetos[i].sitDesc = 'aberto';
+        break;
+      case 1:
+        this.projetos[i].sitDesc = 'liberado';
+        break;
+      case 2:
+        this.projetos[i].sitDesc = 'finalizado';
+        break;
+      case 3:
+        this.projetos[i].sitDesc = 'faturado';
+        break;
+      case 4:
+        this.projetos[i].sitDesc = 'encerrado';
+        break;
+      case 5:
+        this.projetos[i].sitDesc = 'cancelado';
+        break;
+      default:
+        this.projetos[i].sitDesc = '';
+    }
+  }
+
+
   openDialog(projeto): void {
     console.log('ProjetoListComponent > openDialog(projeto) ')
     let dialogRef = this.dialog.open(DialogProjeto, {
@@ -122,7 +153,8 @@ export class ProjetoListComponent implements OnInit {
         id: projeto._id,
         codigo: projeto.codigo,
         descricao: projeto.descricao,
-        usuario: this.usuarioLogado
+        usuario: this.usuarioLogado,
+        situacao: projeto.sitDesc
       }
     });
 
@@ -134,6 +166,10 @@ export class ProjetoListComponent implements OnInit {
 
 }
 
+export interface Situacao {
+  value: number;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-popup',
@@ -142,9 +178,17 @@ export class ProjetoListComponent implements OnInit {
 })
 
 export class DialogProjeto {
+  selectedValue: number;
+  situacoes: Situacao[] = [
+    {value: 1, viewValue: '1-liberado'},
+    {value: 2, viewValue: '2-finalizado'},
+    {value: 3, viewValue: '3-faturado'},
+    {value: 4, viewValue: '4-encerrado'},
+    {value: 5, viewValue: '5-cancelado'}
+  ];
 
   constructor(private _projetoService: ProjetoService, 
-    private _router: Router, 
+    // private _router: Router, 
     public dialogRef: MatDialogRef<DialogProjeto>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
@@ -152,9 +196,9 @@ export class DialogProjeto {
     this.dialogRef.close();
   }
 
-  encerrarProjeto(id) {
-    console.log('DialogProjeto >  encerrarProjeto(id) ', id)
-    const dialogObservable = this._projetoService.encerrarProjeto(id);
+  mudarSituacao(id) {
+    console.log('DialogProjeto >  mudarSituacao(id) ')
+    const dialogObservable = this._projetoService.mudarSituacao(id, this.selectedValue);
     dialogObservable.subscribe(
       (res) => { 
         console.log('The dialog called encerrar projeto!', res);

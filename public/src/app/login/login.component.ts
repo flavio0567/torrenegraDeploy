@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../usuario/usuario.service';
-import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
@@ -50,9 +50,9 @@ export class LoginComponent implements OnInit {
   }
 
 
-  login(loginForm: NgForm) {
-    console.log('LoginComponent > login()',this.formLogin.controls.email.value)
-    this._usuarioService.login(this.formLogin.controls.email.value)
+  login(formLogin) {
+    console.log('LoginComponent > login()' ,formLogin.controls.email.value)
+    this._usuarioService.login(formLogin.controls.email.value)
     .subscribe((usuario) => {
           this.usuario = usuario.json();
           if (this.usuario.ativo) {

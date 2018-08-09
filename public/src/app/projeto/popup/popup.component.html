@@ -2,16 +2,31 @@
     <img src="../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png">
 </mat-toolbar>
 
-<h3 mat-dialog-title>Encerrar Projeto </h3>
-<h4>{{ data.codigo }} {{ data.descricao }}</h4>
-<br><br>
-<div mat-dialog-content>
-  <p>Confirma? </p>
-</div>
-<br><br>
-<div mat-dialog-actions>
-    <div class="button-row">
-      <button style="margin: 10px;" mat-mini-fab color="primary" (click)="onNoClick()"> não </button>
-      <button style="margin: 10px;" mat-mini-fab color="warn" (click)="encerrarProjeto(data.id)" cdkFocusInitial> sim </button>
-    </div>
-</div>
+
+
+<form #dialogForm="ngForm">
+
+  <h3 mat-dialog-title>Alterar situação do projeto </h3>
+  <h4>{{ data.codigo }} {{ data.descricao }}</h4>
+  <br><br>
+
+  <p> Situação atual do projeto: <span class="mat-body-2">&nbsp;{{ data.situacao }}</span> </p>
+
+  <mat-form-field style="width:200px !important;">
+      <mat-select placeholder="Nova situação" [(ngModel)]="selectedValue" name="situacao">
+        <mat-option style="align-items: center;" *ngFor="let situacao of situacoes" [value]="situacao.value"  >
+          {{situacao.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  <div mat-dialog-content>
+    <p>Confirma? </p>
+  </div>
+  <div mat-dialog-actions>
+      <div class="button-row">
+        <button style="margin: 10px;" mat-mini-fab color="primary" (click)="onNoClick()"> não </button>
+        <button style="margin: 10px;" mat-mini-fab color="warn" (click)="mudarSituacao(data.id)" cdkFocusInitial> sim </button>
+      </div>
+  </div>
+</form>

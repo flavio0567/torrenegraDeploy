@@ -10,7 +10,7 @@ const ClienteProjeto = mongoose.model('ClienteProjeto');
 module.exports = { 
     list: (req, res) => {
         console.log("SERVER > CONTROLLER > projeto > list")
-        Projeto.find({}).sort({ 'codigo': -1 })
+        Projeto.find({ situacao: { $in: [0, 1, 2 ] } }).sort({ 'codigo': -1 })
             .then(projeto => res.json(projeto))
             .catch(error => console.log(error));
     },
@@ -80,8 +80,8 @@ module.exports = {
             };
         });
     },  
-    apontamentosHora: (req, res) => {
-        console.log("SERVER > CONTROLLER > apontamentos > hora > req.query", req.query.usuario);
+    obterApontamentoHoraPorUsuario: (req, res) => {
+        console.log("SERVER > CONTROLLER > obterApontamentoHoraPorUsuario", req.query.usuario);
         // Apontamento.find({ $and: [ { tipo : { $eq: ['hora'] } }, { 'hora.inicio': { $ne: [''] } }, { 'hora.fim': { $eq: [''] }}, { usuario: { $eq: ['usuario']} } ] })
         // Apontamento.find({ $and: [ { 'hora.inicio': { $ne: [''] } }, { 'hora.fim': { $eq: [''] }}, { usuario: { $eq: [req.query.usuario]} } ] })
         Apontamento.find({ tipo : 'hora', 'hora.fim': '', usuario: req.query.usuario })
@@ -90,10 +90,10 @@ module.exports = {
                 if (err) return handleError(err);
                 console.log('Os apontamentos são %s', apontamento);
                 res.json(apontamento);
-                })
+            })
     },
-    apontamentosDespesa: (req, res) => {
-        console.log("SERVER > CONTROLLER > apontamentos > despesa > req.query", req.query.usuario);
+    obterApontamentoDespesaPorUsuario: (req, res) => {
+        console.log("SERVER > CONTROLLER > obterApontamentoDespesaPorUsuario", req.query.usuario);
         // Apontamento.find({ $and: [ { tipo : { $eq: ['despesa'] } }, { usuario: { $eq: [req.query.usuario]} } ] } )
         Apontamento.find({ tipo : 'despesa', usuario: req.query.usuario} ).sort({ createdAt: -1 })
             .populate('apontamentos') 
@@ -101,7 +101,15 @@ module.exports = {
                 if (err) return handleError(err);
                 console.log('Os apontamentos são %s', apontamento);
                 res.json(apontamento);
-                })
+            })
+    },
+    obterApontamentoTotalHora: (req, res) => {
+        console.log("SERVER > CONTROLLER > obterApontamentoTotalHora > req.params.id", req.params.id);
+        // Apontamento.find({ $and: [ { tipo : { $eq: ['despesa'] } }, { usuario: { $eq: [req.query.usuario]} } ] } )
+        // Apontamento.find({ _projeto: req.params.id, $and: [ { tipo: "hora" }, { 'hora.fim': { $ne: "" } } ] } )
+        Apontamento.find({ _projeto: req.params.id })
+            .then(apontamentos => res.json(apontamentos))
+            .catch(error => console.log(error));
     },
     apontamentoNovo: (req, res) => {
         console.log("SERVER > CONTROLLER > apontamentoNovo > req.params.id > req.body ", req.params.id, req.body);
@@ -128,9 +136,9 @@ module.exports = {
         });
     },
 
-    encerrar: (req, res) => {
-        console.log("SERVER > CONTROLLER > encerrar projeto > req.params.id  ", req.params.id);
-        Projeto.update( { _id: req.params.id }, { encerrado: true })
+    mudarSituacaoProjeto: (req, res) => {
+        console.log("SERVER > CONTROLLER > mudarSituacao projeto > req.params  ", req.params.id, req.body);
+        Projeto.update( { _id: req.params.id }, { situacao: req.body })
             .then(projeto => res.json(projeto))
             .catch(error => console.log(error));
     },

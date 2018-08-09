@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../usuario.service';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-usuario-novo',
@@ -56,7 +56,7 @@ export class UsuarioNovoComponent implements OnInit {
     return this.userForm.get('custoHora');
   }
 
-  criarUsuario(userForm: NgForm) {
+  criarUsuario(userForm) {
   console.log('UsuarioNovoComponent > criarUsuario(userForm)', userForm.value); 
   this._usuarioService.criarUsuario(userForm.value)
     .subscribe(observable => {

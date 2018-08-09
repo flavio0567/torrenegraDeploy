@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators, FormArray, NgForm } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ClienteService } from '../cliente.service';
 import { UsuarioService } from '../../usuario/usuario.service';
 
@@ -93,8 +93,8 @@ export class ClienteNovoComponent implements OnInit {
     this.contatoForms.removeAt(i);
   }
 
-  criarCliente(clienteForm: NgForm, endereco: NgForm) {
-    console.log('ClienteNovoComponent > criarCliente(clienteForm: NgForm)', clienteForm.value, endereco.value); 
+  criarCliente(clienteForm, endereco) {
+    console.log('ClienteNovoComponent > criarCliente(clienteForm, endereco )', clienteForm.value, endereco.value); 
     let cliente = clienteForm.value;
     cliente.endereco = endereco.value;
     this._clienteService.criarCliente(cliente)

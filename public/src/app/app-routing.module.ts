@@ -9,7 +9,6 @@ import { UsuarioListComponent } from './usuario/usuario-list/usuario-list.compon
 import { ProjetoListComponent } from './projeto/projeto-list/projeto-list.component';
 import { ProjetoNovoComponent } from './projeto/projeto-novo/projeto-novo.component';
 import { ProjetoEditComponent } from './projeto/projeto-edit/projeto-edit.component';
-import { ProjetoShowComponent } from './projeto/projeto-show/projeto-show.component';
 import { ClienteListComponent } from './cliente/cliente-list/cliente-list.component';
 import { ClienteNovoComponent } from './cliente/cliente-novo/cliente-novo.component';
 import { ClienteEditComponent } from './cliente/cliente-edit/cliente-edit.component';
@@ -102,11 +101,11 @@ const routes: Routes = [
     component: ProjetoEditComponent,
     pathMatch: 'full'
   },
-  {
-    path: 'projeto/show/:id',
-    component: ProjetoShowComponent,
-    pathMatch: 'full'
-  },
+  // {
+  //   path: 'relatorio/financeiro',
+  //   component: RelatorioFinanceiroComponent,
+  //   pathMatch: 'full'
+  // },
   {
     path: 'error',
     component: GlobalErrorComponent
