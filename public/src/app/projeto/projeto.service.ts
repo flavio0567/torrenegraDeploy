@@ -42,7 +42,7 @@ export class ProjetoService {
 
   obterTotalApontamentos(id) {
     console.log('ProjetoService > obterTotalApontamentos', id);
-    return this._http.get('apontamento/total/hora/' + id);
+    return this._http.get('apontamento/total/' + id);
   }
 
 

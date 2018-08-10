@@ -21,8 +21,8 @@ module.exports = function(app){
         projeto.encerrarApontamento(req, res)})
     .get('/projeto/:id', (req, res) => {
         projeto.obterProjetoById(req, res)})
-    .get('/apontamento/total/hora/:id', (req, res) => {
-        projeto.obterApontamentoTotalHora(req, res)})
+    .get('/apontamento/total/:id', (req, res) => {
+        projeto.obterApontamentoTotal(req, res)})
     .post('/projeto/novo', (req, res) => {
         projeto.novo(req, res)})
     .put('/projeto/edit/:id', (req, res) => {

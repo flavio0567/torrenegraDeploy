@@ -18,6 +18,7 @@ import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao
 import { RelatorioFinanceiroComponent } from './relatorio/relatorio-financeiro/relatorio-financeiro.component';
 import { GlobalErrorComponent } from './global-error/global-error.component';
 import { ApontamentoDashboardComponent } from './apontamento/apontamento-dashboard/apontamento-dashboard.component';
+import { RelatorioApontamentoProjetoComponent } from './relatorio/relatorio-apontamento-projeto/relatorio-apontamento-projeto.component';
 
 
 const routes: Routes = [
@@ -44,6 +45,11 @@ const routes: Routes = [
   {
     path: 'relatorio/financeiro',
     component: RelatorioFinanceiroComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'relatorio/apontamento/projeto',
+    component:  RelatorioApontamentoProjetoComponent,
     pathMatch: 'full'
   },
   {

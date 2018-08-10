@@ -4,9 +4,11 @@
     padding: 0;
 }
 
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+// @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-// @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+
 
 body { 
   font-family: Roboto, Arial, sans-serif;
@@ -14,7 +16,7 @@ body {
 }
 
 .basic-container {
-  padding: 15px;
+  padding: 30px;
 }
 
 .version-info {
