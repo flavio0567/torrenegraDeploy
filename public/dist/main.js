@@ -3402,13 +3402,33 @@ var RelatorioFinanceiroComponent = /** @class */ (function () {
                     var inicio = new Date(a.hora.inicio).getTime();
                     var diff = Math.ceil(fim - inicio) / (1000 * 60 * 60);
                     _this.projetos[i]['custo'] = a.valorHH * diff;
+                    // if (isNaN(this.projetos[i]['total'])) {
+                    //   this.projetos[i]['total'] = 0;
+                    // } 
+                    // this.projetos[i]['total'] += this.projetos[i]['custo'];
                 }
                 else {
                     valorDespesa += a.despesa.valor;
+                    // if (isNaN(this.projetos[i]['total'])) {
+                    //   this.projetos[i]['total'] = 0;
+                    // }
+                    // this.projetos[i]['total'] += valorDespesa;
                 }
             }
-            _this.projetos[i]['despesa'] = valorDespesa;
-            _this.projetos[i]['total'] = valorDespesa + _this.projetos[i]['custo'];
+            if (isNaN(valorDespesa)) {
+                _this.projetos[i]['despesa'] = 0;
+            }
+            else {
+                _this.projetos[i]['despesa'] = valorDespesa;
+                _this.projetos[i]['total'] = valorDespesa;
+            }
+            if (isNaN(_this.projetos[i]['custo'])) {
+                _this.projetos[i]['custo'] = 0;
+            }
+            else {
+                _this.projetos[i]['total'] += _this.projetos[i]['custo'];
+            }
+            // this.projetos[i]['total'] = valorDespesa + this.projetos[i]['custo'];
             _this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatTableDataSource"](_this.projetos);
             _this.dataSource.paginator = _this.paginator;
             _this.dataSource.sort = _this.sort;

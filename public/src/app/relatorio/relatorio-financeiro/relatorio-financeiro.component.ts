@@ -39,7 +39,7 @@ export class RelatorioFinanceiroComponent implements OnInit {
     cliente: string,
     custo: number,
     despesa: number,
-    total: number
+    total: number;
   }]
   usuarioLogado = {
     email: '',
@@ -110,12 +110,30 @@ export class RelatorioFinanceiroComponent implements OnInit {
             let inicio = new Date(a.hora.inicio).getTime();
             let diff = Math.ceil( fim - inicio )/(1000 * 60 * 60)
             this.projetos[i]['custo'] = a.valorHH * diff;
+            // if (isNaN(this.projetos[i]['total'])) {
+            //   this.projetos[i]['total'] = 0;
+            // } 
+            // this.projetos[i]['total'] += this.projetos[i]['custo'];
           } else {
-            valorDespesa +=  a.despesa.valor;             
+            valorDespesa +=  a.despesa.valor; 
+            // if (isNaN(this.projetos[i]['total'])) {
+            //   this.projetos[i]['total'] = 0;
+            // }
+            // this.projetos[i]['total'] += valorDespesa;
           }
         }
-        this.projetos[i]['despesa'] = valorDespesa;
-        this.projetos[i]['total'] = valorDespesa + this.projetos[i]['custo'];
+        if (isNaN(valorDespesa)) {
+          this.projetos[i]['despesa'] = 0;
+        } else {
+          this.projetos[i]['despesa'] = valorDespesa;
+          this.projetos[i]['total'] = valorDespesa; 
+        }
+        if (isNaN(this.projetos[i]['custo'])) {
+          this.projetos[i]['custo'] = 0;
+        } else {
+          this.projetos[i]['total'] += this.projetos[i]['custo']; 
+        }
+        // this.projetos[i]['total'] = valorDespesa + this.projetos[i]['custo'];
         this.dataSource = new MatTableDataSource(this.projetos);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
