@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 // import { getLocaleDateTimeFormat } from '../../../../node_modules/@angular/common';
 import { MatRadioChange } from '@angular/material';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-apontamento-novo',
@@ -21,6 +22,7 @@ export class ApontamentoNovoComponent implements OnInit {
     admin: ''
   }
   today = new Date();
+  dt = moment(this.today).format('LLLL'); 
   projetos: any[];
   projetoSelecionado: Number;
   id: any;

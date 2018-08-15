@@ -3,7 +3,6 @@ import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { UsuarioService } from '../../usuario/usuario.service';
 import { ProjetoService } from '../../projeto/projeto.service';
 import { ClienteService } from '../../cliente/cliente.service';
-import { Pipe,  PipeTransform  } from '@angular/core';
 
 export interface Transaction {
   codigo: string;
@@ -17,16 +16,29 @@ export interface Transaction {
   }]
 }
 
-@Pipe({
-  name: 'minuteSeconds'
-})
-export class MinuteSecondsPipe implements PipeTransform {
 
-    transform(value: number): string {
-       const minutes: number = Math.floor(value / 60);
-       return minutes.toString().padStart(2, '0') + ':' + 
-           (value - minutes * 60).toString().padStart(2, '0');
-    }
+export function DataHora(x, y) {
+  console.log('x , y : ', x, y)
+  let diff;
+  let hora;
+  let minutes;
+
+  x = new Date(x);
+  y = new Date(y);
+  
+  diff=Math.abs(y.getTime()- x.getTime())/3600000;
+  console.log(diff);
+  
+  if (isNaN(diff)){ return {dia: 0, hora: 0, minuto: 0}; }
+  
+  hora = parseInt(diff);   
+  console.log('hora', hora);
+  
+  minutes = ((diff)%1/100*60)*100;
+  minutes = parseInt(minutes);
+  console.log('minutes', minutes);  
+  
+  return {hora: hora, minuto: minutes };
 }
 
 
@@ -39,11 +51,8 @@ export class MinuteSecondsPipe implements PipeTransform {
 
 export class RelatorioApontamentoProjetoComponent implements OnInit {
 
-  displayedColumns: string[] = ['codigo', 'descricao', 'cliente', 'data', 'custo', 'despesa', 'valor'];
-  dataSource: MatTableDataSource<Transaction>;
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  displayedColumns: string[] = ['codigo', 'descricao', 'cliente', 'data', 'custo', 'despesa', 'valor', 'ctotal', 'vtotal'];
+  transactions: any;
 
   projetos: [{
     _id: string,
@@ -53,10 +62,13 @@ export class RelatorioApontamentoProjetoComponent implements OnInit {
     cliente: string,
     apontamentos: [{
       data: string,
-      custo: number,
+      custo: any;
       despesa: string,
       valor: number
-    }]  
+    }],
+    valorTotal: number,
+    custoTotalHora: number,
+    custoTotalMinuto: number,
   }]
   usuarioLogado = {
     email: '',
@@ -70,6 +82,7 @@ export class RelatorioApontamentoProjetoComponent implements OnInit {
   usuario: any;
   apontamentos: any;
   apontamento: any;
+
 
   constructor(
     private _usuarioService: UsuarioService,
@@ -93,7 +106,7 @@ export class RelatorioApontamentoProjetoComponent implements OnInit {
         for (var i = 0; i < this.projetos.length; i++) {
           this.obterCliente(this.projetos[i]['_clienteId'], i);
           this.obterApontamentos(this.projetos[i]['_id'], i);
-          // console.log('p r o j e t o s  ',i, this.projetos);
+          console.log('p r o j e t o s  ',i, this.projetos);
         }
       },
       (err) => { },
@@ -116,38 +129,49 @@ export class RelatorioApontamentoProjetoComponent implements OnInit {
 
   obterApontamentos(id, i) {
     console.log('ProjetoListComponent > obterApontamentos', id);
-    let valorDespesa = 0;
     this._projetoService.obterTotalApontamentos(id)
     .subscribe(
       (apontamentos) => { 
         this.apontamentos = apontamentos.json();
         for (let a of this.apontamentos) {
-          if(a.tipo == 'hora') {
-            let fim = new Date(a.hora.fim).getTime();
-            let inicio = new Date(a.hora.inicio).getTime();
-            let diff = Math.ceil( fim - inicio )/(1000 * 60 * 60);
-            this.apontamento = { 'data': a.hora.inicio, 'custo': diff };             
+          if (a.tipo == 'hora') {
+            let data = DataHora(a.hora.inicio, a.hora.fim)
+            if (isNaN(this.projetos[i].custoTotalHora)) { 
+              this.projetos[i].custoTotalHora = data.hora;
+              this.projetos[i].custoTotalMinuto = data.minuto;
+            } else {
+              this.projetos[i].custoTotalHora += data.hora;
+              this.projetos[i].custoTotalMinuto += data.minuto;
+            }
+            this.apontamento = { 'data': a.hora.inicio ,'custo': data }; 
           } else {
-            this.apontamento = { 'despesa': a.despesa.descricao, 'valor': a.despesa.valor };       
+            this.apontamento = { 'despesa': a.despesa.descricao, 'valor': a.despesa.valor };
+            if (isNaN(this.projetos[i].valorTotal)) {
+              this.projetos[i].valorTotal = 0;
+            } 
+            this.projetos[i].valorTotal +=  a.despesa.valor;      
+          }
+          if (this.projetos[i].custoTotalMinuto) {
+            let hora;
+            let minuto;
+            if (this.projetos[i].custoTotalMinuto>=60) {
+              hora = this.projetos[i].custoTotalMinuto / 60;
+              minuto = ((hora)%1/100*60)*100;
+              hora = parseInt(hora);
+              this.projetos[i].custoTotalHora += hora;
+              this.projetos[i].custoTotalMinuto = minuto;
+            }
           }
           this.projetos[i].apontamentos.push(this.apontamento);
           this.apontamento = '';
         }
-        console.log('projetos >  >  > ',i,this.projetos[i]);
-        // console.log('apontamentos >  >  > ',this.projetos[i].apontamentos);
-        this.dataSource = new MatTableDataSource(this.projetos);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
+
+        this.transactions = this.projetos;
       },
       (err) => { },
         () => { }
     )
   }
 
-
-  obterCustoTotal() {
-    console.log('ProjetoListComponent > obterCustoTotal()', this.projetos);
-    return this.projetos.map(t => t.apontamentos['custo'], d => d.apontamentos['valor']).reduce((acc, value) => acc + value, 0);
-  }
 
 }

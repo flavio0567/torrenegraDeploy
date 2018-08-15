@@ -105,9 +105,7 @@ module.exports = {
     },
     obterApontamentoTotal: (req, res) => {
         console.log("SERVER > CONTROLLER > obterApontamentoTotalHora > req.params.id", req.params.id);
-        // Apontamento.find({ $and: [ { tipo : { $eq: ['despesa'] } }, { usuario: { $eq: [req.query.usuario]} } ] } )
-        // Apontamento.find({ _projeto: req.params.id, $and: [ { tipo: "hora" }, { 'hora.fim': { $ne: "" } } ] } )
-        Apontamento.find({ _projeto: req.params.id })
+        Apontamento.find( { $and: [{ _projeto: req.params.id }, { $or: [{ tipo: 'hora'}, { 'hora.fim' : { $ne: '' } },  {tipo: 'despesa'} ] }  ] } )
             .then(apontamentos => res.json(apontamentos))
             .catch(error => console.log(error));
     },

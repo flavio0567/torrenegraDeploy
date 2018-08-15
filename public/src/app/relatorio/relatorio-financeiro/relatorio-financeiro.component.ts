@@ -110,16 +110,8 @@ export class RelatorioFinanceiroComponent implements OnInit {
             let inicio = new Date(a.hora.inicio).getTime();
             let diff = Math.ceil( fim - inicio )/(1000 * 60 * 60)
             this.projetos[i]['custo'] = a.valorHH * diff;
-            // if (isNaN(this.projetos[i]['total'])) {
-            //   this.projetos[i]['total'] = 0;
-            // } 
-            // this.projetos[i]['total'] += this.projetos[i]['custo'];
           } else {
             valorDespesa +=  a.despesa.valor; 
-            // if (isNaN(this.projetos[i]['total'])) {
-            //   this.projetos[i]['total'] = 0;
-            // }
-            // this.projetos[i]['total'] += valorDespesa;
           }
         }
         if (isNaN(valorDespesa)) {
@@ -133,7 +125,6 @@ export class RelatorioFinanceiroComponent implements OnInit {
         } else {
           this.projetos[i]['total'] += this.projetos[i]['custo']; 
         }
-        // this.projetos[i]['total'] = valorDespesa + this.projetos[i]['custo'];
         this.dataSource = new MatTableDataSource(this.projetos);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
