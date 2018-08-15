@@ -19,6 +19,7 @@ import { RelatorioFinanceiroComponent } from './relatorio/relatorio-financeiro/r
 import { GlobalErrorComponent } from './global-error/global-error.component';
 import { ApontamentoDashboardComponent } from './apontamento/apontamento-dashboard/apontamento-dashboard.component';
 import { RelatorioApontamentoProjetoComponent } from './relatorio/relatorio-apontamento-projeto/relatorio-apontamento-projeto.component';
+import { RelatorioApontamentoHorasUsuarioComponent } from './relatorio/relatorio-apontamento-horas-usuario/relatorio-apontamento-horas-usuario.component';
 
 
 const routes: Routes = [
@@ -50,6 +51,11 @@ const routes: Routes = [
   {
     path: 'relatorio/apontamento/projeto',
     component:  RelatorioApontamentoProjetoComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'relatorio/horas/usuario',
+    component: RelatorioApontamentoHorasUsuarioComponent,
     pathMatch: 'full'
   },
   {

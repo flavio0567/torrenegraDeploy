@@ -92,6 +92,16 @@ module.exports = {
                 res.json(apontamento);
             })
     },
+    obterApontaHora: (req, res) => {
+        console.log("SERVER > CONTROLLER > obterApontaHora > req.params.id", req.params.id);
+        Apontamento.find({ $and: [ { _projeto: req.params.id }, { tipo : 'hora' },  { 'hora.fim': { $ne: [''] }} ] })
+            .populate('apontamentos') 
+            .exec(function (err, apontamento) {
+                if (err) return handleError(err);
+                console.log('Os apontamentos são %s', apontamento);
+                res.json(apontamento);
+            })
+    },
     obterApontamentoDespesaPorUsuario: (req, res) => {
         console.log("SERVER > CONTROLLER > obterApontamentoDespesaPorUsuario", req.query.usuario);
         // Apontamento.find({ $and: [ { tipo : { $eq: ['despesa'] } }, { usuario: { $eq: [req.query.usuario]} } ] } )

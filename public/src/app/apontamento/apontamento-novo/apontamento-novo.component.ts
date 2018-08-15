@@ -22,11 +22,11 @@ export class ApontamentoNovoComponent implements OnInit {
     admin: ''
   }
   today = new Date();
-  dt = moment(this.today).format('LLLL'); 
+  // dt = moment(this.today).format('LLLL'); 
   projetos: any[];
-  projetoSelecionado: Number;
-  id: any;
-  opcaoDespesa: any;
+  // projetoSelecionado: Number;
+  // id: any;
+  // opcaoDespesa: any;
   apontamento: any = {
     tipo: "",
     usuario: "",

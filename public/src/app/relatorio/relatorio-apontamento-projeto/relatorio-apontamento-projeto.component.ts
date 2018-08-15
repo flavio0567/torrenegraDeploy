@@ -66,9 +66,9 @@ export class RelatorioApontamentoProjetoComponent implements OnInit {
       despesa: string,
       valor: number
     }],
-    valorTotal: number,
-    custoTotalHora: number,
-    custoTotalMinuto: number,
+    valorTotal: 0,
+    custoTotalHora: 0,
+    custoTotalMinuto: 0,
   }]
   usuarioLogado = {
     email: '',

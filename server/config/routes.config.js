@@ -11,7 +11,7 @@ module.exports = function(app){
 
     .get('/projetos', (req, res) => {
         projeto.list(req, res)})
-    .get('/apontamentos/hora/', (req, res) => {
+    .get('/apontamentos/hora/usuario/', (req, res) => {
         projeto.obterApontamentoHoraPorUsuario(req, res)})
     .get('/apontamentos/despesa/', (req, res) => {
         projeto.obterApontamentoDespesaPorUsuario(req, res)})
@@ -19,6 +19,8 @@ module.exports = function(app){
         projeto.apontamentoNovo(req, res)})
     .put('/apontamento/encerrar/:id', (req, res) => {
         projeto.encerrarApontamento(req, res)})
+    .get('/apontamentos/hora/:id', (req, res) => {
+        projeto.obterApontaHora(req, res)})
     .get('/projeto/:id', (req, res) => {
         projeto.obterProjetoById(req, res)})
     .get('/apontamento/total/:id', (req, res) => {

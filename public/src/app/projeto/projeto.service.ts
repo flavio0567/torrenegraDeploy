@@ -8,10 +8,14 @@ export class ProjetoService {
 
   constructor(private _http: Http) { }
 
-  obterApontamentosHora(usuario) {
-    console.log('ProjetoService > obterApontamentosHora(usuario)', usuario);
-    return this._http.get('/apontamentos/hora/', {params: { usuario: usuario}});
+  obterApontamentosHoraPorUsuario(usuario) {
+    console.log('ProjetoService > obterApontamentosHoraPorUsuario(usuario)', usuario);
+    return this._http.get('/apontamentos/hora/usuario/', {params: { usuario: usuario}});
+  }
 
+  obterApontaHora(id) {
+    console.log('ProjetoService > obterApontaHora(id)', id);
+    return this._http.get('/apontamentos/hora/' + id);
   }
 
   obterApontamentosDespesa(usuario) {

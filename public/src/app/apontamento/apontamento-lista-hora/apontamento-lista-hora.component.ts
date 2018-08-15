@@ -12,7 +12,6 @@ export interface ApontamentoData {
   acao: string;
 }
 
-
 @Component({
   selector: 'apontamento-lista-hora',
   templateUrl: './apontamento-lista-hora.component.html',
@@ -69,7 +68,7 @@ export class ApontamentoListaHoraComponent implements OnInit {
 
   obterListaApontamento(){
     // console.log('ApontamentoListaHoraComponent > obterListaApontamento()', this.usuarioLogado)
-    const apontObservable = this._projetoService.obterApontamentosHora(this.usuarioLogado);
+    const apontObservable = this._projetoService.obterApontamentosHoraPorUsuario(this.usuarioLogado);
     apontObservable.subscribe(
       (apontamentos) => {
         this.apontamentos = apontamentos.json();

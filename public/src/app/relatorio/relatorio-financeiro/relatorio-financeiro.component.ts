@@ -98,33 +98,27 @@ export class RelatorioFinanceiroComponent implements OnInit {
 
   obterApontamentos(id, i) {
     console.log('ProjetoListComponent > obterApontamentos', id);
-    let valorDespesa = 0;
+    let valorDespesa = 0,
+        custoTotal = 0;
     this._projetoService.obterTotalApontamentos(id)
     .subscribe(
       (apontamentos) => { 
         this.apontamentos = apontamentos.json();
-        console.log('apontamentoTotal >  >  > ', this.apontamentos);
         for (let a of this.apontamentos) {
           if(a.tipo == 'hora') {
             let fim = new Date(a.hora.fim).getTime();
             let inicio = new Date(a.hora.inicio).getTime();
             let diff = Math.ceil( fim - inicio )/(1000 * 60 * 60)
-            this.projetos[i]['custo'] = a.valorHH * diff;
+            custoTotal += (a.valorHH * diff);
           } else {
             valorDespesa +=  a.despesa.valor; 
           }
         }
-        if (isNaN(valorDespesa)) {
-          this.projetos[i]['despesa'] = 0;
-        } else {
-          this.projetos[i]['despesa'] = valorDespesa;
-          this.projetos[i]['total'] = valorDespesa; 
-        }
-        if (isNaN(this.projetos[i]['custo'])) {
-          this.projetos[i]['custo'] = 0;
-        } else {
-          this.projetos[i]['total'] += this.projetos[i]['custo']; 
-        }
+
+        this.projetos[i]['despesa'] = valorDespesa;
+        this.projetos[i]['custo'] = custoTotal;
+        this.projetos[i]['total'] = this.projetos[i]['custo'] + this.projetos[i]['despesa']; 
+
         this.dataSource = new MatTableDataSource(this.projetos);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
