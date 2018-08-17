@@ -32,8 +32,8 @@ export class UsuarioService {
   }
 
 
-  obterTodos() {
-    console.log('UsuarioService > obterTodos()');
+  obterListaUsuario() {
+    console.log('UsuarioService > obterListaUsuario()');
     return this._http.get('/usuarios');
   }
 

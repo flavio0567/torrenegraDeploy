@@ -13,9 +13,9 @@ export class ProjetoService {
     return this._http.get('/apontamentos/hora/usuario/', {params: { usuario: usuario}});
   }
 
-  obterApontaHora(id) {
-    console.log('ProjetoService > obterApontaHora(id)', id);
-    return this._http.get('/apontamentos/hora/' + id);
+  obterApontaHora(apto) {
+    console.log('ProjetoService > obterApontaHora(apto)', apto);
+    return this._http.get('/apontamentos/hora/',  {params: { _projetoId: apto._projetoId, email: apto.email, data1: apto.data1, data2: apto.data2}});
   }
 
   obterApontamentosDespesa(usuario) {
@@ -40,7 +40,7 @@ export class ProjetoService {
   }
 
   apontamentoNovo(id, apontamento) {
-    console.log('ProjetoService > apontamentoNovo(valorHH)', id, apontamento);
+    console.log('ProjetoService > apontamentoNovo(id, apontamento)', id, apontamento);
     return this._http.put('apontamento/novo/' + id, apontamento);
   }
 

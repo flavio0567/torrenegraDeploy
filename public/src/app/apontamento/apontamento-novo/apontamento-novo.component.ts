@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-// import { NgbdDatepickerPopup } from './datepicker-popup';
 import { ProjetoService } from '../../projeto/projeto.service';
 import { UsuarioService } from '../../usuario/usuario.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-// import { getLocaleDateTimeFormat } from '../../../../node_modules/@angular/common';
 import { MatRadioChange } from '@angular/material';
 import * as moment from 'moment';
 
@@ -21,12 +19,8 @@ export class ApontamentoNovoComponent implements OnInit {
     email: '',
     admin: ''
   }
-  today = new Date();
-  // dt = moment(this.today).format('LLLL'); 
+  today = new Date().toISOString();
   projetos: any[];
-  // projetoSelecionado: Number;
-  // id: any;
-  // opcaoDespesa: any;
   apontamento: any = {
     tipo: "",
     usuario: "",
@@ -142,6 +136,7 @@ export class ApontamentoNovoComponent implements OnInit {
       this.apontamento.hora.fim = "";
     } else {
       this.apontamento.hora.inicio = this.today;
+      console.log('data : +++++++++ +++++++++++++ +++++++++++++++',  this.apontamento.hora.inicio);
       this.apontamento.hora.fim = "";
     }
     if (this.options.controls.tipo.value == 'despesa' && this.options.controls.opDespesa.value != 'outros') {

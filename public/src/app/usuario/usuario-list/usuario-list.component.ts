@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UsuarioService } from '../usuario.service';
-import { Router } from '@angular/router';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 
 export interface UsuarioData {
@@ -46,7 +45,7 @@ export class UsuarioListComponent implements OnInit {
 
   obterListaUsuario() {
     console.log('UsuarioListComponent > obterListaUsuario()')
-    const usuarioObservable = this._usuarioService.obterTodos();
+    const usuarioObservable = this._usuarioService.obterListaUsuario();
     usuarioObservable.subscribe(
       (usuarios) => { 
         console.log('usuario in obterUsuario list:', usuarios.json());

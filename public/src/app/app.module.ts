@@ -3,7 +3,8 @@ import { NgModule, ErrorHandler, LOCALE_ID,  } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDialogModule, MatFormFieldModule, MatInputModule, MatOptionModule, MatSelectModule, MatRadioModule } from '@angular/material';
+import {MatRippleModule, MatDatepickerModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatOptionModule, MatSelectModule, MatRadioModule, MatProgressSpinnerModule, MatMenuModule, MatIconModule, MatButtonModule, MatSortModule, MatTableModule, MatNativeDateModule } from '@angular/material';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -19,7 +20,7 @@ import { ClienteService } from './cliente/cliente.service';
 import { GlobalErrorHandlerService } from './global-error-handler.service';
 
 import { NgbdDatepickerPopup } from './apontamento/datepicker-popup';
-// import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -39,7 +40,6 @@ import { ClienteListComponent } from './cliente/cliente-list/cliente-list.compon
 import { RelatorioFinanceiroComponent } from './relatorio/relatorio-financeiro/relatorio-financeiro.component';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { ApontamentoNovoComponent } from './apontamento/apontamento-novo/apontamento-novo.component';
-import { MaterialModule } from './material';
 import { ApontamentoDashboardComponent } from './apontamento/apontamento-dashboard/apontamento-dashboard.component';
 import { ApontamentoListaDespesaComponent } from './apontamento/apontamento-lista-despesa/apontamento-lista-despesa.component';
 import { ApontamentoListaHoraComponent, DialogApontamentoHora } from './apontamento/apontamento-lista-hora/apontamento-lista-hora.component';
@@ -91,16 +91,30 @@ registerLocaleData(ptBr);
     MatInputModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    MaterialModule,
+    MatRippleModule, 
     MatOptionModule,
     MatSelectModule,
     MatRadioModule,
     MatTabsModule,
     MatCardModule,
     MatToolbarModule,
-    MatCheckboxModule
-    // NgbModule,
-    // NgbModule.forRoot()
+    MatCheckboxModule,
+    MatCardModule,
+    MatProgressSpinnerModule,
+    MatMenuModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatSortModule,
+    MatTableModule,
+    MatPaginatorModule,
+    NgbModule,
+    NgbModule.forRoot(),
+    MatDatepickerModule, 
+    MatNativeDateModule
   ],
   entryComponents:[
     DialogProjeto,

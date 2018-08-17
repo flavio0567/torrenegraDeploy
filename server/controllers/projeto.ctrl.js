@@ -93,14 +93,28 @@ module.exports = {
             })
     },
     obterApontaHora: (req, res) => {
-        console.log("SERVER > CONTROLLER > obterApontaHora > req.params.id", req.params.id);
-        Apontamento.find({ $and: [ { _projeto: req.params.id }, { tipo : 'hora' },  { 'hora.fim': { $ne: [''] }} ] })
+        console.log("SERVER > CONTROLLER > obterApontaHora > req.query.apontamento", req.query);
+        if (req.query._projetoId) {
+            console.log('projeto: ', req.query._projetoId, 'email:', req.query.email, 'data1:', req.query.data1, 'data2:', req.query.data2);
+            // Apontamento.find({ $and: [ { usuario: {$eq: req.query.email }}, { _projeto: req.query._projetoId }, { tipo : 'hora' }, { 'hota.inicio': { $gte: req.query.data1 }  },  { 'hota.inicio': { $lte: req.query.data2 }  }, { 'hora.fim': { $ne: [''] }} ] })
+            Apontamento.find({ $and: [ { usuario: {$eq: req.query.email }}, { _projeto: req.query._projetoId }, { tipo : 'hora' }, { 'hora.inicio': { $gte: req.query.data1 }  }, { 'hora.fim': { $ne: [''] }} ] })
+                .populate('apontamentos') 
+                .exec(function (err, apontamento) {
+                    // if (err) return handleError(err);
+                    console.log('Os apontamentos são %s', apontamento);
+                    res.json(apontamento);
+                })
+                .catch(error => console.log(error));
+        } else {
+            console.log('no projeto: ', req.query._projetoId, 'email:', req.query.email, 'data1:', Date(req.query.data1), 'data2:', Date(req.query.data2));
+            Apontamento.find({ $and: [ { usuario: {$eq: req.query.email }}, { tipo : 'hora' }, { 'hora.inicio': { $gte: req.query.data1 }  },  { 'hora.inicio': { $lte: req.query.data2 }  }, { 'hora.fim': { $ne: [''] }} ] })
             .populate('apontamentos') 
             .exec(function (err, apontamento) {
-                if (err) return handleError(err);
                 console.log('Os apontamentos são %s', apontamento);
                 res.json(apontamento);
             })
+            .catch(error => console.log(error));
+        }
     },
     obterApontamentoDespesaPorUsuario: (req, res) => {
         console.log("SERVER > CONTROLLER > obterApontamentoDespesaPorUsuario", req.query.usuario);
@@ -158,11 +172,5 @@ module.exports = {
             .then(projeto => res.json(projeto))
             .catch(error => console.log(error));
     }
-
-    // delete: (req, res) => {
-    //     Proejto.findByIdAndRemove({_id: req.params.id})
-    //         .then(restaurant => res.json(restaurant))
-    //         .catch(error => console.log(error));
-    // }
 
 }

@@ -29,76 +29,86 @@
   <form class="example-form" [formGroup] = "options">
 
     <mat-form-field style="width:400px !important;"> 
-      <mat-select placeholder="Selecione o projeto" name="projeto" formControlName="_id" required>
+      <mat-select placeholder="Selecione o usuário" name="usuario" formControlName="email" required>
+        <mat-option value="option" *ngFor="let u of usuarios" [value]="u.email"> {{ u.nome }} {{ u.sobrenome }}</mat-option>
+      </mat-select>
+      <mat-hint align="end">Usuários ativos</mat-hint>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker1" placeholder="de" formControlName="data1">
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+      <mat-hint align="end">Selecione o período</mat-hint>
+    </mat-form-field>
+ 
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker2" placeholder="até" formControlName="data2">
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+    <br>
+ 
+    <mat-form-field style="width:400px !important;"> 
+      <mat-select placeholder="Selecione o projeto" name="projeto" formControlName="_projetoId" required>
         <mat-option value="option" *ngFor="let p of projetos" [value]="p._id"> {{ p.codigo }} {{ p.descricao }}</mat-option>
       </mat-select>
       <mat-hint align="end">Projetos ativos</mat-hint>
     </mat-form-field>
     <br>
+
     <button mat-raised-button color="primary" (click)="obterApontamentos()" [disabled]="options.invalid" >apontamentos</button>
   </form>
 
-    <br><br><br>
+  <br><br><br>
 
-    <table mat-table [dataSource]="transactions" class="mat-elevation-z8" *ngIf="transactions && selected"> 
+  <table mat-table [dataSource]="transactions" class="mat-elevation-z8" *ngIf="transactions && selected"> 
 
-      <!-- Codigo Column -->
-      <!-- <ng-container matColumnDef="codigo">
-        <th mat-header-cell *matHeaderCellDef> código </th>
-        <td mat-cell *matCellDef="let transaction"> {{transaction.codigo}} </td>
-        <td mat-footer-cell *matFooterCellDef> Total </td>
-      </ng-container> -->
+    <!-- Cliente Column -->
+    <ng-container matColumnDef="cliente">
+      <th mat-header-cell *matHeaderCellDef > cliente </th>
+      <td mat-cell *matCellDef="let row"> {{row.cliente}} </td>
+    </ng-container>
 
-      <!-- Descricao Column -->
-      <!-- <ng-container matColumnDef="descricao">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> descrição </th>
-        <td mat-cell *matCellDef="let row"> {{row.descricao}} </td>
-      </ng-container> -->
-
-      <!-- Cliente Column -->
-      <ng-container matColumnDef="cliente">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> cliente </th>
-        <td mat-cell *matCellDef="let row"> {{row.cliente}} </td>
-      </ng-container>
-
-      <!-- Data Column -->
-      <ng-container matColumnDef="data">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> data </th>
-        <td mat-cell *matCellDef="let row"> {{row.hora.inicio | date:'d MMMM, y' }} </td>
-      </ng-container>
+    <!-- Data Column -->
+    <ng-container matColumnDef="data">
+      <th mat-header-cell *matHeaderCellDef > data </th>
+      <td mat-cell *matCellDef="let row"> {{row.hora.inicio | date:'d MMMM, y' }} </td>
+    </ng-container>
 
 
-      <!-- Custo hh Column -->
-      <ng-container matColumnDef="custohh">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> custo hh </th>
-        <td mat-cell *matCellDef="let row"> {{row.valorHH | currency: 'BRL' }} </td>
-      </ng-container>
+    <!-- Custo hh Column -->
+    <ng-container matColumnDef="custohh">
+      <th mat-header-cell *matHeaderCellDef> custo hh </th>
+      <td mat-cell *matCellDef="let row"> {{row.valorHH | currency: 'BRL' }} </td>
+    </ng-container>
 
 
-      <!-- Inicio Column -->
-      <ng-container matColumnDef="inicio">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> início </th>
-        <td mat-cell *matCellDef="let row"> {{row.hora.inicio | date:'d/M/yy H:mm'}} </td>
-      </ng-container>
+    <!-- Inicio Column -->
+    <ng-container matColumnDef="inicio">
+      <th mat-header-cell *matHeaderCellDef> início </th>
+      <td mat-cell *matCellDef="let row"> {{row.hora.inicio | date:'d/M/yy H:mm'}} </td>
+    </ng-container>
 
-      <!-- Fim Column -->
-      <ng-container matColumnDef="fim">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> fim </th>
-        <td mat-cell *matCellDef="let row"> {{row.hora.fim | date:'d/M/yy H:mm'}} </td>
-      </ng-container>
+    <!-- Fim Column -->
+    <ng-container matColumnDef="fim">
+      <th mat-header-cell *matHeaderCellDef > fim </th>
+      <td mat-cell *matCellDef="let row"> {{row.hora.fim | date:'d/M/yy H:mm'}} </td>
+    </ng-container>
 
-      <!-- Custo Column -->
-      <ng-container matColumnDef="custo">
-        <th mat-header-cell *matHeaderCellDef> custo </th>
-        <td mat-cell class="mat-body-2 custo" *matCellDef="let row"> {{row.custo | currency: 'BRL'}} </td>
-        <!-- <td mat-footer-cell *matFooterCellDef> {{obterCustoTotal() | currency}} </td> -->
-      </ng-container>
+    <!-- Custo Column -->
+    <ng-container matColumnDef="custo">
+      <th mat-header-cell *matHeaderCellDef> custo </th>
+      <td mat-cell class="mat-body-2 custo" *matCellDef="let row"> {{row.custo | currency: 'BRL'}} </td>
+      <!-- <td mat-footer-cell *matFooterCellDef> {{obterCustoTotal() | currency}} </td> -->
+    </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      <!-- <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr> -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <!-- <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr> -->
 
-    </table>
+  </table>
 
 
 </div>

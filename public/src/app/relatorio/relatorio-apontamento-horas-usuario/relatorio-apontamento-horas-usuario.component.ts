@@ -3,10 +3,10 @@ import { UsuarioService } from '../../usuario/usuario.service';
 import { ProjetoService } from '../../projeto/projeto.service';
 import { ClienteService } from '../../cliente/cliente.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
+// import { Datepicker } from './datepicker-popup';
+// import { getLocaleDateTimeFormat } from '../../../../node_modules/@angular/common';
 
 export interface Transaction {
-  // codigo: string;
-  // descricao: string;
   cliente: string;
   data: string;
   custohh: number;
@@ -36,6 +36,7 @@ export class RelatorioApontamentoHorasUsuarioComponent implements OnInit {
   options: FormGroup;
   selected: boolean = false;
   projetos: any[];
+  usuarios: any[];
   projeto: any;
   apontamentos: any;
   lista: [{
@@ -62,14 +63,30 @@ export class RelatorioApontamentoHorasUsuarioComponent implements OnInit {
     private _clienteService: ClienteService
   ) { 
     this.options = fb.group({
-      _id: [null]
+      _projetoId: [null],
+      email: [null],
+      data1: new Date(),
+      data2: new Date()
     });
   }
 
   ngOnInit() {
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
     console.log('ProjetoListComponent > usuariologado ',this.usuarioLogado)
+    this.obterListaUsuario();
     this.obterListaProjeto();
+  }
+
+  obterListaUsuario() {
+    console.log('ProjetoListComponent > obterListaUsuario()')
+    this._usuarioService.obterListaUsuario()
+    .subscribe(
+      (usuarios) => { 
+        this.usuarios = usuarios.json();
+      },
+      (err) => { },
+        () => { }
+    )
   }
 
   obterListaProjeto() {
@@ -78,12 +95,6 @@ export class RelatorioApontamentoHorasUsuarioComponent implements OnInit {
     projetoObservable.subscribe(
       (projetos) => { 
         this.projetos = projetos.json();
-        // console.log('ProjetoListComponent > obterListaProjeto()', this.projetos);
-        // for (var i = 0; i < this.projetos.length; i++) {
-        //   this.obterCliente(this.projetos[i]['_clienteId'], i);
-        //   this.obterApontamentos(this.projetos[i]['_id'], i);
-        //   console.log('p r o j e t o s >  >  > ', this.projetos);
-        // }
       },
       (err) => { },
         () => { }
@@ -103,13 +114,11 @@ export class RelatorioApontamentoHorasUsuarioComponent implements OnInit {
   }
 
   obterApontamentos() {
-    console.log('ProjetoListComponent > obterApontamentos',  this.options.controls._id.value);
-    this.projeto = getProjeto(this.projetos, this.options.controls._id.value);
-    console.log('    projeto    : >> >>> >>> ', this.projeto);
+    console.log('ProjetoListComponent > obterApontamentos',  this.options.controls._projetoId.value, this.options.controls.data1.value, this.options.controls.data2.value);
+    this.projeto = getProjeto(this.projetos, this.options.controls._projetoId.value);
     this.obterCliente(this.projeto['_clienteId']);
-    // this.projeto['cliente'] = this.cliente.nomeFantasia;
-
-    this._projetoService.obterApontaHora(this.options.controls._id.value)
+    console.log('ProjetoListComponent >+++++++++++ ++++++++++++ +++++++++++++++', this.options.value);
+    this._projetoService.obterApontaHora(this.options.value)
     .subscribe(
       (apontamentos) => { 
         this.apontamentos = apontamentos.json();

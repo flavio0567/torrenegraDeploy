@@ -19,7 +19,7 @@ module.exports = function(app){
         projeto.apontamentoNovo(req, res)})
     .put('/apontamento/encerrar/:id', (req, res) => {
         projeto.encerrarApontamento(req, res)})
-    .get('/apontamentos/hora/:id', (req, res) => {
+    .get('/apontamentos/hora/', (req, res) => {
         projeto.obterApontaHora(req, res)})
     .get('/projeto/:id', (req, res) => {
         projeto.obterProjetoById(req, res)})

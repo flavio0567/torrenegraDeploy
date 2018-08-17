@@ -467,7 +467,6 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-// import { NgbdDatepickerPopup } from './datepicker-popup';
 
 
 
@@ -482,10 +481,7 @@ var ApontamentoNovoComponent = /** @class */ (function () {
             email: '',
             admin: ''
         };
-        this.today = new Date();
-        // projetoSelecionado: Number;
-        // id: any;
-        // opcaoDespesa: any;
+        this.today = new Date().toISOString();
         this.apontamento = {
             tipo: "",
             usuario: "",
@@ -581,6 +577,7 @@ var ApontamentoNovoComponent = /** @class */ (function () {
         }
         else {
             this.apontamento.hora.inicio = this.today;
+            console.log('data : +++++++++ +++++++++++++ +++++++++++++++', this.apontamento.hora.inicio);
             this.apontamento.hora.fim = "";
         }
         if (this.options.controls.tipo.value == 'despesa' && this.options.controls.opDespesa.value != 'outros') {
@@ -961,45 +958,46 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material/tabs */ "./node_modules/@angular/material/esm5/tabs.es5.js");
-/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
-/* harmony import */ var _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/toolbar */ "./node_modules/@angular/material/esm5/toolbar.es5.js");
-/* harmony import */ var _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/material/checkbox */ "./node_modules/@angular/material/esm5/checkbox.es5.js");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _angular_common_locales_pt__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/common/locales/pt */ "./node_modules/@angular/common/locales/pt.js");
-/* harmony import */ var _angular_common_locales_pt__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_angular_common_locales_pt__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var _global_error_global_error_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./global-error/global-error.component */ "./src/app/global-error/global-error.component.ts");
-/* harmony import */ var _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./projeto/projeto.service */ "./src/app/projeto/projeto.service.ts");
-/* harmony import */ var _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./usuario/usuario.service */ "./src/app/usuario/usuario.service.ts");
-/* harmony import */ var _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./cliente/cliente.service */ "./src/app/cliente/cliente.service.ts");
-/* harmony import */ var _global_error_handler_service__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./global-error-handler.service */ "./src/app/global-error-handler.service.ts");
-/* harmony import */ var _apontamento_datepicker_popup__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./apontamento/datepicker-popup */ "./src/app/apontamento/datepicker-popup.ts");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _cliente_cliente_edit_cliente_edit_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./cliente/cliente-edit/cliente-edit.component */ "./src/app/cliente/cliente-edit/cliente-edit.component.ts");
-/* harmony import */ var _cliente_cliente_novo_cliente_novo_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./cliente/cliente-novo/cliente-novo.component */ "./src/app/cliente/cliente-novo/cliente-novo.component.ts");
-/* harmony import */ var _cliente_cliente_show_cliente_show_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./cliente/cliente-show/cliente-show.component */ "./src/app/cliente/cliente-show/cliente-show.component.ts");
-/* harmony import */ var _usuario_usuario_list_usuario_list_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./usuario/usuario-list/usuario-list.component */ "./src/app/usuario/usuario-list/usuario-list.component.ts");
-/* harmony import */ var _usuario_usuario_edit_usuario_edit_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./usuario/usuario-edit/usuario-edit.component */ "./src/app/usuario/usuario-edit/usuario-edit.component.ts");
-/* harmony import */ var _usuario_usuario_novo_usuario_novo_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./usuario/usuario-novo/usuario-novo.component */ "./src/app/usuario/usuario-novo/usuario-novo.component.ts");
-/* harmony import */ var _usuario_usuario_show_usuario_show_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./usuario/usuario-show/usuario-show.component */ "./src/app/usuario/usuario-show/usuario-show.component.ts");
-/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
-/* harmony import */ var _financeiro_financeiro_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./financeiro/financeiro.component */ "./src/app/financeiro/financeiro.component.ts");
-/* harmony import */ var _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./projeto/projeto-list/projeto-list.component */ "./src/app/projeto/projeto-list/projeto-list.component.ts");
-/* harmony import */ var _projeto_projeto_novo_projeto_novo_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./projeto/projeto-novo/projeto-novo.component */ "./src/app/projeto/projeto-novo/projeto-novo.component.ts");
-/* harmony import */ var _projeto_projeto_edit_projeto_edit_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./projeto/projeto-edit/projeto-edit.component */ "./src/app/projeto/projeto-edit/projeto-edit.component.ts");
-/* harmony import */ var _cliente_cliente_list_cliente_list_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./cliente/cliente-list/cliente-list.component */ "./src/app/cliente/cliente-list/cliente-list.component.ts");
-/* harmony import */ var _relatorio_relatorio_financeiro_relatorio_financeiro_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./relatorio/relatorio-financeiro/relatorio-financeiro.component */ "./src/app/relatorio/relatorio-financeiro/relatorio-financeiro.component.ts");
-/* harmony import */ var _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./pagina-nao-encontrada/pagina-nao-encontrada.component */ "./src/app/pagina-nao-encontrada/pagina-nao-encontrada.component.ts");
-/* harmony import */ var _apontamento_apontamento_novo_apontamento_novo_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./apontamento/apontamento-novo/apontamento-novo.component */ "./src/app/apontamento/apontamento-novo/apontamento-novo.component.ts");
-/* harmony import */ var _material__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./material */ "./src/app/material.ts");
-/* harmony import */ var _apontamento_apontamento_dashboard_apontamento_dashboard_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./apontamento/apontamento-dashboard/apontamento-dashboard.component */ "./src/app/apontamento/apontamento-dashboard/apontamento-dashboard.component.ts");
-/* harmony import */ var _apontamento_apontamento_lista_despesa_apontamento_lista_despesa_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./apontamento/apontamento-lista-despesa/apontamento-lista-despesa.component */ "./src/app/apontamento/apontamento-lista-despesa/apontamento-lista-despesa.component.ts");
-/* harmony import */ var _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./apontamento/apontamento-lista-hora/apontamento-lista-hora.component */ "./src/app/apontamento/apontamento-lista-hora/apontamento-lista-hora.component.ts");
-/* harmony import */ var _relatorio_relatorio_apontamento_projeto_relatorio_apontamento_projeto_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./relatorio/relatorio-apontamento-projeto/relatorio-apontamento-projeto.component */ "./src/app/relatorio/relatorio-apontamento-projeto/relatorio-apontamento-projeto.component.ts");
-/* harmony import */ var _relatorio_relatorio_apontamento_horas_usuario_relatorio_apontamento_horas_usuario_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./relatorio/relatorio-apontamento-horas-usuario/relatorio-apontamento-horas-usuario.component */ "./src/app/relatorio/relatorio-apontamento-horas-usuario/relatorio-apontamento-horas-usuario.component.ts");
-/* harmony import */ var _relatorio_relatorio_apontamento_despesas_usuario_relatorio_apontamento_despesas_usuario_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./relatorio/relatorio-apontamento-despesas-usuario/relatorio-apontamento-despesas-usuario.component */ "./src/app/relatorio/relatorio-apontamento-despesas-usuario/relatorio-apontamento-despesas-usuario.component.ts");
-/* harmony import */ var _relatorio_relatorio_custo_projeto_relatorio_custo_projeto_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./relatorio/relatorio-custo-projeto/relatorio-custo-projeto.component */ "./src/app/relatorio/relatorio-custo-projeto/relatorio-custo-projeto.component.ts");
+/* harmony import */ var _angular_material_paginator__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material/paginator */ "./node_modules/@angular/material/esm5/paginator.es5.js");
+/* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/tabs */ "./node_modules/@angular/material/esm5/tabs.es5.js");
+/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
+/* harmony import */ var _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/material/toolbar */ "./node_modules/@angular/material/esm5/toolbar.es5.js");
+/* harmony import */ var _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/material/checkbox */ "./node_modules/@angular/material/esm5/checkbox.es5.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_common_locales_pt__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/common/locales/pt */ "./node_modules/@angular/common/locales/pt.js");
+/* harmony import */ var _angular_common_locales_pt__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_angular_common_locales_pt__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _global_error_global_error_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./global-error/global-error.component */ "./src/app/global-error/global-error.component.ts");
+/* harmony import */ var _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./projeto/projeto.service */ "./src/app/projeto/projeto.service.ts");
+/* harmony import */ var _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./usuario/usuario.service */ "./src/app/usuario/usuario.service.ts");
+/* harmony import */ var _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./cliente/cliente.service */ "./src/app/cliente/cliente.service.ts");
+/* harmony import */ var _global_error_handler_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./global-error-handler.service */ "./src/app/global-error-handler.service.ts");
+/* harmony import */ var _apontamento_datepicker_popup__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./apontamento/datepicker-popup */ "./src/app/apontamento/datepicker-popup.ts");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/index.js");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _cliente_cliente_edit_cliente_edit_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./cliente/cliente-edit/cliente-edit.component */ "./src/app/cliente/cliente-edit/cliente-edit.component.ts");
+/* harmony import */ var _cliente_cliente_novo_cliente_novo_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./cliente/cliente-novo/cliente-novo.component */ "./src/app/cliente/cliente-novo/cliente-novo.component.ts");
+/* harmony import */ var _cliente_cliente_show_cliente_show_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./cliente/cliente-show/cliente-show.component */ "./src/app/cliente/cliente-show/cliente-show.component.ts");
+/* harmony import */ var _usuario_usuario_list_usuario_list_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./usuario/usuario-list/usuario-list.component */ "./src/app/usuario/usuario-list/usuario-list.component.ts");
+/* harmony import */ var _usuario_usuario_edit_usuario_edit_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./usuario/usuario-edit/usuario-edit.component */ "./src/app/usuario/usuario-edit/usuario-edit.component.ts");
+/* harmony import */ var _usuario_usuario_novo_usuario_novo_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./usuario/usuario-novo/usuario-novo.component */ "./src/app/usuario/usuario-novo/usuario-novo.component.ts");
+/* harmony import */ var _usuario_usuario_show_usuario_show_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./usuario/usuario-show/usuario-show.component */ "./src/app/usuario/usuario-show/usuario-show.component.ts");
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
+/* harmony import */ var _financeiro_financeiro_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./financeiro/financeiro.component */ "./src/app/financeiro/financeiro.component.ts");
+/* harmony import */ var _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./projeto/projeto-list/projeto-list.component */ "./src/app/projeto/projeto-list/projeto-list.component.ts");
+/* harmony import */ var _projeto_projeto_novo_projeto_novo_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./projeto/projeto-novo/projeto-novo.component */ "./src/app/projeto/projeto-novo/projeto-novo.component.ts");
+/* harmony import */ var _projeto_projeto_edit_projeto_edit_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./projeto/projeto-edit/projeto-edit.component */ "./src/app/projeto/projeto-edit/projeto-edit.component.ts");
+/* harmony import */ var _cliente_cliente_list_cliente_list_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./cliente/cliente-list/cliente-list.component */ "./src/app/cliente/cliente-list/cliente-list.component.ts");
+/* harmony import */ var _relatorio_relatorio_financeiro_relatorio_financeiro_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./relatorio/relatorio-financeiro/relatorio-financeiro.component */ "./src/app/relatorio/relatorio-financeiro/relatorio-financeiro.component.ts");
+/* harmony import */ var _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./pagina-nao-encontrada/pagina-nao-encontrada.component */ "./src/app/pagina-nao-encontrada/pagina-nao-encontrada.component.ts");
+/* harmony import */ var _apontamento_apontamento_novo_apontamento_novo_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./apontamento/apontamento-novo/apontamento-novo.component */ "./src/app/apontamento/apontamento-novo/apontamento-novo.component.ts");
+/* harmony import */ var _apontamento_apontamento_dashboard_apontamento_dashboard_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./apontamento/apontamento-dashboard/apontamento-dashboard.component */ "./src/app/apontamento/apontamento-dashboard/apontamento-dashboard.component.ts");
+/* harmony import */ var _apontamento_apontamento_lista_despesa_apontamento_lista_despesa_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./apontamento/apontamento-lista-despesa/apontamento-lista-despesa.component */ "./src/app/apontamento/apontamento-lista-despesa/apontamento-lista-despesa.component.ts");
+/* harmony import */ var _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./apontamento/apontamento-lista-hora/apontamento-lista-hora.component */ "./src/app/apontamento/apontamento-lista-hora/apontamento-lista-hora.component.ts");
+/* harmony import */ var _relatorio_relatorio_apontamento_projeto_relatorio_apontamento_projeto_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./relatorio/relatorio-apontamento-projeto/relatorio-apontamento-projeto.component */ "./src/app/relatorio/relatorio-apontamento-projeto/relatorio-apontamento-projeto.component.ts");
+/* harmony import */ var _relatorio_relatorio_apontamento_horas_usuario_relatorio_apontamento_horas_usuario_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./relatorio/relatorio-apontamento-horas-usuario/relatorio-apontamento-horas-usuario.component */ "./src/app/relatorio/relatorio-apontamento-horas-usuario/relatorio-apontamento-horas-usuario.component.ts");
+/* harmony import */ var _relatorio_relatorio_apontamento_despesas_usuario_relatorio_apontamento_despesas_usuario_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./relatorio/relatorio-apontamento-despesas-usuario/relatorio-apontamento-despesas-usuario.component */ "./src/app/relatorio/relatorio-apontamento-despesas-usuario/relatorio-apontamento-despesas-usuario.component.ts");
+/* harmony import */ var _relatorio_relatorio_custo_projeto_relatorio_custo_projeto_component__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./relatorio/relatorio-custo-projeto/relatorio-custo-projeto.component */ "./src/app/relatorio/relatorio-custo-projeto/relatorio-custo-projeto.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1024,7 +1022,6 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
-// import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -1051,41 +1048,42 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
-Object(_angular_common__WEBPACK_IMPORTED_MODULE_10__["registerLocaleData"])(_angular_common_locales_pt__WEBPACK_IMPORTED_MODULE_11___default.a);
+
+Object(_angular_common__WEBPACK_IMPORTED_MODULE_11__["registerLocaleData"])(_angular_common_locales_pt__WEBPACK_IMPORTED_MODULE_12___default.a);
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_19__["AppComponent"],
-                _login_login_component__WEBPACK_IMPORTED_MODULE_27__["LoginComponent"],
-                _financeiro_financeiro_component__WEBPACK_IMPORTED_MODULE_28__["FinanceiroComponent"],
-                _cliente_cliente_list_cliente_list_component__WEBPACK_IMPORTED_MODULE_32__["ClienteListComponent"],
-                _cliente_cliente_novo_cliente_novo_component__WEBPACK_IMPORTED_MODULE_21__["ClienteNovoComponent"],
-                _cliente_cliente_edit_cliente_edit_component__WEBPACK_IMPORTED_MODULE_20__["ClienteEditComponent"],
-                _cliente_cliente_show_cliente_show_component__WEBPACK_IMPORTED_MODULE_22__["ClienteShowComponent"],
-                _usuario_usuario_list_usuario_list_component__WEBPACK_IMPORTED_MODULE_23__["UsuarioListComponent"],
-                _usuario_usuario_edit_usuario_edit_component__WEBPACK_IMPORTED_MODULE_24__["UsuarioEditComponent"],
-                _usuario_usuario_novo_usuario_novo_component__WEBPACK_IMPORTED_MODULE_25__["UsuarioNovoComponent"],
-                _usuario_usuario_show_usuario_show_component__WEBPACK_IMPORTED_MODULE_26__["UsuarioShowComponent"],
-                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_29__["ProjetoListComponent"],
-                _projeto_projeto_novo_projeto_novo_component__WEBPACK_IMPORTED_MODULE_30__["ProjetoNovoComponent"],
-                _projeto_projeto_edit_projeto_edit_component__WEBPACK_IMPORTED_MODULE_31__["ProjetoEditComponent"],
-                _relatorio_relatorio_financeiro_relatorio_financeiro_component__WEBPACK_IMPORTED_MODULE_33__["RelatorioFinanceiroComponent"],
-                _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_34__["PaginaNaoEncontradaComponent"],
-                _global_error_global_error_component__WEBPACK_IMPORTED_MODULE_12__["GlobalErrorComponent"],
-                _apontamento_apontamento_novo_apontamento_novo_component__WEBPACK_IMPORTED_MODULE_35__["ApontamentoNovoComponent"],
-                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_29__["DialogProjeto"],
-                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_39__["DialogApontamentoHora"],
-                _apontamento_apontamento_dashboard_apontamento_dashboard_component__WEBPACK_IMPORTED_MODULE_37__["ApontamentoDashboardComponent"],
-                _apontamento_apontamento_lista_despesa_apontamento_lista_despesa_component__WEBPACK_IMPORTED_MODULE_38__["ApontamentoListaDespesaComponent"],
-                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_39__["ApontamentoListaHoraComponent"],
-                _apontamento_datepicker_popup__WEBPACK_IMPORTED_MODULE_17__["NgbdDatepickerPopup"],
-                _relatorio_relatorio_apontamento_projeto_relatorio_apontamento_projeto_component__WEBPACK_IMPORTED_MODULE_40__["RelatorioApontamentoProjetoComponent"],
-                _relatorio_relatorio_apontamento_horas_usuario_relatorio_apontamento_horas_usuario_component__WEBPACK_IMPORTED_MODULE_41__["RelatorioApontamentoHorasUsuarioComponent"],
-                _relatorio_relatorio_apontamento_despesas_usuario_relatorio_apontamento_despesas_usuario_component__WEBPACK_IMPORTED_MODULE_42__["RelatorioApontamentoDespesasUsuarioComponent"],
-                _relatorio_relatorio_custo_projeto_relatorio_custo_projeto_component__WEBPACK_IMPORTED_MODULE_43__["RelatorioCustoProjetoComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_21__["AppComponent"],
+                _login_login_component__WEBPACK_IMPORTED_MODULE_29__["LoginComponent"],
+                _financeiro_financeiro_component__WEBPACK_IMPORTED_MODULE_30__["FinanceiroComponent"],
+                _cliente_cliente_list_cliente_list_component__WEBPACK_IMPORTED_MODULE_34__["ClienteListComponent"],
+                _cliente_cliente_novo_cliente_novo_component__WEBPACK_IMPORTED_MODULE_23__["ClienteNovoComponent"],
+                _cliente_cliente_edit_cliente_edit_component__WEBPACK_IMPORTED_MODULE_22__["ClienteEditComponent"],
+                _cliente_cliente_show_cliente_show_component__WEBPACK_IMPORTED_MODULE_24__["ClienteShowComponent"],
+                _usuario_usuario_list_usuario_list_component__WEBPACK_IMPORTED_MODULE_25__["UsuarioListComponent"],
+                _usuario_usuario_edit_usuario_edit_component__WEBPACK_IMPORTED_MODULE_26__["UsuarioEditComponent"],
+                _usuario_usuario_novo_usuario_novo_component__WEBPACK_IMPORTED_MODULE_27__["UsuarioNovoComponent"],
+                _usuario_usuario_show_usuario_show_component__WEBPACK_IMPORTED_MODULE_28__["UsuarioShowComponent"],
+                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_31__["ProjetoListComponent"],
+                _projeto_projeto_novo_projeto_novo_component__WEBPACK_IMPORTED_MODULE_32__["ProjetoNovoComponent"],
+                _projeto_projeto_edit_projeto_edit_component__WEBPACK_IMPORTED_MODULE_33__["ProjetoEditComponent"],
+                _relatorio_relatorio_financeiro_relatorio_financeiro_component__WEBPACK_IMPORTED_MODULE_35__["RelatorioFinanceiroComponent"],
+                _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_36__["PaginaNaoEncontradaComponent"],
+                _global_error_global_error_component__WEBPACK_IMPORTED_MODULE_13__["GlobalErrorComponent"],
+                _apontamento_apontamento_novo_apontamento_novo_component__WEBPACK_IMPORTED_MODULE_37__["ApontamentoNovoComponent"],
+                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_31__["DialogProjeto"],
+                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_40__["DialogApontamentoHora"],
+                _apontamento_apontamento_dashboard_apontamento_dashboard_component__WEBPACK_IMPORTED_MODULE_38__["ApontamentoDashboardComponent"],
+                _apontamento_apontamento_lista_despesa_apontamento_lista_despesa_component__WEBPACK_IMPORTED_MODULE_39__["ApontamentoListaDespesaComponent"],
+                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_40__["ApontamentoListaHoraComponent"],
+                _apontamento_datepicker_popup__WEBPACK_IMPORTED_MODULE_18__["NgbdDatepickerPopup"],
+                _relatorio_relatorio_apontamento_projeto_relatorio_apontamento_projeto_component__WEBPACK_IMPORTED_MODULE_41__["RelatorioApontamentoProjetoComponent"],
+                _relatorio_relatorio_apontamento_horas_usuario_relatorio_apontamento_horas_usuario_component__WEBPACK_IMPORTED_MODULE_42__["RelatorioApontamentoHorasUsuarioComponent"],
+                _relatorio_relatorio_apontamento_despesas_usuario_relatorio_apontamento_despesas_usuario_component__WEBPACK_IMPORTED_MODULE_43__["RelatorioApontamentoDespesasUsuarioComponent"],
+                _relatorio_relatorio_custo_projeto_relatorio_custo_projeto_component__WEBPACK_IMPORTED_MODULE_44__["RelatorioCustoProjetoComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -1096,31 +1094,45 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatFormFieldModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatInputModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_18__["AppRoutingModule"],
-                _material__WEBPACK_IMPORTED_MODULE_36__["MaterialModule"],
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_20__["AppRoutingModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatRippleModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatOptionModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatSelectModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatRadioModule"],
-                _angular_material_tabs__WEBPACK_IMPORTED_MODULE_6__["MatTabsModule"],
-                _angular_material_card__WEBPACK_IMPORTED_MODULE_7__["MatCardModule"],
-                _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_8__["MatToolbarModule"],
-                _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_9__["MatCheckboxModule"]
-                // NgbModule,
-                // NgbModule.forRoot()
+                _angular_material_tabs__WEBPACK_IMPORTED_MODULE_7__["MatTabsModule"],
+                _angular_material_card__WEBPACK_IMPORTED_MODULE_8__["MatCardModule"],
+                _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_9__["MatToolbarModule"],
+                _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_10__["MatCheckboxModule"],
+                _angular_material_card__WEBPACK_IMPORTED_MODULE_8__["MatCardModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatProgressSpinnerModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatMenuModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatIconModule"],
+                _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_9__["MatToolbarModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatButtonModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatFormFieldModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatInputModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatSelectModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatSortModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatTableModule"],
+                _angular_material_paginator__WEBPACK_IMPORTED_MODULE_6__["MatPaginatorModule"],
+                _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_19__["NgbModule"],
+                _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_19__["NgbModule"].forRoot(),
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatDatepickerModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatNativeDateModule"]
             ],
             entryComponents: [
-                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_29__["DialogProjeto"],
-                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_39__["DialogApontamentoHora"]
+                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_31__["DialogProjeto"],
+                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_40__["DialogApontamentoHora"]
             ],
             providers: [
-                _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_13__["ProjetoService"],
-                _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_14__["UsuarioService"],
-                _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_15__["ClienteService"],
-                _global_error_handler_service__WEBPACK_IMPORTED_MODULE_16__["GlobalErrorHandlerService"],
-                { provide: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ErrorHandler"], useClass: _global_error_handler_service__WEBPACK_IMPORTED_MODULE_16__["GlobalErrorHandlerService"] },
+                _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_14__["ProjetoService"],
+                _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_15__["UsuarioService"],
+                _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_16__["ClienteService"],
+                _global_error_handler_service__WEBPACK_IMPORTED_MODULE_17__["GlobalErrorHandlerService"],
+                { provide: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ErrorHandler"], useClass: _global_error_handler_service__WEBPACK_IMPORTED_MODULE_17__["GlobalErrorHandlerService"] },
                 { provide: _angular_core__WEBPACK_IMPORTED_MODULE_1__["LOCALE_ID"], useValue: 'pt' }
             ],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_19__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_21__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -2178,58 +2190,6 @@ var LoginComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/material.ts":
-/*!*****************************!*\
-  !*** ./src/app/material.ts ***!
-  \*****************************/
-/*! exports provided: MaterialModule */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MaterialModule", function() { return MaterialModule; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_material_table__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material/table */ "./node_modules/@angular/material/esm5/table.es5.js");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-var MaterialModule = /** @class */ (function () {
-    function MaterialModule() {
-    }
-    MaterialModule = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
-            imports: [
-                _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatTableModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatPaginatorModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatOptionModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSelectModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatRadioModule"]
-            ],
-            exports: [
-                _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatTableModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatPaginatorModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatOptionModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSelectModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatRadioModule"]
-            ],
-        })
-    ], MaterialModule);
-    return MaterialModule;
-}());
-
-
-
-/***/ }),
-
 /***/ "./src/app/pagina-nao-encontrada/pagina-nao-encontrada.component.ts":
 /*!**************************************************************************!*\
   !*** ./src/app/pagina-nao-encontrada/pagina-nao-encontrada.component.ts ***!
@@ -2898,9 +2858,9 @@ var ProjetoService = /** @class */ (function () {
         console.log('ProjetoService > obterApontamentosHoraPorUsuario(usuario)', usuario);
         return this._http.get('/apontamentos/hora/usuario/', { params: { usuario: usuario } });
     };
-    ProjetoService.prototype.obterApontaHora = function (id) {
-        console.log('ProjetoService > obterApontaHora(id)', id);
-        return this._http.get('/apontamentos/hora/' + id);
+    ProjetoService.prototype.obterApontaHora = function (apto) {
+        console.log('ProjetoService > obterApontaHora(apto)', apto);
+        return this._http.get('/apontamentos/hora/', { params: { _projetoId: apto._projetoId, email: apto.email, data1: apto.data1, data2: apto.data2 } });
     };
     ProjetoService.prototype.obterApontamentosDespesa = function (usuario) {
         console.log('ProjetoService > obterApontamentosDespesa(usuario)', usuario);
@@ -2919,7 +2879,7 @@ var ProjetoService = /** @class */ (function () {
         return this._http.put('projeto/edit/' + projeto['_id'], projeto);
     };
     ProjetoService.prototype.apontamentoNovo = function (id, apontamento) {
-        console.log('ProjetoService > apontamentoNovo(valorHH)', id, apontamento);
+        console.log('ProjetoService > apontamentoNovo(id, apontamento)', id, apontamento);
         return this._http.put('apontamento/novo/' + id, apontamento);
     };
     ProjetoService.prototype.obterTotalApontamentos = function (id) {
@@ -3019,7 +2979,7 @@ var RelatorioApontamentoDespesasUsuarioComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n  <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<div class=\"mat-elevation-z8\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n<div class=\"container\"> \n  <div class=\"level-left\">\n    <div style=\"margin-top: 20px;\" class=\"title is-4\">Relatório de Apontamento de Horas por Usuário</div> \n  </div>\n  <br>\n  <p>Olá {{ usuarioLogado }}</p>\n  <br><br>\n\n  <form class=\"example-form\" [formGroup] = \"options\">\n\n    <mat-form-field style=\"width:400px !important;\"> \n      <mat-select placeholder=\"Selecione o projeto\" name=\"projeto\" formControlName=\"_id\" required>\n        <mat-option value=\"option\" *ngFor=\"let p of projetos\" [value]=\"p._id\"> {{ p.codigo }} {{ p.descricao }}</mat-option>\n      </mat-select>\n      <mat-hint align=\"end\">Projetos ativos</mat-hint>\n    </mat-form-field>\n    <br>\n    <button mat-raised-button color=\"primary\" (click)=\"obterApontamentos()\" [disabled]=\"options.invalid\" >apontamentos</button>\n  </form>\n\n    <br><br><br>\n\n    <table mat-table [dataSource]=\"transactions\" class=\"mat-elevation-z8\" *ngIf=\"transactions && selected\"> \n\n      <!-- Codigo Column -->\n      <!-- <ng-container matColumnDef=\"codigo\">\n        <th mat-header-cell *matHeaderCellDef> código </th>\n        <td mat-cell *matCellDef=\"let transaction\"> {{transaction.codigo}} </td>\n        <td mat-footer-cell *matFooterCellDef> Total </td>\n      </ng-container> -->\n\n      <!-- Descricao Column -->\n      <!-- <ng-container matColumnDef=\"descricao\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> descrição </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.descricao}} </td>\n      </ng-container> -->\n\n      <!-- Cliente Column -->\n      <ng-container matColumnDef=\"cliente\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> cliente </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.cliente}} </td>\n      </ng-container>\n\n      <!-- Data Column -->\n      <ng-container matColumnDef=\"data\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> data </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.hora.inicio | date:'d MMMM, y' }} </td>\n      </ng-container>\n\n\n      <!-- Custo hh Column -->\n      <ng-container matColumnDef=\"custohh\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> custo hh </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.valorHH | currency: 'BRL' }} </td>\n      </ng-container>\n\n\n      <!-- Inicio Column -->\n      <ng-container matColumnDef=\"inicio\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> início </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.hora.inicio | date:'d/M/yy H:mm'}} </td>\n      </ng-container>\n\n      <!-- Fim Column -->\n      <ng-container matColumnDef=\"fim\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> fim </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.hora.fim | date:'d/M/yy H:mm'}} </td>\n      </ng-container>\n\n      <!-- Custo Column -->\n      <ng-container matColumnDef=\"custo\">\n        <th mat-header-cell *matHeaderCellDef> custo </th>\n        <td mat-cell class=\"mat-body-2 custo\" *matCellDef=\"let row\"> {{row.custo | currency: 'BRL'}} </td>\n        <!-- <td mat-footer-cell *matFooterCellDef> {{obterCustoTotal() | currency}} </td> -->\n      </ng-container>\n\n      <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n      <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n      <!-- <tr mat-footer-row *matFooterRowDef=\"displayedColumns\"></tr> -->\n\n    </table>\n\n\n</div>"
+module.exports = "<mat-toolbar>\n  <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<div class=\"mat-elevation-z8\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n<div class=\"container\"> \n  <div class=\"level-left\">\n    <div style=\"margin-top: 20px;\" class=\"title is-4\">Relatório de Apontamento de Horas por Usuário</div> \n  </div>\n  <br>\n  <p>Olá {{ usuarioLogado }}</p>\n  <br><br>\n\n  <form class=\"example-form\" [formGroup] = \"options\">\n\n    <mat-form-field style=\"width:400px !important;\"> \n      <mat-select placeholder=\"Selecione o usuário\" name=\"usuario\" formControlName=\"email\" required>\n        <mat-option value=\"option\" *ngFor=\"let u of usuarios\" [value]=\"u.email\"> {{ u.nome }} {{ u.sobrenome }}</mat-option>\n      </mat-select>\n      <mat-hint align=\"end\">Usuários ativos</mat-hint>\n    </mat-form-field>\n    <br>\n\n    <mat-form-field>\n      <input matInput [matDatepicker]=\"picker1\" placeholder=\"de\" formControlName=\"data1\">\n      <mat-datepicker-toggle matSuffix [for]=\"picker1\"></mat-datepicker-toggle>\n      <mat-datepicker #picker1></mat-datepicker>\n      <mat-hint align=\"end\">Selecione o período</mat-hint>\n    </mat-form-field>\n \n    <mat-form-field>\n      <input matInput [matDatepicker]=\"picker2\" placeholder=\"até\" formControlName=\"data2\">\n      <mat-datepicker-toggle matSuffix [for]=\"picker2\"></mat-datepicker-toggle>\n      <mat-datepicker #picker2></mat-datepicker>\n    </mat-form-field>\n    <br>\n \n    <mat-form-field style=\"width:400px !important;\"> \n      <mat-select placeholder=\"Selecione o projeto\" name=\"projeto\" formControlName=\"_projetoId\" required>\n        <mat-option value=\"option\" *ngFor=\"let p of projetos\" [value]=\"p._id\"> {{ p.codigo }} {{ p.descricao }}</mat-option>\n      </mat-select>\n      <mat-hint align=\"end\">Projetos ativos</mat-hint>\n    </mat-form-field>\n    <br>\n\n    <button mat-raised-button color=\"primary\" (click)=\"obterApontamentos()\" [disabled]=\"options.invalid\" >apontamentos</button>\n  </form>\n\n  <br><br><br>\n\n  <table mat-table [dataSource]=\"transactions\" class=\"mat-elevation-z8\" *ngIf=\"transactions && selected\"> \n\n    <!-- Cliente Column -->\n    <ng-container matColumnDef=\"cliente\">\n      <th mat-header-cell *matHeaderCellDef > cliente </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.cliente}} </td>\n    </ng-container>\n\n    <!-- Data Column -->\n    <ng-container matColumnDef=\"data\">\n      <th mat-header-cell *matHeaderCellDef > data </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.hora.inicio | date:'d MMMM, y' }} </td>\n    </ng-container>\n\n\n    <!-- Custo hh Column -->\n    <ng-container matColumnDef=\"custohh\">\n      <th mat-header-cell *matHeaderCellDef> custo hh </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.valorHH | currency: 'BRL' }} </td>\n    </ng-container>\n\n\n    <!-- Inicio Column -->\n    <ng-container matColumnDef=\"inicio\">\n      <th mat-header-cell *matHeaderCellDef> início </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.hora.inicio | date:'d/M/yy H:mm'}} </td>\n    </ng-container>\n\n    <!-- Fim Column -->\n    <ng-container matColumnDef=\"fim\">\n      <th mat-header-cell *matHeaderCellDef > fim </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.hora.fim | date:'d/M/yy H:mm'}} </td>\n    </ng-container>\n\n    <!-- Custo Column -->\n    <ng-container matColumnDef=\"custo\">\n      <th mat-header-cell *matHeaderCellDef> custo </th>\n      <td mat-cell class=\"mat-body-2 custo\" *matCellDef=\"let row\"> {{row.custo | currency: 'BRL'}} </td>\n      <!-- <td mat-footer-cell *matFooterCellDef> {{obterCustoTotal() | currency}} </td> -->\n    </ng-container>\n\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n    <!-- <tr mat-footer-row *matFooterRowDef=\"displayedColumns\"></tr> -->\n\n  </table>\n\n\n</div>"
 
 /***/ }),
 
@@ -3088,13 +3048,25 @@ var RelatorioApontamentoHorasUsuarioComponent = /** @class */ (function () {
             nomeFantasia: ""
         };
         this.options = fb.group({
-            _id: [null]
+            _projetoId: [null],
+            email: [null],
+            data1: new Date(),
+            data2: new Date()
         });
     }
     RelatorioApontamentoHorasUsuarioComponent.prototype.ngOnInit = function () {
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
         console.log('ProjetoListComponent > usuariologado ', this.usuarioLogado);
+        this.obterListaUsuario();
         this.obterListaProjeto();
+    };
+    RelatorioApontamentoHorasUsuarioComponent.prototype.obterListaUsuario = function () {
+        var _this = this;
+        console.log('ProjetoListComponent > obterListaUsuario()');
+        this._usuarioService.obterListaUsuario()
+            .subscribe(function (usuarios) {
+            _this.usuarios = usuarios.json();
+        }, function (err) { }, function () { });
     };
     RelatorioApontamentoHorasUsuarioComponent.prototype.obterListaProjeto = function () {
         var _this = this;
@@ -3102,12 +3074,6 @@ var RelatorioApontamentoHorasUsuarioComponent = /** @class */ (function () {
         var projetoObservable = this._projetoService.obterTodos();
         projetoObservable.subscribe(function (projetos) {
             _this.projetos = projetos.json();
-            // console.log('ProjetoListComponent > obterListaProjeto()', this.projetos);
-            // for (var i = 0; i < this.projetos.length; i++) {
-            //   this.obterCliente(this.projetos[i]['_clienteId'], i);
-            //   this.obterApontamentos(this.projetos[i]['_id'], i);
-            //   console.log('p r o j e t o s >  >  > ', this.projetos);
-            // }
         }, function (err) { }, function () { });
     };
     RelatorioApontamentoHorasUsuarioComponent.prototype.obterCliente = function (id) {
@@ -3120,12 +3086,11 @@ var RelatorioApontamentoHorasUsuarioComponent = /** @class */ (function () {
     };
     RelatorioApontamentoHorasUsuarioComponent.prototype.obterApontamentos = function () {
         var _this = this;
-        console.log('ProjetoListComponent > obterApontamentos', this.options.controls._id.value);
-        this.projeto = getProjeto(this.projetos, this.options.controls._id.value);
-        console.log('    projeto    : >> >>> >>> ', this.projeto);
+        console.log('ProjetoListComponent > obterApontamentos', this.options.controls._projetoId.value, this.options.controls.data1.value, this.options.controls.data2.value);
+        this.projeto = getProjeto(this.projetos, this.options.controls._projetoId.value);
         this.obterCliente(this.projeto['_clienteId']);
-        // this.projeto['cliente'] = this.cliente.nomeFantasia;
-        this._projetoService.obterApontaHora(this.options.controls._id.value)
+        console.log('ProjetoListComponent >+++++++++++ ++++++++++++ +++++++++++++++', this.options.value);
+        this._projetoService.obterApontaHora(this.options.value)
             .subscribe(function (apontamentos) {
             _this.apontamentos = apontamentos.json();
             console.log('apontamentos >  >  > ', _this.apontamentos);
@@ -3772,7 +3737,7 @@ var UsuarioListComponent = /** @class */ (function () {
     UsuarioListComponent.prototype.obterListaUsuario = function () {
         var _this = this;
         console.log('UsuarioListComponent > obterListaUsuario()');
-        var usuarioObservable = this._usuarioService.obterTodos();
+        var usuarioObservable = this._usuarioService.obterListaUsuario();
         usuarioObservable.subscribe(function (usuarios) {
             console.log('usuario in obterUsuario list:', usuarios.json());
             _this.usuarios = usuarios.json();
@@ -4103,8 +4068,8 @@ var UsuarioService = /** @class */ (function () {
         console.log('getUserLoggedIn() ', this.usuarioLogado);
         return this.usuarioLogado;
     };
-    UsuarioService.prototype.obterTodos = function () {
-        console.log('UsuarioService > obterTodos()');
+    UsuarioService.prototype.obterListaUsuario = function () {
+        console.log('UsuarioService > obterListaUsuario()');
         return this._http.get('/usuarios');
     };
     UsuarioService.prototype.obterUsuario = function (usuario) {
