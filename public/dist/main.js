@@ -2983,7 +2983,7 @@ var RelatorioApontamentoDespesasUsuarioComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n  <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<div class=\"mat-elevation-z8\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n<div class=\"container\"> \n  <div class=\"level-left\">\n    <div style=\"margin-top: 20px;\" class=\"title is-4\">Relatório de Apontamento de Horas por Usuário</div> \n  </div>\n  <br>\n  <p>Olá {{ usuarioLogado }}</p>\n  <br><br>\n\n  <form class=\"example-form\" [formGroup] = \"options\">\n\n    <mat-form-field style=\"width:400px !important;\"> \n      <mat-select placeholder=\"Selecione o usuário\" name=\"usuario\" formControlName=\"email\" required>\n        <mat-option value=\"option\" *ngFor=\"let u of usuarios\" [value]=\"u.email\"> {{ u.nome }} {{ u.sobrenome }}</mat-option>\n      </mat-select>\n      <mat-error *ngIf=\"email.invalid && email.touched\">\n        usuário é requerido\n      </mat-error>\n      <mat-hint align=\"end\">Usuários ativos</mat-hint>\n    </mat-form-field>\n    <br>\n\n    <mat-form-field>\n      <input matInput [matDatepicker]=\"picker1\" placeholder=\"de\" formControlName=\"data1\">\n      <mat-datepicker-toggle matSuffix [for]=\"picker1\"></mat-datepicker-toggle>\n      <mat-datepicker #picker1></mat-datepicker>\n      <mat-hint align=\"end\">Selecione o período</mat-hint>\n    </mat-form-field>\n \n    <mat-form-field>\n      <input matInput [matDatepicker]=\"picker2\" placeholder=\"até\" formControlName=\"data2\">\n      <mat-datepicker-toggle matSuffix [for]=\"picker2\"></mat-datepicker-toggle>\n      <mat-datepicker #picker2></mat-datepicker>\n    </mat-form-field>\n    <br>\n \n    <mat-form-field style=\"width:400px !important;\"> \n      <mat-select placeholder=\"Selecione o projeto\" name=\"projeto\" formControlName=\"_projetoId\">\n        <mat-option value=\"option\" *ngFor=\"let p of projetos\" [value]=\"p._id\"> {{ p.codigo }} {{ p.descricao }}</mat-option>\n      </mat-select>\n      <mat-hint align=\"end\">Projetos ativos</mat-hint>\n    </mat-form-field>\n    <br>\n\n    <button mat-raised-button color=\"primary\" (click)=\"obterApontamentos()\" [disabled]=\"email.invalid\">apontamentos</button>\n  </form>\n\n  <br><br><br>\n\n  <table mat-table [dataSource]=\"transactions\" class=\"mat-elevation-z8\" *ngIf=\"transactions && selected\"> \n\n    <!-- Cliente Column -->\n    <ng-container matColumnDef=\"cliente\">\n      <th mat-header-cell *matHeaderCellDef > cliente </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.cliente}} </td>\n    </ng-container>\n\n    <!-- Data Column -->\n    <ng-container matColumnDef=\"data\">\n      <th mat-header-cell *matHeaderCellDef > data </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.hora.inicio | date:'d MMMM, y' }} </td>\n    </ng-container>\n\n\n    <!-- Custo hh Column -->\n    <ng-container matColumnDef=\"custohh\">\n      <th mat-header-cell *matHeaderCellDef> custo hh </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.valorHH | currency: 'BRL' }} </td>\n    </ng-container>\n\n\n    <!-- Inicio Column -->\n    <ng-container matColumnDef=\"inicio\">\n      <th mat-header-cell *matHeaderCellDef> início </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.hora.inicio | date:'d/M/yy H:mm'}} </td>\n    </ng-container>\n\n    <!-- Fim Column -->\n    <ng-container matColumnDef=\"fim\">\n      <th mat-header-cell *matHeaderCellDef > fim </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.hora.fim | date:'d/M/yy H:mm'}} </td>\n    </ng-container>\n\n    <!-- Custo Column -->\n    <ng-container matColumnDef=\"custo\">\n      <th mat-header-cell *matHeaderCellDef> custo </th>\n      <td mat-cell class=\"mat-body-2 custo\" *matCellDef=\"let row\"> {{row.custo | currency: 'BRL'}} </td>\n      <!-- <td mat-footer-cell *matFooterCellDef> {{obterCustoTotal() | currency}} </td> -->\n    </ng-container>\n\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n    <!-- <tr mat-footer-row *matFooterRowDef=\"displayedColumns\"></tr> -->\n\n  </table>\n\n\n</div>"
+module.exports = "<mat-toolbar>\n  <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<div class=\"mat-elevation-z8\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n<div class=\"container\"> \n  <div class=\"level-left\">\n    <div style=\"margin-top: 20px;\" class=\"title is-4\">Relatório de Apontamento de Horas por Usuário</div> \n  </div>\n  <br>\n  <p>Olá {{ usuarioLogado }}</p>\n  <br><br>\n\n  <form class=\"example-form\" [formGroup] = \"options\">\n\n    <mat-form-field style=\"width:400px !important;\"> \n      <mat-select placeholder=\"Selecione o usuário\" name=\"usuario\" formControlName=\"email\" required>\n        <mat-option value=\"option\" *ngFor=\"let u of usuarios\" [value]=\"u.email\"> {{ u.nome }} {{ u.sobrenome }}</mat-option>\n      </mat-select>\n      <mat-error *ngIf=\"email.invalid && email.touched\">\n        usuário é requerido\n      </mat-error>\n      <mat-hint align=\"end\">Usuários ativos</mat-hint>\n    </mat-form-field>\n    <br>\n\n    <mat-form-field>\n      <input matInput [matDatepicker]=\"picker1\" placeholder=\"de\" formControlName=\"data1\">\n      <mat-datepicker-toggle matSuffix [for]=\"picker1\"></mat-datepicker-toggle>\n      <mat-datepicker #picker1></mat-datepicker>\n      <mat-hint align=\"end\">Selecione o período</mat-hint>\n    </mat-form-field>\n \n    <mat-form-field>\n      <input matInput [matDatepicker]=\"picker2\" placeholder=\"até\" formControlName=\"data2\">\n      <mat-datepicker-toggle matSuffix [for]=\"picker2\"></mat-datepicker-toggle>\n      <mat-datepicker #picker2></mat-datepicker>\n    </mat-form-field>\n    <br>\n \n    <mat-form-field style=\"width:400px !important;\"> \n      <mat-select placeholder=\"Selecione o projeto\" name=\"projeto\" formControlName=\"_projetoId\">\n        <mat-option value=\"option\" *ngFor=\"let p of projetos\" [value]=\"p._id\"> {{ p.codigo }} {{ p.descricao }}</mat-option>\n      </mat-select>\n      <mat-hint align=\"end\">Projetos ativos</mat-hint>\n    </mat-form-field>\n    <br>\n\n    <button mat-raised-button color=\"primary\" (click)=\"obterApontamentos()\" [disabled]=\"email.invalid\">apontamentos</button>\n  </form>\n\n  <br><br><br>\n\n  <table mat-table [dataSource]=\"transactions\" class=\"mat-elevation-z8\" *ngIf=\"transactions && selected\"> \n\n    <!-- Codigo ProjetoColumn -->\n    <ng-container matColumnDef=\"codigo\">\n      <th mat-header-cell *matHeaderCellDef > código projeto </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.codigo}} </td>\n    </ng-container>\n\n    <!-- Cliente Column -->\n    <ng-container matColumnDef=\"cliente\">\n      <th mat-header-cell *matHeaderCellDef > cliente </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.cliente}} </td>\n    </ng-container>\n\n    <!-- Inicio Column -->\n    <ng-container matColumnDef=\"inicio\">\n      <th mat-header-cell *matHeaderCellDef> início </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.hora.inicio | date:'d/M/yy H:mm'}} </td>\n    </ng-container>\n\n    <!-- Fim Column -->\n    <ng-container matColumnDef=\"fim\">\n      <th mat-header-cell *matHeaderCellDef > fim </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.hora.fim | date:'d/M/yy H:mm'}} </td>\n    </ng-container>\n\n    <!-- Total HH Column -->\n    <ng-container matColumnDef=\"totalhh\">\n      <th mat-header-cell *matHeaderCellDef> total hh </th>\n      <td mat-cell class=\"mat-body-2 custo\" *matCellDef=\"let row\"> {{row.totalhh}} </td>\n    </ng-container>\n\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n\n  </table>\n\n\n</div>"
 
 /***/ }),
 
@@ -3002,12 +3002,13 @@ module.exports = "img {\n  width: 190px;\n  height: auto; }\n\n.example-containe
 /*!****************************************************************************************************************!*\
   !*** ./src/app/relatorio/relatorio-apontamento-horas-usuario/relatorio-apontamento-horas-usuario.component.ts ***!
   \****************************************************************************************************************/
-/*! exports provided: getProjeto, RelatorioApontamentoHorasUsuarioComponent */
+/*! exports provided: getProjeto, DataHora, RelatorioApontamentoHorasUsuarioComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProjeto", function() { return getProjeto; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DataHora", function() { return DataHora; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RelatorioApontamentoHorasUsuarioComponent", function() { return RelatorioApontamentoHorasUsuarioComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../usuario/usuario.service */ "./src/app/usuario/usuario.service.ts");
@@ -3035,13 +3036,45 @@ function getProjeto(projetos, id) {
         }
     }
 }
+function DataHora(x, y) {
+    console.log('x , y : ', x, y);
+    var diff;
+    var hora;
+    var minutes;
+    x = new Date(x);
+    y = new Date(y);
+    diff = Math.abs(y.getTime() - x.getTime()) / 3600000;
+    console.log(diff);
+    if (isNaN(diff)) {
+        return { dia: 0, hora: 0, minuto: 0 };
+    }
+    hora = parseInt(diff);
+    console.log('hora', hora);
+    minutes = ((diff) % 1 / 100 * 60) * 100;
+    minutes = parseInt(minutes);
+    console.log('minutes before pad', minutes);
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+        console.log('minutes after pad', minutes);
+    }
+    else if (minutes > 60) {
+        var h = minutes / 60;
+        minutes = ((h) % 1 / 100 * 60) * 100;
+        h = Math.trunc(h);
+        hora += h;
+    }
+    else {
+        console.log('minutes:', minutes);
+    }
+    return { hora: hora, minuto: minutes };
+}
 var RelatorioApontamentoHorasUsuarioComponent = /** @class */ (function () {
     function RelatorioApontamentoHorasUsuarioComponent(fb, _projetoService, _usuarioService, _clienteService) {
         this.fb = fb;
         this._projetoService = _projetoService;
         this._usuarioService = _usuarioService;
         this._clienteService = _clienteService;
-        this.displayedColumns = ['cliente', 'data', 'custohh', 'inicio', 'fim', 'custo'];
+        this.displayedColumns = ['codigo', 'cliente', 'inicio', 'fim', 'totalhh'];
         this.selected = false;
         this.usuarioLogado = {
             email: '',
@@ -3093,18 +3126,18 @@ var RelatorioApontamentoHorasUsuarioComponent = /** @class */ (function () {
         this._clienteService.obterClienteById(id)
             .subscribe(function (cliente) {
             _this.cliente = cliente.json();
+            console.log(' dentro do obterCliente >>> >>>>> ', _this.cliente);
         }, function (err) { }, function () { });
     };
     RelatorioApontamentoHorasUsuarioComponent.prototype.obterApontamentos = function () {
         var _this = this;
         console.log('ProjetoListComponent > obterApontamentos', this.options.controls._projetoId.value, this.options.controls.data1.value, this.options.controls.data2.value);
-        if (!this.options.controls._projetoId.value) {
-            console.log('projeto is null');
-        }
-        else {
-            this.projeto = getProjeto(this.projetos, this.options.controls._projetoId.value);
-            this.obterCliente(this.projeto['_clienteId']);
-        }
+        // if (!this.options.controls._projetoId.value) {
+        //   console.log('projeto is null') 
+        // } else {
+        //   this.projeto = getProjeto(this.projetos, this.options.controls._projetoId.value);
+        //   this.obterCliente(this.projeto['_clienteId']);
+        // }
         console.log('ProjetoListComponent >+++++++++++ ++++++++++++ +++++++++++++++', this.options.value);
         this._projetoService.obterApontaHora(this.options.value)
             .subscribe(function (apontamentos) {
@@ -3112,13 +3145,20 @@ var RelatorioApontamentoHorasUsuarioComponent = /** @class */ (function () {
             console.log('apontamentos >  >  > ', _this.apontamentos);
             for (var _i = 0, _a = _this.apontamentos; _i < _a.length; _i++) {
                 var a = _a[_i];
-                if (a.tipo == 'hora') {
-                    var fim = new Date(a.hora.fim).getTime();
-                    var inicio = new Date(a.hora.inicio).getTime();
-                    var diff = Math.ceil(fim - inicio) / (1000 * 60 * 60);
-                    a.cliente = _this.cliente.nomeFantasia;
-                    a.custo = a.valorHH * diff;
-                }
+                // if(a.tipo == 'hora') {
+                //   let fim = new Date(a.hora.fim).getTime();
+                //   let inicio = new Date(a.hora.inicio).getTime();
+                //   let diff = Math.ceil( fim - inicio )/(1000 * 60 * 60)
+                //   a.totalhh = diff;
+                // } 
+                var data = DataHora(a.hora.inicio, a.hora.fim);
+                a.totalhh = data.hora + ':' + data.minuto;
+                _this.projeto = getProjeto(_this.projetos, a._projeto);
+                a.codigo = _this.projeto.codigo;
+                console.log('cl i e n t e: >>> >> >>> >>>:', _this.projeto['_clienteId']);
+                _this.obterCliente(_this.projeto['_clienteId']);
+                console.log(' NOME   do   cl i e n t e: >>> >> >>> >>>:', _this.cliente.nomeFantasia);
+                a.cliente = _this.cliente.nomeFantasia;
             }
             _this.transactions = _this.apontamentos;
             _this.selected = true;
