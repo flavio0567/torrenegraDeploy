@@ -24,7 +24,8 @@
       <div style="margin: 20px, 0px, 20px, 0px;" class="title is-4">Apontamento</div> 
   </div>
   <div class="errors" *ngIf="errors">
-    <p *ngIf="errors['descricao'].message" >  {{ errors['descricao'].message }} </p>   
+    <p *ngIf="errors['descricao'].message" >  {{ errors['descricao'].message }} </p> 
+    <p *ngIf="errors['despesa'].valor.message" >  {{ errors['despesa'].valor.message }} </p>   
   </div> 
 
   <form class="example-form" [formGroup] = "options">
@@ -70,10 +71,12 @@
               matInput 
               placeholder="Valor"
               formControlName="valor"
-              type="number" 
+              currencyMask 
+              [(ngModel)]="value" 
+              [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
               class="example-right-align">
-              <span matPrefix>R$&nbsp;</span>
-              <span matSuffix></span>
+              <!-- <span matPrefix></span>
+              <span matSuffix></span> -->
               <br>
             </mat-form-field>
             <br>

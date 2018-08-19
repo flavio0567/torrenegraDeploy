@@ -47,6 +47,7 @@ import { RelatorioApontamentoProjetoComponent } from './relatorio/relatorio-apon
 import { RelatorioApontamentoHorasUsuarioComponent } from './relatorio/relatorio-apontamento-horas-usuario/relatorio-apontamento-horas-usuario.component';
 import { RelatorioApontamentoDespesasUsuarioComponent } from './relatorio/relatorio-apontamento-despesas-usuario/relatorio-apontamento-despesas-usuario.component';
 import { RelatorioCustoProjetoComponent } from './relatorio/relatorio-custo-projeto/relatorio-custo-projeto.component';
+import { CurrencyMaskModule } from "ng2-currency-mask";
 
 registerLocaleData(ptBr);
 
@@ -114,7 +115,8 @@ registerLocaleData(ptBr);
     NgbModule,
     NgbModule.forRoot(),
     MatDatepickerModule, 
-    MatNativeDateModule
+    MatNativeDateModule,
+    CurrencyMaskModule
   ],
   entryComponents:[
     DialogProjeto,

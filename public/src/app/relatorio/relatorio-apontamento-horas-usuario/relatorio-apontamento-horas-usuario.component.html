@@ -32,6 +32,9 @@
       <mat-select placeholder="Selecione o usuário" name="usuario" formControlName="email" required>
         <mat-option value="option" *ngFor="let u of usuarios" [value]="u.email"> {{ u.nome }} {{ u.sobrenome }}</mat-option>
       </mat-select>
+      <mat-error *ngIf="email.invalid && email.touched">
+        usuário é requerido
+      </mat-error>
       <mat-hint align="end">Usuários ativos</mat-hint>
     </mat-form-field>
     <br>
@@ -51,14 +54,14 @@
     <br>
  
     <mat-form-field style="width:400px !important;"> 
-      <mat-select placeholder="Selecione o projeto" name="projeto" formControlName="_projetoId" required>
+      <mat-select placeholder="Selecione o projeto" name="projeto" formControlName="_projetoId">
         <mat-option value="option" *ngFor="let p of projetos" [value]="p._id"> {{ p.codigo }} {{ p.descricao }}</mat-option>
       </mat-select>
       <mat-hint align="end">Projetos ativos</mat-hint>
     </mat-form-field>
     <br>
 
-    <button mat-raised-button color="primary" (click)="obterApontamentos()" [disabled]="options.invalid" >apontamentos</button>
+    <button mat-raised-button color="primary" (click)="obterApontamentos()" [disabled]="email.invalid">apontamentos</button>
   </form>
 
   <br><br><br>

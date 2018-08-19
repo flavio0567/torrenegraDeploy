@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../usuario/usuario.service';
 import { ProjetoService } from '../../projeto/projeto.service';
 import { ClienteService } from '../../cliente/cliente.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 // import { Datepicker } from './datepicker-popup';
 // import { getLocaleDateTimeFormat } from '../../../../node_modules/@angular/common';
 
@@ -64,7 +64,7 @@ export class RelatorioApontamentoHorasUsuarioComponent implements OnInit {
   ) { 
     this.options = fb.group({
       _projetoId: [null],
-      email: [null],
+      email: [null, [ Validators.required ]],
       data1: new Date(),
       data2: new Date()
     });
@@ -75,6 +75,10 @@ export class RelatorioApontamentoHorasUsuarioComponent implements OnInit {
     console.log('ProjetoListComponent > usuariologado ',this.usuarioLogado)
     this.obterListaUsuario();
     this.obterListaProjeto();
+  }
+
+  get email() {
+    return this.options.get('email');
   }
 
   obterListaUsuario() {
@@ -115,8 +119,12 @@ export class RelatorioApontamentoHorasUsuarioComponent implements OnInit {
 
   obterApontamentos() {
     console.log('ProjetoListComponent > obterApontamentos',  this.options.controls._projetoId.value, this.options.controls.data1.value, this.options.controls.data2.value);
-    this.projeto = getProjeto(this.projetos, this.options.controls._projetoId.value);
-    this.obterCliente(this.projeto['_clienteId']);
+    if (!this.options.controls._projetoId.value) {
+      console.log('projeto is null') 
+    } else {
+      this.projeto = getProjeto(this.projetos, this.options.controls._projetoId.value);
+      this.obterCliente(this.projeto['_clienteId']);
+    }
     console.log('ProjetoListComponent >+++++++++++ ++++++++++++ +++++++++++++++', this.options.value);
     this._projetoService.obterApontaHora(this.options.value)
     .subscribe(
