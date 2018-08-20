@@ -15,7 +15,9 @@ export class ProjetoService {
 
   obterApontaHora(apto) {
     console.log('ProjetoService > obterApontaHora(apto)', apto);
-    return this._http.get('/apontamentos/hora/',  {params: { _projetoId: apto._projetoId, email: apto.email, data1: apto.data1, data2: apto.data2}});
+    let flag;
+    if (!apto._projetoId) {flag = ''} else {flag = 'projeto'};
+    return this._http.get('/apontamentos/hora/',  {params: { _projetoId: apto._projetoId, email: apto.email, data1: apto.data1, data2: apto.data2, flag: flag}});
   }
 
   obterApontamentosDespesa(usuario) {

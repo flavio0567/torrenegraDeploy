@@ -19,7 +19,7 @@ export class ApontamentoNovoComponent implements OnInit {
     email: '',
     admin: ''
   }
-  today = new Date().toISOString();
+  today = new Date();
   projetos: any[];
   apontamento: any = {
     tipo: "",
@@ -136,7 +136,7 @@ export class ApontamentoNovoComponent implements OnInit {
       this.apontamento.hora.fim = "";
     } else {
       this.apontamento.hora.inicio = this.today;
-      console.log('data : +++++++++ +++++++++++++ +++++++++++++++',  this.apontamento.hora.inicio);
+      console.log('data : +++++++++ +++++++++++++ +++++++++++++++',  typeof this.apontamento.hora.inicio);
       this.apontamento.hora.fim = "";
     }
     if (this.options.controls.tipo.value == 'despesa' && this.options.controls.opDespesa.value != 'outros') {

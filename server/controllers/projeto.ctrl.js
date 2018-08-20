@@ -6,6 +6,8 @@ const Projeto     = mongoose.model('Projeto');
 const Apontamento = mongoose.model('Apontamento');
 const Cliente     = mongoose.model('Cliente');
 const ClienteProjeto = mongoose.model('ClienteProjeto');
+const ObjectId    = require('mongodb').ObjectID;
+
 
 module.exports = { 
     list: (req, res) => {
@@ -94,10 +96,23 @@ module.exports = {
     },
     obterApontaHora: (req, res) => {
         console.log("SERVER > CONTROLLER > obterApontaHora > req.query.apontamento", req.query);
-        if (req.query._projetoId) {
-            console.log('projeto: ', null, 'email:', req.query.email, 'data1:', req.query.data1, 'data2:', req.query.data2);
+        let dt1 = req.query.data1;
+        let dt2 = req.query.data2;
+        if (req.query.flag === 'projeto') {
+            console.log('projeto: ', ObjectId(req.query._projetoId), 'email:', req.query.email, 'data1:', dt1, 'data2:',dt2, 'flag:', req.query.flag);
+            // Apontamento.find({ $and: [ { usuario: {$eq: req.query.email }}, { _projeto: ObjectId(req.query._projetoId) }, { tipo : 'hora' }, { 'hora.inicio': { $gte: req.query.data1 }  },  { 'hora.inicio': { $lte: req.query.data2 }  }, { 'hora.fim': { $ne: [''] }} ] })
+            Apontamento.find({ $and: [ { usuario: {$eq: req.query.email }}, { _projeto: ObjectId(req.query._projetoId) }, { tipo : 'hora' }, { 'hora.inicio': { $gte: dt1 } }  ] })
+            .populate('apontamentos') 
+            .exec(function (err, apontamento) {
+                console.log('Os apontamentos são %s', apontamento);
+                res.json(apontamento);
+            })
+            .catch(error => console.log(error));  
+        } else {
+            console.log('projeto: ', null, 'email:', req.query.email, 'data1:', dt1, 'data2:', dt2);
             // Apontamento.find({ $and: [ { usuario: {$eq: req.query.email }}, { _projeto: req.query._projetoId }, { tipo : 'hora' }, { 'hora.inicio': { $gte: req.query.data1 }  },  { 'hora.inicio': { $lte: req.query.data2 }  }, { 'hora.fim': { $ne: [''] }} ] })
-            Apontamento.find({ $and: [ { usuario: {$eq: req.query.email }}, { tipo : 'hora' }, { 'hora.inicio': { $gte: req.query.data1 }  }, { 'hora.fim': { $ne: [''] }} ] })
+            Apontamento.find({ $and: [ { usuario: {$eq: req.query.email }}, { tipo : 'hora' }, { 'hora.inicio': { $gte: dt1 } }  ] })
+            // Apontamento.find({ $and: [ { usuario: {$eq: req.query.email }}, { tipo : 'hora' }, { 'hora.inicio': { $gte: req.query.data1 } } ] })
                 .populate('apontamentos') 
                 .exec(function (err, apontamento) {
                     // if (err) return handleError(err);
@@ -105,15 +120,6 @@ module.exports = {
                     res.json(apontamento);
                 })
                 .catch(error => console.log(error));
-        } else {
-            console.log('projeto: ', req.query._projetoId, 'email:', req.query.email, 'data1:', Date(req.query.data1), 'data2:', Date(req.query.data2));
-            Apontamento.find({ $and: [ { usuario: {$eq: req.query.email }}, { _projeto: req.query._projetoId }, { tipo : 'hora' }, { 'hora.inicio': { $gte: req.query.data1 }  },  { 'hora.inicio': { $lte: req.query.data2 }  }, { 'hora.fim': { $ne: [''] }} ] })
-            .populate('apontamentos') 
-            .exec(function (err, apontamento) {
-                console.log('Os apontamentos são %s', apontamento);
-                res.json(apontamento);
-            })
-            .catch(error => console.log(error));
         }
     },
     obterApontamentoDespesaPorUsuario: (req, res) => {
