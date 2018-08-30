@@ -60,8 +60,8 @@ export class RelatorioFinanceiroComponent implements OnInit {
   ) { } 
 
   ngOnInit() {
+    console.log('RelatorioFinanceiroComponent > ngOnInit() ')
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-    console.log('ProjetoListComponent > usuariologado ',this.usuarioLogado)
     this.obterListaProjeto();
   }
 
@@ -71,11 +71,9 @@ export class RelatorioFinanceiroComponent implements OnInit {
     projetoObservable.subscribe(
       (projetos) => { 
         this.projetos = projetos.json();
-        console.log('ProjetoListComponent > obterListaProjeto()', this.projetos);
         for (var i = 0; i < this.projetos.length; i++) {
           this.obterCliente(this.projetos[i]['_clienteId'], i);
           this.obterApontamentos(this.projetos[i]['_id'], i);
-          console.log('p r o j e t o s >  >  > ', this.projetos);
         }
       },
       (err) => { },
@@ -97,7 +95,7 @@ export class RelatorioFinanceiroComponent implements OnInit {
   }
 
   obterApontamentos(id, i) {
-    console.log('ProjetoListComponent > obterApontamentos', id);
+    console.log('ProjetoListComponent > obterApontamentos');
     let valorDespesa = 0,
         custoTotal = 0;
     this._projetoService.obterTotalApontamentos(id)
@@ -117,7 +115,7 @@ export class RelatorioFinanceiroComponent implements OnInit {
 
         this.projetos[i]['despesa'] = valorDespesa;
         this.projetos[i]['custo'] = custoTotal;
-        this.projetos[i]['total'] = this.projetos[i]['custo'] + this.projetos[i]['despesa']; 
+        this.projetos[i]['total'] = (this.projetos[i]['custo'] || 0) + (this.projetos[i]['despesa'] || 0); 
 
         this.dataSource = new MatTableDataSource(this.projetos);
         this.dataSource.paginator = this.paginator;
@@ -130,7 +128,7 @@ export class RelatorioFinanceiroComponent implements OnInit {
 
 
   obterCustoTotal() {
-    console.log('ProjetoListComponent > obterCustoTotal()', this.projetos);
+    console.log('ProjetoListComponent > obterCustoTotal()');
     return this.projetos.map(t => t.custo).reduce((acc, value) => acc + value, 0);
   }
 

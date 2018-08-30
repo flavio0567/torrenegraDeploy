@@ -40,17 +40,16 @@ export class ClienteListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log('UsuarioListComponent > ngOnInit() ' );
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-    console.log('UsuarioListComponent > usuariologado',this.usuarioLogado.email)
     this.obterClientes();
   }
 
   obterClientes() {
-    console.log('ClienteListComponent > obterClienteList()')
+    console.log('ClienteListComponent > obterClientes()')
     const clienteObservable = this._clienteService.obterTodos();
     clienteObservable.subscribe(
       (clientes) => { 
-        console.log('clientes in obterClientes list:', clientes.json());
         this.clientes = clientes.json();
         for(var i=0;i<this.clientes.length;i++){
           if (this.clientes[i].contatos[0]) {
@@ -64,8 +63,10 @@ export class ClienteListComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       },
-      (err) => { },
-        () => { }
+      (err) => {
+        console.log('Algum erro ocorreu obtendo cliente ', err);
+        throw err;
+      }
     )
   }
 

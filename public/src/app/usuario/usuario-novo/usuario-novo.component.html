@@ -62,7 +62,7 @@
     </tr></table>
 
     <table class="example-full-width" cellspacing="0"><tr> 
-      <td><mat-form-field class="example-full-width">
+      <td><mat-form-field style="width:400px !important;" class="example-full-width">
         <input 
         matInput 
         placeholder="email"
@@ -93,15 +93,30 @@
       <td><mat-form-field class="example-full-width">
         <input 
         matInput
+        autocomplete="off" 
         placeholder="custo hora"
-        type="number"
         formControlName="custoHora"  
+        currencyMask 
+        [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+        class="example-right-align"
         />
         <mat-error *ngIf="custoHora.invalid && custoHora.touched">
             custo Hora informado não é válido
         </mat-error>
       </mat-form-field></td>
     </tr></table>
+
+    <table class="example-full-width" cellspacing="0"><tr> 
+        <td><mat-form-field class="example-full-width">
+          <input 
+          matInput
+          placeholder="senha provisória"
+          type="text"
+          formControlName="senha"  
+          />
+        </mat-form-field></td>
+      </tr></table>
+
     <br>
     <table class="example-full-width" cellspacing="0"><tr> 
       <td>

@@ -50,8 +50,8 @@ export class ApontamentoListaDespesaComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log('ApontamentoListaDespesaComponent > ngOnInit()');
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-    console.log('ApontamentoListaDespesaComponent > usuariologado',this.usuarioLogado.email)
     this.obterListaApontamento();
   }
 
@@ -64,7 +64,7 @@ export class ApontamentoListaDespesaComponent implements OnInit {
   }
 
   obterListaApontamento(){
-    // console.log('ApontamentoListaDespesaComponent > obterListaApontamento()', this.usuarioLogado)
+    console.log('ApontamentoListaDespesaComponent > obterListaApontamento()');
     const apontObservable = this._projetoService.obterApontamentosDespesa(this.usuarioLogado);
     apontObservable.subscribe(
       (apontamentos) => {
@@ -77,23 +77,26 @@ export class ApontamentoListaDespesaComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       },
-      (err) => { },
-        () => { }
+      (err) => {
+        console.log('Algum erro ocorreu obtendo lista de apontamentos despesa ', err);
+        throw err;
+      }
     )
   }
 
   obterProjeto(id, i) {
-    // console.log('ApontamentoListaDespesaComponent > obterProjeto()', id, i)
+    console.log('ApontamentoListaDespesaComponent > obterProjeto()');
     const observable = this._projetoService.obterProjetoById(id);
     observable.subscribe(
       (response) => {
         this.projeto = response.json();
-        // console.log('ApontamentoListaDespesaComponent > obterProjeto() > this.projeto', this.projeto.apontamentos);
         this.apontamentos[i].codigo = this.projeto.codigo;
         this.apontamentos[i].descricao = this.projeto.descricao;
       },
-      (err) => { },
-        () => { }
+      (err) => {
+        console.log('Algum erro ocorreu obtendo projetoById ', err);
+        throw err;
+      }
     )
   }
 

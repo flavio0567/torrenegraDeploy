@@ -18,7 +18,7 @@ export interface Transaction {
 
 
 export function DataHora(x, y) {
-  console.log('x , y : ', x, y)
+
   let diff;
   let hora;
   let minutes;
@@ -27,16 +27,13 @@ export function DataHora(x, y) {
   y = new Date(y);
   
   diff=Math.abs(y.getTime()- x.getTime())/3600000;
-  console.log(diff);
   
   if (isNaN(diff)){ return {dia: 0, hora: 0, minuto: 0}; }
   
   hora = parseInt(diff);   
-  console.log('hora', hora);
   
   minutes = ((diff)%1/100*60)*100;
-  minutes = parseInt(minutes);
-  console.log('minutes', minutes);  
+  minutes = parseInt(minutes);  
   
   return {hora: hora, minuto: minutes };
 }
@@ -92,7 +89,7 @@ export class RelatorioApontamentoProjetoComponent implements OnInit {
 
   ngOnInit() {
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-    console.log('ProjetoListComponent > usuariologado ',this.usuarioLogado)
+    console.log('ProjetoListComponent > usuariologado ')
     this.obterListaProjeto();
   }
 
@@ -102,11 +99,9 @@ export class RelatorioApontamentoProjetoComponent implements OnInit {
     projetoObservable.subscribe(
       (projetos) => { 
         this.projetos = projetos.json();
-        console.log('ProjetoListComponent > obterListaProjeto()', this.projetos);
         for (var i = 0; i < this.projetos.length; i++) {
           this.obterCliente(this.projetos[i]['_clienteId'], i);
           this.obterApontamentos(this.projetos[i]['_id'], i);
-          console.log('p r o j e t o s  ',i, this.projetos);
         }
       },
       (err) => { },
@@ -128,7 +123,7 @@ export class RelatorioApontamentoProjetoComponent implements OnInit {
   }
 
   obterApontamentos(id, i) {
-    console.log('ProjetoListComponent > obterApontamentos', id);
+    console.log('ProjetoListComponent > obterApontamentos');
     this._projetoService.obterTotalApontamentos(id)
     .subscribe(
       (apontamentos) => { 

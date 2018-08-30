@@ -23,8 +23,8 @@ export class UsuarioShowComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log('UsuarioShowComponent > ngOnInit()');
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-    console.log('UsuarioShowComponent > usuarioLogado ', this.usuarioLogado.email);
     this.obterUsuario(this._route.snapshot.params['id']);
   }
 
@@ -37,9 +37,9 @@ export class UsuarioShowComponent implements OnInit {
   }
 
   obterUsuario(id){
-    console.log('UsuarioShowComponent > obterUsuario', id); 
-    const observable = this._usuarioService.obterUsuarioById(id);
-    observable.subscribe((response) => {
+    console.log('UsuarioShowComponent > obterUsuario'); 
+    this._usuarioService.obterUsuarioById(id)
+      .subscribe((response) => {
       this.usuario = response.json();
     });
   }

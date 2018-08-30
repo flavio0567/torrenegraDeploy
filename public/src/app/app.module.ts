@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler, LOCALE_ID,  } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatRippleModule, MatDatepickerModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatOptionModule, MatSelectModule, MatRadioModule, MatProgressSpinnerModule, MatMenuModule, MatIconModule, MatButtonModule, MatSortModule, MatTableModule, MatNativeDateModule } from '@angular/material';
+import { MatRippleModule, MatDatepickerModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatOptionModule, MatSelectModule, MatRadioModule, MatProgressSpinnerModule, MatMenuModule, MatIconModule, MatButtonModule, MatSortModule, MatTableModule, MatNativeDateModule } from '@angular/material';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
@@ -14,16 +15,20 @@ import ptBr from '@angular/common/locales/pt';
 
 import { GlobalErrorComponent } from './global-error/global-error.component';
 
+import { AuthGuard } from './auth.guard';
+import { AuthService } from './auth.service';
 import { ProjetoService } from './projeto/projeto.service';
 import { UsuarioService } from './usuario/usuario.service';
 import { ClienteService } from './cliente/cliente.service';
 import { GlobalErrorHandlerService } from './global-error-handler.service';
 
 import { NgbdDatepickerPopup } from './apontamento/datepicker-popup';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AdminComponent } from './admin/admin.component';
+import { LoginComponent } from './login/login.component';
 import { ClienteEditComponent } from './cliente/cliente-edit/cliente-edit.component';
 import { ClienteNovoComponent } from './cliente/cliente-novo/cliente-novo.component';
 import { ClienteShowComponent } from './cliente/cliente-show/cliente-show.component';
@@ -31,7 +36,6 @@ import { UsuarioListComponent } from './usuario/usuario-list/usuario-list.compon
 import { UsuarioEditComponent } from './usuario/usuario-edit/usuario-edit.component';
 import { UsuarioNovoComponent } from './usuario/usuario-novo/usuario-novo.component';
 import { UsuarioShowComponent } from './usuario/usuario-show/usuario-show.component';
-import { LoginComponent } from './login/login.component';
 import { FinanceiroComponent } from './financeiro/financeiro.component';
 import { ProjetoListComponent, DialogProjeto } from './projeto/projeto-list/projeto-list.component';
 import { ProjetoNovoComponent } from './projeto/projeto-novo/projeto-novo.component';
@@ -48,6 +52,9 @@ import { RelatorioApontamentoHorasUsuarioComponent } from './relatorio/relatorio
 import { RelatorioApontamentoDespesasUsuarioComponent } from './relatorio/relatorio-apontamento-despesas-usuario/relatorio-apontamento-despesas-usuario.component';
 import { RelatorioCustoProjetoComponent } from './relatorio/relatorio-custo-projeto/relatorio-custo-projeto.component';
 import { CurrencyMaskModule } from "ng2-currency-mask";
+import { RegisterComponent } from './register/register.component';
+
+
 
 registerLocaleData(ptBr);
 
@@ -55,6 +62,7 @@ registerLocaleData(ptBr);
   declarations: [
     AppComponent,
     LoginComponent,
+    AdminComponent,
     FinanceiroComponent,
     ClienteListComponent,
     ClienteNovoComponent,
@@ -80,13 +88,15 @@ registerLocaleData(ptBr);
     RelatorioApontamentoProjetoComponent,
     RelatorioApontamentoHorasUsuarioComponent,
     RelatorioApontamentoDespesasUsuarioComponent,
-    RelatorioCustoProjetoComponent
+    RelatorioCustoProjetoComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatDialogModule,
     HttpModule,
+    HttpClientModule,
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
@@ -112,8 +122,8 @@ registerLocaleData(ptBr);
     MatSortModule,
     MatTableModule,
     MatPaginatorModule,
-    NgbModule,
-    NgbModule.forRoot(),
+    // NgbModule,
+    // NgbModule.forRoot(),
     MatDatepickerModule, 
     MatNativeDateModule,
     CurrencyMaskModule
@@ -123,6 +133,8 @@ registerLocaleData(ptBr);
     DialogApontamentoHora
   ],
   providers: [
+    AuthService,
+    AuthGuard,
     ProjetoService,
     UsuarioService,
     ClienteService,

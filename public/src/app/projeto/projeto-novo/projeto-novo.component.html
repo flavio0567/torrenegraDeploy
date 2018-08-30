@@ -133,9 +133,12 @@
         <input 
         matInput 
         placeholder="valor terceiros"
-        type="text"
         formControlName="valorTerceiros" 
         name="valorTerceiros"
+        currencyMask 
+        [(ngModel)]="valueTerceiros" 
+        [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+        class="example-right-align"
         />
         <!-- <mat-error *ngIf="valorTerceiros.invalid && valorTerceiros.touched">
           valor terceiros informado não é válido
@@ -148,9 +151,12 @@
         <input 
         matInput 
         placeholder="valor materiais"
-        type="text"
         formControlName="valorMateriais" 
         name="valorMateriais"
+        currencyMask 
+        [(ngModel)]="valueMateriais" 
+        [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+        class="example-right-align"
         />
       </mat-form-field></td>
     </tr></table>
@@ -161,9 +167,12 @@
         <input 
         matInput 
         placeholder="valor viagens"
-        type="text"
         formControlName="valorViagens" 
         name="valorViagens"
+        currencyMask 
+        [(ngModel)]="valueViagens" 
+        [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+        class="example-right-align"
         />
       </mat-form-field></td>
     </tr></table> 

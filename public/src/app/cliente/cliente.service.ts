@@ -13,22 +13,22 @@ export class ClienteService {
   }
 
   criarCliente(cliente) {
-    console.log('ClienteService > criarCliente(cliente, endereco)', cliente);
+    console.log('ClienteService > criarCliente(cliente, endereco)' );
     return this._http.post('cliente/novo', cliente);
   }
 
   obterClienteById(id) {
-    console.log('ClienteService > obterClienteById', id);
+    console.log('ClienteService > obterClienteById' );
     return this._http.get('/cliente/' + id );
   }
 
   editarCliente(id, cliente) {
-    console.log('ClienteService > editarCliente(cliente)', id, cliente);
+    console.log('ClienteService > editarCliente(cliente)' );
     return this._http.put('cliente/edit/' + id, cliente);
   }
 
   excluirCliente(id) {
-    console.log('ClienteService > excluirCliente(id)', id);
+    console.log('ClienteService > excluirCliente(id)' );
     return this._http.delete('cliente/excluir/' + id);
   }
 

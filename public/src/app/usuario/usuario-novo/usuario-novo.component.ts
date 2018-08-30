@@ -11,7 +11,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class UsuarioNovoComponent implements OnInit {
   usuarioLogado = {
     email: '',
-    admin: ''
+    admin: false
   }
 
   errors: any;
@@ -24,14 +24,15 @@ export class UsuarioNovoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log('UsuarioNovoComponent > ngOnInit()');
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-    console.log('UsuarioNovoComponent > usuariologado ', this.usuarioLogado.email);
     this.userForm = this._formBuilder.group({
       nome: [null, [ Validators.required, Validators.minLength(2) ]],
       sobrenome: [null, [ Validators.required, Validators.minLength(2) ]],
       email: [null, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')],
       funcao: [null, [ Validators.required ]],
       custoHora: [null, [ Validators.required ]],
+      senha: null,
       admin: []
     })
   }
@@ -57,7 +58,10 @@ export class UsuarioNovoComponent implements OnInit {
   }
 
   criarUsuario(userForm) {
-  console.log('UsuarioNovoComponent > criarUsuario(userForm)', userForm.value); 
+  console.log('UsuarioNovoComponent > criarUsuario(userForm)');
+  if (!userForm.value.admin) {
+    userForm.value.admin = false;
+  } 
   this._usuarioService.criarUsuario(userForm.value)
     .subscribe(observable => {
       if(observable.json().errors) {
@@ -65,10 +69,12 @@ export class UsuarioNovoComponent implements OnInit {
         console.log('Algum erro ocorreu salvando usuario ', this.errors);
         this._router.navigate(['/usuario/novo']);
       } else {
+        console.log('Sucesso salvando usuario ');
         this._router.navigate(['/usuarios']);
       }
     },
-      err => {
+      (err) => {
+        console.log('Algum erro ocorreu criando usuario ', err);
         throw err;
       }
     );

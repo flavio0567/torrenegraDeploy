@@ -47,7 +47,7 @@
             nome informado não é válido
         </mat-error>
       </mat-form-field></td>
-
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <td><mat-form-field style="width:400px !important;" class="example-full-width">
           <input 
           matInput 
@@ -97,10 +97,13 @@
       <td><mat-form-field class="example-full-width">
         <input 
         matInput
+        autocomplete="off" 
         placeholder="custo hora"
-        type="number"
         formControlName="custoHora" 
-        />
+        currencyMask 
+        [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+        class="example-right-align"
+        />   
         <mat-error *ngIf="custoHora.invalid && custoHora.touched">
             custo Hora informado não é válido
         </mat-error>

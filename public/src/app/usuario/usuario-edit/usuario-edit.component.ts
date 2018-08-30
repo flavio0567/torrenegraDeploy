@@ -26,8 +26,8 @@ export class UsuarioEditComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log('UsuarioEditComponent > ngOnInit() ');
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-    console.log('ProjetoEditComponent > usuarioLogado ', this.usuarioLogado.email);
     this.obterUsuario(this._route.snapshot.params['id']);
   }
 
@@ -72,11 +72,13 @@ export class UsuarioEditComponent implements OnInit {
 
 
   editarUsuario(userForm: NgForm) {
-    console.log('UsuarioEditComponent > obterUsuario(userForm)', userForm.value); 
+    console.log('UsuarioEditComponent > editarUsuario(userForm)'); 
     this._usuarioService.editarUsuario(userForm.value)
     .subscribe(observable => {
       if(observable.json().errors) {
+        // if(JSON.stringify(observable['errors'])) {
         this.errors = observable.json().errors;
+        // this.errors = JSON.stringify(observable['errors']);
         console.log('Algum erro ocorreu editando usuario ', this.errors);
         this._router.navigate(['/usuario/edit/', this.usuario['_id']]);
       } else {

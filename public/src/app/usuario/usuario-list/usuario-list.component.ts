@@ -21,13 +21,13 @@ export class UsuarioListComponent implements OnInit {
 
   usuarioLogado = {
     email: '',
-    admin: ''
+    admin: false
   }
   usuarios: any;
   frontPath:string = "../../assets/svg/baseline-how.svg";
   backPath:string =  "";
 
-  displayedColumns: string[] = ['nome', 'sobrenome', 'email', 'funcao', 'custoHora', 'admin', 'acao1', 'acao2' ];
+  displayedColumns: string[] = ['admin', 'nome', 'sobrenome', 'email', 'funcao', 'custoHora',  'acao1', 'acao2' ];
   dataSource: MatTableDataSource<UsuarioData>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -38,8 +38,8 @@ export class UsuarioListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log('UsuarioListComponent > ngOnInit()');
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-    console.log('UsuarioListComponent > usuariologado',this.usuarioLogado.email)
     this.obterListaUsuario();
   }
 
@@ -48,7 +48,6 @@ export class UsuarioListComponent implements OnInit {
     const usuarioObservable = this._usuarioService.obterListaUsuario();
     usuarioObservable.subscribe(
       (usuarios) => { 
-        console.log('usuario in obterUsuario list:', usuarios.json());
         this.usuarios = usuarios.json();
         this.dataSource = new MatTableDataSource(this.usuarios);
         this.dataSource.paginator = this.paginator;

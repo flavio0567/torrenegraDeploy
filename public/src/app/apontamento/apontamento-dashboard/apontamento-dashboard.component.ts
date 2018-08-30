@@ -16,8 +16,8 @@ export class ApontamentoDashboardComponent implements OnInit {
   constructor(private _usuarioService: UsuarioService) { }
 
   ngOnInit() {
+    console.log('ApontamentoDashboardComponent > ngOnInit() ');
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-    console.log('ApontamentoDashboardComponent > usuariologado ',this.usuarioLogado.email)
   }
 
 }

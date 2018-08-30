@@ -4,7 +4,8 @@ import { UsuarioService } from '../../usuario/usuario.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatRadioChange } from '@angular/material';
-import * as moment from 'moment';
+import { AuthService } from '../../auth.service';
+
 
 @Component({
   selector: 'app-apontamento-novo',
@@ -33,7 +34,7 @@ export class ApontamentoNovoComponent implements OnInit {
       descricao: "",
       valor: 0,
       data: "",
-      reembolso: ""
+      reembolso: false
     }
   }
   array = ['hora', 'despesa'];
@@ -44,6 +45,7 @@ export class ApontamentoNovoComponent implements OnInit {
     private fb: FormBuilder,
     private _projetoService: ProjetoService,
     private _usuarioService: UsuarioService,
+    private _auth: AuthService,
     private _router: Router
   ) {  
     this.options = fb.group({
@@ -54,7 +56,7 @@ export class ApontamentoNovoComponent implements OnInit {
       inicio: [null],
       fim: [null],
       valor: [null],
-      reembolso: [null]
+      reembolso: [false]
     });
 
     this.formControlValueChanged();
@@ -62,14 +64,16 @@ export class ApontamentoNovoComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(' ApontamentoNovoComponent > ngOnInit() ');
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-    console.log(' ApontamentoNovoComponent > usuarioLogado ', this.usuarioLogado.email);
     this.apontamento.usuario = this.usuarioLogado;
     this._usuarioService.obterUsuario(this.apontamento.usuario)
     .subscribe(
-      (usuario) => { 
-        this.usuario = usuario.json();
-        this.apontamento.valorHH = this.usuario.custoHora;
+      (usuario) => {
+        if (usuario) { 
+          this.usuario = usuario.json();
+          this.apontamento.valorHH = this.usuario.custoHora;
+        }
       },
       (err) => { },
         () => { }
@@ -78,7 +82,7 @@ export class ApontamentoNovoComponent implements OnInit {
   }
 
   obterListaProjeto() {
-    console.log('ApontamentoNovoComponent > obterListaProjeto()')
+    console.log('ApontamentoNovoComponent > obterListaProjeto()');
     const projetoObservable = this._projetoService.obterTodos();
     projetoObservable.subscribe(
       (projetos) => { 
@@ -129,6 +133,7 @@ export class ApontamentoNovoComponent implements OnInit {
   }
 
   setApontamento() {
+    console.log('ApontamentoNovoComponent > setApontamento()');
     this.apontamento.tipo = this.options.controls.tipo.value;
     if (this.options.controls.tipo.value != 'hora') {
       this.apontamento.despesa.data = this.today;
@@ -136,7 +141,6 @@ export class ApontamentoNovoComponent implements OnInit {
       this.apontamento.hora.fim = "";
     } else {
       this.apontamento.hora.inicio = this.today;
-      console.log('data : +++++++++ +++++++++++++ +++++++++++++++',  typeof this.apontamento.hora.inicio);
       this.apontamento.hora.fim = "";
     }
     if (this.options.controls.tipo.value == 'despesa' && this.options.controls.opDespesa.value != 'outros') {
@@ -153,7 +157,7 @@ export class ApontamentoNovoComponent implements OnInit {
         return false;
       }
     }
-    console.log('ApontamentoNovoComponent > setApontamento() >  this.apontamento, valorHH', this.options.controls.projeto.value, this.apontamento.valorHH );
+    this.apontamento.despesa.reembolso = this.options.controls.reembolso.value;
     this._projetoService.apontamentoNovo(this.options.controls.projeto.value, this.apontamento)
       .subscribe(observable => {
         if(observable.json().errors) {
@@ -164,7 +168,8 @@ export class ApontamentoNovoComponent implements OnInit {
           this._router.navigate(['/apontamentos']);
         }
       },
-      err => {
+      (err) => {
+        console.log('Algum erro ocorreu criando apontamento ', err);
         throw err;
       })
     }

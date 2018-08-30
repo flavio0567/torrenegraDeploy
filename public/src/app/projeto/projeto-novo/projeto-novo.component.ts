@@ -32,11 +32,11 @@ export class ProjetoNovoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log('ProjetoNovoComponent > ngOnInit() ');
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-    console.log('ProjetoNovoComponent > usuarioLogado ', this.usuarioLogado.email);
     this.obterListaCliente();
     this.projetoForm = this._formBuilder.group({
-      codigo: [null, [ Validators.required, Validators.pattern("OR-[0-9]{3}-[1-9]{2}") ]],
+      codigo: [null, [ Validators.required, Validators.pattern("OR-[0-9]{3}-[0-9]{2}") ]],
       descricao: [null, [ Validators.required ]],
       _clienteId: [null],
       pedido:  [null, [ Validators.required ]],
@@ -82,7 +82,7 @@ export class ProjetoNovoComponent implements OnInit {
   }
 
   criarProjeto(projetoForm) {
-    console.log('ProjetoNovoComponent > novoProjeto(nProjForm)', projetoForm);
+    console.log('ProjetoNovoComponent > criarProjeto(form)');
     this._projetoService.criarProjeto(projetoForm.value)
       .subscribe(observable => {
         if(observable.json().errors) {

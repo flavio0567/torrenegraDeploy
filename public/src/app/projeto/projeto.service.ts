@@ -9,19 +9,17 @@ export class ProjetoService {
   constructor(private _http: Http) { }
 
   obterApontamentosHoraPorUsuario(usuario) {
-    console.log('ProjetoService > obterApontamentosHoraPorUsuario(usuario)', usuario);
+    console.log('ProjetoService > obterApontamentosHoraPorUsuario(usuario)' );
     return this._http.get('/apontamentos/hora/usuario/', {params: { usuario: usuario}});
   }
 
-  obterApontaHora(apto) {
-    console.log('ProjetoService > obterApontaHora(apto)', apto);
-    let flag;
-    if (!apto._projetoId) {flag = ''} else {flag = 'projeto'};
-    return this._http.get('/apontamentos/hora/',  {params: { _projetoId: apto._projetoId, email: apto.email, data1: apto.data1, data2: apto.data2, flag: flag}});
+  obterApontamento(apto) {
+    console.log('ProjetoService > obterApontamento(apto)' );
+    return this._http.post('/obter/apontamento',  apto);
   }
 
   obterApontamentosDespesa(usuario) {
-    console.log('ProjetoService > obterApontamentosDespesa(usuario)', usuario);
+    console.log('ProjetoService > obterApontamentosDespesa(usuario)' );
     return this._http.get('/apontamentos/despesa/', {params: { usuario: usuario}});
 
   }
@@ -32,38 +30,38 @@ export class ProjetoService {
   }
 
   criarProjeto(projeto) {
-    console.log('ProjetoService > criarProjeto(projeto,cliente)', projeto.codigo, projeto.descricao, projeto._clienteId );
+    console.log('ProjetoService > criarProjeto(projeto)');
     return this._http.post('projeto/novo', projeto);
   }
 
   editarProjeto(projeto) {
-    console.log('ProjetoService > editarProjeto(projeto)', projeto);
+    console.log('ProjetoService > editarProjeto(projeto)' );
     return this._http.put('projeto/edit/' + projeto['_id'], projeto);
   }
 
   apontamentoNovo(id, apontamento) {
-    console.log('ProjetoService > apontamentoNovo(id, apontamento)', id, apontamento);
+    console.log('ProjetoService > apontamentoNovo(id, apontamento)' );
     return this._http.put('apontamento/novo/' + id, apontamento);
   }
 
   obterTotalApontamentos(id) {
-    console.log('ProjetoService > obterTotalApontamentos', id);
+    console.log('ProjetoService > obterTotalApontamentos' );
     return this._http.get('apontamento/total/' + id);
   }
 
 
   mudarSituacao(id, situacao) {
-    console.log('ProjetoService > mudarSituacao(id, situacao)', id, situacao);
+    console.log('ProjetoService > mudarSituacao(id, situacao)' );
     return this._http.put('/projeto/mudarsituacao/' + id, situacao);
   }
 
   obterProjetoById(id) {
-    console.log('ProjetoService > obterProjetoById', id);
+    console.log('ProjetoService > obterProjetoById' );
     return this._http.get('/projeto/' + id );
   }
 
   encerrarApontamento(projeto) {
-    console.log('ProjetoService > encerrarApontamento(projeto)', projeto);
+    console.log('ProjetoService > encerrarApontamento(projeto)' );
     return this._http.put('/apontamento/encerrar/' + projeto['id'], projeto);
   }
   

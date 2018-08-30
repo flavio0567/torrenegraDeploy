@@ -11,20 +11,20 @@ const ObjectId    = require('mongodb').ObjectID;
 
 module.exports = { 
     list: (req, res) => {
-        console.log("SERVER > CONTROLLER > projeto > list")
+        console.log("SERVER > CONTROLLER > projeto > list");
         Projeto.find({ situacao: { $in: [0, 1, 2 ] } }).sort({ 'codigo': -1 })
             .then(projeto => res.json(projeto))
             .catch(error => console.log(error));
     },
     novo: (req, res) => {
-        console.log("SERVER > CONTROLLER > projeto > novo > req.body", req.body);
+        console.log("SERVER > CONTROLLER > projeto > novo > req.body");
         let projeto = new Projeto(req.body);
         projeto.save(function(err, result){
             if(err) {
                 console.log('Ocorreu erro salvando projeto', err);
                 res.json(err);
             } else { 
-                console.log('sucesso savando projeto', result);
+                console.log('sucesso savando projeto');
                 Cliente.findOne({ _id: req.body._clienteId }).then(cliente => {
                     let clienteProjeto = new ClienteProjeto({ codigo: req.body.codigo})
                     clienteProjeto._cliente = cliente._id;
@@ -36,7 +36,7 @@ module.exports = {
                                     console.log('Erro salvando cliente ', err);
                                     res.json(err);
                                 } else {
-                                    console.log('Cliente salvo com sucesso after clienteProjeto!', cliente);
+                                    console.log('Cliente salvo com sucesso after clienteProjeto!');
                                     res.json(cliente);
                                 };
                             });
@@ -47,15 +47,14 @@ module.exports = {
         })
     },
     obterProjetoById: function(req, res) {
-        console.log("SERVER > CONTROLLER > obterProjetoById > req.params.id", req.params.id);
+        console.log("SERVER > CONTROLLER > obterProjetoById ");
         Projeto.findById({_id: req.params.id})
         .populate('apontamentos')
-        // .populate({path: 'Restaurant', reviews: { sort: { 'starts': 1 } } })
         .then(projeto => res.json(projeto))
         .catch(error => console.log(error));
     },
     edit: (req, res) => {
-        console.log("SERVER > CONTROLLER > projeto > edit > req.body", req.body);
+        console.log("SERVER > CONTROLLER > projeto > edit");
         Projeto.findOne({
             _id: req.body._id
         }, function (err, eProjeto) {
@@ -83,25 +82,23 @@ module.exports = {
         });
     },  
     obterApontamentoHoraPorUsuario: (req, res) => {
-        console.log("SERVER > CONTROLLER > obterApontamentoHoraPorUsuario", req.query.usuario);
+        console.log("SERVER > CONTROLLER > obterApontamentoHoraPorUsuario");
         // Apontamento.find({ $and: [ { tipo : { $eq: ['hora'] } }, { 'hora.inicio': { $ne: [''] } }, { 'hora.fim': { $eq: [''] }}, { usuario: { $eq: ['usuario']} } ] })
         // Apontamento.find({ $and: [ { 'hora.inicio': { $ne: [''] } }, { 'hora.fim': { $eq: [''] }}, { usuario: { $eq: [req.query.usuario]} } ] })
         Apontamento.find({ tipo : 'hora', 'hora.fim': '', usuario: req.query.usuario })
             .populate('apontamentos') 
             .exec(function (err, apontamento) {
                 if (err) return handleError(err);
-                console.log('Os apontamentos são %s', apontamento);
+                console.log('sucesso obtendo apontamentos ');
                 res.json(apontamento);
             })
     },
-    obterApontaHora: (req, res) => {
-        console.log("SERVER > CONTROLLER > obterApontaHora > req.query.apontamento", req.query);
-        let dt1 = req.query.data1;
-        let dt2 = req.query.data2;
-        if (req.query.flag === 'projeto') {
-            console.log('projeto: ', ObjectId(req.query._projetoId), 'email:', req.query.email, 'data1:', dt1, 'data2:',dt2, 'flag:', req.query.flag);
+    obterApontamento: (req, res) => {
+        console.log("SERVER > CONTROLLER > obterApontamento > req.body");
+        if (req.body._projetoId) {
+            console.log('projeto: ', ObjectId(req.body._projetoId), 'email:', req.body.email);
             // Apontamento.find({ $and: [ { usuario: {$eq: req.query.email }}, { _projeto: ObjectId(req.query._projetoId) }, { tipo : 'hora' }, { 'hora.inicio': { $gte: req.query.data1 }  },  { 'hora.inicio': { $lte: req.query.data2 }  }, { 'hora.fim': { $ne: [''] }} ] })
-            Apontamento.find({ $and: [ { usuario: {$eq: req.query.email }}, { _projeto: ObjectId(req.query._projetoId) }, { tipo : 'hora' }, { 'hora.inicio': { $gte: dt1 } }  ] })
+            Apontamento.find({ $and: [ { usuario: {$eq: req.body.email }}, { _projeto: ObjectId(req.body._projetoId) }, { tipo : req.body.tipo } ] })
             .populate('apontamentos') 
             .exec(function (err, apontamento) {
                 console.log('Os apontamentos são %s', apontamento);
@@ -109,38 +106,37 @@ module.exports = {
             })
             .catch(error => console.log(error));  
         } else {
-            console.log('projeto: ', null, 'email:', req.query.email, 'data1:', dt1, 'data2:', dt2);
+            console.log('projeto: ', null, 'email:', req.body.email);
             // Apontamento.find({ $and: [ { usuario: {$eq: req.query.email }}, { _projeto: req.query._projetoId }, { tipo : 'hora' }, { 'hora.inicio': { $gte: req.query.data1 }  },  { 'hora.inicio': { $lte: req.query.data2 }  }, { 'hora.fim': { $ne: [''] }} ] })
-            Apontamento.find({ $and: [ { usuario: {$eq: req.query.email }}, { tipo : 'hora' }, { 'hora.inicio': { $gte: dt1 } }  ] })
-            // Apontamento.find({ $and: [ { usuario: {$eq: req.query.email }}, { tipo : 'hora' }, { 'hora.inicio': { $gte: req.query.data1 } } ] })
+            Apontamento.find({ $and: [ { usuario: {$eq: req.body.email }}, { tipo : req.body.tipo } ] })
                 .populate('apontamentos') 
                 .exec(function (err, apontamento) {
                     // if (err) return handleError(err);
-                    console.log('Os apontamentos são %s', apontamento);
+                    console.log('sucesso obtendo apontamentos ');
                     res.json(apontamento);
                 })
                 .catch(error => console.log(error));
         }
     },
     obterApontamentoDespesaPorUsuario: (req, res) => {
-        console.log("SERVER > CONTROLLER > obterApontamentoDespesaPorUsuario", req.query.usuario);
+        console.log("SERVER > CONTROLLER > obterApontamentoDespesaPorUsuario");
         // Apontamento.find({ $and: [ { tipo : { $eq: ['despesa'] } }, { usuario: { $eq: [req.query.usuario]} } ] } )
         Apontamento.find({ tipo : 'despesa', usuario: req.query.usuario} ).sort({ createdAt: -1 })
             .populate('apontamentos') 
             .exec(function (err, apontamento) {
                 if (err) return handleError(err);
-                console.log('Os apontamentos são %s', apontamento);
+                console.log('sucesso obtendo apontamentos ');
                 res.json(apontamento);
             })
     },
     obterApontamentoTotal: (req, res) => {
-        console.log("SERVER > CONTROLLER > obterApontamentoTotalHora > req.params.id", req.params.id);
+        console.log("SERVER > CONTROLLER > obterApontamentoTotalHora");
         Apontamento.find( { $and: [{ _projeto: req.params.id }, { $or: [{ tipo: 'hora'}, { 'hora.fim' : { $ne: '' } },  {tipo: 'despesa'} ] }  ] } )
             .then(apontamentos => res.json(apontamentos))
             .catch(error => console.log(error));
     },
     apontamentoNovo: (req, res) => {
-        console.log("SERVER > CONTROLLER > apontamentoNovo > req.params.id > req.body ", req.params.id, req.body);
+        console.log("SERVER > CONTROLLER > apontamentoNovo ");
         Projeto.findOne({_id: req.params.id}, function (err, projeto){
             let apontamento = new Apontamento(req.body);
             apontamento._projeto = req.params.id;
@@ -165,7 +161,7 @@ module.exports = {
     },
 
     mudarSituacaoProjeto: (req, res) => {
-        console.log("SERVER > CONTROLLER > mudarSituacao projeto > req.params  ", req.params.id, req.body);
+        console.log("SERVER > CONTROLLER > mudarSituacao projeto");
         Projeto.update( { _id: req.params.id }, { situacao: req.body })
             .then(projeto => res.json(projeto))
             .catch(error => console.log(error));
@@ -173,7 +169,7 @@ module.exports = {
     
 
     encerrarApontamento: (req, res) => {
-        console.log("SERVER > CONTROLLER > encerrar apontamento > req.params.id, req.body  ", req.params.id, req.body);
+        console.log("SERVER > CONTROLLER > encerrar apontamento " );
         Apontamento.findOneAndUpdate( { _id: req.params.id }, { 'hora.fim': req.body.fim  })
             .then(projeto => res.json(projeto))
             .catch(error => console.log(error));

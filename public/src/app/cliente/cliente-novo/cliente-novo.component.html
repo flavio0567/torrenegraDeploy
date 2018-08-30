@@ -114,7 +114,7 @@
           formControlName="cidade" 
           name="cidade"
           >
-        </mat-form-field></td>
+        </mat-form-field></td>&nbsp;&nbsp;&nbsp;&nbsp;
         <td><mat-form-field class="example-full-width">
           <input 
           matInput 
@@ -125,7 +125,7 @@
           maxlength="2"
           >
           <mat-hint align="end" *ngIf="estado">{{estado.value.length}} / 2</mat-hint>
-        </mat-form-field></td>
+        </mat-form-field></td>&nbsp;&nbsp;&nbsp;&nbsp;
         <td><mat-form-field class="example-full-width">
           <input 
           matInput 
@@ -148,10 +148,13 @@
       <td><mat-form-field class="example-full-width">
         <input 
         matInput
+        autocomplete="off" 
         placeholder="valor HH"
-        type="number"
         formControlName="valorHH" 
         name="valorHH"  
+        currencyMask 
+        [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+        class="example-right-align"
         />
       </mat-form-field></td>
       <td><mat-form-field class="example-full-width">

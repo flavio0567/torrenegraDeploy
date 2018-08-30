@@ -7,11 +7,12 @@
         
           <td><mat-form-field class="example-full-width">
             <input 
-            matInput 
+            matInput
+            autocomplete="off" 
             placeholder="e-mail"
             type="email"
             formControlName="email" 
-            name="email"
+            id="email"
             />
             <div *ngIf="email">
               <mat-error *ngIf="email.invalid">
@@ -24,11 +25,12 @@
           <table class="example-full-width" cellspacing="0"><tr> 
           <td><mat-form-field class="mat-body-1">
             <input 
-            matInput 
+            matInput
+            autocomplete="off" 
             placeholder="senha"
             type="password"
             formControlName="senha"  
-            name="senha"
+            id="senha"
             />
             <div *ngIf="senha">
             <mat-error *ngIf="senha.invalid && senha.touched">
@@ -41,9 +43,10 @@
         <div class="errors" *ngIf="errors">
             <p *ngIf="errors" >  {{ errors.message }} </p>
         </div>
+        <a  mat-stroked-button color="primary" [routerLink]="['/primeiro/acesso']">Primeiro acesso?</a>
     </div>
 
   </form>
-  
+    
 </div>  
 <a href="https://www.linkedin.com/in/fernando-carvalho-6834bbb/"  class="btn btn-linkedin btn-lg">Torre Negra Sistemas <span class="mat-body-1">- Av. Pedro Botesi, 2171 - Sala 113 - Mogi Mirim - São Paulo - Brazil</span> </a>   

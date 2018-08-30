@@ -124,11 +124,15 @@
         <td><mat-form-field style="width:200px !important;" class="example-full-width">
           <input 
           matInput 
+          autocomplete="off" 
           placeholder="valor terceiros"
-          type="text"
           formControlName="valorTerceiros" 
           name="valorTerceiros"
+          currencyMask 
+          [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+          class="example-right-align"
           />
+          <!-- {{ projeto.valorTerceiros | currency: 'BRL'}} -->
           <!-- <mat-error *ngIf="valorTerceiros.invalid && valorTerceiros.touched">
             valor terceiros informado não é válido
           </mat-error> -->
@@ -139,24 +143,31 @@
         <td><mat-form-field style="width:200px !important;" class="example-full-width">
           <input 
           matInput 
+          autocomplete="off" 
           placeholder="valor materiais"
-          type="text"
           formControlName="valorMateriais" 
           name="valorMateriais"
+          currencyMask 
+          [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+          class="example-right-align"
           />
+          <!-- {{ projeto.valorMateriais | currency: 'BRL'}} -->
         </mat-form-field></td>
       </tr></table>
-  
   
       <table class="example-full-width" cellspacing="0"><tr> 
         <td><mat-form-field style="width:200px !important;" class="example-full-width">
           <input 
           matInput 
+          autocomplete="off" 
           placeholder="valor viagens"
-          type="text"
           formControlName="valorViagens" 
           name="valorViagens"
+          currencyMask 
+          [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+          class="example-right-align"
           />
+          <!-- {{ projeto.valorViagens | currency: 'BRL'}} -->
         </mat-form-field></td>
       </tr></table> 
   

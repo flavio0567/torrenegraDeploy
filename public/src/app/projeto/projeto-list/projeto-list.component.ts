@@ -1,11 +1,10 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { ProjetoService } from '../projeto.service';
 import { ClienteService } from '../../cliente/cliente.service';
 import { UsuarioService } from '../../usuario/usuario.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-
+import { AuthService } from '../../auth.service';
 
 export interface ProjetoData {
   codigo: string;
@@ -24,13 +23,11 @@ export interface ProjetoData {
 })
 export class ProjetoListComponent implements OnInit {
 
-
   displayedColumns: string[] = ['codigo', 'descricao', 'cliente', 'pedido', 'situacao', 'acao1', 'acao2'];
   dataSource: MatTableDataSource<ProjetoData>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-
 
   usuarioLogado = {
     email: '',
@@ -66,12 +63,13 @@ export class ProjetoListComponent implements OnInit {
     private _usuarioService: UsuarioService,
     private _projetoService: ProjetoService,
     private _clienteService: ClienteService,
+    // private _auth: AuthService,
     public dialog: MatDialog
   ) { } 
 
   ngOnInit() {
+    console.log('ProjetoListComponent > usuariologado ');
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-    console.log('ProjetoListComponent > usuariologado ',this.usuarioLogado.email)
     this.obterListaProjeto();
   }
 
@@ -91,7 +89,6 @@ export class ProjetoListComponent implements OnInit {
     projetoObservable.subscribe(
       (projetos) => { 
         this.projetos = projetos.json();
-        console.log('ProjetoListComponent > obterListaProjeto()', projetos);
         for (var i = 0; i < this.projetos.length; i++) {
           this.obterCliente(this.projetos[i]._clienteId, i);
           this.obterSituacao(this.projetos[i].situacao, i);
@@ -188,7 +185,6 @@ export class DialogProjeto {
   ];
 
   constructor(private _projetoService: ProjetoService, 
-    // private _router: Router, 
     public dialogRef: MatDialogRef<DialogProjeto>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 

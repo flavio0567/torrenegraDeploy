@@ -4,8 +4,6 @@
 const mongoose = require('mongoose'),
       Cliente  = mongoose.model('Cliente');
 
-// const Apontamento = mongoose.model('Apontamento');
-
 module.exports = { 
     list: (req, res) => {
         console.log("SERVER > CONTROLLER > cliente > list")
@@ -27,14 +25,14 @@ module.exports = {
         })
     },
     obterClienteById: function(req, res) {
-        console.log("SERVER > CONTROLLER > obterClienteById > req.params.id", req.params.id);
+        console.log("SERVER > CONTROLLER > obterClienteById  " );
         Cliente.findById({_id: req.params.id})
         .populate('clienteProjetos')
         .then(cliente => res.json(cliente))
         .catch(error => console.log(error));
     },
     edit: (req, res) => {
-        console.log("SERVER > CONTROLLER > cliente > edit > req.params._id ", req.params.id);
+        console.log("SERVER > CONTROLLER > cliente > edit  " );
         Cliente.findOne({
             _id: req.params.id
         }, function (err, eCliente) {
@@ -65,16 +63,10 @@ module.exports = {
         });
     },
     destroy: (req, res) => {
-        console.log("SERVER > CONTROLLER > cliente > destroy > req.params._id ", req.params.id);
+        console.log("SERVER > CONTROLLER > cliente > destroy   " );
         Cliente.findByIdAndRemove({_id: req.params.id})
             .then(cliente => res.json(cliente))
             .catch(error => console.log(error));
     }
-    // encerrar: (req, res) => {
-    //     Projeto.update( { _id: req.params.id }, { encerrado: true })
-    //         .then(projeto => res.json(projeto))
-    //         .catch(error => console.log(error));
-    // },
-
 
 }

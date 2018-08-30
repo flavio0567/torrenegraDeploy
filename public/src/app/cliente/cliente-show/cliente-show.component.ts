@@ -24,39 +24,42 @@ export class ClienteShowComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log('ClienteShowComponent > ngOnInit() ');
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-    console.log('ClienteShowComponent > usuario ', this.usuarioLogado.email);
     this.obterCliente(this._route.snapshot.params['id']);
   }
   
   obterCliente(id) {
-    console.log('ClienteShowComponent > obterCliente', id); 
+    console.log('ClienteShowComponent > obterCliente'); 
       const observable = this._clienteService.obterClienteById(id);
       observable.subscribe(
         (response) => {
           this.cliente = response.json();
-          console.log('cliente in show >>>>', this.cliente)
         },
-        (err) => { },
-          () => { }
+        (err) => {
+          console.log('Algum erro ocorreu obtendo cliente ', err);
+          throw err;
+        }
       )
   }
 
   excluirCliente() {
     console.log('ClienteShowComponent > excluirCliente'); 
     if (!this.cliente.clienteProjetos[0]) {
-      console.log('Cliente E X C L U I D O', this.cliente.clienteProjetos);
+      console.log('Cliente E X C L U I D O!');
       const observable = this._clienteService.excluirCliente(this.cliente._id);
       observable.subscribe(
         (response) => {
           this.cliente = response.json();
           this._router.navigate(['/clientes']);
         },
-        (err) => { },
-          () => { }
+        (err) => {
+          console.log('Algum erro ocorreu excluindo cliente ', err);
+          throw err;
+        }
       ) 
     } else {
-      console.log('Cliente  N A O   EXCLUIDO', this.cliente.clienteProjetos); 
+      console.log('Cliente  N A O   excluido!'); 
       this.errors = this.cliente.clienteProjetos
     }
     

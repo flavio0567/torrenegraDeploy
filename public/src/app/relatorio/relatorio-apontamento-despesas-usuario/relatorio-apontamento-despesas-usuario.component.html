@@ -1,3 +1,125 @@
-<p>
-  relatorio-apontamento-despesas-usuario works!
-</p>
+<mat-toolbar>
+  <img src="../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png">
+</mat-toolbar>
+
+<div class="mat-elevation-z8">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" [routerLink]="['/projetos']">Retornar <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+<br>
+<div class="container"> 
+  <div class="level-left">
+    <div style="margin-top: 20px;" class="title is-4">Relatório de Apontamento de Despesas por Usuário</div> 
+  </div>
+  <br>
+  <p>Olá {{ usuarioLogado }}</p>
+  <br><br>
+
+  <form class="example-form" [formGroup] = "options">
+
+    <mat-form-field style="width:400px !important;"> 
+      <mat-select placeholder="Selecione o usuário" name="usuario" formControlName="email" required>
+        <mat-option value="option" *ngFor="let u of usuarios" [value]="u.email"> {{ u.nome }} {{ u.sobrenome }}</mat-option>
+      </mat-select>
+      <!-- <mat-error *ngIf="email.invalid && email.touched">
+        usuário é requerido
+      </mat-error> -->
+      <mat-hint align="end">Usuários ativos</mat-hint>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker1" placeholder="de" formControlName="data1">
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+      <mat-hint align="end">Selecione o período</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker2" placeholder="até" formControlName="data2">
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field style="width:400px !important;"> 
+      <mat-select placeholder="Selecione o projeto" name="projeto" formControlName="_projetoId">
+        <mat-option value="option" *ngFor="let p of projetos" [value]="p._id"> {{ p.codigo }} {{ p.descricao }}</mat-option>
+      </mat-select>
+      <mat-hint align="end">Projetos ativos</mat-hint>
+    </mat-form-field>
+    <br>
+
+    <button mat-raised-button color="primary" (click)="obterApontamentos()" >apontamentos</button>
+  </form>
+
+  <br><br><br>
+
+  <table mat-table [dataSource]="transactions" class="mat-elevation-z8" *ngIf="transactions && selected"> 
+
+    <!-- Codigo ProjetoColumn -->
+    <ng-container matColumnDef="codigo">
+      <th mat-header-cell *matHeaderCellDef> código projeto </th>
+      <td mat-cell *matCellDef="let row"> {{row.codigo}} </td>
+      <td mat-footer-cell *matFooterCellDef> Total </td>
+    </ng-container>
+
+
+    <!-- Cliente Column -->
+    <ng-container matColumnDef="cliente">
+      <th mat-header-cell *matHeaderCellDef > cliente </th>
+      <td mat-cell *matCellDef="let row"> {{row.cliente}} </td>
+      <td mat-footer-cell *matFooterCellDef>  </td>
+    </ng-container>
+
+    <!-- Despesa Column -->
+    <ng-container matColumnDef="despesa">
+      <th mat-header-cell *matHeaderCellDef> despesa </th>
+      <td mat-cell *matCellDef="let row"> {{row.despesa.descricao}} </td>
+      <td mat-footer-cell *matFooterCellDef>  </td>
+    </ng-container>
+
+    <!-- Valor Despesa Column -->
+    <ng-container matColumnDef="valor">
+      <th mat-header-cell *matHeaderCellDef> valor </th>
+      <td mat-cell *matCellDef="let row"> {{row.valor  | currency:'BRL'}} </td>
+      <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency: 'BRL'}} </td>
+    </ng-container>
+
+
+
+    <!-- Data Column -->
+    <ng-container matColumnDef="data">
+      <th mat-header-cell *matHeaderCellDef> data </th>
+      <td mat-cell *matCellDef="let row"> {{row.despesa.data | date:'d/M/yy'}} </td>
+      <!-- <td mat-cell *matCellDef="let row" *ngIf="row.despesa.data > data1 && row.despesa.data < data2"> {{row.despesa.data | date:'d/M/yy'}} </td> -->
+      <td mat-footer-cell *matFooterCellDef>  </td>
+    </ng-container>
+
+    <!--Reembolso Column -->
+    <ng-container matColumnDef="reembolso">
+      <th mat-header-cell *matHeaderCellDef> reembolso </th>
+      <td mat-cell *matCellDef="let row"> 
+          <img class="reembolso" [src]="row.despesa.reembolso ? frontPath : backPath"></td>
+      <td mat-footer-cell *matFooterCellDef>  </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+
+  </table>
+
+
+</div>

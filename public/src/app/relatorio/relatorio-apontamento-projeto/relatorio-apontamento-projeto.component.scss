@@ -13,17 +13,17 @@ table {
 }
 
 .custo {
-  margin: 10px;
-  padding: 2px;
-  background-color: green;
+  background-color: rgb(122, 201, 48);
   color: white;
+  font-size: 1.1em;
 }
 
 .despesa {
-  margin: 10px;
-  padding: 2px;
-  background-color: red;
+  background-color: rgb(231, 94, 31);
   color: white;
+  font-size: 1.1em;
 }
 
-
+span:empty {
+  display: none;
+}

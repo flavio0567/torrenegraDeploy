@@ -65,7 +65,7 @@
     <td>
       <div layout="row">
           <mat-label class="mat-h2">custo hora</mat-label>
-          {{ usuario.custoHora }}
+          {{ usuario.custoHora | currency:'BRL'}}
         </div>
     </td>
   </tr></table>
@@ -79,11 +79,12 @@
   <br>
   <div class="align_button"> 
     <button mat-raised-button color="basic"  (click)="cancel()">Cancela</button>
-    <div *ngIf="usuario.ativo">
-      <button mat-raised-button color="warn" (click)="mudarSituacao('false')">desabilitar</button>
+
+    <div *ngIf="usuario.ativo === 'ativo'">
+      <button mat-raised-button color="warn" (click)="mudarSituacao('desativado')">desativar</button>
     </div>
-    <div *ngIf="!usuario.ativo">
-      <button mat-raised-button color="primary" (click)="mudarSituacao('true')">habilitar</button>
+    <div *ngIf="usuario.ativo === 'desativado'">
+      <button mat-raised-button color="primary" (click)="mudarSituacao('ativo')">ativar</button>
     </div>
   </div>
 

@@ -23,6 +23,69 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 
 /***/ }),
 
+/***/ "./src/app/admin/admin.component.html":
+/*!********************************************!*\
+  !*** ./src/app/admin/admin.component.html ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  admin works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/admin/admin.component.scss":
+/*!********************************************!*\
+  !*** ./src/app/admin/admin.component.scss ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/admin/admin.component.ts":
+/*!******************************************!*\
+  !*** ./src/app/admin/admin.component.ts ***!
+  \******************************************/
+/*! exports provided: AdminComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdminComponent", function() { return AdminComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var AdminComponent = /** @class */ (function () {
+    function AdminComponent() {
+    }
+    AdminComponent.prototype.ngOnInit = function () {
+    };
+    AdminComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'admin',
+            template: __webpack_require__(/*! ./admin.component.html */ "./src/app/admin/admin.component.html"),
+            styles: [__webpack_require__(/*! ./admin.component.scss */ "./src/app/admin/admin.component.scss")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], AdminComponent);
+    return AdminComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/apontamento/apontamento-dashboard/apontamento-dashboard.component.html":
 /*!****************************************************************************************!*\
   !*** ./src/app/apontamento/apontamento-dashboard/apontamento-dashboard.component.html ***!
@@ -77,8 +140,8 @@ var ApontamentoDashboardComponent = /** @class */ (function () {
         };
     }
     ApontamentoDashboardComponent.prototype.ngOnInit = function () {
+        console.log('ApontamentoDashboardComponent > ngOnInit() ');
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log('ApontamentoDashboardComponent > usuariologado ', this.usuarioLogado.email);
     };
     ApontamentoDashboardComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -167,8 +230,8 @@ var ApontamentoListaDespesaComponent = /** @class */ (function () {
             }];
     }
     ApontamentoListaDespesaComponent.prototype.ngOnInit = function () {
+        console.log('ApontamentoListaDespesaComponent > ngOnInit()');
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log('ApontamentoListaDespesaComponent > usuariologado', this.usuarioLogado.email);
         this.obterListaApontamento();
     };
     ApontamentoListaDespesaComponent.prototype.applyFilter = function (filterValue) {
@@ -179,7 +242,7 @@ var ApontamentoListaDespesaComponent = /** @class */ (function () {
     };
     ApontamentoListaDespesaComponent.prototype.obterListaApontamento = function () {
         var _this = this;
-        // console.log('ApontamentoListaDespesaComponent > obterListaApontamento()', this.usuarioLogado)
+        console.log('ApontamentoListaDespesaComponent > obterListaApontamento()');
         var apontObservable = this._projetoService.obterApontamentosDespesa(this.usuarioLogado);
         apontObservable.subscribe(function (apontamentos) {
             _this.apontamentos = apontamentos.json();
@@ -190,18 +253,23 @@ var ApontamentoListaDespesaComponent = /** @class */ (function () {
             _this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatTableDataSource"](_this.apontamentos);
             _this.dataSource.paginator = _this.paginator;
             _this.dataSource.sort = _this.sort;
-        }, function (err) { }, function () { });
+        }, function (err) {
+            console.log('Algum erro ocorreu obtendo lista de apontamentos despesa ', err);
+            throw err;
+        });
     };
     ApontamentoListaDespesaComponent.prototype.obterProjeto = function (id, i) {
         var _this = this;
-        // console.log('ApontamentoListaDespesaComponent > obterProjeto()', id, i)
+        console.log('ApontamentoListaDespesaComponent > obterProjeto()');
         var observable = this._projetoService.obterProjetoById(id);
         observable.subscribe(function (response) {
             _this.projeto = response.json();
-            // console.log('ApontamentoListaDespesaComponent > obterProjeto() > this.projeto', this.projeto.apontamentos);
             _this.apontamentos[i].codigo = _this.projeto.codigo;
             _this.apontamentos[i].descricao = _this.projeto.descricao;
-        }, function (err) { }, function () { });
+        }, function (err) {
+            console.log('Algum erro ocorreu obtendo projetoById ', err);
+            throw err;
+        });
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_3__["MatPaginator"]),
@@ -306,8 +374,8 @@ var ApontamentoListaHoraComponent = /** @class */ (function () {
             }];
     }
     ApontamentoListaHoraComponent.prototype.ngOnInit = function () {
+        console.log('ApontamentoListaHoraComponent > ngOnInit() ');
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log('ApontamentoListaHoraComponent > usuariologado ', this.usuarioLogado.email);
         this.obterListaApontamento();
     };
     ApontamentoListaHoraComponent.prototype.applyFilter = function (filterValue) {
@@ -318,15 +386,13 @@ var ApontamentoListaHoraComponent = /** @class */ (function () {
     };
     ApontamentoListaHoraComponent.prototype.obterListaApontamento = function () {
         var _this = this;
-        // console.log('ApontamentoListaHoraComponent > obterListaApontamento()', this.usuarioLogado)
+        console.log('ApontamentoListaHoraComponent > obterListaApontamento()');
         var apontObservable = this._projetoService.obterApontamentosHoraPorUsuario(this.usuarioLogado);
         apontObservable.subscribe(function (apontamentos) {
             _this.apontamentos = apontamentos.json();
-            // console.log('ApontamentoListaHoraComponent > obterListaApontamento() > apontamentos ', this.apontamentos)
             for (var i = 0; i < _this.apontamentos.length; i++) {
                 _this.obterProjeto(_this.apontamentos[i]._projeto, i);
             }
-            // console.log('D E P O I S >>>> >>>> >>>ApontamentoListaHoraComponent > obterListaApontamento() > apontamentos ', this.apontamentos)
             _this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"](_this.apontamentos);
             _this.dataSource.paginator = _this.paginator;
             _this.dataSource.sort = _this.sort;
@@ -334,18 +400,17 @@ var ApontamentoListaHoraComponent = /** @class */ (function () {
     };
     ApontamentoListaHoraComponent.prototype.obterProjeto = function (id, i) {
         var _this = this;
-        // console.log('ApontamentoListaHoraComponent > obterProjeto()')
+        console.log('ApontamentoListaHoraComponent > obterProjeto()');
         var observable = this._projetoService.obterProjetoById(id);
         observable.subscribe(function (response) {
             _this.projeto = response.json();
-            // console.log('ApontamentoListaHoraComponent > obterProjeto() > this.projeto', this.projeto.apontamentos.length, this.projeto );
             _this.apontamentos[i].descricao = _this.projeto.descricao;
             _this.apontamentos[i].codigo = _this.projeto.codigo;
         }, function (err) { }, function () { });
     };
     ApontamentoListaHoraComponent.prototype.openDialog = function (projeto) {
         var _this = this;
-        console.log('ApontamentoListaHoraComponent > openDialog(projeto)', projeto);
+        console.log('ApontamentoListaHoraComponent > openDialog(projeto)');
         var dialogRef = this.dialog.open(DialogApontamentoHora, {
             width: '350px',
             data: {
@@ -395,12 +460,15 @@ var DialogApontamentoHora = /** @class */ (function () {
     };
     DialogApontamentoHora.prototype.encerrarApontamento = function (data) {
         var _this = this;
-        console.log('DialogApontamentoHora >  encerrarApontamento(data) ', data);
+        console.log('DialogApontamentoHora >  encerrarApontamento(data) ');
         var dialogObservable = this._projetoService.encerrarApontamento(data);
         dialogObservable.subscribe(function (res) {
             console.log('The dialog called encerrar apontamento!', res);
             _this.dialogRef.close();
-        }, function (err) { }, function () { });
+        }, function (err) {
+            console.log('Algum erro ocorreu encerrando apontamento ', err);
+            throw err;
+        });
     };
     DialogApontamentoHora = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -427,7 +495,7 @@ var DialogApontamentoHora = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n<div class=\"mat-elevation-z8\"> \n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" href=\"#\">Sair <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n<div class=\"container\">\n<!-- {{ dt }} -->\n  {{ today | date:'EEEE, d MMMM, y' }}\n  <br><br>\n  <div class=\"level-left\">\n      <div style=\"margin: 20px, 0px, 20px, 0px;\" class=\"title is-4\">Apontamento</div> \n  </div>\n  <div class=\"errors\" *ngIf=\"errors\">\n    <p *ngIf=\"errors['descricao'].message\" >  {{ errors['descricao'].message }} </p> \n    <p *ngIf=\"errors['despesa'].valor.message\" >  {{ errors['despesa'].valor.message }} </p>   \n  </div> \n\n  <form class=\"example-form\" [formGroup] = \"options\">\n\n    <div class=\"example-container\">\n        <mat-form-field style=\"width:400px !important;\"> \n          <mat-select placeholder=\"Selecione o projeto\" name=\"projeto\" formControlName=\"projeto\" required>\n            <mat-option value=\"option\" *ngFor=\"let p of projetos\" [value]=\"p._id\"> {{ p.codigo }} {{ p.descricao }}</mat-option>\n          </mat-select>\n          <mat-hint align=\"end\">Projetos ativos</mat-hint>\n        </mat-form-field>\n\n          <div class=\"example-container\">\n            <mat-radio-group formControlName=\"tipo\" [value]=\"tipo\" >\n              <mat-radio-button (change)=\"radioChange($event)\" *ngFor=\"let a of array;\" [value]=\"a\"> {{ a }}&nbsp;&nbsp;</mat-radio-button>\n            </mat-radio-group>&nbsp;&nbsp;\n\n            <div *ngIf=\"options.get('tipo').value=='despesa'\" class=\"example-full-width\" cellspacing=\"0\">\n              <mat-checkbox color=\"warn\" formControlName=\"reembolso\">reembolso\n              </mat-checkbox>\n              <br><br>\n            </div>\n\n            <mat-form-field *ngIf=\"(options.get('tipo').value=='despesa')\" style=\"width:300px !important;\">\n                <mat-select placeholder=\"Selecione o tipo\"  formControlName=\"opDespesa\"  [disabled]=\"isSelected\">\n                  <mat-option value=\"alimentacao\"> alimentação</mat-option>\n                  <mat-option value=\"hospedagem\"> hospedagem</mat-option>\n                  <mat-option value=\"pedagio\"> pedágio</mat-option>\n                  <mat-option value=\"transporte\"> transporte</mat-option>\n                  <mat-option value=\"outros\"> outros</mat-option>\n                </mat-select>\n                <mat-hint align=\"end\"></mat-hint>\n            </mat-form-field>&nbsp;&nbsp;\n\n            <mat-form-field *ngIf=\"options.get('tipo').value=='despesa' && options.get('opDespesa').value=='outros'\" style=\"width:300px !important;\" hintLabel=\"Max 40 caracteres\">\n                <input matInput formControlName=\"descricao\" #input maxlength=\"40\">\n                <mat-hint align=\"end\">{{input.value?.length || 0}}/40</mat-hint>\n              </mat-form-field>\n\n            <mat-form-field *ngIf=\"options.get('tipo').value=='despesa'\" style=\"width:200px !important;\">\n              <br>\n              <input \n              matInput \n              placeholder=\"Valor\"\n              formControlName=\"valor\"\n              currencyMask \n              [(ngModel)]=\"value\" \n              [options]=\"{ prefix: 'R$ ', thousands: '.', decimal: ',' }\"\n              class=\"example-right-align\">\n              <!-- <span matPrefix></span>\n              <span matSuffix></span> -->\n              <br>\n            </mat-form-field>\n            <br>\n            <mat-form-field *ngIf=\"(options.get('tipo').value=='hora')\" style=\"width:100px !important;\">\n              <mat-select placeholder=\"início\" formControlName=\"inicio\" > \n                  <mat-option value=\"{{ today }}\">{{today | date:'d/M/yy H:mm'}}</mat-option>\n              </mat-select>\n              <br>\n            </mat-form-field>\n\n          </div>\n\n      </div>\n    </form>\n\n    <button mat-raised-button color=\"basic\"   (click)=\"cancel()\">cancela</button>\n    <button mat-raised-button color=\"primary\" (click)=\"setApontamento()\" [disabled]=\"options.invalid\">confirma</button>\n    \n</div>\n\n\n\n\n\n"
+module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n<div class=\"mat-elevation-z8\"> \n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" href=\"#\">Sair <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n<div class=\"container\">\n<!-- {{ dt }} -->\n  {{ today | date:'EEEE, d MMMM, y' }}\n  <br><br>\n  <div class=\"level-left\">\n      <div style=\"margin: 20px, 0px, 20px, 0px;\" class=\"title is-4\">Apontamento</div> \n  </div>\n  <div class=\"errors\" *ngIf=\"errors\">\n    <p *ngIf=\"errors['descricao'].message\" >  {{ errors['descricao'].message }} </p> \n    <p *ngIf=\"errors['despesa'].valor.message\" >  {{ errors['despesa'].valor.message }} </p>   \n  </div> \n\n  <form class=\"example-form\" [formGroup] = \"options\">\n\n    <div class=\"example-container\">\n        <mat-form-field style=\"width:400px !important;\"> \n          <mat-select placeholder=\"Selecione o projeto\" name=\"projeto\" formControlName=\"projeto\" required>\n            <mat-option value=\"option\" *ngFor=\"let p of projetos\" [value]=\"p._id\"> {{ p.codigo }} {{ p.descricao }}</mat-option>\n          </mat-select>\n          <mat-hint align=\"end\">Projetos ativos</mat-hint>\n        </mat-form-field>\n\n          <div class=\"example-container\">\n            <mat-radio-group formControlName=\"tipo\" [value]=\"tipo\" >\n              <mat-radio-button (change)=\"radioChange($event)\" *ngFor=\"let a of array;\" [value]=\"a\"> {{ a }}&nbsp;&nbsp;</mat-radio-button>\n            </mat-radio-group>&nbsp;&nbsp;\n\n            <div *ngIf=\"options.get('tipo').value=='despesa'\" class=\"example-full-width\" cellspacing=\"0\">\n              <mat-checkbox color=\"warn\" formControlName=\"reembolso\">reembolso\n              </mat-checkbox>\n              <br><br>\n            </div>\n\n            <mat-form-field *ngIf=\"(options.get('tipo').value=='despesa')\" style=\"width:300px !important;\">\n                <mat-select placeholder=\"Selecione o tipo\"  formControlName=\"opDespesa\"  [disabled]=\"isSelected\">\n                  <mat-option value=\"alimentação\"> alimentação</mat-option>\n                  <mat-option value=\"hospedagem\"> hospedagem</mat-option>\n                  <mat-option value=\"pedágio\"> pedágio</mat-option>\n                  <mat-option value=\"transporte\"> transporte</mat-option>\n                  <mat-option value=\"serviços\"> serviços</mat-option>\n                  <mat-option value=\"materiais\"> materiais</mat-option>\n                  <mat-option value=\"outros\"> outros</mat-option>\n                </mat-select>\n                <mat-hint align=\"end\"></mat-hint>\n            </mat-form-field>&nbsp;&nbsp;\n\n            <mat-form-field *ngIf=\"options.get('tipo').value=='despesa' && options.get('opDespesa').value=='outros'\" style=\"width:300px !important;\" hintLabel=\"Max 40 caracteres\">\n                <input matInput formControlName=\"descricao\" #input maxlength=\"40\">\n                <mat-hint align=\"end\">{{input.value?.length || 0}}/40</mat-hint>\n              </mat-form-field>\n\n            <mat-form-field *ngIf=\"options.get('tipo').value=='despesa'\" style=\"width:200px !important;\">\n              <br>\n              <input \n              matInput\n              autocomplete=\"off\" \n              placeholder=\"Valor\"\n              formControlName=\"valor\"\n              currencyMask \n              [(ngModel)]=\"value\" \n              [options]=\"{ prefix: 'R$ ', thousands: '.', decimal: ',' }\"\n              class=\"example-right-align\">\n              <br>\n            </mat-form-field>\n            <br>\n            <mat-form-field *ngIf=\"(options.get('tipo').value=='hora')\" style=\"width:100px !important;\">\n              <mat-select placeholder=\"início\" formControlName=\"inicio\" > \n                  <mat-option value=\"{{ today }}\">{{today | date:'d/M/yy H:mm'}}</mat-option>\n              </mat-select>\n              <br>\n            </mat-form-field>\n\n          </div>\n\n      </div>\n    </form>\n\n    <button mat-raised-button color=\"basic\"   (click)=\"cancel()\">cancela</button>\n    <button mat-raised-button color=\"primary\" (click)=\"setApontamento()\" [disabled]=\"options.invalid\">confirma</button>\n    \n</div>\n\n\n\n\n\n"
 
 /***/ }),
 
@@ -457,6 +525,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../usuario/usuario.service */ "./src/app/usuario/usuario.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../auth.service */ "./src/app/auth.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -471,11 +540,13 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var ApontamentoNovoComponent = /** @class */ (function () {
-    function ApontamentoNovoComponent(fb, _projetoService, _usuarioService, _router) {
+    function ApontamentoNovoComponent(fb, _projetoService, _usuarioService, _auth, _router) {
         this.fb = fb;
         this._projetoService = _projetoService;
         this._usuarioService = _usuarioService;
+        this._auth = _auth;
         this._router = _router;
         this.usuarioLogado = {
             email: '',
@@ -494,7 +565,7 @@ var ApontamentoNovoComponent = /** @class */ (function () {
                 descricao: "",
                 valor: 0,
                 data: "",
-                reembolso: ""
+                reembolso: false
             }
         };
         this.array = ['hora', 'despesa'];
@@ -507,19 +578,21 @@ var ApontamentoNovoComponent = /** @class */ (function () {
             inicio: [null],
             fim: [null],
             valor: [null],
-            reembolso: [null]
+            reembolso: [false]
         });
         this.formControlValueChanged();
     }
     ApontamentoNovoComponent.prototype.ngOnInit = function () {
         var _this = this;
+        console.log(' ApontamentoNovoComponent > ngOnInit() ');
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log(' ApontamentoNovoComponent > usuarioLogado ', this.usuarioLogado.email);
         this.apontamento.usuario = this.usuarioLogado;
         this._usuarioService.obterUsuario(this.apontamento.usuario)
             .subscribe(function (usuario) {
-            _this.usuario = usuario.json();
-            _this.apontamento.valorHH = _this.usuario.custoHora;
+            if (usuario) {
+                _this.usuario = usuario.json();
+                _this.apontamento.valorHH = _this.usuario.custoHora;
+            }
         }, function (err) { }, function () { });
         this.obterListaProjeto();
     };
@@ -569,6 +642,7 @@ var ApontamentoNovoComponent = /** @class */ (function () {
     };
     ApontamentoNovoComponent.prototype.setApontamento = function () {
         var _this = this;
+        console.log('ApontamentoNovoComponent > setApontamento()');
         this.apontamento.tipo = this.options.controls.tipo.value;
         if (this.options.controls.tipo.value != 'hora') {
             this.apontamento.despesa.data = this.today;
@@ -577,7 +651,6 @@ var ApontamentoNovoComponent = /** @class */ (function () {
         }
         else {
             this.apontamento.hora.inicio = this.today;
-            console.log('data : +++++++++ +++++++++++++ +++++++++++++++', typeof this.apontamento.hora.inicio);
             this.apontamento.hora.fim = "";
         }
         if (this.options.controls.tipo.value == 'despesa' && this.options.controls.opDespesa.value != 'outros') {
@@ -595,7 +668,7 @@ var ApontamentoNovoComponent = /** @class */ (function () {
                 return false;
             }
         }
-        console.log('ApontamentoNovoComponent > setApontamento() >  this.apontamento, valorHH', this.options.controls.projeto.value, this.apontamento.valorHH);
+        this.apontamento.despesa.reembolso = this.options.controls.reembolso.value;
         this._projetoService.apontamentoNovo(this.options.controls.projeto.value, this.apontamento)
             .subscribe(function (observable) {
             if (observable.json().errors) {
@@ -607,6 +680,7 @@ var ApontamentoNovoComponent = /** @class */ (function () {
                 _this._router.navigate(['/apontamentos']);
             }
         }, function (err) {
+            console.log('Algum erro ocorreu criando apontamento ', err);
             throw err;
         });
     };
@@ -622,6 +696,7 @@ var ApontamentoNovoComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"],
             _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_1__["ProjetoService"],
             _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_2__["UsuarioService"],
+            _auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"],
             _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
     ], ApontamentoNovoComponent);
     return ApontamentoNovoComponent;
@@ -710,32 +785,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppRoutingModule", function() { return AppRoutingModule; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
-/* harmony import */ var _financeiro_financeiro_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./financeiro/financeiro.component */ "./src/app/financeiro/financeiro.component.ts");
-/* harmony import */ var _usuario_usuario_novo_usuario_novo_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./usuario/usuario-novo/usuario-novo.component */ "./src/app/usuario/usuario-novo/usuario-novo.component.ts");
-/* harmony import */ var _usuario_usuario_edit_usuario_edit_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./usuario/usuario-edit/usuario-edit.component */ "./src/app/usuario/usuario-edit/usuario-edit.component.ts");
-/* harmony import */ var _usuario_usuario_show_usuario_show_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./usuario/usuario-show/usuario-show.component */ "./src/app/usuario/usuario-show/usuario-show.component.ts");
-/* harmony import */ var _usuario_usuario_list_usuario_list_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./usuario/usuario-list/usuario-list.component */ "./src/app/usuario/usuario-list/usuario-list.component.ts");
-/* harmony import */ var _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./projeto/projeto-list/projeto-list.component */ "./src/app/projeto/projeto-list/projeto-list.component.ts");
-/* harmony import */ var _projeto_projeto_novo_projeto_novo_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./projeto/projeto-novo/projeto-novo.component */ "./src/app/projeto/projeto-novo/projeto-novo.component.ts");
-/* harmony import */ var _projeto_projeto_edit_projeto_edit_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./projeto/projeto-edit/projeto-edit.component */ "./src/app/projeto/projeto-edit/projeto-edit.component.ts");
-/* harmony import */ var _cliente_cliente_list_cliente_list_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./cliente/cliente-list/cliente-list.component */ "./src/app/cliente/cliente-list/cliente-list.component.ts");
-/* harmony import */ var _cliente_cliente_novo_cliente_novo_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./cliente/cliente-novo/cliente-novo.component */ "./src/app/cliente/cliente-novo/cliente-novo.component.ts");
-/* harmony import */ var _cliente_cliente_edit_cliente_edit_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./cliente/cliente-edit/cliente-edit.component */ "./src/app/cliente/cliente-edit/cliente-edit.component.ts");
-/* harmony import */ var _cliente_cliente_show_cliente_show_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./cliente/cliente-show/cliente-show.component */ "./src/app/cliente/cliente-show/cliente-show.component.ts");
-/* harmony import */ var _apontamento_apontamento_novo_apontamento_novo_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./apontamento/apontamento-novo/apontamento-novo.component */ "./src/app/apontamento/apontamento-novo/apontamento-novo.component.ts");
-/* harmony import */ var _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./pagina-nao-encontrada/pagina-nao-encontrada.component */ "./src/app/pagina-nao-encontrada/pagina-nao-encontrada.component.ts");
-/* harmony import */ var _relatorio_relatorio_financeiro_relatorio_financeiro_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./relatorio/relatorio-financeiro/relatorio-financeiro.component */ "./src/app/relatorio/relatorio-financeiro/relatorio-financeiro.component.ts");
-/* harmony import */ var _global_error_global_error_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./global-error/global-error.component */ "./src/app/global-error/global-error.component.ts");
-/* harmony import */ var _apontamento_apontamento_dashboard_apontamento_dashboard_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./apontamento/apontamento-dashboard/apontamento-dashboard.component */ "./src/app/apontamento/apontamento-dashboard/apontamento-dashboard.component.ts");
-/* harmony import */ var _relatorio_relatorio_apontamento_projeto_relatorio_apontamento_projeto_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./relatorio/relatorio-apontamento-projeto/relatorio-apontamento-projeto.component */ "./src/app/relatorio/relatorio-apontamento-projeto/relatorio-apontamento-projeto.component.ts");
-/* harmony import */ var _relatorio_relatorio_apontamento_horas_usuario_relatorio_apontamento_horas_usuario_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./relatorio/relatorio-apontamento-horas-usuario/relatorio-apontamento-horas-usuario.component */ "./src/app/relatorio/relatorio-apontamento-horas-usuario/relatorio-apontamento-horas-usuario.component.ts");
+/* harmony import */ var _auth_guard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./auth.guard */ "./src/app/auth.guard.ts");
+/* harmony import */ var _admin_admin_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./admin/admin.component */ "./src/app/admin/admin.component.ts");
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
+/* harmony import */ var _register_register_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./register/register.component */ "./src/app/register/register.component.ts");
+/* harmony import */ var _financeiro_financeiro_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./financeiro/financeiro.component */ "./src/app/financeiro/financeiro.component.ts");
+/* harmony import */ var _usuario_usuario_novo_usuario_novo_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./usuario/usuario-novo/usuario-novo.component */ "./src/app/usuario/usuario-novo/usuario-novo.component.ts");
+/* harmony import */ var _usuario_usuario_edit_usuario_edit_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./usuario/usuario-edit/usuario-edit.component */ "./src/app/usuario/usuario-edit/usuario-edit.component.ts");
+/* harmony import */ var _usuario_usuario_show_usuario_show_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./usuario/usuario-show/usuario-show.component */ "./src/app/usuario/usuario-show/usuario-show.component.ts");
+/* harmony import */ var _usuario_usuario_list_usuario_list_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./usuario/usuario-list/usuario-list.component */ "./src/app/usuario/usuario-list/usuario-list.component.ts");
+/* harmony import */ var _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./projeto/projeto-list/projeto-list.component */ "./src/app/projeto/projeto-list/projeto-list.component.ts");
+/* harmony import */ var _projeto_projeto_novo_projeto_novo_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./projeto/projeto-novo/projeto-novo.component */ "./src/app/projeto/projeto-novo/projeto-novo.component.ts");
+/* harmony import */ var _projeto_projeto_edit_projeto_edit_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./projeto/projeto-edit/projeto-edit.component */ "./src/app/projeto/projeto-edit/projeto-edit.component.ts");
+/* harmony import */ var _cliente_cliente_list_cliente_list_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./cliente/cliente-list/cliente-list.component */ "./src/app/cliente/cliente-list/cliente-list.component.ts");
+/* harmony import */ var _cliente_cliente_novo_cliente_novo_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./cliente/cliente-novo/cliente-novo.component */ "./src/app/cliente/cliente-novo/cliente-novo.component.ts");
+/* harmony import */ var _cliente_cliente_edit_cliente_edit_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./cliente/cliente-edit/cliente-edit.component */ "./src/app/cliente/cliente-edit/cliente-edit.component.ts");
+/* harmony import */ var _cliente_cliente_show_cliente_show_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./cliente/cliente-show/cliente-show.component */ "./src/app/cliente/cliente-show/cliente-show.component.ts");
+/* harmony import */ var _apontamento_apontamento_novo_apontamento_novo_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./apontamento/apontamento-novo/apontamento-novo.component */ "./src/app/apontamento/apontamento-novo/apontamento-novo.component.ts");
+/* harmony import */ var _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./pagina-nao-encontrada/pagina-nao-encontrada.component */ "./src/app/pagina-nao-encontrada/pagina-nao-encontrada.component.ts");
+/* harmony import */ var _relatorio_relatorio_financeiro_relatorio_financeiro_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./relatorio/relatorio-financeiro/relatorio-financeiro.component */ "./src/app/relatorio/relatorio-financeiro/relatorio-financeiro.component.ts");
+/* harmony import */ var _global_error_global_error_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./global-error/global-error.component */ "./src/app/global-error/global-error.component.ts");
+/* harmony import */ var _apontamento_apontamento_dashboard_apontamento_dashboard_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./apontamento/apontamento-dashboard/apontamento-dashboard.component */ "./src/app/apontamento/apontamento-dashboard/apontamento-dashboard.component.ts");
+/* harmony import */ var _relatorio_relatorio_apontamento_projeto_relatorio_apontamento_projeto_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./relatorio/relatorio-apontamento-projeto/relatorio-apontamento-projeto.component */ "./src/app/relatorio/relatorio-apontamento-projeto/relatorio-apontamento-projeto.component.ts");
+/* harmony import */ var _relatorio_relatorio_apontamento_horas_usuario_relatorio_apontamento_horas_usuario_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./relatorio/relatorio-apontamento-horas-usuario/relatorio-apontamento-horas-usuario.component */ "./src/app/relatorio/relatorio-apontamento-horas-usuario/relatorio-apontamento-horas-usuario.component.ts");
+/* harmony import */ var _relatorio_relatorio_apontamento_despesas_usuario_relatorio_apontamento_despesas_usuario_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./relatorio/relatorio-apontamento-despesas-usuario/relatorio-apontamento-despesas-usuario.component */ "./src/app/relatorio/relatorio-apontamento-despesas-usuario/relatorio-apontamento-despesas-usuario.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
+
 
 
 
@@ -761,102 +844,132 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var routes = [
     {
         path: '',
-        component: _login_login_component__WEBPACK_IMPORTED_MODULE_2__["LoginComponent"],
+        component: _login_login_component__WEBPACK_IMPORTED_MODULE_4__["LoginComponent"],
         pathMatch: 'full'
     },
     {
         path: 'apontamento/novo',
-        component: _apontamento_apontamento_novo_apontamento_novo_component__WEBPACK_IMPORTED_MODULE_15__["ApontamentoNovoComponent"],
-        pathMatch: 'full'
+        component: _apontamento_apontamento_novo_apontamento_novo_component__WEBPACK_IMPORTED_MODULE_18__["ApontamentoNovoComponent"],
+        pathMatch: 'full',
+        canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_2__["AuthGuard"]]
     },
     {
         path: 'apontamentos',
-        component: _apontamento_apontamento_dashboard_apontamento_dashboard_component__WEBPACK_IMPORTED_MODULE_19__["ApontamentoDashboardComponent"],
-        pathMatch: 'full'
+        component: _apontamento_apontamento_dashboard_apontamento_dashboard_component__WEBPACK_IMPORTED_MODULE_22__["ApontamentoDashboardComponent"],
+        pathMatch: 'full',
+        canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_2__["AuthGuard"]]
     },
     {
         path: 'financeiro',
-        component: _financeiro_financeiro_component__WEBPACK_IMPORTED_MODULE_3__["FinanceiroComponent"],
-        pathMatch: 'full'
+        component: _financeiro_financeiro_component__WEBPACK_IMPORTED_MODULE_6__["FinanceiroComponent"],
+        pathMatch: 'full',
+        canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_2__["AuthGuard"]]
     },
     {
         path: 'relatorio/financeiro',
-        component: _relatorio_relatorio_financeiro_relatorio_financeiro_component__WEBPACK_IMPORTED_MODULE_17__["RelatorioFinanceiroComponent"],
-        pathMatch: 'full'
+        component: _relatorio_relatorio_financeiro_relatorio_financeiro_component__WEBPACK_IMPORTED_MODULE_20__["RelatorioFinanceiroComponent"],
+        pathMatch: 'full',
+        canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_2__["AuthGuard"]]
     },
     {
         path: 'relatorio/apontamento/projeto',
-        component: _relatorio_relatorio_apontamento_projeto_relatorio_apontamento_projeto_component__WEBPACK_IMPORTED_MODULE_20__["RelatorioApontamentoProjetoComponent"],
-        pathMatch: 'full'
+        component: _relatorio_relatorio_apontamento_projeto_relatorio_apontamento_projeto_component__WEBPACK_IMPORTED_MODULE_23__["RelatorioApontamentoProjetoComponent"],
+        pathMatch: 'full',
+        canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_2__["AuthGuard"]]
     },
     {
         path: 'relatorio/horas/usuario',
-        component: _relatorio_relatorio_apontamento_horas_usuario_relatorio_apontamento_horas_usuario_component__WEBPACK_IMPORTED_MODULE_21__["RelatorioApontamentoHorasUsuarioComponent"],
-        pathMatch: 'full'
+        component: _relatorio_relatorio_apontamento_horas_usuario_relatorio_apontamento_horas_usuario_component__WEBPACK_IMPORTED_MODULE_24__["RelatorioApontamentoHorasUsuarioComponent"],
+        pathMatch: 'full',
+        canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_2__["AuthGuard"]]
+    },
+    {
+        path: 'relatorio/despesas/usuario',
+        component: _relatorio_relatorio_apontamento_despesas_usuario_relatorio_apontamento_despesas_usuario_component__WEBPACK_IMPORTED_MODULE_25__["RelatorioApontamentoDespesasUsuarioComponent"],
+        pathMatch: 'full',
+        canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_2__["AuthGuard"]]
     },
     {
         path: 'usuario/show/:id',
-        component: _usuario_usuario_show_usuario_show_component__WEBPACK_IMPORTED_MODULE_6__["UsuarioShowComponent"],
-        pathMatch: 'full'
+        component: _usuario_usuario_show_usuario_show_component__WEBPACK_IMPORTED_MODULE_9__["UsuarioShowComponent"],
+        pathMatch: 'full',
+        canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_2__["AuthGuard"]]
     },
     {
         path: 'usuario/novo',
-        component: _usuario_usuario_novo_usuario_novo_component__WEBPACK_IMPORTED_MODULE_4__["UsuarioNovoComponent"],
-        pathMatch: 'full'
+        component: _usuario_usuario_novo_usuario_novo_component__WEBPACK_IMPORTED_MODULE_7__["UsuarioNovoComponent"],
+        pathMatch: 'full',
+        canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_2__["AuthGuard"]]
     },
     {
         path: 'usuario/edit/:id',
-        component: _usuario_usuario_edit_usuario_edit_component__WEBPACK_IMPORTED_MODULE_5__["UsuarioEditComponent"],
-        pathMatch: 'full'
+        component: _usuario_usuario_edit_usuario_edit_component__WEBPACK_IMPORTED_MODULE_8__["UsuarioEditComponent"],
+        pathMatch: 'full',
+        canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_2__["AuthGuard"]]
     },
     {
         path: 'usuarios',
-        component: _usuario_usuario_list_usuario_list_component__WEBPACK_IMPORTED_MODULE_7__["UsuarioListComponent"],
-        pathMatch: 'full'
+        component: _usuario_usuario_list_usuario_list_component__WEBPACK_IMPORTED_MODULE_10__["UsuarioListComponent"],
+        pathMatch: 'full',
+        canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_2__["AuthGuard"]]
     },
     {
         path: 'clientes',
-        component: _cliente_cliente_list_cliente_list_component__WEBPACK_IMPORTED_MODULE_11__["ClienteListComponent"],
-        pathMatch: 'full'
+        component: _cliente_cliente_list_cliente_list_component__WEBPACK_IMPORTED_MODULE_14__["ClienteListComponent"],
+        pathMatch: 'full',
+        canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_2__["AuthGuard"]]
     },
     {
         path: 'cliente/novo',
-        component: _cliente_cliente_novo_cliente_novo_component__WEBPACK_IMPORTED_MODULE_12__["ClienteNovoComponent"],
-        pathMatch: 'full'
+        component: _cliente_cliente_novo_cliente_novo_component__WEBPACK_IMPORTED_MODULE_15__["ClienteNovoComponent"],
+        pathMatch: 'full',
+        canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_2__["AuthGuard"]]
     },
     {
         path: 'cliente/edit/:id',
-        component: _cliente_cliente_edit_cliente_edit_component__WEBPACK_IMPORTED_MODULE_13__["ClienteEditComponent"],
-        pathMatch: 'full'
+        component: _cliente_cliente_edit_cliente_edit_component__WEBPACK_IMPORTED_MODULE_16__["ClienteEditComponent"],
+        pathMatch: 'full',
+        canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_2__["AuthGuard"]]
     },
     {
         path: 'cliente/show/:id',
-        component: _cliente_cliente_show_cliente_show_component__WEBPACK_IMPORTED_MODULE_14__["ClienteShowComponent"],
-        pathMatch: 'full'
+        component: _cliente_cliente_show_cliente_show_component__WEBPACK_IMPORTED_MODULE_17__["ClienteShowComponent"],
+        pathMatch: 'full',
+        canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_2__["AuthGuard"]]
     },
     {
         path: 'projetos',
-        component: _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_8__["ProjetoListComponent"],
-        pathMatch: 'full'
+        component: _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_11__["ProjetoListComponent"],
+        pathMatch: 'full',
+        canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_2__["AuthGuard"]]
     },
     {
         path: 'projeto/novo',
-        component: _projeto_projeto_novo_projeto_novo_component__WEBPACK_IMPORTED_MODULE_9__["ProjetoNovoComponent"],
-        pathMatch: 'full'
+        component: _projeto_projeto_novo_projeto_novo_component__WEBPACK_IMPORTED_MODULE_12__["ProjetoNovoComponent"],
+        pathMatch: 'full',
+        canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_2__["AuthGuard"]]
     },
     {
         path: 'projeto/edit/:id',
-        component: _projeto_projeto_edit_projeto_edit_component__WEBPACK_IMPORTED_MODULE_10__["ProjetoEditComponent"],
-        pathMatch: 'full'
+        component: _projeto_projeto_edit_projeto_edit_component__WEBPACK_IMPORTED_MODULE_13__["ProjetoEditComponent"],
+        pathMatch: 'full',
+        canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_2__["AuthGuard"]]
     },
-    // {
-    //   path: 'relatorio/financeiro',
-    //   component: RelatorioFinanceiroComponent,
-    //   pathMatch: 'full'
-    // },
+    {
+        path: 'primeiro/acesso',
+        component: _register_register_component__WEBPACK_IMPORTED_MODULE_5__["RegisterComponent"],
+        pathMatch: 'full'
+        // canActivate: [AuthGuard]
+    },
+    {
+        path: 'admin',
+        component: _admin_admin_component__WEBPACK_IMPORTED_MODULE_3__["AdminComponent"],
+        pathMatch: 'full',
+        canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_2__["AuthGuard"]]
+    },
     {
         path: 'error',
-        component: _global_error_global_error_component__WEBPACK_IMPORTED_MODULE_18__["GlobalErrorComponent"]
+        component: _global_error_global_error_component__WEBPACK_IMPORTED_MODULE_21__["GlobalErrorComponent"]
     },
     {
         path: 'reset',
@@ -865,7 +978,7 @@ var routes = [
     },
     {
         path: '**',
-        component: _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_16__["PaginaNaoEncontradaComponent"]
+        component: _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_19__["PaginaNaoEncontradaComponent"]
     }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -881,28 +994,6 @@ var AppRoutingModule = /** @class */ (function () {
 }());
 
 
-
-/***/ }),
-
-/***/ "./src/app/app.component.html":
-/*!************************************!*\
-  !*** ./src/app/app.component.html ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<router-outlet></router-outlet>\n"
-
-/***/ }),
-
-/***/ "./src/app/app.component.scss":
-/*!************************************!*\
-  !*** ./src/app/app.component.scss ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ""
 
 /***/ }),
 
@@ -926,13 +1017,12 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
-        this.title = 'boilerplate';
+        this.title = 'torrenegra';
     }
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-root',
-            template: __webpack_require__(/*! ./app.component.html */ "./src/app/app.component.html"),
-            styles: [__webpack_require__(/*! ./app.component.scss */ "./src/app/app.component.scss")]
+            template: '<router-outlet></router-outlet>',
         })
     ], AppComponent);
     return AppComponent;
@@ -955,51 +1045,55 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm5/http.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var _angular_material_paginator__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material/paginator */ "./node_modules/@angular/material/esm5/paginator.es5.js");
-/* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/tabs */ "./node_modules/@angular/material/esm5/tabs.es5.js");
-/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
-/* harmony import */ var _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/material/toolbar */ "./node_modules/@angular/material/esm5/toolbar.es5.js");
-/* harmony import */ var _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/material/checkbox */ "./node_modules/@angular/material/esm5/checkbox.es5.js");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _angular_common_locales_pt__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/common/locales/pt */ "./node_modules/@angular/common/locales/pt.js");
-/* harmony import */ var _angular_common_locales_pt__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_angular_common_locales_pt__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var _global_error_global_error_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./global-error/global-error.component */ "./src/app/global-error/global-error.component.ts");
-/* harmony import */ var _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./projeto/projeto.service */ "./src/app/projeto/projeto.service.ts");
-/* harmony import */ var _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./usuario/usuario.service */ "./src/app/usuario/usuario.service.ts");
-/* harmony import */ var _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./cliente/cliente.service */ "./src/app/cliente/cliente.service.ts");
-/* harmony import */ var _global_error_handler_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./global-error-handler.service */ "./src/app/global-error-handler.service.ts");
-/* harmony import */ var _apontamento_datepicker_popup__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./apontamento/datepicker-popup */ "./src/app/apontamento/datepicker-popup.ts");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/index.js");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _cliente_cliente_edit_cliente_edit_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./cliente/cliente-edit/cliente-edit.component */ "./src/app/cliente/cliente-edit/cliente-edit.component.ts");
-/* harmony import */ var _cliente_cliente_novo_cliente_novo_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./cliente/cliente-novo/cliente-novo.component */ "./src/app/cliente/cliente-novo/cliente-novo.component.ts");
-/* harmony import */ var _cliente_cliente_show_cliente_show_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./cliente/cliente-show/cliente-show.component */ "./src/app/cliente/cliente-show/cliente-show.component.ts");
-/* harmony import */ var _usuario_usuario_list_usuario_list_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./usuario/usuario-list/usuario-list.component */ "./src/app/usuario/usuario-list/usuario-list.component.ts");
-/* harmony import */ var _usuario_usuario_edit_usuario_edit_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./usuario/usuario-edit/usuario-edit.component */ "./src/app/usuario/usuario-edit/usuario-edit.component.ts");
-/* harmony import */ var _usuario_usuario_novo_usuario_novo_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./usuario/usuario-novo/usuario-novo.component */ "./src/app/usuario/usuario-novo/usuario-novo.component.ts");
-/* harmony import */ var _usuario_usuario_show_usuario_show_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./usuario/usuario-show/usuario-show.component */ "./src/app/usuario/usuario-show/usuario-show.component.ts");
-/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
-/* harmony import */ var _financeiro_financeiro_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./financeiro/financeiro.component */ "./src/app/financeiro/financeiro.component.ts");
-/* harmony import */ var _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./projeto/projeto-list/projeto-list.component */ "./src/app/projeto/projeto-list/projeto-list.component.ts");
-/* harmony import */ var _projeto_projeto_novo_projeto_novo_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./projeto/projeto-novo/projeto-novo.component */ "./src/app/projeto/projeto-novo/projeto-novo.component.ts");
-/* harmony import */ var _projeto_projeto_edit_projeto_edit_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./projeto/projeto-edit/projeto-edit.component */ "./src/app/projeto/projeto-edit/projeto-edit.component.ts");
-/* harmony import */ var _cliente_cliente_list_cliente_list_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./cliente/cliente-list/cliente-list.component */ "./src/app/cliente/cliente-list/cliente-list.component.ts");
-/* harmony import */ var _relatorio_relatorio_financeiro_relatorio_financeiro_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./relatorio/relatorio-financeiro/relatorio-financeiro.component */ "./src/app/relatorio/relatorio-financeiro/relatorio-financeiro.component.ts");
-/* harmony import */ var _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./pagina-nao-encontrada/pagina-nao-encontrada.component */ "./src/app/pagina-nao-encontrada/pagina-nao-encontrada.component.ts");
-/* harmony import */ var _apontamento_apontamento_novo_apontamento_novo_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./apontamento/apontamento-novo/apontamento-novo.component */ "./src/app/apontamento/apontamento-novo/apontamento-novo.component.ts");
-/* harmony import */ var _apontamento_apontamento_dashboard_apontamento_dashboard_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./apontamento/apontamento-dashboard/apontamento-dashboard.component */ "./src/app/apontamento/apontamento-dashboard/apontamento-dashboard.component.ts");
-/* harmony import */ var _apontamento_apontamento_lista_despesa_apontamento_lista_despesa_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./apontamento/apontamento-lista-despesa/apontamento-lista-despesa.component */ "./src/app/apontamento/apontamento-lista-despesa/apontamento-lista-despesa.component.ts");
-/* harmony import */ var _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./apontamento/apontamento-lista-hora/apontamento-lista-hora.component */ "./src/app/apontamento/apontamento-lista-hora/apontamento-lista-hora.component.ts");
-/* harmony import */ var _relatorio_relatorio_apontamento_projeto_relatorio_apontamento_projeto_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./relatorio/relatorio-apontamento-projeto/relatorio-apontamento-projeto.component */ "./src/app/relatorio/relatorio-apontamento-projeto/relatorio-apontamento-projeto.component.ts");
-/* harmony import */ var _relatorio_relatorio_apontamento_horas_usuario_relatorio_apontamento_horas_usuario_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./relatorio/relatorio-apontamento-horas-usuario/relatorio-apontamento-horas-usuario.component */ "./src/app/relatorio/relatorio-apontamento-horas-usuario/relatorio-apontamento-horas-usuario.component.ts");
-/* harmony import */ var _relatorio_relatorio_apontamento_despesas_usuario_relatorio_apontamento_despesas_usuario_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./relatorio/relatorio-apontamento-despesas-usuario/relatorio-apontamento-despesas-usuario.component */ "./src/app/relatorio/relatorio-apontamento-despesas-usuario/relatorio-apontamento-despesas-usuario.component.ts");
-/* harmony import */ var _relatorio_relatorio_custo_projeto_relatorio_custo_projeto_component__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./relatorio/relatorio-custo-projeto/relatorio-custo-projeto.component */ "./src/app/relatorio/relatorio-custo-projeto/relatorio-custo-projeto.component.ts");
-/* harmony import */ var ng2_currency_mask__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ng2-currency-mask */ "./node_modules/ng2-currency-mask/index.js");
-/* harmony import */ var ng2_currency_mask__WEBPACK_IMPORTED_MODULE_45___default = /*#__PURE__*/__webpack_require__.n(ng2_currency_mask__WEBPACK_IMPORTED_MODULE_45__);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _angular_material_paginator__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/paginator */ "./node_modules/@angular/material/esm5/paginator.es5.js");
+/* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/tabs */ "./node_modules/@angular/material/esm5/tabs.es5.js");
+/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
+/* harmony import */ var _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/material/toolbar */ "./node_modules/@angular/material/esm5/toolbar.es5.js");
+/* harmony import */ var _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/material/checkbox */ "./node_modules/@angular/material/esm5/checkbox.es5.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_common_locales_pt__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/common/locales/pt */ "./node_modules/@angular/common/locales/pt.js");
+/* harmony import */ var _angular_common_locales_pt__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_angular_common_locales_pt__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _global_error_global_error_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./global-error/global-error.component */ "./src/app/global-error/global-error.component.ts");
+/* harmony import */ var _auth_guard__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./auth.guard */ "./src/app/auth.guard.ts");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./auth.service */ "./src/app/auth.service.ts");
+/* harmony import */ var _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./projeto/projeto.service */ "./src/app/projeto/projeto.service.ts");
+/* harmony import */ var _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./usuario/usuario.service */ "./src/app/usuario/usuario.service.ts");
+/* harmony import */ var _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./cliente/cliente.service */ "./src/app/cliente/cliente.service.ts");
+/* harmony import */ var _global_error_handler_service__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./global-error-handler.service */ "./src/app/global-error-handler.service.ts");
+/* harmony import */ var _apontamento_datepicker_popup__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./apontamento/datepicker-popup */ "./src/app/apontamento/datepicker-popup.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _admin_admin_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./admin/admin.component */ "./src/app/admin/admin.component.ts");
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
+/* harmony import */ var _cliente_cliente_edit_cliente_edit_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./cliente/cliente-edit/cliente-edit.component */ "./src/app/cliente/cliente-edit/cliente-edit.component.ts");
+/* harmony import */ var _cliente_cliente_novo_cliente_novo_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./cliente/cliente-novo/cliente-novo.component */ "./src/app/cliente/cliente-novo/cliente-novo.component.ts");
+/* harmony import */ var _cliente_cliente_show_cliente_show_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./cliente/cliente-show/cliente-show.component */ "./src/app/cliente/cliente-show/cliente-show.component.ts");
+/* harmony import */ var _usuario_usuario_list_usuario_list_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./usuario/usuario-list/usuario-list.component */ "./src/app/usuario/usuario-list/usuario-list.component.ts");
+/* harmony import */ var _usuario_usuario_edit_usuario_edit_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./usuario/usuario-edit/usuario-edit.component */ "./src/app/usuario/usuario-edit/usuario-edit.component.ts");
+/* harmony import */ var _usuario_usuario_novo_usuario_novo_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./usuario/usuario-novo/usuario-novo.component */ "./src/app/usuario/usuario-novo/usuario-novo.component.ts");
+/* harmony import */ var _usuario_usuario_show_usuario_show_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./usuario/usuario-show/usuario-show.component */ "./src/app/usuario/usuario-show/usuario-show.component.ts");
+/* harmony import */ var _financeiro_financeiro_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./financeiro/financeiro.component */ "./src/app/financeiro/financeiro.component.ts");
+/* harmony import */ var _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./projeto/projeto-list/projeto-list.component */ "./src/app/projeto/projeto-list/projeto-list.component.ts");
+/* harmony import */ var _projeto_projeto_novo_projeto_novo_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./projeto/projeto-novo/projeto-novo.component */ "./src/app/projeto/projeto-novo/projeto-novo.component.ts");
+/* harmony import */ var _projeto_projeto_edit_projeto_edit_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./projeto/projeto-edit/projeto-edit.component */ "./src/app/projeto/projeto-edit/projeto-edit.component.ts");
+/* harmony import */ var _cliente_cliente_list_cliente_list_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./cliente/cliente-list/cliente-list.component */ "./src/app/cliente/cliente-list/cliente-list.component.ts");
+/* harmony import */ var _relatorio_relatorio_financeiro_relatorio_financeiro_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./relatorio/relatorio-financeiro/relatorio-financeiro.component */ "./src/app/relatorio/relatorio-financeiro/relatorio-financeiro.component.ts");
+/* harmony import */ var _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./pagina-nao-encontrada/pagina-nao-encontrada.component */ "./src/app/pagina-nao-encontrada/pagina-nao-encontrada.component.ts");
+/* harmony import */ var _apontamento_apontamento_novo_apontamento_novo_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./apontamento/apontamento-novo/apontamento-novo.component */ "./src/app/apontamento/apontamento-novo/apontamento-novo.component.ts");
+/* harmony import */ var _apontamento_apontamento_dashboard_apontamento_dashboard_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./apontamento/apontamento-dashboard/apontamento-dashboard.component */ "./src/app/apontamento/apontamento-dashboard/apontamento-dashboard.component.ts");
+/* harmony import */ var _apontamento_apontamento_lista_despesa_apontamento_lista_despesa_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./apontamento/apontamento-lista-despesa/apontamento-lista-despesa.component */ "./src/app/apontamento/apontamento-lista-despesa/apontamento-lista-despesa.component.ts");
+/* harmony import */ var _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./apontamento/apontamento-lista-hora/apontamento-lista-hora.component */ "./src/app/apontamento/apontamento-lista-hora/apontamento-lista-hora.component.ts");
+/* harmony import */ var _relatorio_relatorio_apontamento_projeto_relatorio_apontamento_projeto_component__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./relatorio/relatorio-apontamento-projeto/relatorio-apontamento-projeto.component */ "./src/app/relatorio/relatorio-apontamento-projeto/relatorio-apontamento-projeto.component.ts");
+/* harmony import */ var _relatorio_relatorio_apontamento_horas_usuario_relatorio_apontamento_horas_usuario_component__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./relatorio/relatorio-apontamento-horas-usuario/relatorio-apontamento-horas-usuario.component */ "./src/app/relatorio/relatorio-apontamento-horas-usuario/relatorio-apontamento-horas-usuario.component.ts");
+/* harmony import */ var _relatorio_relatorio_apontamento_despesas_usuario_relatorio_apontamento_despesas_usuario_component__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ./relatorio/relatorio-apontamento-despesas-usuario/relatorio-apontamento-despesas-usuario.component */ "./src/app/relatorio/relatorio-apontamento-despesas-usuario/relatorio-apontamento-despesas-usuario.component.ts");
+/* harmony import */ var _relatorio_relatorio_custo_projeto_relatorio_custo_projeto_component__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! ./relatorio/relatorio-custo-projeto/relatorio-custo-projeto.component */ "./src/app/relatorio/relatorio-custo-projeto/relatorio-custo-projeto.component.ts");
+/* harmony import */ var ng2_currency_mask__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! ng2-currency-mask */ "./node_modules/ng2-currency-mask/index.js");
+/* harmony import */ var ng2_currency_mask__WEBPACK_IMPORTED_MODULE_48___default = /*#__PURE__*/__webpack_require__.n(ng2_currency_mask__WEBPACK_IMPORTED_MODULE_48__);
+/* harmony import */ var _register_register_component__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! ./register/register.component */ "./src/app/register/register.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1028,6 +1122,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -1052,94 +1147,254 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
-Object(_angular_common__WEBPACK_IMPORTED_MODULE_11__["registerLocaleData"])(_angular_common_locales_pt__WEBPACK_IMPORTED_MODULE_12___default.a);
+
+
+
+
+Object(_angular_common__WEBPACK_IMPORTED_MODULE_12__["registerLocaleData"])(_angular_common_locales_pt__WEBPACK_IMPORTED_MODULE_13___default.a);
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_21__["AppComponent"],
-                _login_login_component__WEBPACK_IMPORTED_MODULE_29__["LoginComponent"],
-                _financeiro_financeiro_component__WEBPACK_IMPORTED_MODULE_30__["FinanceiroComponent"],
-                _cliente_cliente_list_cliente_list_component__WEBPACK_IMPORTED_MODULE_34__["ClienteListComponent"],
-                _cliente_cliente_novo_cliente_novo_component__WEBPACK_IMPORTED_MODULE_23__["ClienteNovoComponent"],
-                _cliente_cliente_edit_cliente_edit_component__WEBPACK_IMPORTED_MODULE_22__["ClienteEditComponent"],
-                _cliente_cliente_show_cliente_show_component__WEBPACK_IMPORTED_MODULE_24__["ClienteShowComponent"],
-                _usuario_usuario_list_usuario_list_component__WEBPACK_IMPORTED_MODULE_25__["UsuarioListComponent"],
-                _usuario_usuario_edit_usuario_edit_component__WEBPACK_IMPORTED_MODULE_26__["UsuarioEditComponent"],
-                _usuario_usuario_novo_usuario_novo_component__WEBPACK_IMPORTED_MODULE_27__["UsuarioNovoComponent"],
-                _usuario_usuario_show_usuario_show_component__WEBPACK_IMPORTED_MODULE_28__["UsuarioShowComponent"],
-                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_31__["ProjetoListComponent"],
-                _projeto_projeto_novo_projeto_novo_component__WEBPACK_IMPORTED_MODULE_32__["ProjetoNovoComponent"],
-                _projeto_projeto_edit_projeto_edit_component__WEBPACK_IMPORTED_MODULE_33__["ProjetoEditComponent"],
-                _relatorio_relatorio_financeiro_relatorio_financeiro_component__WEBPACK_IMPORTED_MODULE_35__["RelatorioFinanceiroComponent"],
-                _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_36__["PaginaNaoEncontradaComponent"],
-                _global_error_global_error_component__WEBPACK_IMPORTED_MODULE_13__["GlobalErrorComponent"],
-                _apontamento_apontamento_novo_apontamento_novo_component__WEBPACK_IMPORTED_MODULE_37__["ApontamentoNovoComponent"],
-                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_31__["DialogProjeto"],
-                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_40__["DialogApontamentoHora"],
-                _apontamento_apontamento_dashboard_apontamento_dashboard_component__WEBPACK_IMPORTED_MODULE_38__["ApontamentoDashboardComponent"],
-                _apontamento_apontamento_lista_despesa_apontamento_lista_despesa_component__WEBPACK_IMPORTED_MODULE_39__["ApontamentoListaDespesaComponent"],
-                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_40__["ApontamentoListaHoraComponent"],
-                _apontamento_datepicker_popup__WEBPACK_IMPORTED_MODULE_18__["NgbdDatepickerPopup"],
-                _relatorio_relatorio_apontamento_projeto_relatorio_apontamento_projeto_component__WEBPACK_IMPORTED_MODULE_41__["RelatorioApontamentoProjetoComponent"],
-                _relatorio_relatorio_apontamento_horas_usuario_relatorio_apontamento_horas_usuario_component__WEBPACK_IMPORTED_MODULE_42__["RelatorioApontamentoHorasUsuarioComponent"],
-                _relatorio_relatorio_apontamento_despesas_usuario_relatorio_apontamento_despesas_usuario_component__WEBPACK_IMPORTED_MODULE_43__["RelatorioApontamentoDespesasUsuarioComponent"],
-                _relatorio_relatorio_custo_projeto_relatorio_custo_projeto_component__WEBPACK_IMPORTED_MODULE_44__["RelatorioCustoProjetoComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_22__["AppComponent"],
+                _login_login_component__WEBPACK_IMPORTED_MODULE_25__["LoginComponent"],
+                _admin_admin_component__WEBPACK_IMPORTED_MODULE_24__["AdminComponent"],
+                _financeiro_financeiro_component__WEBPACK_IMPORTED_MODULE_33__["FinanceiroComponent"],
+                _cliente_cliente_list_cliente_list_component__WEBPACK_IMPORTED_MODULE_37__["ClienteListComponent"],
+                _cliente_cliente_novo_cliente_novo_component__WEBPACK_IMPORTED_MODULE_27__["ClienteNovoComponent"],
+                _cliente_cliente_edit_cliente_edit_component__WEBPACK_IMPORTED_MODULE_26__["ClienteEditComponent"],
+                _cliente_cliente_show_cliente_show_component__WEBPACK_IMPORTED_MODULE_28__["ClienteShowComponent"],
+                _usuario_usuario_list_usuario_list_component__WEBPACK_IMPORTED_MODULE_29__["UsuarioListComponent"],
+                _usuario_usuario_edit_usuario_edit_component__WEBPACK_IMPORTED_MODULE_30__["UsuarioEditComponent"],
+                _usuario_usuario_novo_usuario_novo_component__WEBPACK_IMPORTED_MODULE_31__["UsuarioNovoComponent"],
+                _usuario_usuario_show_usuario_show_component__WEBPACK_IMPORTED_MODULE_32__["UsuarioShowComponent"],
+                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_34__["ProjetoListComponent"],
+                _projeto_projeto_novo_projeto_novo_component__WEBPACK_IMPORTED_MODULE_35__["ProjetoNovoComponent"],
+                _projeto_projeto_edit_projeto_edit_component__WEBPACK_IMPORTED_MODULE_36__["ProjetoEditComponent"],
+                _relatorio_relatorio_financeiro_relatorio_financeiro_component__WEBPACK_IMPORTED_MODULE_38__["RelatorioFinanceiroComponent"],
+                _pagina_nao_encontrada_pagina_nao_encontrada_component__WEBPACK_IMPORTED_MODULE_39__["PaginaNaoEncontradaComponent"],
+                _global_error_global_error_component__WEBPACK_IMPORTED_MODULE_14__["GlobalErrorComponent"],
+                _apontamento_apontamento_novo_apontamento_novo_component__WEBPACK_IMPORTED_MODULE_40__["ApontamentoNovoComponent"],
+                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_34__["DialogProjeto"],
+                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_43__["DialogApontamentoHora"],
+                _apontamento_apontamento_dashboard_apontamento_dashboard_component__WEBPACK_IMPORTED_MODULE_41__["ApontamentoDashboardComponent"],
+                _apontamento_apontamento_lista_despesa_apontamento_lista_despesa_component__WEBPACK_IMPORTED_MODULE_42__["ApontamentoListaDespesaComponent"],
+                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_43__["ApontamentoListaHoraComponent"],
+                _apontamento_datepicker_popup__WEBPACK_IMPORTED_MODULE_21__["NgbdDatepickerPopup"],
+                _relatorio_relatorio_apontamento_projeto_relatorio_apontamento_projeto_component__WEBPACK_IMPORTED_MODULE_44__["RelatorioApontamentoProjetoComponent"],
+                _relatorio_relatorio_apontamento_horas_usuario_relatorio_apontamento_horas_usuario_component__WEBPACK_IMPORTED_MODULE_45__["RelatorioApontamentoHorasUsuarioComponent"],
+                _relatorio_relatorio_apontamento_despesas_usuario_relatorio_apontamento_despesas_usuario_component__WEBPACK_IMPORTED_MODULE_46__["RelatorioApontamentoDespesasUsuarioComponent"],
+                _relatorio_relatorio_custo_projeto_relatorio_custo_projeto_component__WEBPACK_IMPORTED_MODULE_47__["RelatorioCustoProjetoComponent"],
+                _register_register_component__WEBPACK_IMPORTED_MODULE_49__["RegisterComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
-                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_4__["BrowserAnimationsModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatDialogModule"],
+                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_5__["BrowserAnimationsModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatDialogModule"],
                 _angular_http__WEBPACK_IMPORTED_MODULE_2__["HttpModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatFormFieldModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatInputModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_20__["AppRoutingModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatRippleModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatOptionModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatSelectModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatRadioModule"],
-                _angular_material_tabs__WEBPACK_IMPORTED_MODULE_7__["MatTabsModule"],
-                _angular_material_card__WEBPACK_IMPORTED_MODULE_8__["MatCardModule"],
-                _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_9__["MatToolbarModule"],
-                _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_10__["MatCheckboxModule"],
-                _angular_material_card__WEBPACK_IMPORTED_MODULE_8__["MatCardModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatProgressSpinnerModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatMenuModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatIconModule"],
-                _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_9__["MatToolbarModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatButtonModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatFormFieldModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatInputModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatSelectModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatSortModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatTableModule"],
-                _angular_material_paginator__WEBPACK_IMPORTED_MODULE_6__["MatPaginatorModule"],
-                _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_19__["NgbModule"],
-                _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_19__["NgbModule"].forRoot(),
-                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatDatepickerModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatNativeDateModule"],
-                ng2_currency_mask__WEBPACK_IMPORTED_MODULE_45__["CurrencyMaskModule"]
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatFormFieldModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatInputModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"],
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_23__["AppRoutingModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatRippleModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatOptionModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatSelectModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatRadioModule"],
+                _angular_material_tabs__WEBPACK_IMPORTED_MODULE_8__["MatTabsModule"],
+                _angular_material_card__WEBPACK_IMPORTED_MODULE_9__["MatCardModule"],
+                _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_10__["MatToolbarModule"],
+                _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_11__["MatCheckboxModule"],
+                _angular_material_card__WEBPACK_IMPORTED_MODULE_9__["MatCardModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatProgressSpinnerModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatMenuModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatIconModule"],
+                _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_10__["MatToolbarModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatButtonModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatFormFieldModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatInputModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatSelectModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatSortModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatTableModule"],
+                _angular_material_paginator__WEBPACK_IMPORTED_MODULE_7__["MatPaginatorModule"],
+                // NgbModule,
+                // NgbModule.forRoot(),
+                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatDatepickerModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatNativeDateModule"],
+                ng2_currency_mask__WEBPACK_IMPORTED_MODULE_48__["CurrencyMaskModule"]
             ],
             entryComponents: [
-                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_31__["DialogProjeto"],
-                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_40__["DialogApontamentoHora"]
+                _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_34__["DialogProjeto"],
+                _apontamento_apontamento_lista_hora_apontamento_lista_hora_component__WEBPACK_IMPORTED_MODULE_43__["DialogApontamentoHora"]
             ],
             providers: [
-                _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_14__["ProjetoService"],
-                _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_15__["UsuarioService"],
-                _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_16__["ClienteService"],
-                _global_error_handler_service__WEBPACK_IMPORTED_MODULE_17__["GlobalErrorHandlerService"],
-                { provide: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ErrorHandler"], useClass: _global_error_handler_service__WEBPACK_IMPORTED_MODULE_17__["GlobalErrorHandlerService"] },
+                _auth_service__WEBPACK_IMPORTED_MODULE_16__["AuthService"],
+                _auth_guard__WEBPACK_IMPORTED_MODULE_15__["AuthGuard"],
+                _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_17__["ProjetoService"],
+                _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_18__["UsuarioService"],
+                _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_19__["ClienteService"],
+                _global_error_handler_service__WEBPACK_IMPORTED_MODULE_20__["GlobalErrorHandlerService"],
+                { provide: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ErrorHandler"], useClass: _global_error_handler_service__WEBPACK_IMPORTED_MODULE_20__["GlobalErrorHandlerService"] },
                 { provide: _angular_core__WEBPACK_IMPORTED_MODULE_1__["LOCALE_ID"], useValue: 'pt' }
             ],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_21__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_22__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/auth.guard.ts":
+/*!*******************************!*\
+  !*** ./src/app/auth.guard.ts ***!
+  \*******************************/
+/*! exports provided: AuthGuard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthGuard", function() { return AuthGuard; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./auth.service */ "./src/app/auth.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./usuario/usuario.service */ "./src/app/usuario/usuario.service.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var AuthGuard = /** @class */ (function () {
+    function AuthGuard(_auth, router, usuario) {
+        this._auth = _auth;
+        this.router = router;
+        this.usuario = usuario;
+    }
+    AuthGuard.prototype.canActivate = function (next, state) {
+        var _this = this;
+        // debugger
+        if (this._auth.isLoggedIn) {
+            return true;
+        }
+        return this.usuario.isLoggedIn().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (res) {
+            if (res.status) {
+                _this._auth.setLoggedIn(true);
+                return true;
+            }
+            else {
+                _this.router.navigate(['login']);
+                return false;
+            }
+        }));
+    };
+    AuthGuard = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
+            _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_3__["UsuarioService"]])
+    ], AuthGuard);
+    return AuthGuard;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/auth.service.ts":
+/*!*********************************!*\
+  !*** ./src/app/auth.service.ts ***!
+  \*********************************/
+/*! exports provided: AuthService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthService", function() { return AuthService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm5/http.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var AuthService = /** @class */ (function () {
+    function AuthService(_http, router) {
+        this._http = _http;
+        this.router = router;
+        this.loggedInStatus = false;
+    }
+    AuthService.prototype.setLoggedIn = function (value) {
+        this.loggedInStatus = value;
+    };
+    AuthService.prototype.login = function (usuario, senha) {
+        console.log('AuthService > login(usuario)');
+        return this._http.post('/login/', { usuario: usuario, senha: senha });
+    };
+    AuthService.prototype.getUserDetails = function () {
+        var token = this.getToken();
+        console.log('getUserDetails() ', token);
+        var payload;
+        if (token) {
+            payload = token.split('.')[1];
+            payload = window.atob(payload);
+            return JSON.parse(payload);
+        }
+        else {
+            return null;
+        }
+    };
+    AuthService.prototype.isLoggedIn = function () {
+        var user = this.getUserDetails();
+        if (user) {
+            return user.exp > Date.now() / 1000;
+        }
+        else {
+            return false;
+        }
+    };
+    AuthService.prototype.saveToken = function (token) {
+        localStorage.setItem('mean-token', token);
+        this.token = token;
+    };
+    AuthService.prototype.getToken = function () {
+        if (!this.token) {
+            this.token = localStorage.getItem('mean-token');
+        }
+        return this.token;
+    };
+    AuthService.prototype.logout = function () {
+        this.token = '';
+        window.localStorage.removeItem('mean-token');
+        this.router.navigateByUrl('/');
+    };
+    AuthService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_http__WEBPACK_IMPORTED_MODULE_1__["Http"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+    ], AuthService);
+    return AuthService;
 }());
 
 
@@ -1153,7 +1408,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n<div class=\"mat-elevation-z8\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/clientes']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n<div class=\"container\">\n    <div class=\"mat-body-2\"> \n      Dados básicos: \n    </div>\n    <div class=\"errors\" *ngIf=\"errors\">\n      <p *ngIf=\"errors.cnpj\" >  {{ errors['cnpj'].message }} </p>\n      <p *ngIf=\"errors.razaoSocial\" >  {{ errors['razaoSocial'].message }} </p>\n      <p *ngIf=\"errors.nomeFantasia\" >  {{ errors['nomeFantasia'].message }} </p>\n      <p *ngIf=\"errors['endereco.logradouro']\" >  {{ errors['endereco.logradouro'].message }} </p>   \n      <p *ngIf=\"errors['endereco.cidade']\" >  {{ errors['endereco.cidade'].message }} </p>  \n      <p *ngIf=\"errors['endereco.estado']\" >  {{ errors['endereco.estado'].message }} </p>   \n      <p *ngIf=\"errors['endereco.cep']\" >  {{ errors['endereco.cep'].message }} </p>          \n    </div>\n\n    <form class=\"example-form\"  *ngIf=\"cliente\" [formGroup] = \"clienteForm\">\n\n        <p> \n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"cnpj\"\n          type=\"text\"\n          formControlName=\"cnpj\" \n          name=\"cnpj\"\n          >\n          <mat-error *ngIf=\"cnpj.invalid && cnpj.touched\">\n            cnpj informado não é válido\n          </mat-error>\n        </mat-form-field></td>\n  \n        <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n\n            <td><mat-form-field class=\"example-full-width\">\n              <input \n              matInput \n              placeholder=\"razão social\"\n              type=\"text\"\n              maxlength=\"650\"\n              formControlName=\"razaoSocial\" \n              name=\"razaoSocial\"\n              />\n              <mat-error *ngIf=\"razaoSocial.invalid && razaoSocial.touched\">\n                  razão social informada não é válida\n              </mat-error>\n            </mat-form-field></td>\n          </tr></table>\n\n          <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n          <td><mat-form-field class=\"example-full-width\">\n            <input \n            matInput \n            placeholder=\"nome fantasia\"\n            type=\"text\"\n            formControlName=\"nomeFantasia\"  \n            name=\"nomeFantasia\"\n            />\n            <mat-error *ngIf=\"nomeFantasia.invalid && nomeFantasia.touched\">\n                nome fantasia informado não é válido\n            </mat-error>\n          </mat-form-field></td>\n        </tr></table>\n  \n  \n      <form class=\"example-form\" [formGroup]=\"endereco\">\n        <p>\n        <mat-form-field class=\"example-full-width\">\n          <input \n          matInput\n          placeholder=\"endereço\"\n          type=\"text\"\n          formControlName=\"logradouro\" \n          name=\"logradouro\"  \n          />\n        </mat-form-field>\n      </p>\n  \n\n      <p>\n        <mat-form-field style=\"width:200px !important;\" class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"complemento\"\n          type=\"text\"\n          formControlName=\"complemento\" \n          name=\"complemento\"\n          /> \n        </mat-form-field>\n      </p>\n\n      <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"cidade\"\n          type=\"text\"\n          formControlName=\"cidade\" \n          name=\"cidade\"\n          >\n        </mat-form-field></td>\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"estado\"\n          type=\"text\"\n          formControlName=\"estado\"\n          name=\"estado\" \n          maxlength=\"2\"\n          >\n          <mat-hint align=\"end\" *ngIf=\"estado\">{{estado.value.length}} / 2</mat-hint>\n        </mat-form-field></td>\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"cep\"\n          type=\"number\"\n          #postalCode\n          formControlName=\"cep\" \n          maxlength=\"8\" \n          name=\"cep\" \n          >\n          <mat-hint align=\"end\" *ngIf=\"cep\">{{cep.value.length}} / 8</mat-hint>\n\n        </mat-form-field></td>\n      </tr></table>\n      </form>\n      <div class=\"mat-body-2\"> \n        Dados comerciais:\n      </div>\n      <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput\n          placeholder=\"valor HH\"\n          type=\"number\"\n          formControlName=\"valorHH\" \n          name=\"valorHH\"  \n          />\n        </mat-form-field></td>\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput\n          placeholder=\"prazo pagto\"\n          type=\"number\"\n          formControlName=\"prazoPgto\" \n          name=\"prazoPgto\"  \n          />\n        </mat-form-field></td>\n      </tr></table>\n      <div class=\"mat-body-2\"> \n        Contatos: \n      </div>\n      <div formArrayName=\"contatos\">\n\n\n        <div *ngFor=\"let contato of contatoForms.controls; let i = index;\" [formGroupName]=\"i\">\n  \n          <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n            <td><mat-form-field class=\"example-full-width\">\n              <input \n              matInput\n              placeholder=\"nome\"\n              type=\"text\"\n              formControlName=\"nome\" \n              name=\"nome\"  \n              />\n            </mat-form-field></td>\n  \n            <td><mat-form-field class=\"example-full-width\">\n                <input \n                matInput\n                placeholder=\"email\"\n                type=\"email\"\n                formControlName=\"email\" \n                name=\"email\"\n                />\n              </mat-form-field></td>\n  \n            <td><mat-form-field class=\"example-full-width\">\n                <input \n                matInput\n                placeholder=\"fone\"\n                type=\"number\"\n                formControlName=\"fone\" \n                name=\"fone\"  \n                />\n              </mat-form-field></td>\n  \n              <td><mat-form-field class=\"example-full-width\">\n                  <input \n                  matInput\n                  placeholder=\"skype\"\n                  type=\"text\"\n                  formControlName=\"skype\" \n                  name=\"skype\"  \n                  />\n                </mat-form-field></td>\n\n              <a  mat-mini-fab color=\"warn\" (click)=\"deleteContato(i)\">-</a>\n              <br>\n            </tr></table>\n          </div>\n        \n        </div>  \n\n        <a mat-mini-fab color=\"primary\" (click)=\"addContato()\">+</a>\n     <div>\n      <button mat-raised-button color=\"basic\" (click)=\"cancel()\">Cancela</button>\n\n      <button mat-raised-button color=\"primary\"  (click)=\"editarCliente(clienteForm, endereco)\" [disabled]=\"clienteForm.invalid || endereco.invalid\">Confirma</button>\n    </div>\n  \n    </form>\n\n\n</div>\n"
+module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n<div class=\"mat-elevation-z8\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/clientes']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n<div class=\"container\">\n    <div class=\"mat-body-2\"> \n      Dados básicos: \n    </div>\n    <div class=\"errors\" *ngIf=\"errors\">\n      <p *ngIf=\"errors.cnpj\" >  {{ errors['cnpj'].message }} </p>\n      <p *ngIf=\"errors.razaoSocial\" >  {{ errors['razaoSocial'].message }} </p>\n      <p *ngIf=\"errors.nomeFantasia\" >  {{ errors['nomeFantasia'].message }} </p>\n      <p *ngIf=\"errors['endereco.logradouro']\" >  {{ errors['endereco.logradouro'].message }} </p>   \n      <p *ngIf=\"errors['endereco.cidade']\" >  {{ errors['endereco.cidade'].message }} </p>  \n      <p *ngIf=\"errors['endereco.estado']\" >  {{ errors['endereco.estado'].message }} </p>   \n      <p *ngIf=\"errors['endereco.cep']\" >  {{ errors['endereco.cep'].message }} </p>          \n    </div>\n\n    <form class=\"example-form\"  *ngIf=\"cliente\" [formGroup] = \"clienteForm\">\n\n        <p> \n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"cnpj\"\n          type=\"text\"\n          formControlName=\"cnpj\" \n          name=\"cnpj\"\n          >\n          <mat-error *ngIf=\"cnpj.invalid && cnpj.touched\">\n            cnpj informado não é válido\n          </mat-error>\n        </mat-form-field></td>\n  \n        <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n\n            <td><mat-form-field class=\"example-full-width\">\n              <input \n              matInput \n              placeholder=\"razão social\"\n              type=\"text\"\n              maxlength=\"650\"\n              formControlName=\"razaoSocial\" \n              name=\"razaoSocial\"\n              />\n              <mat-error *ngIf=\"razaoSocial.invalid && razaoSocial.touched\">\n                  razão social informada não é válida\n              </mat-error>\n            </mat-form-field></td>\n          </tr></table>\n\n          <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n          <td><mat-form-field class=\"example-full-width\">\n            <input \n            matInput \n            placeholder=\"nome fantasia\"\n            type=\"text\"\n            formControlName=\"nomeFantasia\"  \n            name=\"nomeFantasia\"\n            />\n            <mat-error *ngIf=\"nomeFantasia.invalid && nomeFantasia.touched\">\n                nome fantasia informado não é válido\n            </mat-error>\n          </mat-form-field></td>\n        </tr></table>\n  \n  \n      <form class=\"example-form\" [formGroup]=\"endereco\">\n        <p>\n        <mat-form-field class=\"example-full-width\">\n          <input \n          matInput\n          placeholder=\"endereço\"\n          type=\"text\"\n          formControlName=\"logradouro\" \n          name=\"logradouro\"  \n          />\n        </mat-form-field>\n      </p>\n  \n\n      <p>\n        <mat-form-field style=\"width:200px !important;\" class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"complemento\"\n          type=\"text\"\n          formControlName=\"complemento\" \n          name=\"complemento\"\n          /> \n        </mat-form-field>\n      </p>\n\n      <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"cidade\"\n          type=\"text\"\n          formControlName=\"cidade\" \n          name=\"cidade\"\n          >\n        </mat-form-field></td>&nbsp;&nbsp;\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"estado\"\n          type=\"text\"\n          formControlName=\"estado\"\n          name=\"estado\" \n          maxlength=\"2\"\n          >\n          <mat-hint align=\"end\" *ngIf=\"estado\">{{estado.value.length}} / 2</mat-hint>\n        </mat-form-field></td>&nbsp;&nbsp;\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"cep\"\n          type=\"number\"\n          #postalCode\n          formControlName=\"cep\" \n          maxlength=\"8\" \n          name=\"cep\" \n          >\n          <mat-hint align=\"end\" *ngIf=\"cep\">{{cep.value.length}} / 8</mat-hint>\n\n        </mat-form-field></td>\n      </tr></table>\n      </form>\n      <div class=\"mat-body-2\"> \n        Dados comerciais:\n      </div>\n      <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput\n          autocomplete=\"off\" \n          placeholder=\"valor HH\"\n          formControlName=\"valorHH\" \n          name=\"valorHH\"  \n          currencyMask \n          [options]=\"{ prefix: 'R$ ', thousands: '.', decimal: ',' }\"\n          class=\"example-right-align\"\n          />\n        </mat-form-field></td>&nbsp;&nbsp;&nbsp;&nbsp;\n\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput\n          placeholder=\"prazo pagto\"\n          type=\"number\"\n          formControlName=\"prazoPgto\" \n          name=\"prazoPgto\"  \n          />\n        </mat-form-field></td>\n      </tr></table>\n      <div class=\"mat-body-2\"> \n        Contatos: \n      </div>\n      <div formArrayName=\"contatos\">\n\n\n        <div *ngFor=\"let contato of contatoForms.controls; let i = index;\" [formGroupName]=\"i\">\n  \n          <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n            <td><mat-form-field class=\"example-full-width\">\n              <input \n              matInput\n              placeholder=\"nome\"\n              type=\"text\"\n              formControlName=\"nome\" \n              name=\"nome\"  \n              />\n            </mat-form-field></td>\n  \n            <td><mat-form-field class=\"example-full-width\">\n                <input \n                matInput\n                placeholder=\"email\"\n                type=\"email\"\n                formControlName=\"email\" \n                name=\"email\"\n                />\n              </mat-form-field></td>\n  \n            <td><mat-form-field class=\"example-full-width\">\n                <input \n                matInput\n                placeholder=\"fone\"\n                type=\"number\"\n                formControlName=\"fone\" \n                name=\"fone\"  \n                />\n              </mat-form-field></td>\n  \n              <td><mat-form-field class=\"example-full-width\">\n                  <input \n                  matInput\n                  placeholder=\"skype\"\n                  type=\"text\"\n                  formControlName=\"skype\" \n                  name=\"skype\"  \n                  />\n                </mat-form-field></td>\n\n              <a  mat-mini-fab color=\"warn\" (click)=\"deleteContato(i)\">-</a>\n              <br>\n            </tr></table>\n          </div>\n        \n        </div>  \n\n        <a mat-mini-fab color=\"primary\" (click)=\"addContato()\">+</a>\n     <div>\n      <button mat-raised-button color=\"basic\" (click)=\"cancel()\">Cancela</button>\n\n      <button mat-raised-button color=\"primary\"  (click)=\"editarCliente(clienteForm, endereco)\" [disabled]=\"clienteForm.invalid || endereco.invalid\">Confirma</button>\n    </div>\n  \n    </form>\n\n\n</div>\n"
 
 /***/ }),
 
@@ -1210,8 +1465,8 @@ var ClienteEditComponent = /** @class */ (function () {
         };
     }
     ClienteEditComponent.prototype.ngOnInit = function () {
+        console.log(' ClienteEditComponent > result.message');
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log(' ClienteEditComponent > ', this.usuarioLogado.email);
         this.obterCliente(this._route.snapshot.params['id']);
     };
     ClienteEditComponent.prototype.obterCliente = function (id) {
@@ -1314,7 +1569,7 @@ var ClienteEditComponent = /** @class */ (function () {
     };
     ClienteEditComponent.prototype.editarCliente = function (clienteForm, endereco) {
         var _this = this;
-        console.log('ClienteEditarComponent > editarCliente(clienteForm)', clienteForm.value, endereco.value);
+        console.log('ClienteEditComponent > editarCliente(form)');
         var cliente = clienteForm.value;
         cliente.endereco = endereco.value;
         this._clienteService.editarCliente(this.cliente['_id'], cliente)
@@ -1328,6 +1583,7 @@ var ClienteEditComponent = /** @class */ (function () {
                 _this._router.navigate(['/clientes']);
             }
         }, function (err) {
+            console.log('Algum erro ocorreu editendo cliente ', err);
             throw err;
         });
     };
@@ -1360,7 +1616,7 @@ var ClienteEditComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n  <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<div class=\"mat-elevation-z8\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n      <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n        <span class=\"navbar-toggler-icon\"></span>\n      </button>\n    \n      <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n        <ul class=\"navbar-nav mr-auto\">\n          <li class=\"nav-item active\">\n            <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n          </li>\n        </ul>\n      </div>\n  </nav>\n</div>\n<div class=\"container\">\n\n  <div class=\"level-left\">\n      <div style=\"margin-top: 20px;\" class=\"title is-4\">Clientes</div> \n  </div>\n  <div class=\"level-right\">\n      <button mat-stroked-button color=\"primary\" [routerLink]=\"['/cliente/novo']\">Novo cliente</button>\n  </div> \n\n  <mat-form-field>\n      <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filtrar\">\n    </mat-form-field>\n  \n    <div class=\"mat-elevation-z8\">\n      <table mat-table [dataSource]=\"dataSource\" matSort>\n\n        <!-- nomeFantasia Column -->\n        <ng-container matColumnDef=\"nomeFantasia\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> nome fantasia </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.nomeFantasia}} </td>\n        </ng-container>\n  \n        <!-- valorHH Column -->\n        <ng-container matColumnDef=\"valorHH\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> valor HH </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.valorHH}} </td>\n        </ng-container>\n  \n        <!-- prazoPgto Column -->\n        <ng-container matColumnDef=\"prazoPgto\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> prazo pagto </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.prazoPgto}} </td>\n        </ng-container>\n  \n        <!-- contatos Column -->\n          <ng-container matColumnDef=\"nome\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> contato </th>\n            <td mat-cell *matCellDef=\"let row\">  {{row.nome}} </td>\n          </ng-container>\n\n        <!-- email Column -->\n        <ng-container matColumnDef=\"email\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> email </th>\n            <td mat-cell *matCellDef=\"let row\"> {{row.email}} </td>\n        </ng-container>\n\n        <!-- fone Column -->\n        <ng-container matColumnDef=\"fone\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> fone </th>\n            <td mat-cell *matCellDef=\"let row\"> {{row.fone}} </td>\n        </ng-container>\n\n        <!-- Acao 1 Column -->\n        <ng-container matColumnDef=\"acao1\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> ação </th>\n          <td mat-cell *matCellDef=\"let row\" >\n            <div class=\"button-row\">\n              <!-- <button mat-button color=\"primary\" >editar</button> -->\n              <button mat-button color=\"primary\" [routerLink]=\"['/cliente/edit/', row['_id'] ]\">editar</button>\n            </div>\n          </td>\n        </ng-container>\n  \n       <!-- Acao 2 Column -->\n       <ng-container matColumnDef=\"acao2\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>\n          <td mat-cell *matCellDef=\"let row\" >\n            <div class=\"button-row\">\n              <button mat-button color=\"warn\" [routerLink]=\"['/cliente/show', row['_id'] ]\">detalhes</button>\n            </div>\n          </td>\n        </ng-container>\n  \n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\">\n        </tr>\n      </table>\n  \n\n    </div>\n    <mat-paginator [pageSizeOptions]=\"[5, 10, 25, 100]\"></mat-paginator>\n</div>"
+module.exports = "<mat-toolbar>\n  <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<div class=\"mat-elevation-z8\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n      <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n        <span class=\"navbar-toggler-icon\"></span>\n      </button>\n    \n      <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n        <ul class=\"navbar-nav mr-auto\">\n          <li class=\"nav-item active\">\n            <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n          </li>\n        </ul>\n      </div>\n  </nav>\n</div>\n<div class=\"container\">\n\n  <div class=\"level-left\">\n      <div style=\"margin-top: 20px;\" class=\"title is-4\">Clientes</div> \n  </div>\n  <div class=\"level-right\">\n      <button mat-stroked-button color=\"primary\" [routerLink]=\"['/cliente/novo']\">Novo cliente</button>\n  </div> \n\n  <mat-form-field>\n      <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filtrar\">\n    </mat-form-field>\n  \n    <div class=\"mat-elevation-z8\">\n      <table mat-table [dataSource]=\"dataSource\" matSort>\n\n        <!-- nomeFantasia Column -->\n        <ng-container matColumnDef=\"nomeFantasia\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> nome fantasia </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.nomeFantasia}} </td>\n        </ng-container>\n  \n        <!-- valorHH Column -->\n        <ng-container matColumnDef=\"valorHH\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> valor HH </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.valorHH | currency:'BRL'}} </td>\n        </ng-container>\n  \n        <!-- prazoPgto Column -->\n        <ng-container matColumnDef=\"prazoPgto\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> prazo pagto </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.prazoPgto}} </td>\n        </ng-container>\n  \n        <!-- contatos Column -->\n          <ng-container matColumnDef=\"nome\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> contato </th>\n            <td mat-cell *matCellDef=\"let row\">  {{row.nome}} </td>\n          </ng-container>\n\n        <!-- email Column -->\n        <ng-container matColumnDef=\"email\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> email </th>\n            <td mat-cell *matCellDef=\"let row\"> {{row.email}} </td>\n        </ng-container>\n\n        <!-- fone Column -->\n        <ng-container matColumnDef=\"fone\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> fone </th>\n            <td mat-cell *matCellDef=\"let row\"> {{row.fone}} </td>\n        </ng-container>\n\n        <!-- Acao 1 Column -->\n        <ng-container matColumnDef=\"acao1\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> ação </th>\n          <td mat-cell *matCellDef=\"let row\" >\n            <div class=\"button-row\">\n              <!-- <button mat-button color=\"primary\" >editar</button> -->\n              <button mat-button color=\"primary\" [routerLink]=\"['/cliente/edit/', row['_id'] ]\">editar</button>\n            </div>\n          </td>\n        </ng-container>\n  \n       <!-- Acao 2 Column -->\n       <ng-container matColumnDef=\"acao2\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>\n          <td mat-cell *matCellDef=\"let row\" >\n            <div class=\"button-row\">\n              <button mat-button color=\"warn\" [routerLink]=\"['/cliente/show', row['_id'] ]\">detalhes</button>\n            </div>\n          </td>\n        </ng-container>\n  \n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\">\n        </tr>\n      </table>\n  \n\n    </div>\n    <mat-paginator [pageSizeOptions]=\"[5, 10, 25, 100]\"></mat-paginator>\n</div>"
 
 /***/ }),
 
@@ -1416,16 +1672,15 @@ var ClienteListComponent = /** @class */ (function () {
         this.displayedColumns = ['nomeFantasia', 'valorHH', 'nome', 'email', 'fone', 'acao1', 'acao2'];
     }
     ClienteListComponent.prototype.ngOnInit = function () {
+        console.log('UsuarioListComponent > ngOnInit() ');
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log('UsuarioListComponent > usuariologado', this.usuarioLogado.email);
         this.obterClientes();
     };
     ClienteListComponent.prototype.obterClientes = function () {
         var _this = this;
-        console.log('ClienteListComponent > obterClienteList()');
+        console.log('ClienteListComponent > obterClientes()');
         var clienteObservable = this._clienteService.obterTodos();
         clienteObservable.subscribe(function (clientes) {
-            console.log('clientes in obterClientes list:', clientes.json());
             _this.clientes = clientes.json();
             for (var i = 0; i < _this.clientes.length; i++) {
                 if (_this.clientes[i].contatos[0]) {
@@ -1438,7 +1693,10 @@ var ClienteListComponent = /** @class */ (function () {
             _this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"](_this.clientes);
             _this.dataSource.paginator = _this.paginator;
             _this.dataSource.sort = _this.sort;
-        }, function (err) { }, function () { });
+        }, function (err) {
+            console.log('Algum erro ocorreu obtendo cliente ', err);
+            throw err;
+        });
     };
     ClienteListComponent.prototype.applyFilter = function (filterValue) {
         this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -1477,7 +1735,7 @@ var ClienteListComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n  <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n<div class=\"mat-elevation-z8\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/clientes']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n<div class=\"container\">\n  <div class=\"mat-body-2\"> \n    Dados básicos: \n  </div>\n    <div class=\"errors\" *ngIf=\"errors\">\n      <p *ngIf=\"errors.cnpj\" >  {{ errors['cnpj'].message }} </p>\n      <p *ngIf=\"errors.razaoSocial\" >  {{ errors['razaoSocial'].message }} </p>\n      <p *ngIf=\"errors.nomeFantasia\" >  {{ errors['nomeFantasia'].message }} </p>\n      <p *ngIf=\"errors['endereco.logradouro']\" >  {{ errors['endereco.logradouro'].message }} </p>   \n      <p *ngIf=\"errors['endereco.cidade']\" >  {{ errors['endereco.cidade'].message }} </p>  \n      <p *ngIf=\"errors['endereco.estado']\" >  {{ errors['endereco.estado'].message }} </p>   \n      <p *ngIf=\"errors['endereco.cep']\" >  {{ errors['endereco.cep'].message }} </p>    \n    </div>\n\n\n  <form class=\"example-form\" [formGroup] = \"clienteForm\">\n\n      <p> \n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"cnpj\"\n          type=\"text\"\n          formControlName=\"cnpj\" \n          name=\"cnpj\"\n          />\n          <mat-error *ngIf=\"cnpj.invalid && cnpj.touched\">\n            cnpj informado não é válido\n          </mat-error>\n        </mat-form-field></td>\n      </p>\n\n      <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      \n        <td><mat-form-field style=\"width:400px !important;\" class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"razão social\"\n          type=\"text\"\n          formControlName=\"razaoSocial\" \n          name=\"razaoSocial\"\n          />\n          <mat-error *ngIf=\"razaoSocial.invalid && razaoSocial.touched\">\n              razão social informada não é válida\n          </mat-error>\n        </mat-form-field></td>\n      </tr></table>\n\n      <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field style=\"width:400px !important;\" class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"nome fantasia\"\n        type=\"text\"\n        formControlName=\"nomeFantasia\"  \n        name=\"nomeFantasia\"\n        />\n        <mat-error *ngIf=\"nomeFantasia.invalid && nomeFantasia.touched\">\n            nome fantasia informado não é válido\n        </mat-error>\n      </mat-form-field></td>\n    </tr></table>\n\n    <form class=\"example-form\" [formGroup]=\"endereco\">\n      <p>\n        <mat-form-field style=\"width:400px !important;\" class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"endereço\"\n          type=\"text\"\n          formControlName=\"logradouro\" \n          name=\"logradouro\"\n          />\n        </mat-form-field>\n      </p>\n    \n      <p>\n        <mat-form-field style=\"width:200px !important;\" class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"complemento\"\n          type=\"text\"\n          formControlName=\"complemento\" \n          name=\"complemento\"\n          /> \n        </mat-form-field>\n      </p>\n\n      <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"cidade\"\n          type=\"text\"\n          formControlName=\"cidade\" \n          name=\"cidade\"\n          >\n        </mat-form-field></td>\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"estado\"\n          type=\"text\"\n          formControlName=\"estado\"\n          name=\"estado\" \n          maxlength=\"2\"\n          >\n          <mat-hint align=\"end\" *ngIf=\"estado\">{{estado.value.length}} / 2</mat-hint>\n        </mat-form-field></td>\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"cep\"\n          type=\"number\"\n          #postalCode\n          formControlName=\"cep\" \n          maxlength=\"8\" \n          name=\"cep\" \n          >\n          <mat-hint align=\"end\" *ngIf=\"cep\">{{cep.value.length}} / 8</mat-hint>\n\n        </mat-form-field></td>\n      </tr></table>\n    </form>\n    <div class=\"mat-body-2\"> \n      Dados comerciais:\n    </div>\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput\n        placeholder=\"valor HH\"\n        type=\"number\"\n        formControlName=\"valorHH\" \n        name=\"valorHH\"  \n        />\n      </mat-form-field></td>\n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput\n        placeholder=\"prazo pagto\"\n        type=\"number\"\n        formControlName=\"prazoPgto\" \n        name=\"prazoPgto\"  \n        />\n      </mat-form-field></td>\n    </tr></table>\n    <div class=\"mat-body-2\"> \n      Contatos:\n    </div> \n    <div class=\"container\">\n      <div formArrayName=\"contatos\">\n          \n        <div *ngFor=\"let contato of contatoForms.controls; let i = index;\" [formGroupName]=\"i\">\n\n          <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n            <td><mat-form-field class=\"example-full-width\">\n              <input \n              matInput\n              placeholder=\"nome\"\n              type=\"text\"\n              formControlName=\"nome\" \n              name=\"nome\"  \n              />\n            </mat-form-field></td>\n\n            <td><mat-form-field class=\"example-full-width\">\n                <input \n                matInput\n                placeholder=\"email\"\n                type=\"email\"\n                formControlName=\"email\" \n                name=\"email\"\n                />\n              </mat-form-field></td>\n\n            <td><mat-form-field class=\"example-full-width\">\n                <input \n                matInput\n                placeholder=\"fone\"\n                type=\"number\"\n                formControlName=\"fone\" \n                name=\"fone\"  \n                />\n              </mat-form-field></td>\n\n              <td><mat-form-field class=\"example-full-width\">\n                  <input \n                  matInput\n                  placeholder=\"skype\"\n                  type=\"text\"\n                  formControlName=\"skype\" \n                  name=\"skype\"  \n                  />\n                </mat-form-field></td>\n                <a  mat-mini-fab color=\"warn\" (click)=\"deleteContato(i)\">-</a>\n            </tr></table>\n\n          </div>\n\n        </div>\n\n        <a mat-mini-fab color=\"primary\" (click)=\"addContato()\">+</a>\n\n    </div>\n    <button mat-raised-button color=\"basic\" (click)=\"cancel()\">cancela</button>\n\n    <button mat-raised-button color=\"primary\"  (click)=\"criarCliente(clienteForm, endereco)\" [disabled]=\"clienteForm.invalid || endereco.invalid\">confirma</button>\n      \n\n  </form>\n\n</div>"
+module.exports = "<mat-toolbar>\n  <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n<div class=\"mat-elevation-z8\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/clientes']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n<div class=\"container\">\n  <div class=\"mat-body-2\"> \n    Dados básicos: \n  </div>\n    <div class=\"errors\" *ngIf=\"errors\">\n      <p *ngIf=\"errors.cnpj\" >  {{ errors['cnpj'].message }} </p>\n      <p *ngIf=\"errors.razaoSocial\" >  {{ errors['razaoSocial'].message }} </p>\n      <p *ngIf=\"errors.nomeFantasia\" >  {{ errors['nomeFantasia'].message }} </p>\n      <p *ngIf=\"errors['endereco.logradouro']\" >  {{ errors['endereco.logradouro'].message }} </p>   \n      <p *ngIf=\"errors['endereco.cidade']\" >  {{ errors['endereco.cidade'].message }} </p>  \n      <p *ngIf=\"errors['endereco.estado']\" >  {{ errors['endereco.estado'].message }} </p>   \n      <p *ngIf=\"errors['endereco.cep']\" >  {{ errors['endereco.cep'].message }} </p>    \n    </div>\n\n\n  <form class=\"example-form\" [formGroup] = \"clienteForm\">\n\n      <p> \n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"cnpj\"\n          type=\"text\"\n          formControlName=\"cnpj\" \n          name=\"cnpj\"\n          />\n          <mat-error *ngIf=\"cnpj.invalid && cnpj.touched\">\n            cnpj informado não é válido\n          </mat-error>\n        </mat-form-field></td>\n      </p>\n\n      <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      \n        <td><mat-form-field style=\"width:400px !important;\" class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"razão social\"\n          type=\"text\"\n          formControlName=\"razaoSocial\" \n          name=\"razaoSocial\"\n          />\n          <mat-error *ngIf=\"razaoSocial.invalid && razaoSocial.touched\">\n              razão social informada não é válida\n          </mat-error>\n        </mat-form-field></td>\n      </tr></table>\n\n      <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field style=\"width:400px !important;\" class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"nome fantasia\"\n        type=\"text\"\n        formControlName=\"nomeFantasia\"  \n        name=\"nomeFantasia\"\n        />\n        <mat-error *ngIf=\"nomeFantasia.invalid && nomeFantasia.touched\">\n            nome fantasia informado não é válido\n        </mat-error>\n      </mat-form-field></td>\n    </tr></table>\n\n    <form class=\"example-form\" [formGroup]=\"endereco\">\n      <p>\n        <mat-form-field style=\"width:400px !important;\" class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"endereço\"\n          type=\"text\"\n          formControlName=\"logradouro\" \n          name=\"logradouro\"\n          />\n        </mat-form-field>\n      </p>\n    \n      <p>\n        <mat-form-field style=\"width:200px !important;\" class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"complemento\"\n          type=\"text\"\n          formControlName=\"complemento\" \n          name=\"complemento\"\n          /> \n        </mat-form-field>\n      </p>\n\n      <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"cidade\"\n          type=\"text\"\n          formControlName=\"cidade\" \n          name=\"cidade\"\n          >\n        </mat-form-field></td>&nbsp;&nbsp;&nbsp;&nbsp;\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"estado\"\n          type=\"text\"\n          formControlName=\"estado\"\n          name=\"estado\" \n          maxlength=\"2\"\n          >\n          <mat-hint align=\"end\" *ngIf=\"estado\">{{estado.value.length}} / 2</mat-hint>\n        </mat-form-field></td>&nbsp;&nbsp;&nbsp;&nbsp;\n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"cep\"\n          type=\"number\"\n          #postalCode\n          formControlName=\"cep\" \n          maxlength=\"8\" \n          name=\"cep\" \n          >\n          <mat-hint align=\"end\" *ngIf=\"cep\">{{cep.value.length}} / 8</mat-hint>\n\n        </mat-form-field></td>\n      </tr></table>\n    </form>\n    <div class=\"mat-body-2\"> \n      Dados comerciais:\n    </div>\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput\n        autocomplete=\"off\" \n        placeholder=\"valor HH\"\n        formControlName=\"valorHH\" \n        name=\"valorHH\"  \n        currencyMask \n        [options]=\"{ prefix: 'R$ ', thousands: '.', decimal: ',' }\"\n        class=\"example-right-align\"\n        />\n      </mat-form-field></td>\n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput\n        placeholder=\"prazo pagto\"\n        type=\"number\"\n        formControlName=\"prazoPgto\" \n        name=\"prazoPgto\"  \n        />\n      </mat-form-field></td>\n    </tr></table>\n    <div class=\"mat-body-2\"> \n      Contatos:\n    </div> \n    <div class=\"container\">\n      <div formArrayName=\"contatos\">\n          \n        <div *ngFor=\"let contato of contatoForms.controls; let i = index;\" [formGroupName]=\"i\">\n\n          <table class=\"example-full-width\" cellspacing=\"0\"><tr>\n            <td><mat-form-field class=\"example-full-width\">\n              <input \n              matInput\n              placeholder=\"nome\"\n              type=\"text\"\n              formControlName=\"nome\" \n              name=\"nome\"  \n              />\n            </mat-form-field></td>\n\n            <td><mat-form-field class=\"example-full-width\">\n                <input \n                matInput\n                placeholder=\"email\"\n                type=\"email\"\n                formControlName=\"email\" \n                name=\"email\"\n                />\n              </mat-form-field></td>\n\n            <td><mat-form-field class=\"example-full-width\">\n                <input \n                matInput\n                placeholder=\"fone\"\n                type=\"number\"\n                formControlName=\"fone\" \n                name=\"fone\"  \n                />\n              </mat-form-field></td>\n\n              <td><mat-form-field class=\"example-full-width\">\n                  <input \n                  matInput\n                  placeholder=\"skype\"\n                  type=\"text\"\n                  formControlName=\"skype\" \n                  name=\"skype\"  \n                  />\n                </mat-form-field></td>\n                <a  mat-mini-fab color=\"warn\" (click)=\"deleteContato(i)\">-</a>\n            </tr></table>\n\n          </div>\n\n        </div>\n\n        <a mat-mini-fab color=\"primary\" (click)=\"addContato()\">+</a>\n\n    </div>\n    <button mat-raised-button color=\"basic\" (click)=\"cancel()\">cancela</button>\n\n    <button mat-raised-button color=\"primary\"  (click)=\"criarCliente(clienteForm, endereco)\" [disabled]=\"clienteForm.invalid || endereco.invalid\">confirma</button>\n      \n\n  </form>\n\n</div>"
 
 /***/ }),
 
@@ -1533,8 +1791,8 @@ var ClienteNovoComponent = /** @class */ (function () {
         };
     }
     ClienteNovoComponent.prototype.ngOnInit = function () {
+        console.log(' ClienteNovoComponent > ngOnInit() ');
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log(' ClienteNovoComponent > usuariologado ', this.usuarioLogado.email);
         this.clienteForm = this._formBuilder.group({
             cnpj: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(11)]],
             razaoSocial: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
@@ -1621,7 +1879,7 @@ var ClienteNovoComponent = /** @class */ (function () {
     };
     ClienteNovoComponent.prototype.criarCliente = function (clienteForm, endereco) {
         var _this = this;
-        console.log('ClienteNovoComponent > criarCliente(clienteForm, endereco )', clienteForm.value, endereco.value);
+        console.log('ClienteNovoComponent > criarCliente(form)');
         var cliente = clienteForm.value;
         cliente.endereco = endereco.value;
         this._clienteService.criarCliente(cliente)
@@ -1635,6 +1893,7 @@ var ClienteNovoComponent = /** @class */ (function () {
                 _this._router.navigate(['/clientes']);
             }
         }, function (err) {
+            console.log('Algum erro ocorreu criando cliente ', err);
             throw err;
         });
     };
@@ -1701,7 +1960,7 @@ var Contato = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n<div class=\"mat-elevation-z8\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/clientes']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n<div class=\"container\" *ngIf=\"cliente\"> \n\n  <div class=\"mat-body-2\"> \n    Dados básicos: \n  </div>\n\n    <div layout=\"row\">\n      <mat-label class=\"mat-h2\">cnpj</mat-label>\n      {{ cliente.cnpj }}\n    </div>\n \n    <div layout=\"row\">\n      <mat-label class=\"mat-h2\">razão social</mat-label>\n      {{ cliente.razaoSocial }}\n    </div>\n \n    <div layout=\"row\">\n      <mat-label class=\"mat-h2\">nome fantasia</mat-label>\n      {{ cliente.nomeFantasia }}\n    </div>\n    <br> \n    <div class=\"mat-body-2\"> \n      Dados comerciais:\n    </div>\n    <div layout=\"row\">\n      <mat-label class=\"mat-h2\">endereço</mat-label>\n\n      {{ cliente.endereco.logradouro }}\n      <br> \n\n      <mat-label class=\"mat-h2\">complemento</mat-label>\n      {{ cliente.endereco.complemento }} \n      <br> \n\n      <mat-label class=\"mat-h2\">cidade</mat-label>\n      {{ cliente.endereco.cidade }}\n      <br> \n\n      <mat-label class=\"mat-h2\">estado</mat-label>\n      {{ cliente.endereco.estado }}\n      <br> \n\n      <mat-label class=\"mat-h2\">cep</mat-label>\n      {{ cliente.endereco.cep }}\n    </div>\n    <br> \n    <div layout=\"row\">\n      <mat-label class=\"mat-h2\">valor HH</mat-label>\n      {{ cliente.valorHH }}\n    </div>\n    <div layout=\"row\">\n      <mat-label class=\"mat-h2\">prazo pagto</mat-label>\n      {{ cliente.prazoPgto }}\n    </div>\n    <br> \n    <div class=\"mat-body-2\"> \n      Contatos: \n    </div>\n    <div  *ngFor=\"let contato of cliente.contatos;\">\n      <div layout=\"row\">\n        <mat-label class=\"mat-h2\">nome</mat-label>\n        {{ contato.nome }}&nbsp;&nbsp;\n\n        <mat-label class=\"mat-h2\">e-mail</mat-label>\n        {{ contato.email }}&nbsp;&nbsp;\n\n        <mat-label class=\"mat-h2\">fone</mat-label>\n        {{ contato.fone }}&nbsp;&nbsp;\n\n        <mat-label class=\"mat-h2\">skype</mat-label>\n        {{ contato.skype }}\n      </div>\n    </div>\n   <br>\n    <div class=\"errors\" *ngIf=\"errors\">\n      <p *ngIf=\"errors\" >  Cliente não pode ser excluído, pois está associado a um (ou mais) projetos: {{ errors[0].codigo }} </p>\n    </div>\n    \n    <button mat-raised-button color=\"basic\" (click)=\"cancel()\">Cancelar</button>\n\n    <button mat-raised-button color=\"warn\" (click)=\"excluirCliente()\">Excluir</button>\n\n</div>"
+module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n<div class=\"mat-elevation-z8\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/clientes']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n<div class=\"container\" *ngIf=\"cliente\"> \n\n  <div class=\"mat-body-2\"> \n    Dados básicos: \n  </div>\n\n    <div layout=\"row\">\n      <mat-label class=\"mat-h2\">cnpj</mat-label>\n      {{ cliente.cnpj }}\n    </div>\n \n    <div layout=\"row\">\n      <mat-label class=\"mat-h2\">razão social</mat-label>\n      {{ cliente.razaoSocial }}\n    </div>\n \n    <div layout=\"row\">\n      <mat-label class=\"mat-h2\">nome fantasia</mat-label>\n      {{ cliente.nomeFantasia }}\n    </div>\n    <br> \n    <div class=\"mat-body-2\"> \n      Dados comerciais:\n    </div>\n    <div layout=\"row\">\n      <mat-label class=\"mat-h2\">endereço</mat-label>\n\n      {{ cliente.endereco.logradouro }}\n      <br> \n\n      <mat-label class=\"mat-h2\">complemento</mat-label>\n      {{ cliente.endereco.complemento }} \n      <br> \n\n      <mat-label class=\"mat-h2\">cidade</mat-label>\n      {{ cliente.endereco.cidade }}\n      <br> \n\n      <mat-label class=\"mat-h2\">estado</mat-label>\n      {{ cliente.endereco.estado }}\n      <br> \n\n      <mat-label class=\"mat-h2\">cep</mat-label>\n      {{ cliente.endereco.cep }}\n    </div>\n    <br> \n    <div layout=\"row\">\n      <mat-label class=\"mat-h2\">valor HH</mat-label>\n      {{ cliente.valorHH | currency:'BRL'}}\n    </div>\n    <div layout=\"row\">\n      <mat-label class=\"mat-h2\">prazo pagto</mat-label>\n      {{ cliente.prazoPgto }}\n    </div>\n    <br> \n    <div class=\"mat-body-2\"> \n      Contatos: \n    </div>\n    <div  *ngFor=\"let contato of cliente.contatos;\">\n      <div layout=\"row\">\n        <mat-label class=\"mat-h2\">nome</mat-label>\n        {{ contato.nome }}&nbsp;&nbsp;\n\n        <mat-label class=\"mat-h2\">e-mail</mat-label>\n        {{ contato.email }}&nbsp;&nbsp;\n\n        <mat-label class=\"mat-h2\">fone</mat-label>\n        {{ contato.fone }}&nbsp;&nbsp;\n\n        <mat-label class=\"mat-h2\">skype</mat-label>\n        {{ contato.skype }}\n      </div>\n    </div>\n   <br>\n    <div class=\"errors\" *ngIf=\"errors\">\n      <p *ngIf=\"errors\" >  Cliente não pode ser excluído, pois está associado a um (ou mais) projetos: {{ errors[0].codigo }} </p>\n    </div>\n    \n    <button mat-raised-button color=\"basic\" (click)=\"cancel()\">Cancelar</button>\n\n    <button mat-raised-button color=\"warn\" (click)=\"excluirCliente()\">Excluir</button>\n\n</div>"
 
 /***/ }),
 
@@ -1755,32 +2014,37 @@ var ClienteShowComponent = /** @class */ (function () {
         };
     }
     ClienteShowComponent.prototype.ngOnInit = function () {
+        console.log('ClienteShowComponent > ngOnInit() ');
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log('ClienteShowComponent > usuario ', this.usuarioLogado.email);
         this.obterCliente(this._route.snapshot.params['id']);
     };
     ClienteShowComponent.prototype.obterCliente = function (id) {
         var _this = this;
-        console.log('ClienteShowComponent > obterCliente', id);
+        console.log('ClienteShowComponent > obterCliente');
         var observable = this._clienteService.obterClienteById(id);
         observable.subscribe(function (response) {
             _this.cliente = response.json();
-            console.log('cliente in show >>>>', _this.cliente);
-        }, function (err) { }, function () { });
+        }, function (err) {
+            console.log('Algum erro ocorreu obtendo cliente ', err);
+            throw err;
+        });
     };
     ClienteShowComponent.prototype.excluirCliente = function () {
         var _this = this;
         console.log('ClienteShowComponent > excluirCliente');
         if (!this.cliente.clienteProjetos[0]) {
-            console.log('Cliente E X C L U I D O', this.cliente.clienteProjetos);
+            console.log('Cliente E X C L U I D O!');
             var observable = this._clienteService.excluirCliente(this.cliente._id);
             observable.subscribe(function (response) {
                 _this.cliente = response.json();
                 _this._router.navigate(['/clientes']);
-            }, function (err) { }, function () { });
+            }, function (err) {
+                console.log('Algum erro ocorreu excluindo cliente ', err);
+                throw err;
+            });
         }
         else {
-            console.log('Cliente  N A O   EXCLUIDO', this.cliente.clienteProjetos);
+            console.log('Cliente  N A O   excluido!');
             this.errors = this.cliente.clienteProjetos;
         }
     };
@@ -1837,19 +2101,19 @@ var ClienteService = /** @class */ (function () {
         return this._http.get('/clientes');
     };
     ClienteService.prototype.criarCliente = function (cliente) {
-        console.log('ClienteService > criarCliente(cliente, endereco)', cliente);
+        console.log('ClienteService > criarCliente(cliente, endereco)');
         return this._http.post('cliente/novo', cliente);
     };
     ClienteService.prototype.obterClienteById = function (id) {
-        console.log('ClienteService > obterClienteById', id);
+        console.log('ClienteService > obterClienteById');
         return this._http.get('/cliente/' + id);
     };
     ClienteService.prototype.editarCliente = function (id, cliente) {
-        console.log('ClienteService > editarCliente(cliente)', id, cliente);
+        console.log('ClienteService > editarCliente(cliente)');
         return this._http.put('cliente/edit/' + id, cliente);
     };
     ClienteService.prototype.excluirCliente = function (id) {
-        console.log('ClienteService > excluirCliente(id)', id);
+        console.log('ClienteService > excluirCliente(id)');
         return this._http.delete('cliente/excluir/' + id);
     };
     ClienteService = __decorate([
@@ -2020,7 +2284,7 @@ var GlobalErrorComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"bg-img\">\n  <div class=\"bg2-img\"></div>\n  <form class=\"example-form\" [formGroup] = \"formLogin\">\n      <div class=\"container\">\n        <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n        \n          <td><mat-form-field class=\"example-full-width\">\n            <input \n            matInput \n            placeholder=\"e-mail\"\n            type=\"email\"\n            formControlName=\"email\" \n            name=\"email\"\n            />\n            <div *ngIf=\"email\">\n              <mat-error *ngIf=\"email.invalid\">\n                  por favor, informe um endereço de e-mail válido\n              </mat-error>\n            </div>\n            </mat-form-field></td>\n          </tr></table>\n\n          <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n          <td><mat-form-field class=\"mat-body-1\">\n            <input \n            matInput \n            placeholder=\"senha\"\n            type=\"password\"\n            formControlName=\"senha\"  \n            name=\"senha\"\n            />\n            <div *ngIf=\"senha\">\n            <mat-error *ngIf=\"senha.invalid && senha.touched\">\n                senha informada não é válida\n            </mat-error>\n            </div>\n          </mat-form-field></td>\n        </tr></table>\n        <button mat-raised-button color=\"primary\"  (click)=\"login(formLogin)\" >entrar</button>\n        <div class=\"errors\" *ngIf=\"errors\">\n            <p *ngIf=\"errors\" >  {{ errors.message }} </p>\n        </div>\n    </div>\n\n  </form>\n  \n</div>  \n<a href=\"https://www.linkedin.com/in/fernando-carvalho-6834bbb/\"  class=\"btn btn-linkedin btn-lg\">Torre Negra Sistemas <span class=\"mat-body-1\">- Av. Pedro Botesi, 2171 - Sala 113 - Mogi Mirim - São Paulo - Brazil</span> </a>   \n"
+module.exports = "\n<div class=\"bg-img\">\n  <div class=\"bg2-img\"></div>\n  <form class=\"example-form\" [formGroup] = \"formLogin\">\n      <div class=\"container\">\n        <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n        \n          <td><mat-form-field class=\"example-full-width\">\n            <input \n            matInput\n            autocomplete=\"off\" \n            placeholder=\"e-mail\"\n            type=\"email\"\n            formControlName=\"email\" \n            id=\"email\"\n            />\n            <div *ngIf=\"email\">\n              <mat-error *ngIf=\"email.invalid\">\n                  por favor, informe um endereço de e-mail válido\n              </mat-error>\n            </div>\n            </mat-form-field></td>\n          </tr></table>\n\n          <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n          <td><mat-form-field class=\"mat-body-1\">\n            <input \n            matInput\n            autocomplete=\"off\" \n            placeholder=\"senha\"\n            type=\"password\"\n            formControlName=\"senha\"  \n            id=\"senha\"\n            />\n            <div *ngIf=\"senha\">\n            <mat-error *ngIf=\"senha.invalid && senha.touched\">\n                senha informada não é válida\n            </mat-error>\n            </div>\n          </mat-form-field></td>\n        </tr></table>\n        <button mat-raised-button color=\"primary\"  (click)=\"login(formLogin)\" >entrar</button>\n        <div class=\"errors\" *ngIf=\"errors\">\n            <p *ngIf=\"errors\" >  {{ errors.message }} </p>\n        </div>\n        <a  mat-stroked-button color=\"primary\" [routerLink]=\"['/primeiro/acesso']\">Primeiro acesso?</a>\n    </div>\n\n  </form>\n    \n</div>  \n<a href=\"https://www.linkedin.com/in/fernando-carvalho-6834bbb/\"  class=\"btn btn-linkedin btn-lg\">Torre Negra Sistemas <span class=\"mat-body-1\">- Av. Pedro Botesi, 2171 - Sala 113 - Mogi Mirim - São Paulo - Brazil</span> </a>   \n"
 
 /***/ }),
 
@@ -2031,7 +2295,7 @@ module.exports = "\n<div class=\"bg-img\">\n  <div class=\"bg2-img\"></div>\n  <
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "body, html {\n  height: 100%;\n  font-family: Arial, Helvetica, sans-serif; }\n\n* {\n  box-sizing: border-box; }\n\n.bg-img {\n  /* The image used */\n  background-image: url(\"/assets/images/TorreNegra-elem-mono-pos.png\");\n  min-height: 680px;\n  /* Center and scale the image nicely */\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: 35%; }\n\n/* Add styles to the form container */\n\n.container {\n  position: absolute;\n  right: 0;\n  margin: 20px;\n  max-width: 260px;\n  padding: 16px;\n  background-color: white; }\n\n/* Full-width input fields */\n\ninput[type=email], input[type=password] {\n  width: 100%;\n  height: 50%;\n  padding: 15px;\n  margin: 15px 0 22px 0px;\n  border: none; }\n\n.example-form {\n  min-width: 150px;\n  max-width: 500px;\n  width: 100%; }\n\n.example-full-width {\n  width: 100%; }\n\n/* Set a style for the submit button */\n\n.btn {\n  background-color: #4CAF50;\n  color: white;\n  padding: 16px 20px;\n  border: none;\n  cursor: pointer;\n  width: 100%;\n  opacity: 0.9; }\n\n.btn:hover {\n  opacity: 1; }\n\n.bg2-img {\n  /* The image used */\n  background-image: url(\"/assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\");\n  min-height: 140px;\n  /* Center and scale the image nicely */\n  background-position: left;\n  background-repeat: no-repeat;\n  background-size: 25%; }\n\n.btn-linkedin {\n  background: #0E76A8;\n  border-radius: 0;\n  color: #fff;\n  border-width: 1px;\n  border-style: solid;\n  border-color: #084461; }\n\n.btn-linkedin:link, .btn-linkedin:visited {\n  color: #fff; }\n\n.btn-linkedin:active, .btn-linkedin:hover {\n  background: #084461;\n  color: #fff; }\n"
+module.exports = "body, html {\n  height: 100%;\n  font-family: Arial, Helvetica, sans-serif; }\n\n* {\n  box-sizing: border-box; }\n\n.bg-img {\n  /* The image used */\n  background-image: url(\"/assets/images/TorreNegra-elem-mono-pos.png\");\n  min-height: 600px;\n  /* Center and scale the image nicely */\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: 35%; }\n\n/* Add styles to the form container */\n\n.container {\n  position: absolute;\n  right: 0;\n  margin: 20px;\n  max-width: 260px;\n  padding: 16px;\n  background-color: white; }\n\n/* Full-width input fields */\n\ninput[type=email], input[type=password] {\n  width: 100%;\n  height: 50%;\n  padding: 2px;\n  margin: 2px 0 2px 0px;\n  border: none; }\n\n.example-form {\n  min-width: 150px;\n  max-width: 500px;\n  width: 100%; }\n\n.example-full-width {\n  width: 100%; }\n\n/* Set a style for the submit button */\n\n.btn {\n  background-color: #4CAF50;\n  color: white;\n  padding: 16px 20px;\n  border: none;\n  cursor: pointer;\n  width: 100%;\n  opacity: 0.9; }\n\n.btn:hover {\n  opacity: 1; }\n\n.bg2-img {\n  /* The image used */\n  background-image: url(\"/assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\");\n  min-height: 140px;\n  /* Center and scale the image nicely */\n  background-position: left;\n  background-repeat: no-repeat;\n  background-size: 25%; }\n\n.btn-linkedin {\n  background: #0E76A8;\n  border-radius: 0;\n  color: #fff;\n  border-width: 1px;\n  border-style: solid;\n  border-color: #084461; }\n\n.btn-linkedin:link, .btn-linkedin:visited {\n  color: #fff; }\n\n.btn-linkedin:active, .btn-linkedin:hover {\n  background: #084461;\n  color: #fff; }\n"
 
 /***/ }),
 
@@ -2047,9 +2311,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginComponent", function() { return LoginComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../usuario/usuario.service */ "./src/app/usuario/usuario.service.ts");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth.service.ts");
+/* harmony import */ var _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../usuario/usuario.service */ "./src/app/usuario/usuario.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2064,31 +2329,26 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent(dialog, _formBuilder, _router, _usuarioService) {
+    function LoginComponent(dialog, _formBuilder, _router, _usuarioService, _auth) {
         this.dialog = dialog;
         this._formBuilder = _formBuilder;
         this._router = _router;
         this._usuarioService = _usuarioService;
-        this.usuario = {
-            email: '',
-            senha: '',
-            ativo: '',
-            admin: ''
-        };
+        this._auth = _auth;
         this.usuarioLogado = {
             email: '',
             admin: ''
         };
         this.errors = {};
         this.formLogin = this._formBuilder.group({
-            email: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')],
-            senha: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]
+            email: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')],
+            senha: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].pattern('((?=.*[a-z])(?=.*[A-Z]).{8,})')]
         });
     }
     LoginComponent.prototype.ngOnInit = function () {
         this.usuario = { email: "", senha: "", admin: "", ativo: "" };
-        console.log('usuario logado? ', this._usuarioService.getUserLoggedIn());
     };
     Object.defineProperty(LoginComponent.prototype, "email", {
         get: function () {
@@ -2106,31 +2366,36 @@ var LoginComponent = /** @class */ (function () {
     });
     LoginComponent.prototype.login = function (formLogin) {
         var _this = this;
-        console.log('LoginComponent > login()', formLogin.controls.email.value);
-        this._usuarioService.login(formLogin.controls.email.value)
-            .subscribe(function (usuario) {
-            _this.usuario = usuario.json();
-            if (_this.usuario.ativo) {
-                console.log('SUCESSO em login', usuario);
-                if (_this.usuario.admin) {
-                    _this._router.navigate(['/projetos']);
+        console.log('LoginComponent  > login(form)');
+        var usuario = formLogin.controls.email.value;
+        var senha = formLogin.controls.senha.value;
+        this._auth.login(usuario, senha).subscribe(function (data) {
+            var result = data.json();
+            if (result.success) {
+                if (result.ativo === "ativo") {
+                    _this._usuarioService.setUserLoggedIn(true, usuario);
+                    console.log('SUCESSO em login');
+                    if (result.admin) {
+                        _this._router.navigate(['/projetos']);
+                    }
+                    else {
+                        _this._router.navigate(['/apontamentos']);
+                    }
                 }
                 else {
-                    _this._router.navigate(['/apontamentos']);
+                    result.message = "Usuário desativado!";
+                    window.alert(result.message);
+                    console.log('ERRO em login', result.message);
+                    _this._router.navigate(['/']);
                 }
             }
             else {
-                // this.errors = 'Usuário inativo!'
-                _this.errors.message = 'Usuário inativo!';
-                console.log('ERRO em login', _this.errors);
+                window.alert(result.message);
+                console.log('ERRO em login', result.message);
                 _this._router.navigate(['/']);
             }
-        }, function (err) {
-            _this.errors = err.json();
-            console.log('ERRO em login', _this.errors);
-            _this._router.navigate(['/']);
         });
-        this._usuarioService.setUserLoggedIn(this.usuarioLogado);
+        this._usuarioService.setUserLoggedIn(true, this.usuarioLogado);
     };
     LoginComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -2138,58 +2403,15 @@ var LoginComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./login.component.html */ "./src/app/login/login.component.html"),
             styles: [__webpack_require__(/*! ./login.component.scss */ "./src/app/login/login.component.scss")]
         }),
-        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_4__["MatDialog"],
-            _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"],
+        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialog"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
             _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
-            _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_2__["UsuarioService"]])
+            _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_5__["UsuarioService"],
+            _auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"]])
     ], LoginComponent);
     return LoginComponent;
 }());
 
-// @Component({
-//   selector: 'app-popup',
-//   templateUrl: '../login/popup/popup.component.html'
-// })
-// export class DialogUsuario {
-//   usuario = {
-//     email: '',
-//     senha: '',
-//     admin: ''
-//   };
-//   public usuarioLogado = {
-//     email: '',
-//     admin: ''
-//   }
-//   errors: any = {}
-//   constructor(private _usuarioService: UsuarioService, 
-//     private _router: Router, 
-//     public dialogRef: MatDialogRef<DialogUsuario>,
-//     @Inject(MAT_DIALOG_DATA) public data: any) { }
-//   onNoClick(): void {
-//     this.dialogRef.close();
-//   }
-//   login(data) {
-//     console.log('LoginComponent > login()',data)
-//     const userObservable = this._usuarioService.login(data);
-//     userObservable.subscribe(
-//         (usuario) => {
-//           this.usuario = usuario.json();
-//           console.log('SUCESSO em login');
-//           if (this.usuario.admin) {
-//             this._router.navigate(['/projetos']);
-//           } else {
-//             this._router.navigate(['/apontamentos']);
-//           }
-//         },
-//         (err) => { 
-//           this.errors = err.json();
-//           console.log('ERRO em login', this.errors);
-//           this._router.navigate(['/']);
-//         }
-//       )
-//       this._usuarioService.setUserLoggedIn(this.usuarioLogado);
-//     }
-// }
 
 
 /***/ }),
@@ -2226,7 +2448,7 @@ var PaginaNaoEncontradaComponent = /** @class */ (function () {
     };
     PaginaNaoEncontradaComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            template: "<h2>Pagina n\u00E3o encontrada!</h2>\n             <div>\n                <button [routerLink]=\"['/projetos']\">Retornar</button>\n\t     </div>\n        "
+            template: "<h2>Pagina n\u00E3o encontrada!</h2>\n             <div>\n                <button [routerLink]=\"['']\">Retornar</button>\n\t     </div>\n        "
         }),
         __metadata("design:paramtypes", [_angular_common__WEBPACK_IMPORTED_MODULE_1__["Location"]])
     ], PaginaNaoEncontradaComponent);
@@ -2266,7 +2488,7 @@ module.exports = "img {\n  width: 150px;\n  height: auto; }\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n<div class=\"mat-elevation-z8\"> \n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n<div class=\"container\">\n\n  <div class=\"mat-body-2\"> \n    Dados básicos:\n  </div>\n\n  <div class=\"errors\" *ngIf=\"errors\">\n    <p *ngIf=\"errors.descricao\" >  {{ errors['descricao'].message }} </p>\n    <p *ngIf=\"errors._clienteId\" >  {{ errors['_clienteId'].message }} </p>\n    <p *ngIf=\"errors.pedido\" >  {{ errors['pedido'].message }} </p>   \n    <p *ngIf=\"errors.horasPLC\" >  {{ errors['horasPLC'].message }} </p>       \n    <p *ngIf=\"errors.horasIHM\" >  {{ errors['horasIHM'].message }} </p>     \n  </div>\n\n  <form class=\"example-form\" *ngIf=\"projeto\" [formGroup] = \"projetoForm\">\n\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field  style=\"width:200px !important;\" class=\"example-full-width\">\n          <input \n          matInput\n          placeholder=\"código\"\n          disabled\n          value=\"{{projeto.codigo}}\"\n          />\n      </mat-form-field></td>\n    </tr></table>\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field style=\"width:400px !important;\" class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"descrição\"\n        type=\"text\"\n        formControlName=\"descricao\" \n        name=\"descricao\"\n        />\n        <!-- <mat-error *ngIf=\"descricao.invalid && descricao.touched\">\n            descricao informada não é válida\n        </mat-error> -->\n      </mat-form-field></td>\n    </tr></table>\n    \n    <mat-form-field style=\"width:400px !important;\" class=\"example-full-width\">\n      <mat-select placeholder=\"Selecione o cliente\" name=\"_clienteId\" formControlName=\"_clienteId\">\n        <mat-option value=\"option\" *ngFor=\"let c of clientes\" [value]=\"c._id\">\n            {{ c.nomeFantasia }}\n        </mat-option>\n      </mat-select>\n      <mat-hint align=\"end\">clientes ativos</mat-hint>\n    </mat-form-field>\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field  style=\"width:200px !important;\" class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"pedido\"\n          type=\"text\"\n          formControlName=\"pedido\" \n          name=\"pedido\"\n          />\n          <!-- <mat-error *ngIf=\"pedido.invalid && pedido.touched\">\n              descricao informada não é válida\n          </mat-error> -->\n      </mat-form-field></td>\n    </tr></table>\n    <br>\n\n    <div class=\"mat-body-2\"> \n      Dados financeiros:\n    </div>\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n        <td><mat-form-field style=\"width:200px !important;\" class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"horas PLC\"\n          type=\"text\"\n          formControlName=\"horasPLC\" \n          name=\"horasPLC\"\n          />\n          <!-- <mat-error *ngIf=\"horasPLC.invalid && horasPLC.touched\">\n              horas PLC informadas não são válidas\n          </mat-error> -->\n        </mat-form-field></td>\n      </tr></table>\n  \n      <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n        <td><mat-form-field style=\"width:200px !important;\" class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"horas IHM\"\n          type=\"text\"\n          formControlName=\"horasIHM\" \n          name=\"horasIHM\"\n          />\n          <!-- <mat-error *ngIf=\"horasIHM.invalid && horasIHM.touched\">\n            horas IHM informadas não são válidas\n          </mat-error> -->\n        </mat-form-field></td>\n      </tr></table>\n  \n  \n      <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n        <td><mat-form-field style=\"width:200px !important;\" class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"valor terceiros\"\n          type=\"text\"\n          formControlName=\"valorTerceiros\" \n          name=\"valorTerceiros\"\n          />\n          <!-- <mat-error *ngIf=\"valorTerceiros.invalid && valorTerceiros.touched\">\n            valor terceiros informado não é válido\n          </mat-error> -->\n        </mat-form-field></td>\n      </tr></table>\n  \n      <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n        <td><mat-form-field style=\"width:200px !important;\" class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"valor materiais\"\n          type=\"text\"\n          formControlName=\"valorMateriais\" \n          name=\"valorMateriais\"\n          />\n        </mat-form-field></td>\n      </tr></table>\n  \n  \n      <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n        <td><mat-form-field style=\"width:200px !important;\" class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"valor viagens\"\n          type=\"text\"\n          formControlName=\"valorViagens\" \n          name=\"valorViagens\"\n          />\n        </mat-form-field></td>\n      </tr></table> \n  \n      <button mat-raised-button color=\"basic\" (click)=\"cancel()\">cancela</button>\n  \n      <button mat-raised-button color=\"primary\"  (click)=\"editarProjeto(projetoForm)\" [disabled]=\"projetoForm.invalid\">confirma</button>\n  \n  </form>\n</div>  "
+module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n<div class=\"mat-elevation-z8\"> \n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n<div class=\"container\">\n\n  <div class=\"mat-body-2\"> \n    Dados básicos:\n  </div>\n\n  <div class=\"errors\" *ngIf=\"errors\">\n    <p *ngIf=\"errors.descricao\" >  {{ errors['descricao'].message }} </p>\n    <p *ngIf=\"errors._clienteId\" >  {{ errors['_clienteId'].message }} </p>\n    <p *ngIf=\"errors.pedido\" >  {{ errors['pedido'].message }} </p>   \n    <p *ngIf=\"errors.horasPLC\" >  {{ errors['horasPLC'].message }} </p>       \n    <p *ngIf=\"errors.horasIHM\" >  {{ errors['horasIHM'].message }} </p>     \n  </div>\n\n  <form class=\"example-form\" *ngIf=\"projeto\" [formGroup] = \"projetoForm\">\n\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field  style=\"width:200px !important;\" class=\"example-full-width\">\n          <input \n          matInput\n          placeholder=\"código\"\n          disabled\n          value=\"{{projeto.codigo}}\"\n          />\n      </mat-form-field></td>\n    </tr></table>\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field style=\"width:400px !important;\" class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"descrição\"\n        type=\"text\"\n        formControlName=\"descricao\" \n        name=\"descricao\"\n        />\n        <!-- <mat-error *ngIf=\"descricao.invalid && descricao.touched\">\n            descricao informada não é válida\n        </mat-error> -->\n      </mat-form-field></td>\n    </tr></table>\n    \n    <mat-form-field style=\"width:400px !important;\" class=\"example-full-width\">\n      <mat-select placeholder=\"Selecione o cliente\" name=\"_clienteId\" formControlName=\"_clienteId\">\n        <mat-option value=\"option\" *ngFor=\"let c of clientes\" [value]=\"c._id\">\n            {{ c.nomeFantasia }}\n        </mat-option>\n      </mat-select>\n      <mat-hint align=\"end\">clientes ativos</mat-hint>\n    </mat-form-field>\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field  style=\"width:200px !important;\" class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"pedido\"\n          type=\"text\"\n          formControlName=\"pedido\" \n          name=\"pedido\"\n          />\n          <!-- <mat-error *ngIf=\"pedido.invalid && pedido.touched\">\n              descricao informada não é válida\n          </mat-error> -->\n      </mat-form-field></td>\n    </tr></table>\n    <br>\n\n    <div class=\"mat-body-2\"> \n      Dados financeiros:\n    </div>\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n        <td><mat-form-field style=\"width:200px !important;\" class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"horas PLC\"\n          type=\"text\"\n          formControlName=\"horasPLC\" \n          name=\"horasPLC\"\n          />\n          <!-- <mat-error *ngIf=\"horasPLC.invalid && horasPLC.touched\">\n              horas PLC informadas não são válidas\n          </mat-error> -->\n        </mat-form-field></td>\n      </tr></table>\n  \n      <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n        <td><mat-form-field style=\"width:200px !important;\" class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"horas IHM\"\n          type=\"text\"\n          formControlName=\"horasIHM\" \n          name=\"horasIHM\"\n          />\n          <!-- <mat-error *ngIf=\"horasIHM.invalid && horasIHM.touched\">\n            horas IHM informadas não são válidas\n          </mat-error> -->\n        </mat-form-field></td>\n      </tr></table>\n  \n  \n      <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n        <td><mat-form-field style=\"width:200px !important;\" class=\"example-full-width\">\n          <input \n          matInput \n          autocomplete=\"off\" \n          placeholder=\"valor terceiros\"\n          formControlName=\"valorTerceiros\" \n          name=\"valorTerceiros\"\n          currencyMask \n          [options]=\"{ prefix: 'R$ ', thousands: '.', decimal: ',' }\"\n          class=\"example-right-align\"\n          />\n          <!-- {{ projeto.valorTerceiros | currency: 'BRL'}} -->\n          <!-- <mat-error *ngIf=\"valorTerceiros.invalid && valorTerceiros.touched\">\n            valor terceiros informado não é válido\n          </mat-error> -->\n        </mat-form-field></td>\n      </tr></table>\n  \n      <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n        <td><mat-form-field style=\"width:200px !important;\" class=\"example-full-width\">\n          <input \n          matInput \n          autocomplete=\"off\" \n          placeholder=\"valor materiais\"\n          formControlName=\"valorMateriais\" \n          name=\"valorMateriais\"\n          currencyMask \n          [options]=\"{ prefix: 'R$ ', thousands: '.', decimal: ',' }\"\n          class=\"example-right-align\"\n          />\n          <!-- {{ projeto.valorMateriais | currency: 'BRL'}} -->\n        </mat-form-field></td>\n      </tr></table>\n  \n      <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n        <td><mat-form-field style=\"width:200px !important;\" class=\"example-full-width\">\n          <input \n          matInput \n          autocomplete=\"off\" \n          placeholder=\"valor viagens\"\n          formControlName=\"valorViagens\" \n          name=\"valorViagens\"\n          currencyMask \n          [options]=\"{ prefix: 'R$ ', thousands: '.', decimal: ',' }\"\n          class=\"example-right-align\"\n          />\n          <!-- {{ projeto.valorViagens | currency: 'BRL'}} -->\n        </mat-form-field></td>\n      </tr></table> \n  \n      <button mat-raised-button color=\"basic\" (click)=\"cancel()\">cancela</button>\n  \n      <button mat-raised-button color=\"primary\"  (click)=\"editarProjeto(projetoForm)\" [disabled]=\"projetoForm.invalid\">confirma</button>\n  \n  </form>\n</div>  "
 
 /***/ }),
 
@@ -2341,8 +2563,8 @@ var ProjetoEditComponent = /** @class */ (function () {
         };
     }
     ProjetoEditComponent.prototype.ngOnInit = function () {
+        console.log('ProjetoEditComponent > ngOnInit() ');
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log('ProjetoEditComponent > usuario: ', this.usuarioLogado.email);
         this.obterProjeto(this._route.snapshot.params['id']);
     };
     ProjetoEditComponent.prototype.obterProjeto = function (id) {
@@ -2351,7 +2573,6 @@ var ProjetoEditComponent = /** @class */ (function () {
         var observable = this._projetoService.obterProjetoById(id);
         observable.subscribe(function (response) {
             _this.projeto = response.json();
-            console.log('projeto in edit >>>> >>>>>>: ', _this.projeto);
             _this.projetoForm = _this._formBuilder.group({
                 _id: [_this.projeto._id],
                 codigo: [_this.projeto.codigo],
@@ -2372,7 +2593,7 @@ var ProjetoEditComponent = /** @class */ (function () {
     };
     ProjetoEditComponent.prototype.obterClienteNomeFantasia = function (id) {
         var _this = this;
-        console.log('ProjetoEditComponent > obterCliente()');
+        console.log('ProjetoEditComponent > obterClienteNomeFantasia()');
         var clienteObservable = this._clienteService.obterClienteById(id);
         clienteObservable.subscribe(function (cliente) {
             _this.cliente = cliente.json();
@@ -2380,7 +2601,7 @@ var ProjetoEditComponent = /** @class */ (function () {
     };
     ProjetoEditComponent.prototype.obterClientes = function () {
         var _this = this;
-        console.log('ProjetoEditComponent  > obterClienteList()');
+        console.log('ProjetoEditComponent  > obterClientes()');
         var clienteObservable = this._clienteService.obterTodos();
         clienteObservable.subscribe(function (clientes) {
             // console.log('clientes in obterClientes ProjetoEditComponent:', clientes.json());
@@ -2389,7 +2610,7 @@ var ProjetoEditComponent = /** @class */ (function () {
     };
     ProjetoEditComponent.prototype.editarProjeto = function (projetoForm) {
         var _this = this;
-        console.log('ProjetoEditComponent > editarProjeto', projetoForm);
+        console.log('ProjetoEditComponent > editarProjeto');
         this.projeto._clienteId = this.clienteSelecionado;
         this._projetoService.editarProjeto(projetoForm.value)
             .subscribe(function (observable) {
@@ -2435,7 +2656,7 @@ var ProjetoEditComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<div class=\"mat-elevation-z8\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item dropdown\">\n          <a class=\"nav-link dropdown-toggle  active\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n            Cadastro\n          </a>\n          <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\n            <a class=\"dropdown-item\" [routerLink]=\"['/usuarios']\">Usuário</a>\n            <a class=\"dropdown-item\" [routerLink]=\"['/clientes']\">Cliente</a>\n          </div>\n        </li>\n        <li class=\"nav-item\">\n          <a class=\"nav-link\" [routerLink]=\"['/apontamentos']\">Apontamento</a>\n        </li>\n        <li class=\"nav-item\">\n          <a class=\"nav-link\" [routerLink]=\"['/financeiro']\">Financeiro</a>\n        </li>\n        <li class=\"nav-item\">\n          <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n            Relatório\n          </a>\n          <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\n            <a class=\"dropdown-item\" [routerLink]=\"['/relatorio/financeiro']\">Financeiro</a>\n            <a class=\"dropdown-item\" [routerLink]=\"['/relatorio/apontamento/projeto']\">Apontamento por projeto</a>\n            <a class=\"dropdown-item\" [routerLink]=\"['/relatorio/horas/usuario']\">Apontamento de horas por usuário</a>\n            <a class=\"dropdown-item\" href=\"#\">Apontamento de despesa por usuário</a>\n            <a class=\"dropdown-item\" href=\"#\">Custo por projeto</a>\n            <div class=\"dropdown-divider\"></div>\n            <a class=\"dropdown-item\" href=\"#\">Acompanhamento de projeto</a> \n            <div class=\"dropdown-divider\"></div>\n            <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n              Projetos\n            </a>\n            <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\n              <a class=\"dropdown-item\" href=\"#\">0 - abertos</a>\n              <a class=\"dropdown-item\" href=\"#\">1 - liberados</a>\n              <a class=\"dropdown-item\" href=\"#\">2 - finalizados</a>\n              <a class=\"dropdown-item\" href=\"#\">3 - faturados</a>\n              <a class=\"dropdown-item\" href=\"#\">4 - encerrados</a>\n              <a class=\"dropdown-item\" href=\"#\">5 - cancelados</a>\n              <div class=\"dropdown-divider\"></div>\n            </div>\n          </div>\n        </li>\n        <li class=\"nav-item\">\n            <a class=\"nav-link\" href=\"#\">Sair <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<div class=\"container\">\n\n  <div class=\"level-left\">\n      <div style=\"margin-top: 20px;\" class=\"title is-4\">Projetos</div> \n  </div>\n  <div class=\"level-right\">\n      <button mat-stroked-button color=\"primary\" [routerLink]=\"['/projeto/novo']\">Novo projeto</button>\n  </div> \n\n  <mat-form-field>\n    <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filtrar\">\n  </mat-form-field>\n\n  <div class=\"mat-elevation-z8\">\n    <table mat-table [dataSource]=\"dataSource\" matSort>\n\n      <!-- ID Column -->\n      <ng-container matColumnDef=\"codigo\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> código </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.codigo}} </td>\n      </ng-container>\n\n      <!-- Progress Column -->\n      <ng-container matColumnDef=\"descricao\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> descrição </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.descricao}} </td>\n      </ng-container>\n\n      <!-- Name Column -->\n      <ng-container matColumnDef=\"cliente\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> cliente </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.cliente}} </td>\n      </ng-container>\n\n      <!-- Pedido Column -->\n      <ng-container matColumnDef=\"pedido\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> pedido </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.pedido}} </td>\n      </ng-container>\n\n\n      <!-- Situacao Column -->\n      <ng-container matColumnDef=\"situacao\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> situação </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.sitDesc}} </td>\n      </ng-container>&nbsp;&nbsp;&nbsp;&nbsp; \n\n     <!-- Acao 1 Column -->\n     <ng-container matColumnDef=\"acao1\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> ação </th>\n        <td mat-cell *matCellDef=\"let row\" >\n          <div class=\"button-row\">\n            <button mat-button color=\"primary\" [routerLink]=\"['/projeto/edit/', row['_id'] ]\">editar</button>\n          </div>\n        </td>\n      </ng-container>\n\n     <!-- Acao 2 Column -->\n     <ng-container matColumnDef=\"acao2\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>\n        <td mat-cell *matCellDef=\"let row\" >\n          <div class=\"button-row\">\n            <button mat-button color=\"warn\" (click)=\"openDialog(row)\">situacao</button>\n          </div>\n        </td>\n      </ng-container>\n\n      <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n      <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\">\n      </tr>\n    </table>\n\n    <mat-paginator [pageSizeOptions]=\"[5, 10, 25, 100]\"></mat-paginator>\n  </div>\n</div>"
+module.exports = "<mat-toolbar>\n  <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<div class=\"mat-elevation-z8\">\n<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item dropdown\">\n        <a class=\"nav-link dropdown-toggle  active\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n          Cadastro\n        </a>\n        <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\n          <a class=\"dropdown-item\" [routerLink]=\"['/usuarios']\">Usuário</a>\n          <a class=\"dropdown-item\" [routerLink]=\"['/clientes']\">Cliente</a>\n        </div>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" [routerLink]=\"['/apontamentos']\">Apontamento</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" >Financeiro</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n          Relatório\n        </a>\n        <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\n          <a class=\"dropdown-item\" [routerLink]=\"['/relatorio/financeiro']\">Financeiro</a>\n          <a class=\"dropdown-item\" [routerLink]=\"['/relatorio/apontamento/projeto']\">Apontamento por projeto</a>\n          <a class=\"dropdown-item\" [routerLink]=\"['/relatorio/horas/usuario']\">Apontamento de horas por usuário</a>\n          <a class=\"dropdown-item\" [routerLink]=\"['/relatorio/despesas/usuario']\">Apontamento de despesa por usuário</a>\n          <a class=\"dropdown-item\" disabled>Custo por projeto</a>\n          <div class=\"dropdown-divider\"></div>\n          <a class=\"dropdown-item\" disabled>Acompanhamento de projeto</a> \n          <div class=\"dropdown-divider\"></div>\n          <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n            Projetos\n          </a>\n          <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\n            <a class=\"dropdown-item\" disabled>0 - abertos</a>\n            <a class=\"dropdown-item\" disabled>1 - liberados</a>\n            <a class=\"dropdown-item\" disabled>2 - finalizados</a>\n            <a class=\"dropdown-item\" disabled>3 - faturados</a>\n            <a class=\"dropdown-item\" disabled>4 - encerrados</a>\n            <a class=\"dropdown-item\" >5 - cancelados</a>\n            <div class=\"dropdown-divider\"></div>\n          </div>\n        </div>\n      </li>\n      <li class=\"nav-item\">\n          <a class=\"nav-link\" href=\"#\">Sair <span class=\"sr-only\">(current)</span></a>\n      </li>\n    </ul>\n  </div>\n</nav>\n</div>\n<div class=\"container\">\n\n<div class=\"level-left\">\n    <div style=\"margin-top: 20px;\" class=\"title is-4\">Projetos</div> \n</div>\n<div class=\"level-right\">\n    <button mat-stroked-button color=\"primary\" [routerLink]=\"['/projeto/novo']\">Novo projeto</button>\n</div> \n\n<mat-form-field>\n  <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filtrar\">\n</mat-form-field>\n\n<div class=\"mat-elevation-z8\">\n  <table mat-table [dataSource]=\"dataSource\" matSort>\n\n    <!-- ID Column -->\n    <ng-container matColumnDef=\"codigo\">\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> código </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.codigo}} </td>\n    </ng-container>\n\n    <!-- Progress Column -->\n    <ng-container matColumnDef=\"descricao\">\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> descrição </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.descricao}} </td>\n    </ng-container>\n\n    <!-- Name Column -->\n    <ng-container matColumnDef=\"cliente\">\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> cliente </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.cliente}} </td>\n    </ng-container>\n\n    <!-- Pedido Column -->\n    <ng-container matColumnDef=\"pedido\">\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> pedido </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.pedido}} </td>\n    </ng-container>\n\n\n    <!-- Situacao Column -->\n    <ng-container matColumnDef=\"situacao\">\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> situação </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.sitDesc}} </td>\n    </ng-container>&nbsp;&nbsp;&nbsp;&nbsp; \n\n   <!-- Acao 1 Column -->\n   <ng-container matColumnDef=\"acao1\">\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> ação </th>\n      <td mat-cell *matCellDef=\"let row\" >\n        <div class=\"button-row\">\n          <button mat-button color=\"primary\" [routerLink]=\"['/projeto/edit/', row['_id'] ]\">editar</button>\n        </div>\n      </td>\n    </ng-container>\n\n   <!-- Acao 2 Column -->\n   <ng-container matColumnDef=\"acao2\">\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>\n      <td mat-cell *matCellDef=\"let row\" >\n        <div class=\"button-row\">\n          <button mat-button color=\"warn\" (click)=\"openDialog(row)\">situacao</button>\n        </div>\n      </td>\n    </ng-container>\n\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\">\n    </tr>\n  </table>\n\n  <mat-paginator [pageSizeOptions]=\"[5, 10, 25, 100]\"></mat-paginator>\n</div>\n</div>"
 
 /***/ }),
 
@@ -2485,7 +2706,9 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 var ProjetoListComponent = /** @class */ (function () {
-    function ProjetoListComponent(_usuarioService, _projetoService, _clienteService, dialog) {
+    function ProjetoListComponent(_usuarioService, _projetoService, _clienteService, 
+    // private _auth: AuthService,
+    dialog) {
         this._usuarioService = _usuarioService;
         this._projetoService = _projetoService;
         this._clienteService = _clienteService;
@@ -2523,8 +2746,8 @@ var ProjetoListComponent = /** @class */ (function () {
         };
     }
     ProjetoListComponent.prototype.ngOnInit = function () {
+        console.log('ProjetoListComponent > usuariologado ');
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log('ProjetoListComponent > usuariologado ', this.usuarioLogado.email);
         this.obterListaProjeto();
     };
     ProjetoListComponent.prototype.applyFilter = function (filterValue) {
@@ -2539,7 +2762,6 @@ var ProjetoListComponent = /** @class */ (function () {
         var projetoObservable = this._projetoService.obterTodos();
         projetoObservable.subscribe(function (projetos) {
             _this.projetos = projetos.json();
-            console.log('ProjetoListComponent > obterListaProjeto()', projetos);
             for (var i = 0; i < _this.projetos.length; i++) {
                 _this.obterCliente(_this.projetos[i]._clienteId, i);
                 _this.obterSituacao(_this.projetos[i].situacao, i);
@@ -2624,9 +2846,7 @@ var ProjetoListComponent = /** @class */ (function () {
 }());
 
 var DialogProjeto = /** @class */ (function () {
-    function DialogProjeto(_projetoService, 
-    // private _router: Router, 
-    dialogRef, data) {
+    function DialogProjeto(_projetoService, dialogRef, data) {
         this._projetoService = _projetoService;
         this.dialogRef = dialogRef;
         this.data = data;
@@ -2674,7 +2894,7 @@ var DialogProjeto = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n  <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n<div class=\"mat-elevation-z8\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n<div class=\"container\" >\n\n  <div class=\"mat-body-2\"> \n    Dados básicos:\n  </div>\n\n  <div class=\"errors\" *ngIf=\"errors\">\n    <p *ngIf=\"errors.codigo\" >  {{ errors['codigo'].message }} </p>\n    <p *ngIf=\"errors.descricao\" >  {{ errors['descricao'].message }} </p>\n    <p *ngIf=\"errors._clienteId\" >  {{ errors['_clienteId'].message }} </p>\n    <p *ngIf=\"errors.pedido\" >  {{ errors['pedido'].message }} </p>   \n    <p *ngIf=\"errors.horasPLC\" >  {{ errors['horasPLC'].message }} </p>\n    <p *ngIf=\"errors.horasIHM\" >  {{ errors['horasIHM'].message }} </p>          \n  </div>\n\n  <form class=\"example-form\" [formGroup] = \"projetoForm\">\n\n    <p> \n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"código\"\n        type=\"text\"\n        formControlName=\"codigo\" \n        name=\"codigo\"\n        ng-model='maskModel'\n        mask=\"XX-999-99\" clean=\"true\" \n        />\n        <!-- <mat-error *ngIf=\"projetoForm.codigo.invalid && projetoForm.codigo.touched\">\n          codigo informado não é válido\n        </mat-error> -->\n        <mat-hint align=\"end\">formato: OR-999-99</mat-hint>\n      </mat-form-field></td>\n    </p>\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field style=\"width:400px !important;\" class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"descrição\"\n        type=\"text\"\n        formControlName=\"descricao\" \n        name=\"descricao\"\n        />\n        <!-- <mat-error *ngIf=\"descricao.invalid && descricao.touched\">\n            descricao informada não é válida\n        </mat-error> -->\n      </mat-form-field></td>\n    </tr></table>\n\n\n    <mat-form-field style=\"width:400px !important;\" class=\"example-full-width\">\n      <mat-select placeholder=\"Selecione o cliente\" name=\"_clienteId\" formControlName=\"_clienteId\">\n        <mat-option value=\"option\" *ngFor=\"let c of clientes\" [value]=\"c._id\">\n            {{ c.nomeFantasia }}\n        </mat-option>\n      </mat-select>\n      <mat-hint align=\"end\">clientes ativos</mat-hint>\n    </mat-form-field>\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field  style=\"width:200px !important;\" class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"pedido\"\n          type=\"text\"\n          formControlName=\"pedido\" \n          name=\"pedido\"\n          />\n          <!-- <mat-error *ngIf=\"pedido.invalid && pedido.touched\">\n              descricao informada não é válida\n          </mat-error> -->\n      </mat-form-field></td>\n    </tr></table>\n    <br>\n\n    <div class=\"mat-body-2\"> \n      Dados financeiros:\n    </div>\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field style=\"width:200px !important;\" class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"horas PLC\"\n        type=\"text\"\n        formControlName=\"horasPLC\" \n        name=\"horasPLC\"\n        />\n        <!-- <mat-error *ngIf=\"horasPLC.invalid && horasPLC.touched\">\n            horas PLC informadas não são válidas\n        </mat-error> -->\n      </mat-form-field></td>\n    </tr></table>\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field style=\"width:200px !important;\" class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"horas IHM\"\n        type=\"text\"\n        formControlName=\"horasIHM\" \n        name=\"horasIHM\"\n        />\n        <!-- <mat-error *ngIf=\"horasIHM.invalid && horasIHM.touched\">\n          horas IHM informadas não são válidas\n        </mat-error> -->\n      </mat-form-field></td>\n    </tr></table>\n\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field style=\"width:200px !important;\" class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"valor terceiros\"\n        type=\"text\"\n        formControlName=\"valorTerceiros\" \n        name=\"valorTerceiros\"\n        />\n        <!-- <mat-error *ngIf=\"valorTerceiros.invalid && valorTerceiros.touched\">\n          valor terceiros informado não é válido\n        </mat-error> -->\n      </mat-form-field></td>\n    </tr></table>\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field style=\"width:200px !important;\" class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"valor materiais\"\n        type=\"text\"\n        formControlName=\"valorMateriais\" \n        name=\"valorMateriais\"\n        />\n      </mat-form-field></td>\n    </tr></table>\n\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field style=\"width:200px !important;\" class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"valor viagens\"\n        type=\"text\"\n        formControlName=\"valorViagens\" \n        name=\"valorViagens\"\n        />\n      </mat-form-field></td>\n    </tr></table> \n\n    <button mat-raised-button color=\"basic\" (click)=\"cancel()\">cancela</button>\n\n    <button mat-raised-button color=\"primary\"  (click)=\"criarProjeto(projetoForm)\" [disabled]=\"projetoForm.invalid\">confirma</button>\n\n  </form>\n</div>  "
+module.exports = "<mat-toolbar>\n  <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n<div class=\"mat-elevation-z8\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n<div class=\"container\" >\n\n  <div class=\"mat-body-2\"> \n    Dados básicos:\n  </div>\n\n  <div class=\"errors\" *ngIf=\"errors\">\n    <p *ngIf=\"errors.codigo\" >  {{ errors['codigo'].message }} </p>\n    <p *ngIf=\"errors.descricao\" >  {{ errors['descricao'].message }} </p>\n    <p *ngIf=\"errors._clienteId\" >  {{ errors['_clienteId'].message }} </p>\n    <p *ngIf=\"errors.pedido\" >  {{ errors['pedido'].message }} </p>   \n    <p *ngIf=\"errors.horasPLC\" >  {{ errors['horasPLC'].message }} </p>\n    <p *ngIf=\"errors.horasIHM\" >  {{ errors['horasIHM'].message }} </p>          \n  </div>\n\n  <form class=\"example-form\" [formGroup] = \"projetoForm\">\n\n    <p> \n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"código\"\n        type=\"text\"\n        formControlName=\"codigo\" \n        name=\"codigo\"\n        ng-model='maskModel'\n        mask=\"XX-999-99\" clean=\"true\" \n        />\n        <!-- <mat-error *ngIf=\"projetoForm.codigo.invalid && projetoForm.codigo.touched\">\n          codigo informado não é válido\n        </mat-error> -->\n        <mat-hint align=\"end\">formato: OR-999-99</mat-hint>\n      </mat-form-field></td>\n    </p>\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field style=\"width:400px !important;\" class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"descrição\"\n        type=\"text\"\n        formControlName=\"descricao\" \n        name=\"descricao\"\n        />\n        <!-- <mat-error *ngIf=\"descricao.invalid && descricao.touched\">\n            descricao informada não é válida\n        </mat-error> -->\n      </mat-form-field></td>\n    </tr></table>\n\n\n    <mat-form-field style=\"width:400px !important;\" class=\"example-full-width\">\n      <mat-select placeholder=\"Selecione o cliente\" name=\"_clienteId\" formControlName=\"_clienteId\">\n        <mat-option value=\"option\" *ngFor=\"let c of clientes\" [value]=\"c._id\">\n            {{ c.nomeFantasia }}\n        </mat-option>\n      </mat-select>\n      <mat-hint align=\"end\">clientes ativos</mat-hint>\n    </mat-form-field>\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field  style=\"width:200px !important;\" class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"pedido\"\n          type=\"text\"\n          formControlName=\"pedido\" \n          name=\"pedido\"\n          />\n          <!-- <mat-error *ngIf=\"pedido.invalid && pedido.touched\">\n              descricao informada não é válida\n          </mat-error> -->\n      </mat-form-field></td>\n    </tr></table>\n    <br>\n\n    <div class=\"mat-body-2\"> \n      Dados financeiros:\n    </div>\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field style=\"width:200px !important;\" class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"horas PLC\"\n        type=\"text\"\n        formControlName=\"horasPLC\" \n        name=\"horasPLC\"\n        />\n        <!-- <mat-error *ngIf=\"horasPLC.invalid && horasPLC.touched\">\n            horas PLC informadas não são válidas\n        </mat-error> -->\n      </mat-form-field></td>\n    </tr></table>\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field style=\"width:200px !important;\" class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"horas IHM\"\n        type=\"text\"\n        formControlName=\"horasIHM\" \n        name=\"horasIHM\"\n        />\n        <!-- <mat-error *ngIf=\"horasIHM.invalid && horasIHM.touched\">\n          horas IHM informadas não são válidas\n        </mat-error> -->\n      </mat-form-field></td>\n    </tr></table>\n\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field style=\"width:200px !important;\" class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"valor terceiros\"\n        formControlName=\"valorTerceiros\" \n        name=\"valorTerceiros\"\n        currencyMask \n        [(ngModel)]=\"valueTerceiros\" \n        [options]=\"{ prefix: 'R$ ', thousands: '.', decimal: ',' }\"\n        class=\"example-right-align\"\n        />\n        <!-- <mat-error *ngIf=\"valorTerceiros.invalid && valorTerceiros.touched\">\n          valor terceiros informado não é válido\n        </mat-error> -->\n      </mat-form-field></td>\n    </tr></table>\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field style=\"width:200px !important;\" class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"valor materiais\"\n        formControlName=\"valorMateriais\" \n        name=\"valorMateriais\"\n        currencyMask \n        [(ngModel)]=\"valueMateriais\" \n        [options]=\"{ prefix: 'R$ ', thousands: '.', decimal: ',' }\"\n        class=\"example-right-align\"\n        />\n      </mat-form-field></td>\n    </tr></table>\n\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field style=\"width:200px !important;\" class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"valor viagens\"\n        formControlName=\"valorViagens\" \n        name=\"valorViagens\"\n        currencyMask \n        [(ngModel)]=\"valueViagens\" \n        [options]=\"{ prefix: 'R$ ', thousands: '.', decimal: ',' }\"\n        class=\"example-right-align\"\n        />\n      </mat-form-field></td>\n    </tr></table> \n\n    <button mat-raised-button color=\"basic\" (click)=\"cancel()\">cancela</button>\n\n    <button mat-raised-button color=\"primary\"  (click)=\"criarProjeto(projetoForm)\" [disabled]=\"projetoForm.invalid\">confirma</button>\n\n  </form>\n</div>  "
 
 /***/ }),
 
@@ -2733,11 +2953,11 @@ var ProjetoNovoComponent = /** @class */ (function () {
         };
     }
     ProjetoNovoComponent.prototype.ngOnInit = function () {
+        console.log('ProjetoNovoComponent > ngOnInit() ');
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log('ProjetoNovoComponent > usuarioLogado ', this.usuarioLogado.email);
         this.obterListaCliente();
         this.projetoForm = this._formBuilder.group({
-            codigo: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].pattern("OR-[0-9]{3}-[1-9]{2}")]],
+            codigo: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].pattern("OR-[0-9]{3}-[0-9]{2}")]],
             descricao: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
             _clienteId: [null],
             pedido: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
@@ -2794,7 +3014,7 @@ var ProjetoNovoComponent = /** @class */ (function () {
     });
     ProjetoNovoComponent.prototype.criarProjeto = function (projetoForm) {
         var _this = this;
-        console.log('ProjetoNovoComponent > novoProjeto(nProjForm)', projetoForm);
+        console.log('ProjetoNovoComponent > criarProjeto(form)');
         this._projetoService.criarProjeto(projetoForm.value)
             .subscribe(function (observable) {
             if (observable.json().errors) {
@@ -2859,23 +3079,15 @@ var ProjetoService = /** @class */ (function () {
         this._http = _http;
     }
     ProjetoService.prototype.obterApontamentosHoraPorUsuario = function (usuario) {
-        console.log('ProjetoService > obterApontamentosHoraPorUsuario(usuario)', usuario);
+        console.log('ProjetoService > obterApontamentosHoraPorUsuario(usuario)');
         return this._http.get('/apontamentos/hora/usuario/', { params: { usuario: usuario } });
     };
-    ProjetoService.prototype.obterApontaHora = function (apto) {
-        console.log('ProjetoService > obterApontaHora(apto)', apto);
-        var flag;
-        if (!apto._projetoId) {
-            flag = '';
-        }
-        else {
-            flag = 'projeto';
-        }
-        ;
-        return this._http.get('/apontamentos/hora/', { params: { _projetoId: apto._projetoId, email: apto.email, data1: apto.data1, data2: apto.data2, flag: flag } });
+    ProjetoService.prototype.obterApontamento = function (apto) {
+        console.log('ProjetoService > obterApontamento(apto)');
+        return this._http.post('/obter/apontamento', apto);
     };
     ProjetoService.prototype.obterApontamentosDespesa = function (usuario) {
-        console.log('ProjetoService > obterApontamentosDespesa(usuario)', usuario);
+        console.log('ProjetoService > obterApontamentosDespesa(usuario)');
         return this._http.get('/apontamentos/despesa/', { params: { usuario: usuario } });
     };
     ProjetoService.prototype.obterTodos = function () {
@@ -2883,31 +3095,31 @@ var ProjetoService = /** @class */ (function () {
         return this._http.get('/projetos');
     };
     ProjetoService.prototype.criarProjeto = function (projeto) {
-        console.log('ProjetoService > criarProjeto(projeto,cliente)', projeto.codigo, projeto.descricao, projeto._clienteId);
+        console.log('ProjetoService > criarProjeto(projeto)');
         return this._http.post('projeto/novo', projeto);
     };
     ProjetoService.prototype.editarProjeto = function (projeto) {
-        console.log('ProjetoService > editarProjeto(projeto)', projeto);
+        console.log('ProjetoService > editarProjeto(projeto)');
         return this._http.put('projeto/edit/' + projeto['_id'], projeto);
     };
     ProjetoService.prototype.apontamentoNovo = function (id, apontamento) {
-        console.log('ProjetoService > apontamentoNovo(id, apontamento)', id, apontamento);
+        console.log('ProjetoService > apontamentoNovo(id, apontamento)');
         return this._http.put('apontamento/novo/' + id, apontamento);
     };
     ProjetoService.prototype.obterTotalApontamentos = function (id) {
-        console.log('ProjetoService > obterTotalApontamentos', id);
+        console.log('ProjetoService > obterTotalApontamentos');
         return this._http.get('apontamento/total/' + id);
     };
     ProjetoService.prototype.mudarSituacao = function (id, situacao) {
-        console.log('ProjetoService > mudarSituacao(id, situacao)', id, situacao);
+        console.log('ProjetoService > mudarSituacao(id, situacao)');
         return this._http.put('/projeto/mudarsituacao/' + id, situacao);
     };
     ProjetoService.prototype.obterProjetoById = function (id) {
-        console.log('ProjetoService > obterProjetoById', id);
+        console.log('ProjetoService > obterProjetoById');
         return this._http.get('/projeto/' + id);
     };
     ProjetoService.prototype.encerrarApontamento = function (projeto) {
-        console.log('ProjetoService > encerrarApontamento(projeto)', projeto);
+        console.log('ProjetoService > encerrarApontamento(projeto)');
         return this._http.put('/apontamento/encerrar/' + projeto['id'], projeto);
     };
     ProjetoService = __decorate([
@@ -2921,39 +3133,43 @@ var ProjetoService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/relatorio/relatorio-apontamento-despesas-usuario/relatorio-apontamento-despesas-usuario.component.html":
-/*!************************************************************************************************************************!*\
-  !*** ./src/app/relatorio/relatorio-apontamento-despesas-usuario/relatorio-apontamento-despesas-usuario.component.html ***!
-  \************************************************************************************************************************/
+/***/ "./src/app/register/register.component.html":
+/*!**************************************************!*\
+  !*** ./src/app/register/register.component.html ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  relatorio-apontamento-despesas-usuario works!\n</p>\n"
+module.exports = "<!-- <div class=\"bg-img\">\n  <div class=\"bg2-img\"></div>\n\t<ul class=\"tabs teal\">\n\t\t<li class=\"tab col s3\"><a class=\"white-text active\" href=\"#login\">login</a></li>\n\t\t<li class=\"tab col s3\"><a class=\"white-text\" href=\"#register\">register</a></li>\n\t</ul>\n\n\t<div id=\"register\" class=\"col s12\">\n\t\t<form class=\"col s12\">\n\t\t\t<div class=\"form-container\">\n\t\t\t\t<h3 class=\"teal-text\">BEM-VINDO</h3>\n\n\t\t\t\t<div class=\"row\">\n\t\t\t\t\t<div class=\"input-field col s12\">\n\t\t\t\t\t\t<input id=\"email\" type=\"email\" class=\"validate\">\n\t\t\t\t\t\t<label for=\"email\">Email</label>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"row\">\n\t\t\t\t\t<div class=\"input-field col s12\">\n\t\t\t\t\t\t<input id=\"email-confirm\" type=\"email\" class=\"validate\">\n\t\t\t\t\t\t<label for=\"email-confirm\">Confirme o Email</label>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"row\">\n\t\t\t\t\t<div class=\"input-field col s12\">\n\t\t\t\t\t\t<input id=\"password\" type=\"password\" class=\"validate\">\n\t\t\t\t\t\t<label for=\"senha\">Senha</label>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"row\">\n\t\t\t\t\t<div class=\"input-field col s12\">\n\t\t\t\t\t\t<input id=\"password-confirm\" type=\"password\" class=\"validate\">\n\t\t\t\t\t\t<label for=\"senha-confirm\">Confimre a Senha</label>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\n\t\t\t\t\t<button class=\"btn waves-effect waves-light teal\" type=\"submit\" name=\"action\">Submit</button>\n\n\t\t\t</div>\n\t\t</form>\n\t</div>\n</div> -->\n\n\n<div class=\"bg-img\">\n  <div class=\"bg2-img\"></div>\n  <form class=\"example-form\" [formGroup] = \"formRegister\">\n      <div class=\"container\">\n          <h3 class=\"teal-text\">BEM-VINDO</h3>\n        <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n\n          <td><mat-form-field class=\"example-full-width\">\n            <input \n            matInput\n            autocomplete=\"off\" \n            placeholder=\"e-mail\"\n            type=\"email\"\n            formControlName=\"email\" \n            id=\"email\"\n            />\n            <div *ngIf=\"email\">\n              <mat-error *ngIf=\"email.invalid && email.touched\">\n                  por favor, informe um endereço de e-mail válido\n              </mat-error>\n            </div>\n            </mat-form-field></td>\n          </tr></table>\n\n          <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n            <td><mat-form-field class=\"mat-body-1\">\n              <input \n              matInput\n              autocomplete=\"off\" \n              placeholder=\"senha\"\n              type=\"password\"\n              formControlName=\"senha\"  \n              id=\"senha\"\n              />\n              <div *ngIf=\"senha\">\n              <mat-error *ngIf=\"senha.invalid && senha.touched\">\n                  pelo menos oito caracteres, letra minúscula e maiúscula\n              </mat-error>\n              </div>\n            </mat-form-field></td>\n          </tr></table>\n\n          <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n              <td><mat-form-field class=\"mat-body-1\">\n                <input \n                matInput\n                autocomplete=\"off\" \n                placeholder=\"nova senha\"\n                type=\"password\"\n                formControlName=\"novaSenha\"  \n                id=\"novaSenha\"\n                />\n                <div *ngIf=\"novaSenha\">\n                <mat-error *ngIf=\"novaSenha.invalid && novaSenha.touched\">\n                    pelo menos oito caracteres, letra minúscula e maiúscula\n                </mat-error>\n                </div>\n              </mat-form-field></td>\n            </tr></table>\n\n\n          <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n            <td><mat-form-field class=\"mat-body-1\">\n              <input \n              matInput\n              autocomplete=\"off\" \n              placeholder=\"confirme a senha\"\n              type=\"password\"\n              formControlName=\"senhaConfirm\"  \n              id=\"senhaConfirm\"\n              />\n              <div *ngIf=\"senhaConfirm\">\n              <mat-error *ngIf=\"senhaConfirm.invalid && senhaConfirm.touched\">\n                  pelo menos oito caracteres, letra minúscula e maiúscula\n              </mat-error>\n              </div>\n            </mat-form-field></td>\n          </tr></table>\n          <!-- <img src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\"> -->\n        <button  mat-raised-button color=\"primary\" (click)=\"registrar(formRegister)\" [disabled]=\"formRegister.invalid\">enviar</button>\n        <div class=\"errors\" *ngIf=\"errors\">\n            <p *ngIf=\"errors\" >  {{ errors.message }} </p>\n        </div>\n\n        <!-- <a  mat-stroked-button color=\"primary\" [routerLink]=\"['/primeiro/acesso']\">Primeiro acesso?</a> -->\n    </div>\n\n  </form>\n    \n</div>  \n<a href=\"https://www.linkedin.com/in/fernando-carvalho-6834bbb/\"  class=\"btn btn-linkedin btn-lg\">Torre Negra Sistemas <span class=\"mat-body-1\">- Av. Pedro Botesi, 2171 - Sala 113 - Mogi Mirim - São Paulo - Brazil</span> </a>   \n"
 
 /***/ }),
 
-/***/ "./src/app/relatorio/relatorio-apontamento-despesas-usuario/relatorio-apontamento-despesas-usuario.component.scss":
-/*!************************************************************************************************************************!*\
-  !*** ./src/app/relatorio/relatorio-apontamento-despesas-usuario/relatorio-apontamento-despesas-usuario.component.scss ***!
-  \************************************************************************************************************************/
+/***/ "./src/app/register/register.component.scss":
+/*!**************************************************!*\
+  !*** ./src/app/register/register.component.scss ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "body, html {\n  height: 100%;\n  font-family: Arial, Helvetica, sans-serif; }\n\n* {\n  box-sizing: border-box; }\n\n.bg-img {\n  /* The image used */\n  background-image: url(\"/assets/images/TorreNegra-elem-mono-pos.png\");\n  min-height: 600px;\n  /* Center and scale the image nicely */\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: 35%; }\n\n/* Add styles to the form container */\n\n.container {\n  position: absolute;\n  right: 0;\n  margin: 10px;\n  max-width: 260px;\n  padding: 16px;\n  background-color: white; }\n\n/* Full-width input fields */\n\ninput[type=email], input[type=password] {\n  width: 100%;\n  height: 50%;\n  padding: 2px;\n  margin: 2px 0 2px 0px;\n  border: none; }\n\n.example-form {\n  min-width: 150px;\n  max-width: 500px;\n  width: 100%; }\n\n.example-full-width {\n  width: 100%; }\n\n/* Set a style for the submit button */\n\n.btn {\n  background-color: #4CAF50;\n  color: white;\n  padding: 16px 20px;\n  border: none;\n  cursor: pointer;\n  width: 100%;\n  opacity: 0.9; }\n\n.btn:hover {\n  opacity: 1; }\n\n.bg2-img {\n  /* The image used */\n  background-image: url(\"/assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\");\n  min-height: 140px;\n  /* Center and scale the image nicely */\n  background-position: left;\n  background-repeat: no-repeat;\n  background-size: 25%; }\n\n.btn-linkedin {\n  background: #0E76A8;\n  border-radius: 0;\n  color: #fff;\n  border-width: 1px;\n  border-style: solid;\n  border-color: #084461; }\n\n.btn-linkedin:link, .btn-linkedin:visited {\n  color: #fff; }\n\n.btn-linkedin:active, .btn-linkedin:hover {\n  background: #084461;\n  color: #fff; }\n"
 
 /***/ }),
 
-/***/ "./src/app/relatorio/relatorio-apontamento-despesas-usuario/relatorio-apontamento-despesas-usuario.component.ts":
-/*!**********************************************************************************************************************!*\
-  !*** ./src/app/relatorio/relatorio-apontamento-despesas-usuario/relatorio-apontamento-despesas-usuario.component.ts ***!
-  \**********************************************************************************************************************/
-/*! exports provided: RelatorioApontamentoDespesasUsuarioComponent */
+/***/ "./src/app/register/register.component.ts":
+/*!************************************************!*\
+  !*** ./src/app/register/register.component.ts ***!
+  \************************************************/
+/*! exports provided: RegisterComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RelatorioApontamentoDespesasUsuarioComponent", function() { return RelatorioApontamentoDespesasUsuarioComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegisterComponent", function() { return RegisterComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth.service.ts");
+/* harmony import */ var _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../usuario/usuario.service */ "./src/app/usuario/usuario.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2964,10 +3180,247 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
+
+var RegisterComponent = /** @class */ (function () {
+    function RegisterComponent(_formBuilder, _router, _usuario, _auth) {
+        this._formBuilder = _formBuilder;
+        this._router = _router;
+        this._usuario = _usuario;
+        this._auth = _auth;
+        this.formRegister = this._formBuilder.group({
+            email: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')],
+            senha: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].pattern('((?=.*[a-z])(?=.*[A-Z]).{8,})')],
+            novaSenha: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].pattern('((?=.*[a-z])(?=.*[A-Z]).{8,})')],
+            senhaConfirm: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].pattern('((?=.*[a-z])(?=.*[A-Z]).{8,})')]
+        });
+    }
+    RegisterComponent.prototype.ngOnInit = function () {
+    };
+    Object.defineProperty(RegisterComponent.prototype, "email", {
+        get: function () {
+            return this.formRegister.get('email');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RegisterComponent.prototype, "senha", {
+        get: function () {
+            return this.formRegister.get('senha');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RegisterComponent.prototype, "senhaConfirm", {
+        get: function () {
+            return this.formRegister.get('senhaConfirm');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    RegisterComponent.prototype.registrar = function (formRegister) {
+        var _this = this;
+        console.log('RegisterComponent > registrar(formRegister)');
+        var usuario = {
+            user: formRegister.controls.email.value,
+            senha: formRegister.controls.senha.value,
+            novaSenha: formRegister.controls.novaSenha.value
+        };
+        var senhaConfirm = formRegister.controls.senhaConfirm.value;
+        console.log(formRegister.controls.email.value, formRegister.controls.senha.value);
+        if (usuario.novaSenha !== senhaConfirm) {
+            var message = 'Senhas diferentes, favor confirmar a senha!';
+            window.alert(message);
+            console.log('ERRO em login', message);
+            this._router.navigate(['/primeiro/acesso']);
+        }
+        else {
+            this._usuario.registrarUsuario(usuario).subscribe(function (result) {
+                var user = result.json();
+                // console.log('result', user);
+                if (user.success) {
+                    if (user.ativo === "ativo") {
+                        _this._auth.setLoggedIn(true);
+                        console.log('SUCESSO em register');
+                        if (user.admin) {
+                            _this._router.navigate(['/projetos']);
+                        }
+                        else {
+                            _this._router.navigate(['/apontamentos']);
+                        }
+                    }
+                    else {
+                        window.alert(user.message);
+                        _this._router.navigate(['/']);
+                    }
+                }
+                else {
+                    window.alert(user.message);
+                    _this._router.navigate(['/']);
+                }
+            }, function (err) { console.log('deu erro:', err); }, function () { });
+        }
+    };
+    RegisterComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'register',
+            template: __webpack_require__(/*! ./register.component.html */ "./src/app/register/register.component.html"),
+            styles: [__webpack_require__(/*! ./register.component.scss */ "./src/app/register/register.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
+            _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_4__["UsuarioService"],
+            _auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"]])
+    ], RegisterComponent);
+    return RegisterComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/relatorio/relatorio-apontamento-despesas-usuario/relatorio-apontamento-despesas-usuario.component.html":
+/*!************************************************************************************************************************!*\
+  !*** ./src/app/relatorio/relatorio-apontamento-despesas-usuario/relatorio-apontamento-despesas-usuario.component.html ***!
+  \************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<mat-toolbar>\n  <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<div class=\"mat-elevation-z8\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n<div class=\"container\"> \n  <div class=\"level-left\">\n    <div style=\"margin-top: 20px;\" class=\"title is-4\">Relatório de Apontamento de Despesas por Usuário</div> \n  </div>\n  <br>\n  <p>Olá {{ usuarioLogado }}</p>\n  <br><br>\n\n  <form class=\"example-form\" [formGroup] = \"options\">\n\n    <mat-form-field style=\"width:400px !important;\"> \n      <mat-select placeholder=\"Selecione o usuário\" name=\"usuario\" formControlName=\"email\" required>\n        <mat-option value=\"option\" *ngFor=\"let u of usuarios\" [value]=\"u.email\"> {{ u.nome }} {{ u.sobrenome }}</mat-option>\n      </mat-select>\n      <!-- <mat-error *ngIf=\"email.invalid && email.touched\">\n        usuário é requerido\n      </mat-error> -->\n      <mat-hint align=\"end\">Usuários ativos</mat-hint>\n    </mat-form-field>\n    <br>\n\n    <mat-form-field>\n      <input matInput [matDatepicker]=\"picker1\" placeholder=\"de\" formControlName=\"data1\">\n      <mat-datepicker-toggle matSuffix [for]=\"picker1\"></mat-datepicker-toggle>\n      <mat-datepicker #picker1></mat-datepicker>\n      <mat-hint align=\"end\">Selecione o período</mat-hint>\n    </mat-form-field>\n\n    <mat-form-field>\n      <input matInput [matDatepicker]=\"picker2\" placeholder=\"até\" formControlName=\"data2\">\n      <mat-datepicker-toggle matSuffix [for]=\"picker2\"></mat-datepicker-toggle>\n      <mat-datepicker #picker2></mat-datepicker>\n    </mat-form-field>\n    <br>\n\n    <mat-form-field style=\"width:400px !important;\"> \n      <mat-select placeholder=\"Selecione o projeto\" name=\"projeto\" formControlName=\"_projetoId\">\n        <mat-option value=\"option\" *ngFor=\"let p of projetos\" [value]=\"p._id\"> {{ p.codigo }} {{ p.descricao }}</mat-option>\n      </mat-select>\n      <mat-hint align=\"end\">Projetos ativos</mat-hint>\n    </mat-form-field>\n    <br>\n\n    <button mat-raised-button color=\"primary\" (click)=\"obterApontamentos()\" >apontamentos</button>\n  </form>\n\n  <br><br><br>\n\n  <table mat-table [dataSource]=\"transactions\" class=\"mat-elevation-z8\" *ngIf=\"transactions && selected\"> \n\n    <!-- Codigo ProjetoColumn -->\n    <ng-container matColumnDef=\"codigo\">\n      <th mat-header-cell *matHeaderCellDef> código projeto </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.codigo}} </td>\n      <td mat-footer-cell *matFooterCellDef> Total </td>\n    </ng-container>\n\n\n    <!-- Cliente Column -->\n    <ng-container matColumnDef=\"cliente\">\n      <th mat-header-cell *matHeaderCellDef > cliente </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.cliente}} </td>\n      <td mat-footer-cell *matFooterCellDef>  </td>\n    </ng-container>\n\n    <!-- Despesa Column -->\n    <ng-container matColumnDef=\"despesa\">\n      <th mat-header-cell *matHeaderCellDef> despesa </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.despesa.descricao}} </td>\n      <td mat-footer-cell *matFooterCellDef>  </td>\n    </ng-container>\n\n    <!-- Valor Despesa Column -->\n    <ng-container matColumnDef=\"valor\">\n      <th mat-header-cell *matHeaderCellDef> valor </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.valor  | currency:'BRL'}} </td>\n      <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency: 'BRL'}} </td>\n    </ng-container>\n\n\n\n    <!-- Data Column -->\n    <ng-container matColumnDef=\"data\">\n      <th mat-header-cell *matHeaderCellDef> data </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.despesa.data | date:'d/M/yy'}} </td>\n      <!-- <td mat-cell *matCellDef=\"let row\" *ngIf=\"row.despesa.data > data1 && row.despesa.data < data2\"> {{row.despesa.data | date:'d/M/yy'}} </td> -->\n      <td mat-footer-cell *matFooterCellDef>  </td>\n    </ng-container>\n\n    <!--Reembolso Column -->\n    <ng-container matColumnDef=\"reembolso\">\n      <th mat-header-cell *matHeaderCellDef> reembolso </th>\n      <td mat-cell *matCellDef=\"let row\"> \n          <img class=\"reembolso\" [src]=\"row.despesa.reembolso ? frontPath : backPath\"></td>\n      <td mat-footer-cell *matFooterCellDef>  </td>\n    </ng-container>\n\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n    <tr mat-footer-row *matFooterRowDef=\"displayedColumns\"></tr>\n\n  </table>\n\n\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/relatorio/relatorio-apontamento-despesas-usuario/relatorio-apontamento-despesas-usuario.component.scss":
+/*!************************************************************************************************************************!*\
+  !*** ./src/app/relatorio/relatorio-apontamento-despesas-usuario/relatorio-apontamento-despesas-usuario.component.scss ***!
+  \************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "img {\n  width: 190px;\n  height: auto; }\n\n.reembolso {\n  width: 20px;\n  height: 20px; }\n\n.example-container {\n  height: 270px;\n  overflow: auto; }\n\ntable {\n  width: 100%; }\n\n.despesa {\n  margin: 10px;\n  padding: 2px;\n  background-color: red;\n  color: white; }\n\ntr.mat-footer-row {\n  font-weight: bold; }\n"
+
+/***/ }),
+
+/***/ "./src/app/relatorio/relatorio-apontamento-despesas-usuario/relatorio-apontamento-despesas-usuario.component.ts":
+/*!**********************************************************************************************************************!*\
+  !*** ./src/app/relatorio/relatorio-apontamento-despesas-usuario/relatorio-apontamento-despesas-usuario.component.ts ***!
+  \**********************************************************************************************************************/
+/*! exports provided: getProjeto, RelatorioApontamentoDespesasUsuarioComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProjeto", function() { return getProjeto; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RelatorioApontamentoDespesasUsuarioComponent", function() { return RelatorioApontamentoDespesasUsuarioComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../usuario/usuario.service */ "./src/app/usuario/usuario.service.ts");
+/* harmony import */ var _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../projeto/projeto.service */ "./src/app/projeto/projeto.service.ts");
+/* harmony import */ var _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../cliente/cliente.service */ "./src/app/cliente/cliente.service.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+function getProjeto(projetos, id) {
+    for (var i = 0; i < projetos.length; i++) {
+        if (projetos[i]._id === id) {
+            return projetos[i];
+        }
+    }
+}
 var RelatorioApontamentoDespesasUsuarioComponent = /** @class */ (function () {
-    function RelatorioApontamentoDespesasUsuarioComponent() {
+    function RelatorioApontamentoDespesasUsuarioComponent(fb, _projetoService, _usuarioService, _clienteService) {
+        this.fb = fb;
+        this._projetoService = _projetoService;
+        this._usuarioService = _usuarioService;
+        this._clienteService = _clienteService;
+        this.displayedColumns = ['codigo', 'cliente', 'despesa', 'valor', 'data', 'reembolso'];
+        this.selected = false;
+        this.usuarioLogado = {
+            email: '',
+            admin: ''
+        };
+        this.cliente = {
+            _id: "",
+            nomeFantasia: ""
+        };
+        this.frontPath = "../../assets/svg/baseline-thumb_up.svg";
+        this.backPath = "";
+        this.options = fb.group({
+            _projetoId: [null],
+            email: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required]],
+            data1: new Date().toDateString(),
+            data2: new Date().toDateString(),
+            tipo: 'despesa'
+        });
     }
     RelatorioApontamentoDespesasUsuarioComponent.prototype.ngOnInit = function () {
+        this.usuarioLogado = this._usuarioService.getUserLoggedIn();
+        console.log('RelatorioApontamentoDespesasUsuarioComponent > usuariologado ');
+        this.obterListaUsuario();
+        this.obterListaProjeto();
+    };
+    Object.defineProperty(RelatorioApontamentoDespesasUsuarioComponent.prototype, "reembolso", {
+        get: function () {
+            return this.options.get('reembolso');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    RelatorioApontamentoDespesasUsuarioComponent.prototype.obterListaUsuario = function () {
+        var _this = this;
+        console.log('RelatorioApontamentoDespesasUsuarioComponent > obterListaUsuario()');
+        this._usuarioService.obterListaUsuario()
+            .subscribe(function (usuarios) {
+            _this.usuarios = usuarios.json();
+        }, function (err) { }, function () { });
+    };
+    RelatorioApontamentoDespesasUsuarioComponent.prototype.obterListaProjeto = function () {
+        var _this = this;
+        console.log('RelatorioApontamentoDespesasUsuarioComponent > obterListaProjeto()');
+        var projetoObservable = this._projetoService.obterTodos();
+        projetoObservable.subscribe(function (projetos) {
+            _this.projetos = projetos.json();
+        }, function (err) { }, function () { });
+    };
+    RelatorioApontamentoDespesasUsuarioComponent.prototype.obterApontamentos = function () {
+        var _this = this;
+        console.log('RelatorioApontamentoDespesasUsuarioComponent > obterApontamentos');
+        this._projetoService.obterApontamento(this.options.value)
+            .subscribe(function (apontamentos) {
+            _this.apontamentos = apontamentos.json();
+            var _loop_1 = function (a) {
+                a.valor = a.despesa.valor;
+                _this.projeto = getProjeto(_this.projetos, a._projeto);
+                a.codigo = _this.projeto.codigo;
+                _this._clienteService.obterClienteById(_this.projeto._clienteId)
+                    .subscribe(function (cliente) {
+                    _this.cliente = cliente.json();
+                    a.cliente = _this.cliente.nomeFantasia;
+                }, function (err) { }, function () { });
+            };
+            for (var _i = 0, _a = _this.apontamentos; _i < _a.length; _i++) {
+                var a = _a[_i];
+                _loop_1(a);
+            }
+            _this.transactions = _this.apontamentos;
+            _this.selected = true;
+        }, function (err) { }, function () { });
+    };
+    RelatorioApontamentoDespesasUsuarioComponent.prototype.getTotalCost = function () {
+        return this.transactions.map(function (t) { return t.valor; }).reduce(function (acc, value) { return acc + value; }, 0);
     };
     RelatorioApontamentoDespesasUsuarioComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -2975,7 +3428,10 @@ var RelatorioApontamentoDespesasUsuarioComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./relatorio-apontamento-despesas-usuario.component.html */ "./src/app/relatorio/relatorio-apontamento-despesas-usuario/relatorio-apontamento-despesas-usuario.component.html"),
             styles: [__webpack_require__(/*! ./relatorio-apontamento-despesas-usuario.component.scss */ "./src/app/relatorio/relatorio-apontamento-despesas-usuario/relatorio-apontamento-despesas-usuario.component.scss")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"],
+            _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_2__["ProjetoService"],
+            _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_1__["UsuarioService"],
+            _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_3__["ClienteService"]])
     ], RelatorioApontamentoDespesasUsuarioComponent);
     return RelatorioApontamentoDespesasUsuarioComponent;
 }());
@@ -2991,7 +3447,7 @@ var RelatorioApontamentoDespesasUsuarioComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n  <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<div class=\"mat-elevation-z8\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n<div class=\"container\"> \n  <div class=\"level-left\">\n    <div style=\"margin-top: 20px;\" class=\"title is-4\">Relatório de Apontamento de Horas por Usuário</div> \n  </div>\n  <br>\n  <p>Olá {{ usuarioLogado }}</p>\n  <br><br>\n\n  <form class=\"example-form\" [formGroup] = \"options\">\n\n    <mat-form-field style=\"width:400px !important;\"> \n      <mat-select placeholder=\"Selecione o usuário\" name=\"usuario\" formControlName=\"email\" required>\n        <mat-option value=\"option\" *ngFor=\"let u of usuarios\" [value]=\"u.email\"> {{ u.nome }} {{ u.sobrenome }}</mat-option>\n      </mat-select>\n      <mat-error *ngIf=\"email.invalid && email.touched\">\n        usuário é requerido\n      </mat-error>\n      <mat-hint align=\"end\">Usuários ativos</mat-hint>\n    </mat-form-field>\n    <br>\n\n    <mat-form-field>\n      <input matInput [matDatepicker]=\"picker1\" placeholder=\"de\" formControlName=\"data1\">\n      <mat-datepicker-toggle matSuffix [for]=\"picker1\"></mat-datepicker-toggle>\n      <mat-datepicker #picker1></mat-datepicker>\n      <mat-hint align=\"end\">Selecione o período</mat-hint>\n    </mat-form-field>\n \n    <mat-form-field>\n      <input matInput [matDatepicker]=\"picker2\" placeholder=\"até\" formControlName=\"data2\">\n      <mat-datepicker-toggle matSuffix [for]=\"picker2\"></mat-datepicker-toggle>\n      <mat-datepicker #picker2></mat-datepicker>\n    </mat-form-field>\n    <br>\n \n    <mat-form-field style=\"width:400px !important;\"> \n      <mat-select placeholder=\"Selecione o projeto\" name=\"projeto\" formControlName=\"_projetoId\">\n        <mat-option value=\"option\" *ngFor=\"let p of projetos\" [value]=\"p._id\"> {{ p.codigo }} {{ p.descricao }}</mat-option>\n      </mat-select>\n      <mat-hint align=\"end\">Projetos ativos</mat-hint>\n    </mat-form-field>\n    <br>\n\n    <button mat-raised-button color=\"primary\" (click)=\"obterApontamentos()\" [disabled]=\"email.invalid\">apontamentos</button>\n  </form>\n\n  <br><br><br>\n\n  <table mat-table [dataSource]=\"transactions\" class=\"mat-elevation-z8\" *ngIf=\"transactions && selected\"> \n\n    <!-- Codigo ProjetoColumn -->\n    <ng-container matColumnDef=\"codigo\">\n      <th mat-header-cell *matHeaderCellDef > código projeto </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.codigo}} </td>\n    </ng-container>\n\n    <!-- Cliente Column -->\n    <ng-container matColumnDef=\"cliente\">\n      <th mat-header-cell *matHeaderCellDef > cliente </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.cliente}} </td>\n    </ng-container>\n\n    <!-- Inicio Column -->\n    <ng-container matColumnDef=\"inicio\">\n      <th mat-header-cell *matHeaderCellDef> início </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.hora.inicio | date:'d/M/yy H:mm'}} </td>\n    </ng-container>\n\n    <!-- Fim Column -->\n    <ng-container matColumnDef=\"fim\">\n      <th mat-header-cell *matHeaderCellDef > fim </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.hora.fim | date:'d/M/yy H:mm'}} </td>\n    </ng-container>\n\n    <!-- Total HH Column -->\n    <ng-container matColumnDef=\"totalhh\">\n      <th mat-header-cell *matHeaderCellDef> total hh </th>\n      <td mat-cell class=\"mat-body-2 custo\" *matCellDef=\"let row\"> {{row.totalhh}} </td>\n    </ng-container>\n\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n\n  </table>\n\n\n</div>"
+module.exports = "<mat-toolbar>\n  <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<div class=\"mat-elevation-z8\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n<div class=\"container\"> \n  <div class=\"level-left\">\n    <div style=\"margin-top: 20px;\" class=\"title is-4\">Relatório de Apontamento de Horas por Usuário</div> \n  </div>\n  <br>\n  <p>Olá {{ usuarioLogado }}</p>\n  <br><br>\n\n  <form class=\"example-form\" [formGroup] = \"options\">\n\n    <mat-form-field style=\"width:400px !important;\"> \n      <mat-select placeholder=\"Selecione o usuário\" name=\"usuario\" formControlName=\"email\" required>\n        <mat-option value=\"option\" *ngFor=\"let u of usuarios\" [value]=\"u.email\"> {{ u.nome }} {{ u.sobrenome }}</mat-option>\n      </mat-select>\n      <mat-error *ngIf=\"email.invalid && email.touched\">\n        usuário é requerido\n      </mat-error>\n      <mat-hint align=\"end\">Usuários ativos</mat-hint>\n    </mat-form-field>\n    <br>\n\n    <mat-form-field>\n      <input matInput [matDatepicker]=\"picker1\" placeholder=\"de\" formControlName=\"data1\">\n      <mat-datepicker-toggle matSuffix [for]=\"picker1\"></mat-datepicker-toggle>\n      <mat-datepicker #picker1></mat-datepicker>\n      <mat-hint align=\"end\">Selecione o período</mat-hint>\n    </mat-form-field>\n \n    <mat-form-field>\n      <input matInput [matDatepicker]=\"picker2\" placeholder=\"até\" formControlName=\"data2\">\n      <mat-datepicker-toggle matSuffix [for]=\"picker2\"></mat-datepicker-toggle>\n      <mat-datepicker #picker2></mat-datepicker>\n    </mat-form-field>\n    <br>\n \n    <mat-form-field style=\"width:400px !important;\"> \n      <mat-select placeholder=\"Selecione o projeto\" name=\"projeto\" formControlName=\"_projetoId\">\n        <mat-option value=\"option\" *ngFor=\"let p of projetos\" [value]=\"p._id\"> {{ p.codigo }} {{ p.descricao }}</mat-option>\n      </mat-select>\n      <mat-hint align=\"end\">Projetos ativos</mat-hint>\n    </mat-form-field>\n    <br>\n\n    <button mat-raised-button color=\"primary\" (click)=\"obterApontamento()\" [disabled]=\"email.invalid\">apontamentos</button>\n  </form>\n\n  <br><br><br>\n\n  <table mat-table [dataSource]=\"transactions\" class=\"mat-elevation-z8\" *ngIf=\"transactions && selected\"> \n\n    <!-- Codigo ProjetoColumn -->\n    <ng-container matColumnDef=\"codigo\">\n      <th mat-header-cell *matHeaderCellDef > código projeto </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.codigo}} </td>\n    </ng-container>\n\n    <!-- Cliente Column -->\n    <ng-container matColumnDef=\"cliente\">\n      <th mat-header-cell *matHeaderCellDef > cliente </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.cliente}} </td>\n    </ng-container>\n\n    <!-- Inicio Column -->\n    <ng-container matColumnDef=\"inicio\">\n      <th mat-header-cell *matHeaderCellDef> início </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.hora.inicio | date:'d/M/yy H:mm'}} </td>\n    </ng-container>\n\n    <!-- Fim Column -->\n    <ng-container matColumnDef=\"fim\">\n      <th mat-header-cell *matHeaderCellDef > fim </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.hora.fim | date:'d/M/yy H:mm'}} </td>\n    </ng-container>\n\n    <!-- Total HH Column -->\n    <ng-container matColumnDef=\"totalhh\">\n      <th mat-header-cell *matHeaderCellDef> total hh </th>\n      <td mat-cell class=\"mat-body-2 custo\" *matCellDef=\"let row\"> {{row.totalhh}} </td>\n    </ng-container>\n\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n\n  </table>\n\n\n</div>"
 
 /***/ }),
 
@@ -3045,7 +3501,6 @@ function getProjeto(projetos, id) {
     }
 }
 function DataHora(x, y) {
-    console.log('x , y : ', x, y);
     var diff;
     var hora;
     var minutes;
@@ -3068,7 +3523,7 @@ function DataHora(x, y) {
         hora += h;
     }
     else {
-        console.log('minutes:', minutes);
+        console.log('minutes');
     }
     return { hora: hora, minuto: minutes };
 }
@@ -3092,12 +3547,13 @@ var RelatorioApontamentoHorasUsuarioComponent = /** @class */ (function () {
             _projetoId: [null],
             email: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required]],
             data1: new Date(),
-            data2: new Date()
+            data2: new Date(),
+            tipo: 'hora'
         });
     }
     RelatorioApontamentoHorasUsuarioComponent.prototype.ngOnInit = function () {
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log('ProjetoListComponent > usuariologado ', this.usuarioLogado);
+        console.log('RelatorioApontamentoHorasUsuarioComponent');
         this.obterListaUsuario();
         this.obterListaProjeto();
     };
@@ -3110,7 +3566,7 @@ var RelatorioApontamentoHorasUsuarioComponent = /** @class */ (function () {
     });
     RelatorioApontamentoHorasUsuarioComponent.prototype.obterListaUsuario = function () {
         var _this = this;
-        console.log('ProjetoListComponent > obterListaUsuario()');
+        console.log('RelatorioApontamentoHorasUsuarioComponent > obterListaUsuario()');
         this._usuarioService.obterListaUsuario()
             .subscribe(function (usuarios) {
             _this.usuarios = usuarios.json();
@@ -3118,16 +3574,16 @@ var RelatorioApontamentoHorasUsuarioComponent = /** @class */ (function () {
     };
     RelatorioApontamentoHorasUsuarioComponent.prototype.obterListaProjeto = function () {
         var _this = this;
-        console.log('ProjetoListComponent > obterListaProjeto()');
+        console.log('RelatorioApontamentoHorasUsuarioComponent > obterListaProjeto()');
         var projetoObservable = this._projetoService.obterTodos();
         projetoObservable.subscribe(function (projetos) {
             _this.projetos = projetos.json();
         }, function (err) { }, function () { });
     };
-    RelatorioApontamentoHorasUsuarioComponent.prototype.obterApontamentos = function () {
+    RelatorioApontamentoHorasUsuarioComponent.prototype.obterApontamento = function () {
         var _this = this;
-        console.log('ProjetoListComponent > obterApontamentos', this.options.controls._projetoId.value, this.options.controls.data1.value, this.options.controls.data2.value);
-        this._projetoService.obterApontaHora(this.options.value)
+        console.log('RelatorioApontamentoHorasUsuarioComponent > obterApontamento');
+        this._projetoService.obterApontamento(this.options.value)
             .subscribe(function (apontamentos) {
             _this.apontamentos = apontamentos.json();
             var _loop_1 = function (a) {
@@ -3135,7 +3591,6 @@ var RelatorioApontamentoHorasUsuarioComponent = /** @class */ (function () {
                 a.totalhh = data.hora + ':' + data.minuto;
                 _this.projeto = getProjeto(_this.projetos, a._projeto);
                 a.codigo = _this.projeto.codigo;
-                console.log('ProjetoListComponent > obterCliente(id)', _this.projeto._clienteId);
                 _this._clienteService.obterClienteById(_this.projeto._clienteId)
                     .subscribe(function (cliente) {
                     _this.cliente = cliente.json();
@@ -3151,7 +3606,7 @@ var RelatorioApontamentoHorasUsuarioComponent = /** @class */ (function () {
         }, function (err) { }, function () { });
     };
     RelatorioApontamentoHorasUsuarioComponent.prototype.obterCustoTotal = function () {
-        console.log('ProjetoListComponent > obterCustoTotal()', this.projetos);
+        console.log('RelatorioApontamentoHorasUsuarioComponent > obterCustoTotal()');
         return this.projetos.map(function (t) { return t.custo; }).reduce(function (acc, value) { return acc + value; }, 0);
     };
     RelatorioApontamentoHorasUsuarioComponent = __decorate([
@@ -3179,7 +3634,7 @@ var RelatorioApontamentoHorasUsuarioComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n  </mat-toolbar>\n  \n  <div class=\"mat-elevation-z8\">\n    <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n      <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n        <span class=\"navbar-toggler-icon\"></span>\n      </button>\n  \n      <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n        <ul class=\"navbar-nav mr-auto\">\n          <li class=\"nav-item active\">\n            <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n          </li>\n        </ul>\n      </div>\n    </nav>\n  </div>\n  <br>\n  \n  <div class=\"container\">\n    <div class=\"level-left\">\n      <div style=\"margin-top: 20px;\" class=\"title is-4\">Relatório de Apontamentos de Projetos</div> \n    </div>\n    <br>\n    <div class=\"mat-elevation-z8\">\n      <table mat-table [dataSource]=\"transactions\">\n        <!-- Codigo Column -->\n        <ng-container matColumnDef=\"codigo\">\n          <th mat-header-cell *matHeaderCellDef > código </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.codigo}} </td>\n          <td mat-footer-cell *matFooterCellDef> Total </td>\n        </ng-container>\n  \n        <!-- Descricao Column -->\n        <ng-container matColumnDef=\"descricao\">\n          <th mat-header-cell *matHeaderCellDef > descrição </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.descricao}} </td>\n        </ng-container>\n  \n        <!-- Cliente Column -->\n        <ng-container matColumnDef=\"cliente\">\n          <th mat-header-cell *matHeaderCellDef> cliente </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.cliente}} </td>\n        </ng-container>\n  \n        \n        <!-- Data Column -->\n        <ng-container matColumnDef=\"data\">\n          <th mat-header-cell *matHeaderCellDef > data </th>\n          <td mat-cell *matCellDef=\"let row\"> \n              <p *ngFor=\"let a of row.apontamentos\"> {{a.data | date:'d/M/yy '}}  \n            </td> \n        </ng-container>\n  \n        <!-- Custo Column -->\n        <ng-container matColumnDef=\"custo\">\n          <th mat-header-cell *matHeaderCellDef > hh:mm </th>\n          <td mat-cell *matCellDef=\"let row\"> \n            <p *ngFor=\"let a of row.apontamentos\" ><span [ngStyle]=\"{'color':'green'}\" *ngIf=\"a.custo\"> {{ a.custo?.dia | number:'2.0'}} {{ a.custo?.hora | number:'2.0'}}:{{ a.custo?.minuto | number:'2.0' }}</span>  </p>\n          </td>\n          <!-- <td mat-footer-cell *matFooterCellDef> {{obterCustoTotal() | currency:'BRL'}}</td> -->\n        </ng-container>\n\n        <!-- Despesa Column -->\n        <ng-container matColumnDef=\"despesa\">\n          <th mat-header-cell *matHeaderCellDef> despesa </th>\n          <td mat-cell *matCellDef=\"let row\">\n            <p *ngFor=\"let a of row.apontamentos\">  {{a.despesa}}   </p>  \n          </td>\n        </ng-container>\n  \n        <!-- Valor Column -->\n        <ng-container matColumnDef=\"valor\">\n          <th mat-header-cell *matHeaderCellDef> valor </th>\n          <td mat-cell *matCellDef=\"let row\"> \n            <p *ngFor=\"let a of row.apontamentos\" ><span [ngStyle]=\"{'color':'red'}\">{{a.valor | currency:'BRL'}}</span> </p>\n          </td>\n        </ng-container>\n  \n        <!-- Total Column -->\n        <ng-container matColumnDef=\"ctotal\">\n          <th mat-header-cell *matHeaderCellDef> Total horas </th>\n          <td class=\"mat-body-2\"   mat-cell *matCellDef=\"let row\"> \n              <span class=\"custo\">{{row.custoTotalHora | number:'2.0'}}:{{row.custoTotalMinuto | number:'2.0'}}</span>\n          </td>\n        </ng-container>\n  \n        <!-- Total Column -->\n        <ng-container matColumnDef=\"vtotal\">\n          <th mat-header-cell *matHeaderCellDef> Total despesa </th>\n          <td class=\"mat-body-2\" mat-cell *matCellDef=\"let row\"> \n              <span class=\"despesa\">{{row.valorTotal | currency:'BRL'}}</span>  \n          </td>\n        </ng-container>\n\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>  \n      </table>\n  \n    </div>\n  </div>"
+module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n  </mat-toolbar>\n  \n  <div class=\"mat-elevation-z8\">\n    <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n      <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n        <span class=\"navbar-toggler-icon\"></span>\n      </button>\n  \n      <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n        <ul class=\"navbar-nav mr-auto\">\n          <li class=\"nav-item active\">\n            <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n          </li>\n        </ul>\n      </div>\n    </nav>\n  </div>\n  <br>\n  \n  <div class=\"container\">\n    <div class=\"level-left\">\n      <div style=\"margin-top: 20px;\" class=\"title is-4\">Relatório de Apontamentos de Projetos</div> \n    </div>\n    <br>\n    <div class=\"mat-elevation-z8\">\n      <table mat-table [dataSource]=\"transactions\">\n        <!-- Codigo Column -->\n        <ng-container matColumnDef=\"codigo\">\n          <th mat-header-cell *matHeaderCellDef > código </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.codigo}} </td>\n          <td mat-footer-cell *matFooterCellDef> Total </td>\n        </ng-container>\n  \n        <!-- Descricao Column -->\n        <ng-container matColumnDef=\"descricao\">\n          <th mat-header-cell *matHeaderCellDef > descrição </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.descricao}} </td>\n        </ng-container>\n  \n        <!-- Cliente Column -->\n        <ng-container matColumnDef=\"cliente\">\n          <th mat-header-cell *matHeaderCellDef> cliente </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.cliente}} </td>\n        </ng-container>\n  \n        \n        <!-- Data Column -->\n        <ng-container matColumnDef=\"data\">\n          <th mat-header-cell *matHeaderCellDef > data </th>\n          <td mat-cell *matCellDef=\"let row\"> \n              <p *ngFor=\"let a of row.apontamentos\"> {{a.data | date:'d/M/yy '}}  \n            </td> \n        </ng-container>\n  \n        <!-- Custo Column -->\n        <ng-container matColumnDef=\"custo\">\n          <th mat-header-cell *matHeaderCellDef > hh:mm </th>\n          <td mat-cell *matCellDef=\"let row\"> \n            <p *ngFor=\"let a of row.apontamentos\" ><span [ngStyle]=\"{'color':'green'}\" *ngIf=\"a.custo\"> {{ a.custo?.dia | number:'2.0'}} {{ a.custo?.hora | number:'2.0'}}:{{ a.custo?.minuto | number:'2.0' }}</span>  </p>\n          </td>\n          <!-- <td mat-footer-cell *matFooterCellDef> {{obterCustoTotal() | currency:'BRL'}}</td> -->\n        </ng-container>\n\n        <!-- Despesa Column -->\n        <ng-container matColumnDef=\"despesa\">\n          <th mat-header-cell *matHeaderCellDef> despesa </th>\n          <td mat-cell *matCellDef=\"let row\">\n            <p *ngFor=\"let a of row.apontamentos\">  {{a.despesa}}   </p>  \n          </td>\n        </ng-container>\n  \n        <!-- Valor Column -->\n        <ng-container matColumnDef=\"valor\">\n          <th mat-header-cell *matHeaderCellDef> valor </th>\n          <td mat-cell *matCellDef=\"let row\"> \n            <p *ngFor=\"let a of row.apontamentos\" ><span [ngStyle]=\"{'color':'red'}\">{{a.valor | currency:'BRL'}}</span> </p>\n          </td>\n        </ng-container>\n  \n        <!-- Total Column -->\n        <ng-container matColumnDef=\"ctotal\">\n          <th mat-header-cell *matHeaderCellDef> Total horas </th>\n          <td class=\"mat-body-2\"   mat-cell *matCellDef=\"let row\"> \n              <span *ngIf=\"row.custoTotalHora || row.custoTotalMinuto\" class=\"custo\">{{row.custoTotalHora | number:'2.0'}}:{{row.custoTotalMinuto | number:'2.0' || \"00\"}}</span>\n          </td>\n        </ng-container>\n  \n        <!-- Total Column -->\n        <ng-container matColumnDef=\"vtotal\">\n          <th mat-header-cell *matHeaderCellDef> Total despesa </th>\n          <td class=\"mat-body-2\" mat-cell *matCellDef=\"let row\"> \n              <span class=\"despesa\">{{row.valorTotal | currency:'BRL' || \"0,00\"}}</span>  \n          </td>\n        </ng-container>\n\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>  \n      </table>\n  \n    </div>\n  </div>"
 
 /***/ }),
 
@@ -3190,7 +3645,7 @@ module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "img {\n  width: 190px;\n  height: auto; }\n\n.example-container {\n  height: 270px;\n  overflow: auto; }\n\ntable {\n  width: 100%; }\n\n.custo {\n  margin: 10px;\n  padding: 2px;\n  background-color: green;\n  color: white; }\n\n.despesa {\n  margin: 10px;\n  padding: 2px;\n  background-color: red;\n  color: white; }\n"
+module.exports = "img {\n  width: 190px;\n  height: auto; }\n\n.example-container {\n  height: 270px;\n  overflow: auto; }\n\ntable {\n  width: 100%; }\n\n.custo {\n  background-color: #7ac930;\n  color: white;\n  font-size: 1.1em; }\n\n.despesa {\n  background-color: #e75e1f;\n  color: white;\n  font-size: 1.1em; }\n\nspan:empty {\n  display: none; }\n"
 
 /***/ }),
 
@@ -3223,22 +3678,18 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 function DataHora(x, y) {
-    console.log('x , y : ', x, y);
     var diff;
     var hora;
     var minutes;
     x = new Date(x);
     y = new Date(y);
     diff = Math.abs(y.getTime() - x.getTime()) / 3600000;
-    console.log(diff);
     if (isNaN(diff)) {
         return { dia: 0, hora: 0, minuto: 0 };
     }
     hora = parseInt(diff);
-    console.log('hora', hora);
     minutes = ((diff) % 1 / 100 * 60) * 100;
     minutes = parseInt(minutes);
-    console.log('minutes', minutes);
     return { hora: hora, minuto: minutes };
 }
 var RelatorioApontamentoProjetoComponent = /** @class */ (function () {
@@ -3258,7 +3709,7 @@ var RelatorioApontamentoProjetoComponent = /** @class */ (function () {
     }
     RelatorioApontamentoProjetoComponent.prototype.ngOnInit = function () {
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log('ProjetoListComponent > usuariologado ', this.usuarioLogado);
+        console.log('ProjetoListComponent > usuariologado ');
         this.obterListaProjeto();
     };
     RelatorioApontamentoProjetoComponent.prototype.obterListaProjeto = function () {
@@ -3267,11 +3718,9 @@ var RelatorioApontamentoProjetoComponent = /** @class */ (function () {
         var projetoObservable = this._projetoService.obterTodos();
         projetoObservable.subscribe(function (projetos) {
             _this.projetos = projetos.json();
-            console.log('ProjetoListComponent > obterListaProjeto()', _this.projetos);
             for (var i = 0; i < _this.projetos.length; i++) {
                 _this.obterCliente(_this.projetos[i]['_clienteId'], i);
                 _this.obterApontamentos(_this.projetos[i]['_id'], i);
-                console.log('p r o j e t o s  ', i, _this.projetos);
             }
         }, function (err) { }, function () { });
     };
@@ -3286,7 +3735,7 @@ var RelatorioApontamentoProjetoComponent = /** @class */ (function () {
     };
     RelatorioApontamentoProjetoComponent.prototype.obterApontamentos = function (id, i) {
         var _this = this;
-        console.log('ProjetoListComponent > obterApontamentos', id);
+        console.log('ProjetoListComponent > obterApontamentos');
         this._projetoService.obterTotalApontamentos(id)
             .subscribe(function (apontamentos) {
             _this.apontamentos = apontamentos.json();
@@ -3475,8 +3924,8 @@ var RelatorioFinanceiroComponent = /** @class */ (function () {
         };
     }
     RelatorioFinanceiroComponent.prototype.ngOnInit = function () {
+        console.log('RelatorioFinanceiroComponent > ngOnInit() ');
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log('ProjetoListComponent > usuariologado ', this.usuarioLogado);
         this.obterListaProjeto();
     };
     RelatorioFinanceiroComponent.prototype.obterListaProjeto = function () {
@@ -3485,11 +3934,9 @@ var RelatorioFinanceiroComponent = /** @class */ (function () {
         var projetoObservable = this._projetoService.obterTodos();
         projetoObservable.subscribe(function (projetos) {
             _this.projetos = projetos.json();
-            console.log('ProjetoListComponent > obterListaProjeto()', _this.projetos);
             for (var i = 0; i < _this.projetos.length; i++) {
                 _this.obterCliente(_this.projetos[i]['_clienteId'], i);
                 _this.obterApontamentos(_this.projetos[i]['_id'], i);
-                console.log('p r o j e t o s >  >  > ', _this.projetos);
             }
         }, function (err) { }, function () { });
     };
@@ -3504,7 +3951,7 @@ var RelatorioFinanceiroComponent = /** @class */ (function () {
     };
     RelatorioFinanceiroComponent.prototype.obterApontamentos = function (id, i) {
         var _this = this;
-        console.log('ProjetoListComponent > obterApontamentos', id);
+        console.log('ProjetoListComponent > obterApontamentos');
         var valorDespesa = 0, custoTotal = 0;
         this._projetoService.obterTotalApontamentos(id)
             .subscribe(function (apontamentos) {
@@ -3523,14 +3970,14 @@ var RelatorioFinanceiroComponent = /** @class */ (function () {
             }
             _this.projetos[i]['despesa'] = valorDespesa;
             _this.projetos[i]['custo'] = custoTotal;
-            _this.projetos[i]['total'] = _this.projetos[i]['custo'] + _this.projetos[i]['despesa'];
+            _this.projetos[i]['total'] = (_this.projetos[i]['custo'] || 0) + (_this.projetos[i]['despesa'] || 0);
             _this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatTableDataSource"](_this.projetos);
             _this.dataSource.paginator = _this.paginator;
             _this.dataSource.sort = _this.sort;
         }, function (err) { }, function () { });
     };
     RelatorioFinanceiroComponent.prototype.obterCustoTotal = function () {
-        console.log('ProjetoListComponent > obterCustoTotal()', this.projetos);
+        console.log('ProjetoListComponent > obterCustoTotal()');
         return this.projetos.map(function (t) { return t.custo; }).reduce(function (acc, value) { return acc + value; }, 0);
     };
     __decorate([
@@ -3565,7 +4012,7 @@ var RelatorioFinanceiroComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n<div class=\"mat-elevation-z8\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/usuarios']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n<div class=\"container\">\n\n  <div class=\"mat-body-2\"> \n    Dados do usuário:\n  </div>\n  <br>\n  <div class=\"errors\" *ngIf=\"errors\">\n    <p *ngIf=\"errors.nome\" >  {{ errors['nome'].message }} </p>\n    <p *ngIf=\"errors.sobrenome\" >  {{ errors['sobrenome'].message }} </p>\n    <p *ngIf=\"errors.email\" >  {{ errors['email'].message }} </p>\n    <p *ngIf=\"errors.funcao\" >  {{ errors['funcao'].message }} </p>\n    <p *ngIf=\"errors.custoHora\" >  {{ errors['custoHora'].message }} </p>       \n  </div>\n\n  <form class=\"example-form\" *ngIf=\"usuario\" [formGroup] = \"userForm\">\n\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n    \n      <td><mat-form-field style=\"width:400px !important;\" class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"nome\"\n        type=\"text\"\n        formControlName=\"nome\" \n        />\n        <mat-error *ngIf=\"nome.invalid && nome.touched\">\n            nome informado não é válido\n        </mat-error>\n      </mat-form-field></td>\n\n      <td><mat-form-field style=\"width:400px !important;\" class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"sobrenome\"\n          type=\"text\"\n          formControlName=\"sobrenome\" \n          />\n          <mat-error *ngIf=\"sobrenome.invalid && sobrenome.touched\">\n              sobrenome informado não é válido\n          </mat-error>\n        </mat-form-field></td>\n\n\n    </tr></table>\n\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field style=\"width:300px !important;\" class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"email\"\n        type=\"email\"\n        formControlName=\"email\" \n        />\n        <mat-error *ngIf=\"email.invalid && email.touched\">\n            email informado não é válido\n        </mat-error>\n      </mat-form-field></td>\n    </tr></table>\n\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"funcao\"\n        type=\"text\"\n        formControlName=\"funcao\" \n        />\n        <mat-error *ngIf=\"funcao.invalid && funcao.touched\">\n            funcao informada não é válida\n        </mat-error>\n      </mat-form-field></td>\n    </tr></table>\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput\n        placeholder=\"custo hora\"\n        type=\"number\"\n        formControlName=\"custoHora\" \n        />\n        <mat-error *ngIf=\"custoHora.invalid && custoHora.touched\">\n            custo Hora informado não é válido\n        </mat-error>\n      </mat-form-field></td>\n    </tr></table>\n    <br>\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td>\n        <mat-checkbox color=\"warn\" formControlName=\"admin\">Administrador\n        </mat-checkbox>\n      </td>\n    </tr></table>\n    <br>\n    <button mat-raised-button color=\"basic\"  (click)=\"cancel()\">cancela</button>\n    <button mat-raised-button color=\"primary\" (click)=\"editarUsuario(userForm)\" [disabled]=\"userForm.invalid\">confirma</button>\n  \n  </form>\n    \n</div>"
+module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n<div class=\"mat-elevation-z8\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/usuarios']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n<div class=\"container\">\n\n  <div class=\"mat-body-2\"> \n    Dados do usuário:\n  </div>\n  <br>\n  <div class=\"errors\" *ngIf=\"errors\">\n    <p *ngIf=\"errors.nome\" >  {{ errors['nome'].message }} </p>\n    <p *ngIf=\"errors.sobrenome\" >  {{ errors['sobrenome'].message }} </p>\n    <p *ngIf=\"errors.email\" >  {{ errors['email'].message }} </p>\n    <p *ngIf=\"errors.funcao\" >  {{ errors['funcao'].message }} </p>\n    <p *ngIf=\"errors.custoHora\" >  {{ errors['custoHora'].message }} </p>       \n  </div>\n\n  <form class=\"example-form\" *ngIf=\"usuario\" [formGroup] = \"userForm\">\n\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n    \n      <td><mat-form-field style=\"width:400px !important;\" class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"nome\"\n        type=\"text\"\n        formControlName=\"nome\" \n        />\n        <mat-error *ngIf=\"nome.invalid && nome.touched\">\n            nome informado não é válido\n        </mat-error>\n      </mat-form-field></td>\n      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\n      <td><mat-form-field style=\"width:400px !important;\" class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"sobrenome\"\n          type=\"text\"\n          formControlName=\"sobrenome\" \n          />\n          <mat-error *ngIf=\"sobrenome.invalid && sobrenome.touched\">\n              sobrenome informado não é válido\n          </mat-error>\n        </mat-form-field></td>\n\n\n    </tr></table>\n\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field style=\"width:300px !important;\" class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"email\"\n        type=\"email\"\n        formControlName=\"email\" \n        />\n        <mat-error *ngIf=\"email.invalid && email.touched\">\n            email informado não é válido\n        </mat-error>\n      </mat-form-field></td>\n    </tr></table>\n\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"funcao\"\n        type=\"text\"\n        formControlName=\"funcao\" \n        />\n        <mat-error *ngIf=\"funcao.invalid && funcao.touched\">\n            funcao informada não é válida\n        </mat-error>\n      </mat-form-field></td>\n    </tr></table>\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput\n        autocomplete=\"off\" \n        placeholder=\"custo hora\"\n        formControlName=\"custoHora\" \n        currencyMask \n        [options]=\"{ prefix: 'R$ ', thousands: '.', decimal: ',' }\"\n        class=\"example-right-align\"\n        />   \n        <mat-error *ngIf=\"custoHora.invalid && custoHora.touched\">\n            custo Hora informado não é válido\n        </mat-error>\n      </mat-form-field></td>\n    </tr></table>\n    <br>\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td>\n        <mat-checkbox color=\"warn\" formControlName=\"admin\">Administrador\n        </mat-checkbox>\n      </td>\n    </tr></table>\n    <br>\n    <button mat-raised-button color=\"basic\"  (click)=\"cancel()\">cancela</button>\n    <button mat-raised-button color=\"primary\" (click)=\"editarUsuario(userForm)\" [disabled]=\"userForm.invalid\">confirma</button>\n  \n  </form>\n    \n</div>"
 
 /***/ }),
 
@@ -3619,8 +4066,8 @@ var UsuarioEditComponent = /** @class */ (function () {
         };
     }
     UsuarioEditComponent.prototype.ngOnInit = function () {
+        console.log('UsuarioEditComponent > ngOnInit() ');
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log('ProjetoEditComponent > usuarioLogado ', this.usuarioLogado.email);
         this.obterUsuario(this._route.snapshot.params['id']);
     };
     UsuarioEditComponent.prototype.obterUsuario = function (id) {
@@ -3677,11 +4124,13 @@ var UsuarioEditComponent = /** @class */ (function () {
     });
     UsuarioEditComponent.prototype.editarUsuario = function (userForm) {
         var _this = this;
-        console.log('UsuarioEditComponent > obterUsuario(userForm)', userForm.value);
+        console.log('UsuarioEditComponent > editarUsuario(userForm)');
         this._usuarioService.editarUsuario(userForm.value)
             .subscribe(function (observable) {
             if (observable.json().errors) {
+                // if(JSON.stringify(observable['errors'])) {
                 _this.errors = observable.json().errors;
+                // this.errors = JSON.stringify(observable['errors']);
                 console.log('Algum erro ocorreu editando usuario ', _this.errors);
                 _this._router.navigate(['/usuario/edit/', _this.usuario['_id']]);
             }
@@ -3720,7 +4169,7 @@ var UsuarioEditComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n  <img class=\"logo\" src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n<div class=\"mat-elevation-z8\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<div class=\"container\">\n\n  <div class=\"level-left\">\n      <div style=\"margin-top: 20px;\" class=\"title is-4\">Usuários</div>  \n  </div>\n  <div class=\"level-right\">\n      <button mat-stroked-button color=\"primary\" [routerLink]=\"['/usuario/novo']\">Novo usuário</button>\n  </div> \n\n  <mat-form-field>\n      <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filtrar\">\n  </mat-form-field>\n\n  <div class=\"mat-elevation-z8\">\n\n    <table mat-table [dataSource]=\"dataSource\" matSort>\n\n      <!-- admin Column -->\n      <ng-container matColumnDef=\"admin\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> adm </th>\n        <td  mat-cell *matCellDef=\"let row\"> \n            <img style=\"size: 20px;\" [src]=\"row['admin'] ? frontPath : backPath\"></td>\n      </ng-container>\n\n      <!-- nome Column -->\n      <ng-container matColumnDef=\"nome\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> nome </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.nome}} </td>\n        </ng-container>\n  \n      <!-- sobrenome Column -->\n      <ng-container matColumnDef=\"sobrenome\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> sobrenome </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.sobrenome}} </td>\n      </ng-container>\n\n        <!-- email Column -->\n        <ng-container matColumnDef=\"email\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> e-mail </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.email}} </td>\n        </ng-container>\n  \n        <!-- funcao Column -->\n        <ng-container matColumnDef=\"funcao\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> função </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.funcao}} </td>\n        </ng-container>\n  \n        <!-- custoHora Column -->\n        <ng-container matColumnDef=\"custoHora\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> hh </th>\n          <td mat-cell *matCellDef=\"let row\">  {{row.custoHora}} </td>\n        </ng-container>\n\n        <!-- Acao 1 Column -->\n        <ng-container matColumnDef=\"acao1\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> ação </th>\n          <td mat-cell *matCellDef=\"let row\" >\n            <div class=\"button-row\">\n              <!-- <button mat-button color=\"primary\" >editar</button> -->\n              <button mat-button color=\"primary\" [routerLink]=\"['/usuario/edit/', row['_id'] ]\" [disabled]=\"!(row['ativo'])\">editar</button>\n            </div>\n          </td>\n        </ng-container>\n  \n        <!-- Acao 2 Column -->\n        <ng-container matColumnDef=\"acao2\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>\n          <td mat-cell *matCellDef=\"let row\" >\n            <div class=\"button-row\">\n              <button mat-button color=\"warn\" [routerLink]=\"['/usuario/show', row['_id'] ]\">detalhes</button>\n            </div>\n          </td>\n        </ng-container>\n  \n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\">\n        </tr>\n      </table>\n  \n      <mat-paginator [pageSizeOptions]=\"[5, 10, 25, 100]\"></mat-paginator>\n    </div>\n\n</div>"
+module.exports = "<mat-toolbar>\n  <img class=\"logo\" src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n<div class=\"mat-elevation-z8\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<div class=\"container\">\n\n  <div class=\"level-left\">\n      <div style=\"margin-top: 20px;\" class=\"title is-4\">Usuários</div>  \n  </div>\n  <div class=\"level-right\">\n      <button mat-stroked-button color=\"primary\" [routerLink]=\"['/usuario/novo']\">Novo usuário</button>\n  </div> \n\n  <mat-form-field>\n      <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filtrar\">\n  </mat-form-field>\n\n  <div class=\"mat-elevation-z8\">\n\n    <table mat-table [dataSource]=\"dataSource\" matSort>\n\n      <!-- admin Column -->\n      <ng-container matColumnDef=\"admin\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> adm </th>\n        <td  mat-cell *matCellDef=\"let row\"> \n            <img style=\"size: 20px;\" [src]=\"row['admin'] ? frontPath : backPath\"></td>\n      </ng-container>\n\n      <!-- nome Column -->\n      <ng-container matColumnDef=\"nome\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> nome </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.nome}} </td>\n        </ng-container>\n  \n      <!-- sobrenome Column -->\n      <ng-container matColumnDef=\"sobrenome\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> sobrenome </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.sobrenome}} </td>\n      </ng-container>\n\n        <!-- email Column -->\n        <ng-container matColumnDef=\"email\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> e-mail </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.email}} </td>\n        </ng-container>\n  \n        <!-- funcao Column -->\n        <ng-container matColumnDef=\"funcao\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> função </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.funcao}} </td>\n        </ng-container>\n  \n        <!-- custoHora Column -->\n        <ng-container matColumnDef=\"custoHora\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> hh </th>\n          <td mat-cell *matCellDef=\"let row\">  {{row.custoHora | currency:'BRL'}} </td>\n        </ng-container>\n\n        <!-- Acao 1 Column -->\n        <ng-container matColumnDef=\"acao1\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> ação </th>\n          <td mat-cell *matCellDef=\"let row\" >\n            <div class=\"button-row\">\n              <!-- <button mat-button color=\"primary\" >editar</button> -->\n              <button mat-button color=\"primary\" [routerLink]=\"['/usuario/edit/', row['_id'] ]\" [disabled]=\"(row['ativo'] !== 'ativo')\">editar</button>\n            </div>\n          </td>\n        </ng-container>\n  \n        <!-- Acao 2 Column -->\n        <ng-container matColumnDef=\"acao2\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>\n          <td mat-cell *matCellDef=\"let row\" >\n            <div class=\"button-row\">\n              <button mat-button color=\"warn\" [routerLink]=\"['/usuario/show', row['_id'] ]\">detalhes</button>\n            </div>\n          </td>\n        </ng-container>\n  \n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\">\n        </tr>\n      </table>\n  \n      <mat-paginator [pageSizeOptions]=\"[5, 10, 25, 100]\"></mat-paginator>\n    </div>\n\n</div>"
 
 /***/ }),
 
@@ -3765,15 +4214,15 @@ var UsuarioListComponent = /** @class */ (function () {
         this._usuarioService = _usuarioService;
         this.usuarioLogado = {
             email: '',
-            admin: ''
+            admin: false
         };
         this.frontPath = "../../assets/svg/baseline-how.svg";
         this.backPath = "";
-        this.displayedColumns = ['nome', 'sobrenome', 'email', 'funcao', 'custoHora', 'admin', 'acao1', 'acao2'];
+        this.displayedColumns = ['admin', 'nome', 'sobrenome', 'email', 'funcao', 'custoHora', 'acao1', 'acao2'];
     }
     UsuarioListComponent.prototype.ngOnInit = function () {
+        console.log('UsuarioListComponent > ngOnInit()');
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log('UsuarioListComponent > usuariologado', this.usuarioLogado.email);
         this.obterListaUsuario();
     };
     UsuarioListComponent.prototype.obterListaUsuario = function () {
@@ -3781,7 +4230,6 @@ var UsuarioListComponent = /** @class */ (function () {
         console.log('UsuarioListComponent > obterListaUsuario()');
         var usuarioObservable = this._usuarioService.obterListaUsuario();
         usuarioObservable.subscribe(function (usuarios) {
-            console.log('usuario in obterUsuario list:', usuarios.json());
             _this.usuarios = usuarios.json();
             _this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"](_this.usuarios);
             _this.dataSource.paginator = _this.paginator;
@@ -3824,7 +4272,7 @@ var UsuarioListComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n<div class=\"mat-elevation-z8\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/usuarios']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n<div class=\"container\">\n\n  <div class=\"mat-body-2\"> \n    Dados do usuário:\n  </div>\n\n  <div class=\"errors\" *ngIf=\"errors\">\n    <p *ngIf=\"errors.nome\" >  {{ errors['nome'].message }} </p>\n    <p *ngIf=\"errors.sobrenome\" >  {{ errors['sobrenome'].message }} </p>\n    <p *ngIf=\"errors.email\" >  {{ errors['email'].message }} </p>\n    <p *ngIf=\"errors.funcao\" >  {{ errors['funcao'].message }} </p>\n    <p *ngIf=\"errors.custoHora\" >  {{ errors['custoHora'].message }} </p>       \n  </div>\n\n  <form class=\"example-form\" [formGroup] = \"userForm\">\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field style=\"width:400px !important;\" class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"nome\"\n        type=\"text\"\n        formControlName=\"nome\" \n        />\n        <mat-error *ngIf=\"nome.invalid && nome.touched\">\n            nome informado não é válido\n        </mat-error>\n      </mat-form-field></td>\n\n      <td><mat-form-field style=\"width:400px !important;\" class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"sobrenome\"\n          type=\"text\"\n          formControlName=\"sobrenome\" \n          />\n          <mat-error *ngIf=\"sobrenome.invalid && sobrenome.touched\">\n              sobrenome informado não é válido\n          </mat-error>\n        </mat-form-field></td>\n\n\n    </tr></table>\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"email\"\n        type=\"email\"\n        formControlName=\"email\" \n        />\n        <mat-error *ngIf=\"email.invalid && email.touched\">\n            email informado não é válido\n        </mat-error>\n      </mat-form-field></td>\n    </tr></table>\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"funcao\"\n        type=\"text\"\n        formControlName=\"funcao\" \n        />\n        <mat-error *ngIf=\"funcao.invalid && funcao.touched\">\n            funcao informada não é válida\n        </mat-error>\n      </mat-form-field></td>\n    </tr></table>\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput\n        placeholder=\"custo hora\"\n        type=\"number\"\n        formControlName=\"custoHora\"  \n        />\n        <mat-error *ngIf=\"custoHora.invalid && custoHora.touched\">\n            custo Hora informado não é válido\n        </mat-error>\n      </mat-form-field></td>\n    </tr></table>\n    <br>\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td>\n        <mat-checkbox color=\"warn\" formControlName=\"admin\">Administrador\n        </mat-checkbox>\n      </td>\n    </tr></table>\n    <br>\n    <button mat-raised-button color=\"basic\"  (click)=\"cancel()\">cancela</button>\n    <button mat-raised-button color=\"primary\" (click)=\"criarUsuario(userForm)\" [disabled]=\"userForm.invalid\">confirma</button>\n\n  </form>\n  \n</div>"
+module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n<div class=\"mat-elevation-z8\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/usuarios']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n<div class=\"container\">\n\n  <div class=\"mat-body-2\"> \n    Dados do usuário:\n  </div>\n\n  <div class=\"errors\" *ngIf=\"errors\">\n    <p *ngIf=\"errors.nome\" >  {{ errors['nome'].message }} </p>\n    <p *ngIf=\"errors.sobrenome\" >  {{ errors['sobrenome'].message }} </p>\n    <p *ngIf=\"errors.email\" >  {{ errors['email'].message }} </p>\n    <p *ngIf=\"errors.funcao\" >  {{ errors['funcao'].message }} </p>\n    <p *ngIf=\"errors.custoHora\" >  {{ errors['custoHora'].message }} </p>       \n  </div>\n\n  <form class=\"example-form\" [formGroup] = \"userForm\">\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field style=\"width:400px !important;\" class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"nome\"\n        type=\"text\"\n        formControlName=\"nome\" \n        />\n        <mat-error *ngIf=\"nome.invalid && nome.touched\">\n            nome informado não é válido\n        </mat-error>\n      </mat-form-field></td>\n\n      <td><mat-form-field style=\"width:400px !important;\" class=\"example-full-width\">\n          <input \n          matInput \n          placeholder=\"sobrenome\"\n          type=\"text\"\n          formControlName=\"sobrenome\" \n          />\n          <mat-error *ngIf=\"sobrenome.invalid && sobrenome.touched\">\n              sobrenome informado não é válido\n          </mat-error>\n        </mat-form-field></td>\n\n\n    </tr></table>\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field style=\"width:400px !important;\" class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"email\"\n        type=\"email\"\n        formControlName=\"email\" \n        />\n        <mat-error *ngIf=\"email.invalid && email.touched\">\n            email informado não é válido\n        </mat-error>\n      </mat-form-field></td>\n    </tr></table>\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput \n        placeholder=\"funcao\"\n        type=\"text\"\n        formControlName=\"funcao\" \n        />\n        <mat-error *ngIf=\"funcao.invalid && funcao.touched\">\n            funcao informada não é válida\n        </mat-error>\n      </mat-form-field></td>\n    </tr></table>\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td><mat-form-field class=\"example-full-width\">\n        <input \n        matInput\n        autocomplete=\"off\" \n        placeholder=\"custo hora\"\n        formControlName=\"custoHora\"  \n        currencyMask \n        [options]=\"{ prefix: 'R$ ', thousands: '.', decimal: ',' }\"\n        class=\"example-right-align\"\n        />\n        <mat-error *ngIf=\"custoHora.invalid && custoHora.touched\">\n            custo Hora informado não é válido\n        </mat-error>\n      </mat-form-field></td>\n    </tr></table>\n\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n        <td><mat-form-field class=\"example-full-width\">\n          <input \n          matInput\n          placeholder=\"senha provisória\"\n          type=\"text\"\n          formControlName=\"senha\"  \n          />\n        </mat-form-field></td>\n      </tr></table>\n\n    <br>\n    <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td>\n        <mat-checkbox color=\"warn\" formControlName=\"admin\">Administrador\n        </mat-checkbox>\n      </td>\n    </tr></table>\n    <br>\n    <button mat-raised-button color=\"basic\"  (click)=\"cancel()\">cancela</button>\n    <button mat-raised-button color=\"primary\" (click)=\"criarUsuario(userForm)\" [disabled]=\"userForm.invalid\">confirma</button>\n\n  </form>\n  \n</div>"
 
 /***/ }),
 
@@ -3873,18 +4321,19 @@ var UsuarioNovoComponent = /** @class */ (function () {
         this._router = _router;
         this.usuarioLogado = {
             email: '',
-            admin: ''
+            admin: false
         };
     }
     UsuarioNovoComponent.prototype.ngOnInit = function () {
+        console.log('UsuarioNovoComponent > ngOnInit()');
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log('UsuarioNovoComponent > usuariologado ', this.usuarioLogado.email);
         this.userForm = this._formBuilder.group({
             nome: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(2)]],
             sobrenome: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(2)]],
             email: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')],
             funcao: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]],
             custoHora: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]],
+            senha: null,
             admin: []
         });
     };
@@ -3925,7 +4374,10 @@ var UsuarioNovoComponent = /** @class */ (function () {
     });
     UsuarioNovoComponent.prototype.criarUsuario = function (userForm) {
         var _this = this;
-        console.log('UsuarioNovoComponent > criarUsuario(userForm)', userForm.value);
+        console.log('UsuarioNovoComponent > criarUsuario(userForm)');
+        if (!userForm.value.admin) {
+            userForm.value.admin = false;
+        }
         this._usuarioService.criarUsuario(userForm.value)
             .subscribe(function (observable) {
             if (observable.json().errors) {
@@ -3934,9 +4386,11 @@ var UsuarioNovoComponent = /** @class */ (function () {
                 _this._router.navigate(['/usuario/novo']);
             }
             else {
+                console.log('Sucesso salvando usuario ');
                 _this._router.navigate(['/usuarios']);
             }
         }, function (err) {
+            console.log('Algum erro ocorreu criando usuario ', err);
             throw err;
         });
     };
@@ -3967,7 +4421,7 @@ var UsuarioNovoComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n<div class=\"mat-elevation-z8\"> \n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/usuarios']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n<div class=\"container\" *ngIf=\"usuario\"> \n\n  <div class=\"mat-body-2\"> \n    Dados do usuário:\n  </div>    \n\n  <br>\n  <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n    <td>\n      <div layout=\"row\">\n          <mat-label class=\"mat-h2\">nome</mat-label>\n          {{ usuario.nome }}\n        </div>\n    </td>\n  </tr></table>\n\n  <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td>\n        <div layout=\"row\">\n            <mat-label class=\"mat-h2\">sobrenome</mat-label>\n            {{ usuario.sobrenome }}\n          </div>\n      </td>\n    </tr></table>\n  \n  <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n    <td>\n      <div layout=\"row\">\n          <mat-label class=\"mat-h2\">email</mat-label>\n          {{ usuario.email }}\n        </div>\n    </td>\n  </tr></table>\n\n\n  <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n    <td>\n      <div layout=\"row\">\n          <mat-label class=\"mat-h2\">função</mat-label>\n          {{ usuario.funcao }}\n        </div>\n    </td>\n  </tr></table>\n\n  <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n    <td>\n      <div layout=\"row\">\n          <mat-label class=\"mat-h2\">custo hora</mat-label>\n          {{ usuario.custoHora }}\n        </div>\n    </td>\n  </tr></table>\n  <br>\n  <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n    <td>\n      <mat-checkbox color=\"warn\" [disabled]=\"true\" [checked]=\"isChecked()\">Administrador\n      </mat-checkbox>\n    </td>\n  </tr></table>\n  <br>\n  <div class=\"align_button\"> \n    <button mat-raised-button color=\"basic\"  (click)=\"cancel()\">Cancela</button>\n    <div *ngIf=\"usuario.ativo\">\n      <button mat-raised-button color=\"warn\" (click)=\"mudarSituacao('false')\">desabilitar</button>\n    </div>\n    <div *ngIf=\"!usuario.ativo\">\n      <button mat-raised-button color=\"primary\" (click)=\"mudarSituacao('true')\">habilitar</button>\n    </div>\n  </div>\n\n</div>"
+module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n<div class=\"mat-elevation-z8\"> \n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/usuarios']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n<div class=\"container\" *ngIf=\"usuario\"> \n\n  <div class=\"mat-body-2\"> \n    Dados do usuário:\n  </div>    \n\n  <br>\n  <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n    <td>\n      <div layout=\"row\">\n          <mat-label class=\"mat-h2\">nome</mat-label>\n          {{ usuario.nome }}\n        </div>\n    </td>\n  </tr></table>\n\n  <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n      <td>\n        <div layout=\"row\">\n            <mat-label class=\"mat-h2\">sobrenome</mat-label>\n            {{ usuario.sobrenome }}\n          </div>\n      </td>\n    </tr></table>\n  \n  <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n    <td>\n      <div layout=\"row\">\n          <mat-label class=\"mat-h2\">email</mat-label>\n          {{ usuario.email }}\n        </div>\n    </td>\n  </tr></table>\n\n\n  <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n    <td>\n      <div layout=\"row\">\n          <mat-label class=\"mat-h2\">função</mat-label>\n          {{ usuario.funcao }}\n        </div>\n    </td>\n  </tr></table>\n\n  <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n    <td>\n      <div layout=\"row\">\n          <mat-label class=\"mat-h2\">custo hora</mat-label>\n          {{ usuario.custoHora | currency:'BRL'}}\n        </div>\n    </td>\n  </tr></table>\n  <br>\n  <table class=\"example-full-width\" cellspacing=\"0\"><tr> \n    <td>\n      <mat-checkbox color=\"warn\" [disabled]=\"true\" [checked]=\"isChecked()\">Administrador\n      </mat-checkbox>\n    </td>\n  </tr></table>\n  <br>\n  <div class=\"align_button\"> \n    <button mat-raised-button color=\"basic\"  (click)=\"cancel()\">Cancela</button>\n\n    <div *ngIf=\"usuario.ativo === 'ativo'\">\n      <button mat-raised-button color=\"warn\" (click)=\"mudarSituacao('desativado')\">desativar</button>\n    </div>\n    <div *ngIf=\"usuario.ativo === 'desativado'\">\n      <button mat-raised-button color=\"primary\" (click)=\"mudarSituacao('ativo')\">ativar</button>\n    </div>\n  </div>\n\n</div>"
 
 /***/ }),
 
@@ -4020,8 +4474,8 @@ var UsuarioShowComponent = /** @class */ (function () {
         this.backPath = "";
     }
     UsuarioShowComponent.prototype.ngOnInit = function () {
+        console.log('UsuarioShowComponent > ngOnInit()');
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-        console.log('UsuarioShowComponent > usuarioLogado ', this.usuarioLogado.email);
         this.obterUsuario(this._route.snapshot.params['id']);
     };
     UsuarioShowComponent.prototype.isChecked = function () {
@@ -4032,9 +4486,9 @@ var UsuarioShowComponent = /** @class */ (function () {
     };
     UsuarioShowComponent.prototype.obterUsuario = function (id) {
         var _this = this;
-        console.log('UsuarioShowComponent > obterUsuario', id);
-        var observable = this._usuarioService.obterUsuarioById(id);
-        observable.subscribe(function (response) {
+        console.log('UsuarioShowComponent > obterUsuario');
+        this._usuarioService.obterUsuarioById(id)
+            .subscribe(function (response) {
             _this.usuario = response.json();
         });
     };
@@ -4080,6 +4534,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UsuarioService", function() { return UsuarioService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm5/http.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4091,23 +4546,25 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var UsuarioService = /** @class */ (function () {
-    function UsuarioService(_http) {
+    function UsuarioService(http, _http) {
+        this.http = http;
         this._http = _http;
-        this.isUserLoggedIn = false;
     }
-    UsuarioService.prototype.login = function (usuario) {
-        console.log('UsuarioService > login(usuario)', usuario);
-        this.usuarioLogado = usuario;
-        return this._http.get('/login/', { params: { usuario: usuario } });
+    UsuarioService.prototype.isLoggedIn = function () {
+        return this.http.get('/isloggedin');
     };
-    UsuarioService.prototype.setUserLoggedIn = function (usuario) {
-        this.isUserLoggedIn = true;
-        usuario = this.usuarioLogado;
+    UsuarioService.prototype.setUserLoggedIn = function (status, usuario) {
+        this.isUserLoggedIn = status;
+        this.usuarioLogado = usuario;
+    };
+    UsuarioService.prototype.logout = function () {
+        this.isUserLoggedIn = false;
+        return this.http.get('/logout');
     };
     UsuarioService.prototype.getUserLoggedIn = function () {
-        this.login(this.usuarioLogado);
-        console.log('getUserLoggedIn() ', this.usuarioLogado);
+        console.log('UsuarioService > getUserLoggedIn() ');
         return this.usuarioLogado;
     };
     UsuarioService.prototype.obterListaUsuario = function () {
@@ -4115,30 +4572,34 @@ var UsuarioService = /** @class */ (function () {
         return this._http.get('/usuarios');
     };
     UsuarioService.prototype.obterUsuario = function (usuario) {
-        console.log('UsuarioService > obterUsuario', usuario);
+        console.log('UsuarioService > obterUsuario');
         return this._http.get('/usuario/', { params: { usuario: usuario } });
     };
     UsuarioService.prototype.obterUsuarioById = function (id) {
-        console.log('UsuarioService > obterUsuarioById', id);
+        console.log('UsuarioService > obterUsuarioById');
         return this._http.get('/usuario/' + id);
     };
     UsuarioService.prototype.criarUsuario = function (usuario) {
-        console.log('UsuarioService > criarUsuario(usuario)', usuario);
+        console.log('UsuarioService > criarUsuario(usuario)');
         return this._http.post('usuario/novo', usuario);
     };
     UsuarioService.prototype.editarUsuario = function (usuario) {
-        console.log('UsuarioService > editarUsuario(usuario)', usuario);
+        console.log('UsuarioService > editarUsuario(usuario)');
         return this._http.put('usuario/edit/' + usuario['_id'], usuario);
     };
+    UsuarioService.prototype.registrarUsuario = function (usuario) {
+        console.log('UsuarioService > registrarUsuario(usuario)');
+        return this._http.put('usuario/register', usuario);
+    };
     UsuarioService.prototype.mudarSituacao = function (usuario) {
-        console.log('UsuarioService > mudarSituacao(usuario)', usuario);
+        console.log('UsuarioService > mudarSituacao(usuario)');
         return this._http.put('usuario/mudarSituacao/' + usuario['_id'], usuario);
     };
     UsuarioService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
         }),
-        __metadata("design:paramtypes", [_angular_http__WEBPACK_IMPORTED_MODULE_1__["Http"]])
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _angular_http__WEBPACK_IMPORTED_MODULE_1__["Http"]])
     ], UsuarioService);
     return UsuarioService;
 }());

@@ -51,10 +51,12 @@
 
             <mat-form-field *ngIf="(options.get('tipo').value=='despesa')" style="width:300px !important;">
                 <mat-select placeholder="Selecione o tipo"  formControlName="opDespesa"  [disabled]="isSelected">
-                  <mat-option value="alimentacao"> alimentação</mat-option>
+                  <mat-option value="alimentação"> alimentação</mat-option>
                   <mat-option value="hospedagem"> hospedagem</mat-option>
-                  <mat-option value="pedagio"> pedágio</mat-option>
+                  <mat-option value="pedágio"> pedágio</mat-option>
                   <mat-option value="transporte"> transporte</mat-option>
+                  <mat-option value="serviços"> serviços</mat-option>
+                  <mat-option value="materiais"> materiais</mat-option>
                   <mat-option value="outros"> outros</mat-option>
                 </mat-select>
                 <mat-hint align="end"></mat-hint>
@@ -68,15 +70,14 @@
             <mat-form-field *ngIf="options.get('tipo').value=='despesa'" style="width:200px !important;">
               <br>
               <input 
-              matInput 
+              matInput
+              autocomplete="off" 
               placeholder="Valor"
               formControlName="valor"
               currencyMask 
               [(ngModel)]="value" 
               [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
               class="example-right-align">
-              <!-- <span matPrefix></span>
-              <span matSuffix></span> -->
               <br>
             </mat-form-field>
             <br>

@@ -1,10 +1,10 @@
 // ===== ROUTES.JS ===========//
 // ======date: 03-05-2018 ====//
 // 
-const path = require('path');
-const projeto = require('../controllers/projeto.ctrl.js');
-const cliente = require('../controllers/cliente.ctrl.js');
-const usuario = require('../controllers/usuario.ctrl.js');
+const path     = require('path');
+const projeto  = require('../controllers/projeto.ctrl.js');
+const cliente  = require('../controllers/cliente.ctrl.js');
+const usuario  = require('../controllers/usuario.ctrl.js');
 
 module.exports = function(app){
     app
@@ -19,8 +19,8 @@ module.exports = function(app){
         projeto.apontamentoNovo(req, res)})
     .put('/apontamento/encerrar/:id', (req, res) => {
         projeto.encerrarApontamento(req, res)})
-    .get('/apontamentos/hora/', (req, res) => {
-        projeto.obterApontaHora(req, res)})
+    .post('/obter/apontamento', (req, res) => {
+        projeto.obterApontamento(req, res)})
     .get('/projeto/:id', (req, res) => {
         projeto.obterProjetoById(req, res)})
     .get('/apontamento/total/:id', (req, res) => {
@@ -47,7 +47,7 @@ module.exports = function(app){
         usuario.edit(req, res)})
     .put('/usuario/mudarSituacao/:id', (req, res) => {
         usuario.mudarSituacaoUsuario(req, res)})
-    .get('/login/', (req, res) => {
+    .post('/login/', (req, res) => {
         usuario.login(req, res)})
     .get('/usuarios', (req, res) => {
         usuario.list(req, res)})
@@ -55,6 +55,8 @@ module.exports = function(app){
         usuario.obterUsuario(req, res)})
     .get('/usuario/:id', (req, res) => {
         usuario.obterUsuarioById(req, res)})
+    .put('/usuario/register', (req, res) => {
+        usuario.register(req, res)})
     .all("*", (req, res) => { 
         res.sendFile(path.resolve('../torrenegraDeploy/public/dist/index.html'))})
 }

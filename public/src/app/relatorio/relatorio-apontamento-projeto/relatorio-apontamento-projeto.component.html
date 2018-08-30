@@ -83,7 +83,7 @@
         <ng-container matColumnDef="ctotal">
           <th mat-header-cell *matHeaderCellDef> Total horas </th>
           <td class="mat-body-2"   mat-cell *matCellDef="let row"> 
-              <span class="custo">{{row.custoTotalHora | number:'2.0'}}:{{row.custoTotalMinuto | number:'2.0'}}</span>
+              <span *ngIf="row.custoTotalHora || row.custoTotalMinuto" class="custo">{{row.custoTotalHora | number:'2.0'}}:{{row.custoTotalMinuto | number:'2.0' || "00"}}</span>
           </td>
         </ng-container>
   
@@ -91,7 +91,7 @@
         <ng-container matColumnDef="vtotal">
           <th mat-header-cell *matHeaderCellDef> Total despesa </th>
           <td class="mat-body-2" mat-cell *matCellDef="let row"> 
-              <span class="despesa">{{row.valorTotal | currency:'BRL'}}</span>  
+              <span class="despesa">{{row.valorTotal | currency:'BRL' || "0,00"}}</span>  
           </td>
         </ng-container>
 

@@ -47,8 +47,8 @@ export class ProjetoEditComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('ProjetoEditComponent > ngOnInit() ' );
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-    console.log('ProjetoEditComponent > usuario: ', this.usuarioLogado.email);
     this.obterProjeto(this._route.snapshot.params['id']);
   }
 
@@ -57,8 +57,7 @@ export class ProjetoEditComponent implements OnInit {
       const observable = this._projetoService.obterProjetoById(id);
       observable.subscribe(
         (response) => {
-          this.projeto = response.json();
-          console.log('projeto in edit >>>> >>>>>>: ', this.projeto);   
+          this.projeto = response.json();  
           this.projetoForm = this._formBuilder.group({
             _id: [this.projeto._id],
             codigo: [this.projeto.codigo],
@@ -82,7 +81,7 @@ export class ProjetoEditComponent implements OnInit {
   }
 
   obterClienteNomeFantasia(id) {
-    console.log('ProjetoEditComponent > obterCliente()')
+    console.log('ProjetoEditComponent > obterClienteNomeFantasia()')
     const clienteObservable = this._clienteService.obterClienteById(id);
     clienteObservable.subscribe(
       (cliente) => { 
@@ -94,7 +93,7 @@ export class ProjetoEditComponent implements OnInit {
   }
 
   obterClientes() {
-    console.log('ProjetoEditComponent  > obterClienteList()')
+    console.log('ProjetoEditComponent  > obterClientes()')
     const clienteObservable = this._clienteService.obterTodos();
     clienteObservable.subscribe(
       (clientes) => { 
@@ -107,7 +106,7 @@ export class ProjetoEditComponent implements OnInit {
   }
 
   editarProjeto(projetoForm: NgForm) {
-      console.log('ProjetoEditComponent > editarProjeto', projetoForm);
+      console.log('ProjetoEditComponent > editarProjeto');
       this.projeto._clienteId = this.clienteSelecionado; 
       this._projetoService.editarProjeto(projetoForm.value)
       .subscribe(observable => {

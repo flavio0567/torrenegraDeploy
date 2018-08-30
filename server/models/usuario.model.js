@@ -4,9 +4,10 @@
 const mongoose   = require('mongoose'),
       Schema     = mongoose.Schema, 
 uniqueValidator  = require('mongoose-unique-validator');
+const bcrypt     = require('bcrypt');
 
  // define user Schema
- var UsuarioSchema = new mongoose.Schema({
+ var UsuarioSchema = new Schema({
     nome: {
         type: String, 
         required: [true, "Nome do usuário é requerido"],
@@ -42,31 +43,53 @@ uniqueValidator  = require('mongoose-unique-validator');
     },
     senha: {
         type: String, 
-        default: "torrenegra123",
         minlength: 8,
         maxlength: 256,
-        // validate: {
-        //     validator: function( value ) {
-        //     return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,32}/.test( value );
-        //     },
-        //     message: "Senha inválida, informe ao menos um número, uma letra maiúscula e um caracter especial"
-        //     }
         },
     admin: {
         type: Boolean,
         default: false
     },
     ativo: {
-        type: Boolean,
-        default: true
+        type: String,
+        default: 'desativado'
     },
     }, { timestamps: true },
        { autoIndex: false }
 );
 
-// set model by passing his Schema
+
+UsuarioSchema.pre('save', function (next) {
+    let usuario = this;
+    if (this.isModified('senha') || this.isNew) {
+        bcrypt.genSalt(10, function(err, salt) {
+            if (err) {
+                return next(err);
+            }
+            bcrypt.hash(usuario.senha, salt, function(err, hash) {
+                if (err) {
+                    return next(err);
+                } else {
+                    usuario.senha = hash;
+                    next();
+                }
+            });
+        });
+    } else {next();}
+});
+
+UsuarioSchema.methods.compareSenha = function (passw, cb) {
+    bcrypt.compare(passw, this.senha, function (err, isMatch) {
+        if (err) {
+            return cb(err);
+        }
+        cb(null, isMatch);
+    });
+};
+
+
 mongoose.model('Usuario', UsuarioSchema);
 
 UsuarioSchema.plugin(uniqueValidator, {message: 'E-mail já cadastrado.'});
-// stored model in variable
+
 const Usuario = mongoose.model('Usuario');

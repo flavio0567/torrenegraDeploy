@@ -23,7 +23,6 @@ export function getProjeto(projetos, id) {
 }
 
 export function DataHora(x, y) {
-  console.log('x , y : ', x, y)
   let diff;
   let hora;
   let minutes;
@@ -47,7 +46,7 @@ export function DataHora(x, y) {
     h = Math.trunc(h);
     hora += h;
   } else {
-    console.log('minutes:', minutes);
+    console.log('minutes');
   }
 
   return {hora: hora, minuto: minutes };
@@ -97,13 +96,14 @@ export class RelatorioApontamentoHorasUsuarioComponent implements OnInit {
       _projetoId: [null],
       email: [null, [ Validators.required ]],
       data1: new Date(),
-      data2: new Date()
+      data2: new Date(),
+      tipo: 'hora'
     });
   }
 
   ngOnInit() {
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-    console.log('ProjetoListComponent > usuariologado ',this.usuarioLogado)
+    console.log('RelatorioApontamentoHorasUsuarioComponent')
     this.obterListaUsuario();
     this.obterListaProjeto();
   }
@@ -113,7 +113,7 @@ export class RelatorioApontamentoHorasUsuarioComponent implements OnInit {
   }
 
   obterListaUsuario() {
-    console.log('ProjetoListComponent > obterListaUsuario()')
+    console.log('RelatorioApontamentoHorasUsuarioComponent > obterListaUsuario()')
     this._usuarioService.obterListaUsuario()
     .subscribe(
       (usuarios) => { 
@@ -125,7 +125,7 @@ export class RelatorioApontamentoHorasUsuarioComponent implements OnInit {
   }
 
   obterListaProjeto() {
-    console.log('ProjetoListComponent > obterListaProjeto()')
+    console.log('RelatorioApontamentoHorasUsuarioComponent > obterListaProjeto()')
     const projetoObservable = this._projetoService.obterTodos();
     projetoObservable.subscribe(
       (projetos) => { 
@@ -136,9 +136,9 @@ export class RelatorioApontamentoHorasUsuarioComponent implements OnInit {
     )
   }
 
-  obterApontamentos() {
-    console.log('ProjetoListComponent > obterApontamentos',  this.options.controls._projetoId.value, this.options.controls.data1.value, this.options.controls.data2.value);
-    this._projetoService.obterApontaHora(this.options.value)
+  obterApontamento() {
+    console.log('RelatorioApontamentoHorasUsuarioComponent > obterApontamento');
+    this._projetoService.obterApontamento(this.options.value)
     .subscribe(
       (apontamentos) => { 
         this.apontamentos = apontamentos.json();
@@ -147,7 +147,6 @@ export class RelatorioApontamentoHorasUsuarioComponent implements OnInit {
           a.totalhh = data.hora + ':' + data.minuto;
           this.projeto = getProjeto(this.projetos, a._projeto);
           a.codigo = this.projeto.codigo;
-          console.log('ProjetoListComponent > obterCliente(id)', this.projeto._clienteId );
           this._clienteService.obterClienteById(this.projeto._clienteId)
           .subscribe(
             (cliente) => { 
@@ -167,7 +166,7 @@ export class RelatorioApontamentoHorasUsuarioComponent implements OnInit {
   }
 
   obterCustoTotal() {
-    console.log('ProjetoListComponent > obterCustoTotal()', this.projetos);
+    console.log('RelatorioApontamentoHorasUsuarioComponent > obterCustoTotal()');
     return this.projetos.map(t => t.custo).reduce((acc, value) => acc + value, 0);
   }
 

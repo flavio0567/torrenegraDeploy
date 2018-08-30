@@ -27,8 +27,8 @@ export class ClienteNovoComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log(' ClienteNovoComponent > ngOnInit() ');
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-    console.log(' ClienteNovoComponent > usuariologado ', this.usuarioLogado.email);
     this.clienteForm = this._formBuilder.group({
       cnpj: [null, [ Validators.required, Validators.minLength(11) ]],
       razaoSocial: [null, [ Validators.required ]],
@@ -94,7 +94,7 @@ export class ClienteNovoComponent implements OnInit {
   }
 
   criarCliente(clienteForm, endereco) {
-    console.log('ClienteNovoComponent > criarCliente(clienteForm, endereco )', clienteForm.value, endereco.value); 
+    console.log('ClienteNovoComponent > criarCliente(form)'); 
     let cliente = clienteForm.value;
     cliente.endereco = endereco.value;
     this._clienteService.criarCliente(cliente)
@@ -107,7 +107,8 @@ export class ClienteNovoComponent implements OnInit {
           this._router.navigate(['/clientes']);
         }
       },
-      err => {
+      (err) => {
+        console.log('Algum erro ocorreu criando cliente ', err);
         throw err;
       }
     );

@@ -31,8 +31,8 @@ export class ClienteEditComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log(' ClienteEditComponent > result.message');
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
-    console.log(' ClienteEditComponent > ', this.usuarioLogado.email);
     this.obterCliente(this._route.snapshot.params['id']);
     }
 
@@ -117,7 +117,7 @@ export class ClienteEditComponent implements OnInit {
   }
 
   editarCliente(clienteForm: NgForm, endereco: NgForm) {
-    console.log('ClienteEditarComponent > editarCliente(clienteForm)', clienteForm.value, endereco.value); 
+    console.log('ClienteEditComponent > editarCliente(form)'); 
     let cliente = clienteForm.value;
     cliente.endereco = endereco.value;
     this._clienteService.editarCliente(this.cliente['_id'], cliente)
@@ -130,7 +130,8 @@ export class ClienteEditComponent implements OnInit {
           this._router.navigate(['/clientes']);
         }
       },
-      err => {
+      (err) => {
+        console.log('Algum erro ocorreu editendo cliente ', err);
         throw err;
       }
     );
