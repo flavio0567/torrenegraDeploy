@@ -68,7 +68,7 @@ export class ProjetoListComponent implements OnInit {
   ) { } 
 
   ngOnInit() {
-    console.log('ProjetoListComponent > usuariologado ');
+    console.log('ProjetoListComponent > ngOnInit() ');
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
     this.obterListaProjeto();
   }
@@ -97,8 +97,10 @@ export class ProjetoListComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       },
-      (err) => { },
-        () => { }
+      (err) => {
+        console.log('Algum erro ocorreu obtendo lista projetos ', err);
+        throw err;
+      }
     )
   }
 
@@ -110,8 +112,10 @@ export class ProjetoListComponent implements OnInit {
         this.cliente = cliente.json();
         this.projetos[i].cliente = this.cliente.nomeFantasia;
       },
-      (err) => { },
-        () => { }
+      (err) => {
+        console.log('Algum erro ocorreu obtendo cliente ', err);
+        throw err;
+      }
     )
   }
 
@@ -200,8 +204,10 @@ export class DialogProjeto {
         console.log('The dialog called encerrar projeto!', res);
         this.dialogRef.close();
       },
-      (err) => { },
-        () => { }
+      (err) => {
+        console.log('Algum erro ocorreu mudando situacao projeto ', err);
+        throw err;
+      }
     )
   }
 

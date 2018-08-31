@@ -67,6 +67,7 @@ export class RelatorioApontamentoHorasUsuarioComponent implements OnInit {
   options: FormGroup;
   selected: boolean = false;
   projetos: any[];
+  estados: any[] = [0, 1, 2, 3, 4];
   usuarios: any[];
   projeto: any;
   apontamentos: any;
@@ -105,7 +106,7 @@ export class RelatorioApontamentoHorasUsuarioComponent implements OnInit {
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
     console.log('RelatorioApontamentoHorasUsuarioComponent')
     this.obterListaUsuario();
-    this.obterListaProjeto();
+    this.obterProjetos();
   }
 
   get email() {
@@ -119,20 +120,24 @@ export class RelatorioApontamentoHorasUsuarioComponent implements OnInit {
       (usuarios) => { 
         this.usuarios = usuarios.json();
       },
-      (err) => { },
-        () => { }
+      (err) => {
+        console.log('Algum erro ocorreu obtendo lista de usuários', err);
+        throw err;
+      }
     )
   }
 
-  obterListaProjeto() {
+  obterProjetos() {
     console.log('RelatorioApontamentoHorasUsuarioComponent > obterListaProjeto()')
-    const projetoObservable = this._projetoService.obterTodos();
+    const projetoObservable = this._projetoService.obterProjetos(this.estados);
     projetoObservable.subscribe(
       (projetos) => { 
         this.projetos = projetos.json();
       },
-      (err) => { },
-        () => { }
+      (err) => {
+        console.log('Algum erro ocorreu obtendo lista de projetos ', err);
+        throw err;
+      }
     )
   }
 
@@ -146,22 +151,26 @@ export class RelatorioApontamentoHorasUsuarioComponent implements OnInit {
           let data = DataHora(a.hora.inicio, a.hora.fim);
           a.totalhh = data.hora + ':' + data.minuto;
           this.projeto = getProjeto(this.projetos, a._projeto);
-          a.codigo = this.projeto.codigo;
+          a.codigo = (this.projeto? this.projeto.codigo : '-');
           this._clienteService.obterClienteById(this.projeto._clienteId)
           .subscribe(
             (cliente) => { 
               this.cliente = cliente.json();
               a.cliente = this.cliente.nomeFantasia
             },
-            (err) => { },
-              () => { }
+            (err) => {
+              console.log('Algum erro ocorreu obtendo cliente do projeto (apontamento) ', err);
+              throw err;
+            }
           )
         }
         this.transactions = this.apontamentos;
         this.selected = true;
       },
-      (err) => { },
-        () => { }
+      (err) => {
+        console.log('Algum erro ocorreu obtendo apontamentos de projeto ', err);
+        throw err;
+      }
     )
   }
 

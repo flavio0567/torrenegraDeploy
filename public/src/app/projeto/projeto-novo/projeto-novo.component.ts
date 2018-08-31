@@ -36,10 +36,11 @@ export class ProjetoNovoComponent implements OnInit {
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
     this.obterListaCliente();
     this.projetoForm = this._formBuilder.group({
-      codigo: [null, [ Validators.required, Validators.pattern("OR-[0-9]{3}-[0-9]{2}") ]],
+      codigo: [null, [ Validators.required, Validators.pattern("[A-Z]{2}-[0-9]{3}-[0-9]{2}") ]],
       descricao: [null, [ Validators.required ]],
       _clienteId: [null],
       pedido:  [null, [ Validators.required ]],
+      valorPedido: [null, [ Validators.required ]],
       horasPLC: [null],
       horasIHM: [null],
       valorTerceiros: [null],
@@ -93,7 +94,8 @@ export class ProjetoNovoComponent implements OnInit {
           this._router.navigate(['/projetos']);
         }
       },
-      err => {
+      (err) => {
+        console.log('Algum erro ocorreu criando projeto ', err);
         throw err;
       }
     );

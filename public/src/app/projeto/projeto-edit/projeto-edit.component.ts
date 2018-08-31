@@ -64,6 +64,7 @@ export class ProjetoEditComponent implements OnInit {
             descricao: [this.projeto.descricao, [Validators.required]],
             _clienteId: [this.projeto._clienteId, [Validators.required]],
             pedido: [this.projeto.pedido, [Validators.required]],
+            valorPedido: [this.projeto.valorPedido || 0, [Validators.required]],
             horasPLC: [this.projeto.horasPLC, [Validators.required]],
             horasIHM: [this.projeto.horasIHM, [Validators.required]],
             valorTerceiros: [this.projeto.valorTerceiros || 0, [Validators.required]],
@@ -75,8 +76,10 @@ export class ProjetoEditComponent implements OnInit {
           this.obterClienteNomeFantasia(this.projeto._clienteId);
           this.obterClientes();
         },
-        (err) => { },
-          () => { }
+        (err) => {
+          console.log('Algum erro ocorreu obtendo projeto ', err);
+          throw err;
+        }
       )
   }
 
@@ -87,8 +90,10 @@ export class ProjetoEditComponent implements OnInit {
       (cliente) => { 
         this.cliente = cliente.json();   
       },
-      (err) => { },
-        () => { }
+      (err) => {
+        console.log('Algum erro ocorreu obtendo cliente ', err);
+        throw err;
+      }
     )
   }
 
@@ -97,11 +102,12 @@ export class ProjetoEditComponent implements OnInit {
     const clienteObservable = this._clienteService.obterTodos();
     clienteObservable.subscribe(
       (clientes) => { 
-        // console.log('clientes in obterClientes ProjetoEditComponent:', clientes.json());
         this.clientes = clientes.json();
       },
-      (err) => { },
-        () => { }
+      (err) => {
+        console.log('Algum erro ocorreu obtendo cliente ', err);
+        throw err;
+      }
     )
   }
 
@@ -118,7 +124,8 @@ export class ProjetoEditComponent implements OnInit {
           this._router.navigate(['/projetos']);
         }
       },
-      err => {
+      (err) => {
+        console.log('Algum erro ocorreu editando projeto ', err);
         throw err;
       }
     );

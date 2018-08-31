@@ -37,6 +37,7 @@ export class RelatorioApontamentoDespesasUsuarioComponent implements OnInit {
   options: FormGroup;
   selected: boolean = false;
   projetos: any[];
+  estados: any[] = [0, 1, 2, 3, 4];
   usuarios: any[];
   projeto: any;
   apontamentos: any;
@@ -56,8 +57,8 @@ export class RelatorioApontamentoDespesasUsuarioComponent implements OnInit {
     _id: "",
     nomeFantasia: ""
   }
-  frontPath:string = "../../assets/svg/baseline-thumb_up.svg";
-  backPath:string =  "";
+  frontPath:string = "../../assets/images/Thumbs-up.jpg";
+  backPath:string =  " ";
 
   constructor(
     private fb: FormBuilder,
@@ -78,7 +79,7 @@ export class RelatorioApontamentoDespesasUsuarioComponent implements OnInit {
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
     console.log('RelatorioApontamentoDespesasUsuarioComponent > usuariologado ')
     this.obterListaUsuario();
-    this.obterListaProjeto();
+    this.obterProjetos();
   }
 
   get reembolso() {
@@ -97,15 +98,17 @@ export class RelatorioApontamentoDespesasUsuarioComponent implements OnInit {
     )
   }
 
-  obterListaProjeto() {
+  obterProjetos() {
     console.log('RelatorioApontamentoDespesasUsuarioComponent > obterListaProjeto()')
-    const projetoObservable = this._projetoService.obterTodos();
-    projetoObservable.subscribe(
+    this._projetoService.obterProjetos(this.estados)
+    .subscribe(
       (projetos) => { 
         this.projetos = projetos.json();
       },
-      (err) => { },
-        () => { }
+      (err) => {
+        console.log('Algum erro ocorreu obtendo lista de projetos ', err);
+        throw err;
+      }
     )
   }
 
@@ -125,15 +128,19 @@ export class RelatorioApontamentoDespesasUsuarioComponent implements OnInit {
               this.cliente = cliente.json();
               a.cliente = this.cliente.nomeFantasia
             },
-            (err) => { },
-              () => { }
+            (err) => {
+              console.log('Algum erro ocorreu obtendo cliente de apontamentos de projeto ', err);
+              throw err;
+            }
           )
         }
         this.transactions = this.apontamentos;
         this.selected = true;
       },
-      (err) => { },
-        () => { }
+      (err) => {
+        console.log('Algum erro ocorreu obtendo lista de apontamentos de projeto ', err);
+        throw err;
+      }
     )
   }
 

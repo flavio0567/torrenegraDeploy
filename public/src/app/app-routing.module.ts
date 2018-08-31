@@ -24,8 +24,7 @@ import { ApontamentoDashboardComponent } from './apontamento/apontamento-dashboa
 import { RelatorioApontamentoProjetoComponent } from './relatorio/relatorio-apontamento-projeto/relatorio-apontamento-projeto.component';
 import { RelatorioApontamentoHorasUsuarioComponent } from './relatorio/relatorio-apontamento-horas-usuario/relatorio-apontamento-horas-usuario.component';
 import { RelatorioApontamentoDespesasUsuarioComponent } from './relatorio/relatorio-apontamento-despesas-usuario/relatorio-apontamento-despesas-usuario.component';
-
-
+import { RelatorioProjetoComponent } from './relatorio/relatorio-projeto/relatorio-projeto.component';
 
 const routes: Routes = [
   {
@@ -72,6 +71,12 @@ const routes: Routes = [
   {
     path: 'relatorio/despesas/usuario',
     component: RelatorioApontamentoDespesasUsuarioComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'relatorio/projeto',
+    component: RelatorioProjetoComponent,
     pathMatch: 'full',
     canActivate: [AuthGuard]
   },

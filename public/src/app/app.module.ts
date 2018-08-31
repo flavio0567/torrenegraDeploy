@@ -41,19 +41,19 @@ import { ProjetoListComponent, DialogProjeto } from './projeto/projeto-list/proj
 import { ProjetoNovoComponent } from './projeto/projeto-novo/projeto-novo.component';
 import { ProjetoEditComponent } from './projeto/projeto-edit/projeto-edit.component';
 import { ClienteListComponent } from './cliente/cliente-list/cliente-list.component';
-import { RelatorioFinanceiroComponent } from './relatorio/relatorio-financeiro/relatorio-financeiro.component';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { ApontamentoNovoComponent } from './apontamento/apontamento-novo/apontamento-novo.component';
 import { ApontamentoDashboardComponent } from './apontamento/apontamento-dashboard/apontamento-dashboard.component';
 import { ApontamentoListaDespesaComponent } from './apontamento/apontamento-lista-despesa/apontamento-lista-despesa.component';
 import { ApontamentoListaHoraComponent, DialogApontamentoHora } from './apontamento/apontamento-lista-hora/apontamento-lista-hora.component';
+import { RelatorioFinanceiroComponent } from './relatorio/relatorio-financeiro/relatorio-financeiro.component';
 import { RelatorioApontamentoProjetoComponent } from './relatorio/relatorio-apontamento-projeto/relatorio-apontamento-projeto.component';
 import { RelatorioApontamentoHorasUsuarioComponent } from './relatorio/relatorio-apontamento-horas-usuario/relatorio-apontamento-horas-usuario.component';
 import { RelatorioApontamentoDespesasUsuarioComponent } from './relatorio/relatorio-apontamento-despesas-usuario/relatorio-apontamento-despesas-usuario.component';
 import { RelatorioCustoProjetoComponent } from './relatorio/relatorio-custo-projeto/relatorio-custo-projeto.component';
+import { RelatorioProjetoComponent } from './relatorio/relatorio-projeto/relatorio-projeto.component';
 import { CurrencyMaskModule } from "ng2-currency-mask";
 import { RegisterComponent } from './register/register.component';
-
 
 
 registerLocaleData(ptBr);
@@ -89,6 +89,7 @@ registerLocaleData(ptBr);
     RelatorioApontamentoHorasUsuarioComponent,
     RelatorioApontamentoDespesasUsuarioComponent,
     RelatorioCustoProjetoComponent,
+    RelatorioProjetoComponent,
     RegisterComponent
   ],
   imports: [

@@ -16,6 +16,12 @@ module.exports = {
             .then(projeto => res.json(projeto))
             .catch(error => console.log(error));
     },
+    projetosEstado: (req, res) => {
+        console.log("SERVER > CONTROLLER > projeto > estados", req.body);
+        Projeto.find({ situacao: { $in: req.body } }).sort({ 'codigo': -1 })
+            .then(projeto => res.json(projeto))
+            .catch(error => console.log(error));
+    },
     novo: (req, res) => {
         console.log("SERVER > CONTROLLER > projeto > novo > req.body");
         let projeto = new Projeto(req.body);
@@ -64,6 +70,7 @@ module.exports = {
                 eProjeto.descricao  = req.body.descricao;
                 eProjeto._clienteId = req.body._clienteId;
                 eProjeto.pedido     = req.body.pedido;
+                eProjeto.valorPedido = req.body.valorPedido;   
                 eProjeto.horasPLC   = req.body.horasPLC;
                 eProjeto.horasIHM   = req.body.horasIHM;
                 eProjeto.valorTerceiros = req.body.valorTerceiros;   

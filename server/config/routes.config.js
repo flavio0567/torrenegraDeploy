@@ -11,6 +11,8 @@ module.exports = function(app){
 
     .get('/projetos', (req, res) => {
         projeto.list(req, res)})
+    .post('/projetos/estado', (req, res) => {
+        projeto.projetosEstado(req, res)})
     .get('/apontamentos/hora/usuario/', (req, res) => {
         projeto.obterApontamentoHoraPorUsuario(req, res)})
     .get('/apontamentos/despesa/', (req, res) => {

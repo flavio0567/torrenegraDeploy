@@ -24,8 +24,7 @@
       <div style="margin: 20px, 0px, 20px, 0px;" class="title is-4">Apontamento</div> 
   </div>
   <div class="errors" *ngIf="errors">
-    <p *ngIf="errors['descricao'].message" >  {{ errors['descricao'].message }} </p> 
-    <p *ngIf="errors['despesa'].valor.message" >  {{ errors['despesa'].valor.message }} </p>   
+    <p *ngIf="errors.valorPedido.message" >  {{ errors.valorPedido.message }} </p>   
   </div> 
 
   <form class="example-form" [formGroup] = "options">

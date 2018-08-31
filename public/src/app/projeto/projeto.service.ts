@@ -28,6 +28,11 @@ export class ProjetoService {
     console.log('ProjetoService > obterTodos()');
     return this._http.get('/projetos');
   }
+  
+  obterProjetos(estados) {
+    console.log('ProjetoService > obterProjetos(estados)');
+    return this._http.post('/projetos/estado', estados);
+  }
 
   criarProjeto(projeto) {
     console.log('ProjetoService > criarProjeto(projeto)');

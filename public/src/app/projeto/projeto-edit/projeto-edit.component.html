@@ -54,9 +54,6 @@
         formControlName="descricao" 
         name="descricao"
         />
-        <!-- <mat-error *ngIf="descricao.invalid && descricao.touched">
-            descricao informada não é válida
-        </mat-error> -->
       </mat-form-field></td>
     </tr></table>
     
@@ -68,9 +65,13 @@
       </mat-select>
       <mat-hint align="end">clientes ativos</mat-hint>
     </mat-form-field>
+    <br>
+    <div class="mat-body-2"> 
+      Dados financeiros:
+    </div>
 
     <table class="example-full-width" cellspacing="0"><tr> 
-      <td><mat-form-field  style="width:200px !important;" class="example-full-width">
+      <td><mat-form-field  style="width:150px !important;" class="example-full-width">
           <input 
           matInput 
           placeholder="pedido"
@@ -78,16 +79,22 @@
           formControlName="pedido" 
           name="pedido"
           />
-          <!-- <mat-error *ngIf="pedido.invalid && pedido.touched">
-              descricao informada não é válida
-          </mat-error> -->
-      </mat-form-field></td>
-    </tr></table>
-    <br>
+      </mat-form-field></td>&nbsp;&nbsp;&nbsp;
 
-    <div class="mat-body-2"> 
-      Dados financeiros:
-    </div>
+      <td><mat-form-field style="width:150px !important;" class="example-full-width">
+        <input 
+        matInput 
+        autocomplete="off" 
+        placeholder="valor pedido"
+        formControlName="valorPedido" 
+        name="valorPedido"
+        currencyMask 
+        [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+        class="example-right-align"
+        />
+      </mat-form-field></td>
+
+    </tr></table>
 
     <table class="example-full-width" cellspacing="0"><tr> 
         <td><mat-form-field style="width:200px !important;" class="example-full-width">
@@ -98,9 +105,6 @@
           formControlName="horasPLC" 
           name="horasPLC"
           />
-          <!-- <mat-error *ngIf="horasPLC.invalid && horasPLC.touched">
-              horas PLC informadas não são válidas
-          </mat-error> -->
         </mat-form-field></td>
       </tr></table>
   
@@ -113,9 +117,6 @@
           formControlName="horasIHM" 
           name="horasIHM"
           />
-          <!-- <mat-error *ngIf="horasIHM.invalid && horasIHM.touched">
-            horas IHM informadas não são válidas
-          </mat-error> -->
         </mat-form-field></td>
       </tr></table>
   
@@ -132,10 +133,6 @@
           [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
           class="example-right-align"
           />
-          <!-- {{ projeto.valorTerceiros | currency: 'BRL'}} -->
-          <!-- <mat-error *ngIf="valorTerceiros.invalid && valorTerceiros.touched">
-            valor terceiros informado não é válido
-          </mat-error> -->
         </mat-form-field></td>
       </tr></table>
   
@@ -151,7 +148,6 @@
           [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
           class="example-right-align"
           />
-          <!-- {{ projeto.valorMateriais | currency: 'BRL'}} -->
         </mat-form-field></td>
       </tr></table>
   
@@ -167,7 +163,6 @@
           [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
           class="example-right-align"
           />
-          <!-- {{ projeto.valorViagens | currency: 'BRL'}} -->
         </mat-form-field></td>
       </tr></table> 
   

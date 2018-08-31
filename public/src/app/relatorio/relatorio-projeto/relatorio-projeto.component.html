@@ -1,0 +1,101 @@
+<mat-toolbar>
+  <img src="../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png">
+</mat-toolbar>
+
+<div class="mat-elevation-z8">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" [routerLink]="['/projetos']">Retornar <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+<br>
+
+<div class="container">
+
+<div class="level-left">
+    <div style="margin-top: 20px;" class="title is-4">Relatório de Projetos</div> 
+</div>
+<br>
+<form class="example-form" >
+  <table class="example-full-width" cellspacing="0"><tr><td>
+    <mat-form-field style="width:250px !important;">
+      <mat-select placeholder="Selecione o estado do projeto" [formControl]="estados" multiple required>
+        
+        <mat-select-trigger>
+          {{estados.value ? estados.value[0] : ''}}
+          <span *ngIf="estados.value?.length > 1" class="example-additional-selection">
+            (+{{estados.value.length - 1}} {{estados.value?.length === 2 ? 'outro' : 'outros'}})
+          </span>
+        </mat-select-trigger>
+
+        <mat-option *ngFor="let estado of estadoList" [value]="estado">{{estado}}</mat-option>
+      
+      </mat-select>
+      <mat-hint align="end">estado do projeto</mat-hint>
+    </mat-form-field></td>
+    <td>
+    <button mat-raised-button color="primary" (click)="obterProjetos()" [disabled]="estados.invalid">projetos</button>
+  </td>
+  </tr></table>
+</form>
+<br>
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrar">
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="codigo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> código </th>
+      <td mat-cell *matCellDef="let row"> {{row.codigo}} </td>
+    </ng-container>
+
+    <!-- Progress Column -->
+    <ng-container matColumnDef="descricao">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> descrição </th>
+      <td mat-cell *matCellDef="let row"> {{row.descricao}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="cliente">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> cliente </th>
+      <td mat-cell *matCellDef="let row"> {{row.cliente}} </td>
+    </ng-container>
+
+    <!-- Situacao Column -->
+    <ng-container matColumnDef="situacao">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> situação </th>
+      <td mat-cell *matCellDef="let row"> {{row.sitDesc}} </td>
+    </ng-container>&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <!-- Pedido Column -->
+    <ng-container matColumnDef="pedido">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> pedido </th>
+      <td mat-cell *matCellDef="let row"> {{row.pedido}} </td>
+    </ng-container>
+
+    <!-- Valor Pedido Column -->
+    <ng-container matColumnDef="valorPedido">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> valor </th>
+      <td class="valor" mat-cell *matCellDef="let row"> {{row.valorPedido | currency: 'BRL'}} </td>
+    </ng-container> 
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
+</div>
