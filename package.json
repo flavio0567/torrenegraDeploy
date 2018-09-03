@@ -12,8 +12,6 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^3.0.0",
-    "bcrypt-as-promised": "^1.1.0",
-    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.2",
     "bootstrap": "^3.3.7",
     "connect-mongo": "^2.0.1",
