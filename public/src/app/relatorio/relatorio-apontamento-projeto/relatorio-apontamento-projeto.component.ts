@@ -66,15 +66,16 @@ export class RelatorioApontamentoProjetoComponent implements OnInit {
     valorTotal: 0,
     custoTotalHora: 0,
     custoTotalMinuto: 0,
-  }]
+  }];
+  estados: any[] = [0, 1, 2, 3];
   usuarioLogado = {
     email: '',
     admin: ''
-  }
+  };
   cliente = {
     _id: "",
     nomeFantasia: ""
-  }
+  };
   nomeCliente: any;
   usuario: any;
   apontamentos: any;
@@ -90,12 +91,12 @@ export class RelatorioApontamentoProjetoComponent implements OnInit {
   ngOnInit() {
     this.usuarioLogado = this._usuarioService.getUserLoggedIn();
     console.log('ProjetoListComponent > usuariologado ')
-    this.obterListaProjeto();
+    this.obterProjetos();
   }
 
-  obterListaProjeto() {
+  obterProjetos() {
     console.log('ProjetoListComponent > obterListaProjeto()')
-    const projetoObservable = this._projetoService.obterTodos();
+    const projetoObservable = this._projetoService.obterProjetos(this.estados);
     projetoObservable.subscribe(
       (projetos) => { 
         this.projetos = projetos.json();

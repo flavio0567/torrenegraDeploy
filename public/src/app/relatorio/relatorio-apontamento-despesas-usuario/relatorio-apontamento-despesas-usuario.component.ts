@@ -3,6 +3,8 @@ import { UsuarioService } from '../../usuario/usuario.service';
 import { ProjetoService } from '../../projeto/projeto.service';
 import { ClienteService } from '../../cliente/cliente.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatIconRegistry } from '@angular/material';
+import { DomSanitizer } from '@angular/platform-browser';
 // import { Datepicker } from './datepicker-popup';
 // import { getLocaleDateTimeFormat } from '../../../../node_modules/@angular/common';
 
@@ -57,14 +59,14 @@ export class RelatorioApontamentoDespesasUsuarioComponent implements OnInit {
     _id: "",
     nomeFantasia: ""
   }
-  frontPath:string = "../../assets/images/Thumbs-up.jpg";
-  backPath:string =  " ";
 
   constructor(
     private fb: FormBuilder,
     private _projetoService: ProjetoService,
     private _usuarioService: UsuarioService,
-    private _clienteService: ClienteService
+    private _clienteService: ClienteService,
+    iconRegistry: MatIconRegistry, 
+    sanitizer: DomSanitizer
   ) { 
     this.options = fb.group({
       _projetoId: [null],
@@ -73,6 +75,9 @@ export class RelatorioApontamentoDespesasUsuarioComponent implements OnInit {
       data2: new Date().toDateString(),
       tipo: 'despesa'
     });
+    iconRegistry.addSvgIcon(
+      'thumbs-up',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/svg/thumbup-icon.svg'));
   }
 
   ngOnInit() {

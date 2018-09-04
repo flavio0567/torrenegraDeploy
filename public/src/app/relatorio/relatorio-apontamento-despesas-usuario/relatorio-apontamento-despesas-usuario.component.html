@@ -111,7 +111,7 @@
     <ng-container matColumnDef="reembolso">
       <th mat-header-cell *matHeaderCellDef> reembolso </th>
       <td mat-cell *matCellDef="let row"> 
-          <img class="reembolso" [src]="row.despesa.reembolso ? frontPath : backPath"></td>
+          <mat-icon svgIcon="thumbs-up" *ngIf="row.despesa.reembolso"></mat-icon>
       <td mat-footer-cell *matFooterCellDef>  </td>
     </ng-container>
 
@@ -120,6 +120,5 @@
     <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
 
   </table>
-
 
 </div>

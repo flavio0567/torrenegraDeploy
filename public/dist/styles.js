@@ -532,7 +532,7 @@ if(false) {}
 
 /***/ }),
 
-/***/ 2:
+/***/ 5:
 /*!*******************************!*\
   !*** multi ./src/styles.scss ***!
   \*******************************/
@@ -544,5 +544,5 @@ module.exports = __webpack_require__(/*! /Users/fmrocha/Dojo/MEAN/torrenegraDepl
 
 /***/ })
 
-},[[2,"runtime"]]]);
+},[[5,"runtime"]]]);
 //# sourceMappingURL=styles.js.map

@@ -17,6 +17,7 @@ import { GlobalErrorComponent } from './global-error/global-error.component';
 
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
+import { ExcelService } from './excel.service';
 import { ProjetoService } from './projeto/projeto.service';
 import { UsuarioService } from './usuario/usuario.service';
 import { ClienteService } from './cliente/cliente.service';
@@ -54,6 +55,7 @@ import { RelatorioCustoProjetoComponent } from './relatorio/relatorio-custo-proj
 import { RelatorioProjetoComponent } from './relatorio/relatorio-projeto/relatorio-projeto.component';
 import { CurrencyMaskModule } from "ng2-currency-mask";
 import { RegisterComponent } from './register/register.component';
+
 
 
 registerLocaleData(ptBr);
@@ -139,6 +141,7 @@ registerLocaleData(ptBr);
     ProjetoService,
     UsuarioService,
     ClienteService,
+    ExcelService,
     GlobalErrorHandlerService,
     { provide: ErrorHandler, useClass: GlobalErrorHandlerService },
     { provide: LOCALE_ID, useValue: 'pt' } 
