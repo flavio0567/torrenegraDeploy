@@ -24,6 +24,10 @@
       <div style="margin-top: 20px;" class="title is-4">Relatório de Apontamentos de Projetos</div> 
     </div>
     <br>
+    <div class="level-right">
+      <button mat-stroked-button color="primary"  (click)="montarRelatorio()">excel</button>
+    </div>
+    <br>
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="transactions">
         <!-- Codigo Column -->
@@ -91,7 +95,7 @@
         <ng-container matColumnDef="vtotal">
           <th mat-header-cell *matHeaderCellDef> Total despesa </th>
           <td class="mat-body-2" mat-cell *matCellDef="let row"> 
-              <span class="despesa">{{row.valorTotal | currency:'BRL' || "0,00"}}</span>  
+              <span class="despesa">{{row.valorTotalDespesa | currency:'BRL' || "0,00"}}</span>  
           </td>
         </ng-container>
 
@@ -100,4 +104,6 @@
       </table>
   
     </div>
+
+
   </div>

@@ -51,7 +51,6 @@ import { RelatorioFinanceiroComponent } from './relatorio/relatorio-financeiro/r
 import { RelatorioApontamentoProjetoComponent } from './relatorio/relatorio-apontamento-projeto/relatorio-apontamento-projeto.component';
 import { RelatorioApontamentoHorasUsuarioComponent } from './relatorio/relatorio-apontamento-horas-usuario/relatorio-apontamento-horas-usuario.component';
 import { RelatorioApontamentoDespesasUsuarioComponent } from './relatorio/relatorio-apontamento-despesas-usuario/relatorio-apontamento-despesas-usuario.component';
-import { RelatorioCustoProjetoComponent } from './relatorio/relatorio-custo-projeto/relatorio-custo-projeto.component';
 import { RelatorioProjetoComponent } from './relatorio/relatorio-projeto/relatorio-projeto.component';
 import { CurrencyMaskModule } from "ng2-currency-mask";
 import { RegisterComponent } from './register/register.component';
@@ -90,7 +89,6 @@ registerLocaleData(ptBr);
     RelatorioApontamentoProjetoComponent,
     RelatorioApontamentoHorasUsuarioComponent,
     RelatorioApontamentoDespesasUsuarioComponent,
-    RelatorioCustoProjetoComponent,
     RelatorioProjetoComponent,
     RegisterComponent
   ],

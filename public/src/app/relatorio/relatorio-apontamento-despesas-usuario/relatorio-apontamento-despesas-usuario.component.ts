@@ -5,6 +5,7 @@ import { ClienteService } from '../../cliente/cliente.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ExcelService } from '../../excel.service';
 // import { Datepicker } from './datepicker-popup';
 // import { getLocaleDateTimeFormat } from '../../../../node_modules/@angular/common';
 
@@ -65,6 +66,7 @@ export class RelatorioApontamentoDespesasUsuarioComponent implements OnInit {
     private _projetoService: ProjetoService,
     private _usuarioService: UsuarioService,
     private _clienteService: ClienteService,
+    private _excelService: ExcelService,
     iconRegistry: MatIconRegistry, 
     sanitizer: DomSanitizer
   ) { 
@@ -152,5 +154,11 @@ export class RelatorioApontamentoDespesasUsuarioComponent implements OnInit {
   getTotalCost() {
     return this.transactions.map(t => t.valor).reduce((acc, value) => acc + value, 0);
   }
+
+  exportAsXLSX():void {
+    console.log('RelatorioFinanceiroComponent > exportAsXLSX()');
+    this._excelService.exportAsExcelFile(this.projetos, 'rel_financeiro');
+ }
+
 
 }

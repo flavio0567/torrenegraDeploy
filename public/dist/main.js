@@ -967,7 +967,6 @@ var routes = [
         path: 'primeiro/acesso',
         component: _register_register_component__WEBPACK_IMPORTED_MODULE_5__["RegisterComponent"],
         pathMatch: 'full'
-        // canActivate: [AuthGuard]
     },
     {
         path: 'admin',
@@ -978,11 +977,6 @@ var routes = [
     {
         path: 'error',
         component: _global_error_global_error_component__WEBPACK_IMPORTED_MODULE_21__["GlobalErrorComponent"]
-    },
-    {
-        path: 'reset',
-        redirectTo: '',
-        pathMatch: 'full'
     },
     {
         path: '**',
@@ -1099,11 +1093,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _relatorio_relatorio_apontamento_projeto_relatorio_apontamento_projeto_component__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./relatorio/relatorio-apontamento-projeto/relatorio-apontamento-projeto.component */ "./src/app/relatorio/relatorio-apontamento-projeto/relatorio-apontamento-projeto.component.ts");
 /* harmony import */ var _relatorio_relatorio_apontamento_horas_usuario_relatorio_apontamento_horas_usuario_component__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ./relatorio/relatorio-apontamento-horas-usuario/relatorio-apontamento-horas-usuario.component */ "./src/app/relatorio/relatorio-apontamento-horas-usuario/relatorio-apontamento-horas-usuario.component.ts");
 /* harmony import */ var _relatorio_relatorio_apontamento_despesas_usuario_relatorio_apontamento_despesas_usuario_component__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! ./relatorio/relatorio-apontamento-despesas-usuario/relatorio-apontamento-despesas-usuario.component */ "./src/app/relatorio/relatorio-apontamento-despesas-usuario/relatorio-apontamento-despesas-usuario.component.ts");
-/* harmony import */ var _relatorio_relatorio_custo_projeto_relatorio_custo_projeto_component__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! ./relatorio/relatorio-custo-projeto/relatorio-custo-projeto.component */ "./src/app/relatorio/relatorio-custo-projeto/relatorio-custo-projeto.component.ts");
-/* harmony import */ var _relatorio_relatorio_projeto_relatorio_projeto_component__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! ./relatorio/relatorio-projeto/relatorio-projeto.component */ "./src/app/relatorio/relatorio-projeto/relatorio-projeto.component.ts");
-/* harmony import */ var ng2_currency_mask__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__(/*! ng2-currency-mask */ "./node_modules/ng2-currency-mask/index.js");
-/* harmony import */ var ng2_currency_mask__WEBPACK_IMPORTED_MODULE_50___default = /*#__PURE__*/__webpack_require__.n(ng2_currency_mask__WEBPACK_IMPORTED_MODULE_50__);
-/* harmony import */ var _register_register_component__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__(/*! ./register/register.component */ "./src/app/register/register.component.ts");
+/* harmony import */ var _relatorio_relatorio_projeto_relatorio_projeto_component__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! ./relatorio/relatorio-projeto/relatorio-projeto.component */ "./src/app/relatorio/relatorio-projeto/relatorio-projeto.component.ts");
+/* harmony import */ var ng2_currency_mask__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! ng2-currency-mask */ "./node_modules/ng2-currency-mask/index.js");
+/* harmony import */ var ng2_currency_mask__WEBPACK_IMPORTED_MODULE_49___default = /*#__PURE__*/__webpack_require__.n(ng2_currency_mask__WEBPACK_IMPORTED_MODULE_49__);
+/* harmony import */ var _register_register_component__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__(/*! ./register/register.component */ "./src/app/register/register.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1134,7 +1127,6 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 
 
 
@@ -1198,9 +1190,8 @@ var AppModule = /** @class */ (function () {
                 _relatorio_relatorio_apontamento_projeto_relatorio_apontamento_projeto_component__WEBPACK_IMPORTED_MODULE_45__["RelatorioApontamentoProjetoComponent"],
                 _relatorio_relatorio_apontamento_horas_usuario_relatorio_apontamento_horas_usuario_component__WEBPACK_IMPORTED_MODULE_46__["RelatorioApontamentoHorasUsuarioComponent"],
                 _relatorio_relatorio_apontamento_despesas_usuario_relatorio_apontamento_despesas_usuario_component__WEBPACK_IMPORTED_MODULE_47__["RelatorioApontamentoDespesasUsuarioComponent"],
-                _relatorio_relatorio_custo_projeto_relatorio_custo_projeto_component__WEBPACK_IMPORTED_MODULE_48__["RelatorioCustoProjetoComponent"],
-                _relatorio_relatorio_projeto_relatorio_projeto_component__WEBPACK_IMPORTED_MODULE_49__["RelatorioProjetoComponent"],
-                _register_register_component__WEBPACK_IMPORTED_MODULE_51__["RegisterComponent"]
+                _relatorio_relatorio_projeto_relatorio_projeto_component__WEBPACK_IMPORTED_MODULE_48__["RelatorioProjetoComponent"],
+                _register_register_component__WEBPACK_IMPORTED_MODULE_50__["RegisterComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -1237,7 +1228,7 @@ var AppModule = /** @class */ (function () {
                 // NgbModule.forRoot(),
                 _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatDatepickerModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatNativeDateModule"],
-                ng2_currency_mask__WEBPACK_IMPORTED_MODULE_50__["CurrencyMaskModule"]
+                ng2_currency_mask__WEBPACK_IMPORTED_MODULE_49__["CurrencyMaskModule"]
             ],
             entryComponents: [
                 _projeto_projeto_list_projeto_list_component__WEBPACK_IMPORTED_MODULE_35__["DialogProjeto"],
@@ -3382,7 +3373,7 @@ var RegisterComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n  <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<div class=\"mat-elevation-z8\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n<div class=\"container\"> \n  <div class=\"level-left\">\n    <div style=\"margin-top: 20px;\" class=\"title is-4\">Relatório de Apontamento de Despesas por Usuário</div> \n  </div>\n  <br>\n  <p>Olá {{ usuarioLogado }}</p>\n  <br><br>\n\n  <form class=\"example-form\" [formGroup] = \"options\">\n\n    <mat-form-field style=\"width:400px !important;\"> \n      <mat-select placeholder=\"Selecione o usuário\" name=\"usuario\" formControlName=\"email\" required>\n        <mat-option value=\"option\" *ngFor=\"let u of usuarios\" [value]=\"u.email\"> {{ u.nome }} {{ u.sobrenome }}</mat-option>\n      </mat-select>\n      <!-- <mat-error *ngIf=\"email.invalid && email.touched\">\n        usuário é requerido\n      </mat-error> -->\n      <mat-hint align=\"end\">Usuários ativos</mat-hint>\n    </mat-form-field>\n    <br>\n\n    <mat-form-field>\n      <input matInput [matDatepicker]=\"picker1\" placeholder=\"de\" formControlName=\"data1\">\n      <mat-datepicker-toggle matSuffix [for]=\"picker1\"></mat-datepicker-toggle>\n      <mat-datepicker #picker1></mat-datepicker>\n      <mat-hint align=\"end\">Selecione o período</mat-hint>\n    </mat-form-field>\n\n    <mat-form-field>\n      <input matInput [matDatepicker]=\"picker2\" placeholder=\"até\" formControlName=\"data2\">\n      <mat-datepicker-toggle matSuffix [for]=\"picker2\"></mat-datepicker-toggle>\n      <mat-datepicker #picker2></mat-datepicker>\n    </mat-form-field>\n    <br>\n\n    <mat-form-field style=\"width:400px !important;\"> \n      <mat-select placeholder=\"Selecione o projeto\" name=\"projeto\" formControlName=\"_projetoId\">\n        <mat-option value=\"option\" *ngFor=\"let p of projetos\" [value]=\"p._id\"> {{ p.codigo }} {{ p.descricao }}</mat-option>\n      </mat-select>\n      <mat-hint align=\"end\">Projetos ativos</mat-hint>\n    </mat-form-field>\n    <br>\n\n    <button mat-raised-button color=\"primary\" (click)=\"obterApontamentos()\" >apontamentos</button>\n  </form>\n\n  <br><br><br>\n\n  <table mat-table [dataSource]=\"transactions\" class=\"mat-elevation-z8\" *ngIf=\"transactions && selected\"> \n\n    <!-- Codigo ProjetoColumn -->\n    <ng-container matColumnDef=\"codigo\">\n      <th mat-header-cell *matHeaderCellDef> código projeto </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.codigo}} </td>\n      <td mat-footer-cell *matFooterCellDef> Total </td>\n    </ng-container>\n\n\n    <!-- Cliente Column -->\n    <ng-container matColumnDef=\"cliente\">\n      <th mat-header-cell *matHeaderCellDef > cliente </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.cliente}} </td>\n      <td mat-footer-cell *matFooterCellDef>  </td>\n    </ng-container>\n\n    <!-- Despesa Column -->\n    <ng-container matColumnDef=\"despesa\">\n      <th mat-header-cell *matHeaderCellDef> despesa </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.despesa.descricao}} </td>\n      <td mat-footer-cell *matFooterCellDef>  </td>\n    </ng-container>\n\n    <!-- Valor Despesa Column -->\n    <ng-container matColumnDef=\"valor\">\n      <th mat-header-cell *matHeaderCellDef> valor </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.valor  | currency:'BRL'}} </td>\n      <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency: 'BRL'}} </td>\n    </ng-container>\n\n\n\n    <!-- Data Column -->\n    <ng-container matColumnDef=\"data\">\n      <th mat-header-cell *matHeaderCellDef> data </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.despesa.data | date:'d/M/yy'}} </td>\n      <!-- <td mat-cell *matCellDef=\"let row\" *ngIf=\"row.despesa.data > data1 && row.despesa.data < data2\"> {{row.despesa.data | date:'d/M/yy'}} </td> -->\n      <td mat-footer-cell *matFooterCellDef>  </td>\n    </ng-container>\n\n    <!--Reembolso Column -->\n    <ng-container matColumnDef=\"reembolso\">\n      <th mat-header-cell *matHeaderCellDef> reembolso </th>\n      <td mat-cell *matCellDef=\"let row\"> \n          <mat-icon svgIcon=\"thumbs-up\" *ngIf=\"row.despesa.reembolso\"></mat-icon>\n      <td mat-footer-cell *matFooterCellDef>  </td>\n    </ng-container>\n\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n    <tr mat-footer-row *matFooterRowDef=\"displayedColumns\"></tr>\n\n  </table>\n\n</div>"
+module.exports = "<mat-toolbar>\n  <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<div class=\"mat-elevation-z8\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n<div class=\"container\"> \n  <div class=\"level-left\">\n    <div style=\"margin-top: 20px;\" class=\"title is-4\">Relatório de Apontamento de Despesas por Usuário</div> \n  </div>\n  <br>\n  <p>Olá {{ usuarioLogado }}</p>\n  <br>\n  <div class=\"level-right\">\n    <button mat-stroked-button color=\"primary\" (click)=\"exportAsXLSX()\">excel</button>\n  </div>\n  <br>\n  <form class=\"example-form\" [formGroup] = \"options\">\n\n    <mat-form-field style=\"width:400px !important;\"> \n      <mat-select placeholder=\"Selecione o usuário\" name=\"usuario\" formControlName=\"email\" required>\n        <mat-option value=\"option\" *ngFor=\"let u of usuarios\" [value]=\"u.email\"> {{ u.nome }} {{ u.sobrenome }}</mat-option>\n      </mat-select>\n      <!-- <mat-error *ngIf=\"email.invalid && email.touched\">\n        usuário é requerido\n      </mat-error> -->\n      <mat-hint align=\"end\">Usuários ativos</mat-hint>\n    </mat-form-field>\n    <br>\n\n    <mat-form-field>\n      <input matInput [matDatepicker]=\"picker1\" placeholder=\"de\" formControlName=\"data1\">\n      <mat-datepicker-toggle matSuffix [for]=\"picker1\"></mat-datepicker-toggle>\n      <mat-datepicker #picker1></mat-datepicker>\n      <mat-hint align=\"end\">Selecione o período</mat-hint>\n    </mat-form-field>\n\n    <mat-form-field>\n      <input matInput [matDatepicker]=\"picker2\" placeholder=\"até\" formControlName=\"data2\">\n      <mat-datepicker-toggle matSuffix [for]=\"picker2\"></mat-datepicker-toggle>\n      <mat-datepicker #picker2></mat-datepicker>\n    </mat-form-field>\n    <br>\n\n    <mat-form-field style=\"width:400px !important;\"> \n      <mat-select placeholder=\"Selecione o projeto\" name=\"projeto\" formControlName=\"_projetoId\">\n        <mat-option value=\"option\" *ngFor=\"let p of projetos\" [value]=\"p._id\"> {{ p.codigo }} {{ p.descricao }}</mat-option>\n      </mat-select>\n      <mat-hint align=\"end\">Projetos ativos</mat-hint>\n    </mat-form-field>\n    <br>\n\n    <button mat-raised-button color=\"primary\" (click)=\"obterApontamentos()\" >apontamentos</button>\n  </form>\n\n  <br><br><br>\n\n  <table mat-table [dataSource]=\"transactions\" class=\"mat-elevation-z8\" *ngIf=\"transactions && selected\"> \n\n    <!-- Codigo ProjetoColumn -->\n    <ng-container matColumnDef=\"codigo\">\n      <th mat-header-cell *matHeaderCellDef> código projeto </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.codigo}} </td>\n      <td mat-footer-cell *matFooterCellDef> Total </td>\n    </ng-container>\n\n\n    <!-- Cliente Column -->\n    <ng-container matColumnDef=\"cliente\">\n      <th mat-header-cell *matHeaderCellDef > cliente </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.cliente}} </td>\n      <td mat-footer-cell *matFooterCellDef>  </td>\n    </ng-container>\n\n    <!-- Despesa Column -->\n    <ng-container matColumnDef=\"despesa\">\n      <th mat-header-cell *matHeaderCellDef> despesa </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.despesa.descricao}} </td>\n      <td mat-footer-cell *matFooterCellDef>  </td>\n    </ng-container>\n\n    <!-- Valor Despesa Column -->\n    <ng-container matColumnDef=\"valor\">\n      <th mat-header-cell *matHeaderCellDef> valor </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.valor  | currency:'BRL'}} </td>\n      <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency: 'BRL'}} </td>\n    </ng-container>\n\n\n\n    <!-- Data Column -->\n    <ng-container matColumnDef=\"data\">\n      <th mat-header-cell *matHeaderCellDef> data </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.despesa.data | date:'d/M/yy'}} </td>\n      <!-- <td mat-cell *matCellDef=\"let row\" *ngIf=\"row.despesa.data > data1 && row.despesa.data < data2\"> {{row.despesa.data | date:'d/M/yy'}} </td> -->\n      <td mat-footer-cell *matFooterCellDef>  </td>\n    </ng-container>\n\n    <!--Reembolso Column -->\n    <ng-container matColumnDef=\"reembolso\">\n      <th mat-header-cell *matHeaderCellDef> reembolso </th>\n      <td mat-cell *matCellDef=\"let row\"> \n          <mat-icon svgIcon=\"thumbs-up\" *ngIf=\"row.despesa.reembolso\"></mat-icon>\n      <td mat-footer-cell *matFooterCellDef>  </td>\n    </ng-container>\n\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n    <tr mat-footer-row *matFooterRowDef=\"displayedColumns\"></tr>\n\n  </table>\n\n</div>"
 
 /***/ }),
 
@@ -3415,6 +3406,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+/* harmony import */ var _excel_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../excel.service */ "./src/app/excel.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3431,6 +3423,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 function getProjeto(projetos, id) {
     for (var i = 0; i < projetos.length; i++) {
         if (projetos[i]._id === id) {
@@ -3439,11 +3432,12 @@ function getProjeto(projetos, id) {
     }
 }
 var RelatorioApontamentoDespesasUsuarioComponent = /** @class */ (function () {
-    function RelatorioApontamentoDespesasUsuarioComponent(fb, _projetoService, _usuarioService, _clienteService, iconRegistry, sanitizer) {
+    function RelatorioApontamentoDespesasUsuarioComponent(fb, _projetoService, _usuarioService, _clienteService, _excelService, iconRegistry, sanitizer) {
         this.fb = fb;
         this._projetoService = _projetoService;
         this._usuarioService = _usuarioService;
         this._clienteService = _clienteService;
+        this._excelService = _excelService;
         this.displayedColumns = ['codigo', 'cliente', 'despesa', 'valor', 'data', 'reembolso'];
         this.selected = false;
         this.estados = [0, 1, 2, 3, 4];
@@ -3529,6 +3523,10 @@ var RelatorioApontamentoDespesasUsuarioComponent = /** @class */ (function () {
     RelatorioApontamentoDespesasUsuarioComponent.prototype.getTotalCost = function () {
         return this.transactions.map(function (t) { return t.valor; }).reduce(function (acc, value) { return acc + value; }, 0);
     };
+    RelatorioApontamentoDespesasUsuarioComponent.prototype.exportAsXLSX = function () {
+        console.log('RelatorioFinanceiroComponent > exportAsXLSX()');
+        this._excelService.exportAsExcelFile(this.projetos, 'rel_financeiro');
+    };
     RelatorioApontamentoDespesasUsuarioComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'relatorio-apontamento-despesas-usuario',
@@ -3539,6 +3537,7 @@ var RelatorioApontamentoDespesasUsuarioComponent = /** @class */ (function () {
             _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_2__["ProjetoService"],
             _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_1__["UsuarioService"],
             _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_3__["ClienteService"],
+            _excel_service__WEBPACK_IMPORTED_MODULE_7__["ExcelService"],
             _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatIconRegistry"],
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["DomSanitizer"]])
     ], RelatorioApontamentoDespesasUsuarioComponent);
@@ -3556,7 +3555,7 @@ var RelatorioApontamentoDespesasUsuarioComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n  <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<div class=\"mat-elevation-z8\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n<div class=\"container\"> \n  <div class=\"level-left\">\n    <div style=\"margin-top: 20px;\" class=\"title is-4\">Relatório de Apontamento de Horas por Usuário</div> \n  </div>\n  <br>\n  <p>Olá {{ usuarioLogado }}</p>\n  <br><br>\n\n  <form class=\"example-form\" [formGroup] = \"options\">\n\n    <mat-form-field style=\"width:400px !important;\"> \n      <mat-select placeholder=\"Selecione o usuário\" name=\"usuario\" formControlName=\"email\" required>\n        <mat-option value=\"option\" *ngFor=\"let u of usuarios\" [value]=\"u.email\"> {{ u.nome }} {{ u.sobrenome }}</mat-option>\n      </mat-select>\n      <mat-error *ngIf=\"email.invalid && email.touched\">\n        usuário é requerido\n      </mat-error>\n      <mat-hint align=\"end\">Usuários ativos</mat-hint>\n    </mat-form-field>\n    <br>\n\n    <mat-form-field>\n      <input matInput [matDatepicker]=\"picker1\" placeholder=\"de\" formControlName=\"data1\">\n      <mat-datepicker-toggle matSuffix [for]=\"picker1\"></mat-datepicker-toggle>\n      <mat-datepicker #picker1></mat-datepicker>\n      <mat-hint align=\"end\">Selecione o período</mat-hint>\n    </mat-form-field>\n \n    <mat-form-field>\n      <input matInput [matDatepicker]=\"picker2\" placeholder=\"até\" formControlName=\"data2\">\n      <mat-datepicker-toggle matSuffix [for]=\"picker2\"></mat-datepicker-toggle>\n      <mat-datepicker #picker2></mat-datepicker>\n    </mat-form-field>\n    <br>\n\n    <mat-form-field style=\"width:400px !important;\"> \n      <mat-select placeholder=\"Selecione o projeto\" name=\"projeto\" formControlName=\"_projetoId\">\n        <mat-option value=\"option\" *ngFor=\"let p of projetos\" [value]=\"p._id\"> {{ p.codigo  }} {{ p.descricao }}</mat-option>\n      </mat-select>\n      <mat-hint align=\"end\">Projetos ativos</mat-hint>\n    </mat-form-field>\n    <br>\n\n    <button mat-raised-button color=\"primary\" (click)=\"obterApontamento()\" [disabled]=\"email.invalid\">apontamentos</button>\n  </form>\n\n  <br><br><br>\n\n  <table mat-table [dataSource]=\"transactions\" class=\"mat-elevation-z8\" *ngIf=\"transactions && selected\"> \n\n    <!-- Codigo ProjetoColumn -->\n    <ng-container matColumnDef=\"codigo\">\n      <th mat-header-cell *matHeaderCellDef > código projeto </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.codigo }} </td> \n    </ng-container>\n\n    <!-- Cliente Column -->\n    <ng-container matColumnDef=\"cliente\">\n      <th mat-header-cell *matHeaderCellDef > cliente </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.cliente}} </td>\n    </ng-container>\n\n    <!-- Inicio Column -->\n    <ng-container matColumnDef=\"inicio\">\n      <th mat-header-cell *matHeaderCellDef> início </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.hora.inicio | date:'d/M/yy H:mm'}} </td>\n    </ng-container>\n\n    <!-- Fim Column -->\n    <ng-container matColumnDef=\"fim\">\n      <th mat-header-cell *matHeaderCellDef > fim </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.hora.fim | date:'d/M/yy H:mm'}} </td>\n    </ng-container>\n\n    <!-- Total HH Column -->\n    <ng-container matColumnDef=\"totalhh\">\n      <th mat-header-cell *matHeaderCellDef> total hh </th>\n      <td mat-cell class=\"mat-body-2 custo\" *matCellDef=\"let row\"> {{row.totalhh}} </td>\n    </ng-container>\n\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n\n  </table>\n\n\n</div>"
+module.exports = "<mat-toolbar>\n  <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<div class=\"mat-elevation-z8\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n<div class=\"container\"> \n  <div class=\"level-left\">\n    <div style=\"margin-top: 20px;\" class=\"title is-4\">Relatório de Apontamento de Horas por Usuário</div> \n  </div>\n  <br>\n  <p>Olá {{ usuarioLogado }}</p>\n\n\n  <form class=\"example-form\" [formGroup] = \"options\">\n\n    <div class=\"level-right\">\n      <button mat-stroked-button color=\"primary\" (click)=\"montarRelatorio()\" [disabled]=\"email.invalid\">excel</button>\n    </div>\n    <br>\n\n    <mat-form-field style=\"width:400px !important;\"> \n      <mat-select placeholder=\"Selecione o usuário\" name=\"usuario\" formControlName=\"email\" required>\n        <mat-option value=\"option\" *ngFor=\"let u of usuarios\" [value]=\"u.email\"> {{ u.nome }} {{ u.sobrenome }}</mat-option>\n      </mat-select>\n      <mat-error *ngIf=\"email.invalid && email.touched\">\n        usuário é requerido\n      </mat-error>\n      <mat-hint align=\"end\">Usuários ativos</mat-hint>\n    </mat-form-field>\n    <br>\n\n    <mat-form-field>\n      <input matInput [matDatepicker]=\"picker1\" placeholder=\"de\" formControlName=\"data1\">\n      <mat-datepicker-toggle matSuffix [for]=\"picker1\"></mat-datepicker-toggle>\n      <mat-datepicker #picker1></mat-datepicker>\n      <mat-hint align=\"end\">Selecione o período</mat-hint>\n    </mat-form-field>\n \n    <mat-form-field>\n      <input matInput [matDatepicker]=\"picker2\" placeholder=\"até\" formControlName=\"data2\">\n      <mat-datepicker-toggle matSuffix [for]=\"picker2\"></mat-datepicker-toggle>\n      <mat-datepicker #picker2></mat-datepicker>\n    </mat-form-field>\n    <br>\n\n    <mat-form-field style=\"width:400px !important;\"> \n      <mat-select placeholder=\"Selecione o projeto\" name=\"projeto\" formControlName=\"_projetoId\">\n        <mat-option value=\"option\" *ngFor=\"let p of projetos\" [value]=\"p._id\"> {{ p.codigo  }} {{ p.descricao }}</mat-option>\n      </mat-select>\n      <mat-hint align=\"end\">Projetos ativos</mat-hint>\n    </mat-form-field>\n    <br>\n\n    <button mat-raised-button color=\"primary\" (click)=\"obterApontamento()\" [disabled]=\"email.invalid\">apontamentos</button>\n  </form>\n\n  <br><br><br>\n\n  <table mat-table [dataSource]=\"transactions\" class=\"mat-elevation-z8\" *ngIf=\"transactions && selected\"> \n\n    <!-- Codigo ProjetoColumn -->\n    <ng-container matColumnDef=\"codigo\">\n      <th mat-header-cell *matHeaderCellDef > código projeto </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.codigo }} </td> \n    </ng-container>\n\n    <!-- Cliente Column -->\n    <ng-container matColumnDef=\"cliente\">\n      <th mat-header-cell *matHeaderCellDef > cliente </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.cliente}} </td>\n    </ng-container>\n\n    <!-- Inicio Column -->\n    <ng-container matColumnDef=\"inicio\">\n      <th mat-header-cell *matHeaderCellDef> início </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.hora.inicio | date:'d/M/yy H:mm'}} </td>\n    </ng-container>\n\n    <!-- Fim Column -->\n    <ng-container matColumnDef=\"fim\">\n      <th mat-header-cell *matHeaderCellDef > fim </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.hora.fim | date:'d/M/yy H:mm'}} </td>\n    </ng-container>\n\n    <!-- Total HH Column -->\n    <ng-container matColumnDef=\"totalhh\">\n      <th mat-header-cell *matHeaderCellDef> total hh </th>\n      <td mat-cell class=\"mat-body-2 custo\" *matCellDef=\"let row\"> {{row.totalhh}} </td>\n    </ng-container>\n\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n\n  </table>\n\n\n</div>"
 
 /***/ }),
 
@@ -3588,6 +3587,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../projeto/projeto.service */ "./src/app/projeto/projeto.service.ts");
 /* harmony import */ var _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../cliente/cliente.service */ "./src/app/cliente/cliente.service.ts");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _excel_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../excel.service */ "./src/app/excel.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3597,6 +3597,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -3637,11 +3638,12 @@ function DataHora(x, y) {
     return { hora: hora, minuto: minutes };
 }
 var RelatorioApontamentoHorasUsuarioComponent = /** @class */ (function () {
-    function RelatorioApontamentoHorasUsuarioComponent(fb, _projetoService, _usuarioService, _clienteService) {
+    function RelatorioApontamentoHorasUsuarioComponent(fb, _projetoService, _usuarioService, _clienteService, _excelService) {
         this.fb = fb;
         this._projetoService = _projetoService;
         this._usuarioService = _usuarioService;
         this._clienteService = _clienteService;
+        this._excelService = _excelService;
         this.displayedColumns = ['codigo', 'cliente', 'inicio', 'fim', 'totalhh'];
         this.selected = false;
         this.estados = [0, 1, 2, 3, 4];
@@ -3653,6 +3655,7 @@ var RelatorioApontamentoHorasUsuarioComponent = /** @class */ (function () {
             _id: "",
             nomeFantasia: ""
         };
+        this.data = [];
         this.options = fb.group({
             _projetoId: [null],
             email: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required]],
@@ -3702,23 +3705,25 @@ var RelatorioApontamentoHorasUsuarioComponent = /** @class */ (function () {
         this._projetoService.obterApontamento(this.options.value)
             .subscribe(function (apontamentos) {
             _this.apontamentos = apontamentos.json();
-            var _loop_1 = function (a) {
-                var data = DataHora(a.hora.inicio, a.hora.fim);
-                a.totalhh = data.hora + ':' + data.minuto;
-                _this.projeto = getProjeto(_this.projetos, a._projeto);
-                a.codigo = (_this.projeto ? _this.projeto.codigo : '-');
+            var _loop_1 = function (i) {
+                var data = DataHora(_this.apontamentos[i].hora.inicio, _this.apontamentos[i].hora.fim);
+                // this.apontamentos[i].totalhh = data.hora + ':' + data.minuto;
+                _this.apontamentos[i].totalhh =
+                    (data.hora > 9 ? "" + data.hora.toFixed(0) : "0" + data.hora.toFixed(0)) + ':' +
+                        (data.minuto > 9 ? "" + data.minuto : "0" + parseInt(data.minuto).toFixed(0));
+                _this.projeto = getProjeto(_this.projetos, _this.apontamentos[i]._projeto);
+                _this.apontamentos[i].codigo = (_this.projeto ? _this.projeto.codigo : '-');
                 _this._clienteService.obterClienteById(_this.projeto._clienteId)
                     .subscribe(function (cliente) {
                     _this.cliente = cliente.json();
-                    a.cliente = _this.cliente.nomeFantasia;
+                    _this.apontamentos[i].cliente = _this.cliente.nomeFantasia;
                 }, function (err) {
                     console.log('Algum erro ocorreu obtendo cliente do projeto (apontamento) ', err);
                     throw err;
                 });
             };
-            for (var _i = 0, _a = _this.apontamentos; _i < _a.length; _i++) {
-                var a = _a[_i];
-                _loop_1(a);
+            for (var i = 0; i < _this.apontamentos.length; i++) {
+                _loop_1(i);
             }
             _this.transactions = _this.apontamentos;
             _this.selected = true;
@@ -3731,6 +3736,37 @@ var RelatorioApontamentoHorasUsuarioComponent = /** @class */ (function () {
         console.log('RelatorioApontamentoHorasUsuarioComponent > obterCustoTotal()');
         return this.projetos.map(function (t) { return t.custo; }).reduce(function (acc, value) { return acc + value; }, 0);
     };
+    RelatorioApontamentoHorasUsuarioComponent.prototype.montarRelatorio = function () {
+        console.log('RelatorioFinanceiroComponent > montarRelatorio()');
+        this.data = [];
+        for (var i = 0; i < this.apontamentos.length; i++) {
+            var row = new Array();
+            row['codigo'] = this.apontamentos[i].codigo;
+            row['cliente'] = this.apontamentos[i].cliente;
+            var dtInicio = new Date(this.apontamentos[i].hora.inicio);
+            var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+            row['inicio'] = dtInicio.toLocaleDateString('pt-BR', options);
+            var dtFim = new Date(this.apontamentos[i].hora.fim);
+            if (Object.prototype.toString.call(dtFim) === "[object Date]") {
+                if (isNaN(dtFim.getTime())) {
+                    row['fim'] = '';
+                }
+                else {
+                    row['fim'] = dtFim.toLocaleDateString('pt-BR', options);
+                }
+            }
+            else {
+                row['fim'] = '';
+            }
+            row['totalhh'] = this.apontamentos[i].totalhh;
+            this.data.push(row);
+        }
+        this.exportAsXLSX();
+    };
+    RelatorioApontamentoHorasUsuarioComponent.prototype.exportAsXLSX = function () {
+        console.log('RelatorioFinanceiroComponent > exportAsXLSX()');
+        this._excelService.exportAsExcelFile(this.data, 'rel_financeiro');
+    };
     RelatorioApontamentoHorasUsuarioComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'relatorio-apontamento-horas-usuario',
@@ -3740,7 +3776,8 @@ var RelatorioApontamentoHorasUsuarioComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"],
             _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_2__["ProjetoService"],
             _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_1__["UsuarioService"],
-            _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_3__["ClienteService"]])
+            _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_3__["ClienteService"],
+            _excel_service__WEBPACK_IMPORTED_MODULE_5__["ExcelService"]])
     ], RelatorioApontamentoHorasUsuarioComponent);
     return RelatorioApontamentoHorasUsuarioComponent;
 }());
@@ -3756,7 +3793,7 @@ var RelatorioApontamentoHorasUsuarioComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n  </mat-toolbar>\n  \n  <div class=\"mat-elevation-z8\">\n    <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n      <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n        <span class=\"navbar-toggler-icon\"></span>\n      </button>\n  \n      <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n        <ul class=\"navbar-nav mr-auto\">\n          <li class=\"nav-item active\">\n            <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n          </li>\n        </ul>\n      </div>\n    </nav>\n  </div>\n  <br>\n  \n  <div class=\"container\">\n    <div class=\"level-left\">\n      <div style=\"margin-top: 20px;\" class=\"title is-4\">Relatório de Apontamentos de Projetos</div> \n    </div>\n    <br>\n    <div class=\"mat-elevation-z8\">\n      <table mat-table [dataSource]=\"transactions\">\n        <!-- Codigo Column -->\n        <ng-container matColumnDef=\"codigo\">\n          <th mat-header-cell *matHeaderCellDef > código </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.codigo}} </td>\n          <td mat-footer-cell *matFooterCellDef> Total </td>\n        </ng-container>\n  \n        <!-- Descricao Column -->\n        <ng-container matColumnDef=\"descricao\">\n          <th mat-header-cell *matHeaderCellDef > descrição </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.descricao}} </td>\n        </ng-container>\n  \n        <!-- Cliente Column -->\n        <ng-container matColumnDef=\"cliente\">\n          <th mat-header-cell *matHeaderCellDef> cliente </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.cliente}} </td>\n        </ng-container>\n  \n        \n        <!-- Data Column -->\n        <ng-container matColumnDef=\"data\">\n          <th mat-header-cell *matHeaderCellDef > data </th>\n          <td mat-cell *matCellDef=\"let row\"> \n              <p *ngFor=\"let a of row.apontamentos\"> {{a.data | date:'d/M/yy '}}  \n            </td> \n        </ng-container>\n  \n        <!-- Custo Column -->\n        <ng-container matColumnDef=\"custo\">\n          <th mat-header-cell *matHeaderCellDef > hh:mm </th>\n          <td mat-cell *matCellDef=\"let row\"> \n            <p *ngFor=\"let a of row.apontamentos\" ><span [ngStyle]=\"{'color':'green'}\" *ngIf=\"a.custo\"> {{ a.custo?.dia | number:'2.0'}} {{ a.custo?.hora | number:'2.0'}}:{{ a.custo?.minuto | number:'2.0' }}</span>  </p>\n          </td>\n          <!-- <td mat-footer-cell *matFooterCellDef> {{obterCustoTotal() | currency:'BRL'}}</td> -->\n        </ng-container>\n\n        <!-- Despesa Column -->\n        <ng-container matColumnDef=\"despesa\">\n          <th mat-header-cell *matHeaderCellDef> despesa </th>\n          <td mat-cell *matCellDef=\"let row\">\n            <p *ngFor=\"let a of row.apontamentos\">  {{a.despesa}}   </p>  \n          </td>\n        </ng-container>\n  \n        <!-- Valor Column -->\n        <ng-container matColumnDef=\"valor\">\n          <th mat-header-cell *matHeaderCellDef> valor </th>\n          <td mat-cell *matCellDef=\"let row\"> \n            <p *ngFor=\"let a of row.apontamentos\" ><span [ngStyle]=\"{'color':'red'}\">{{a.valor | currency:'BRL'}}</span> </p>\n          </td>\n        </ng-container>\n  \n        <!-- Total Column -->\n        <ng-container matColumnDef=\"ctotal\">\n          <th mat-header-cell *matHeaderCellDef> Total horas </th>\n          <td class=\"mat-body-2\"   mat-cell *matCellDef=\"let row\"> \n              <span *ngIf=\"row.custoTotalHora || row.custoTotalMinuto\" class=\"custo\">{{row.custoTotalHora | number:'2.0'}}:{{row.custoTotalMinuto | number:'2.0' || \"00\"}}</span>\n          </td>\n        </ng-container>\n  \n        <!-- Total Column -->\n        <ng-container matColumnDef=\"vtotal\">\n          <th mat-header-cell *matHeaderCellDef> Total despesa </th>\n          <td class=\"mat-body-2\" mat-cell *matCellDef=\"let row\"> \n              <span class=\"despesa\">{{row.valorTotal | currency:'BRL' || \"0,00\"}}</span>  \n          </td>\n        </ng-container>\n\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>  \n      </table>\n  \n    </div>\n  </div>"
+module.exports = "<mat-toolbar>\n    <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n  </mat-toolbar>\n  \n  <div class=\"mat-elevation-z8\">\n    <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n      <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n        <span class=\"navbar-toggler-icon\"></span>\n      </button>\n  \n      <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n        <ul class=\"navbar-nav mr-auto\">\n          <li class=\"nav-item active\">\n            <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n          </li>\n        </ul>\n      </div>\n    </nav>\n  </div>\n  <br>\n  \n  <div class=\"container\">\n    <div class=\"level-left\">\n      <div style=\"margin-top: 20px;\" class=\"title is-4\">Relatório de Apontamentos de Projetos</div> \n    </div>\n    <br>\n    <div class=\"level-right\">\n      <button mat-stroked-button color=\"primary\"  (click)=\"montarRelatorio()\">excel</button>\n    </div>\n    <br>\n    <div class=\"mat-elevation-z8\">\n      <table mat-table [dataSource]=\"transactions\">\n        <!-- Codigo Column -->\n        <ng-container matColumnDef=\"codigo\">\n          <th mat-header-cell *matHeaderCellDef > código </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.codigo}} </td>\n          <td mat-footer-cell *matFooterCellDef> Total </td>\n        </ng-container>\n  \n        <!-- Descricao Column -->\n        <ng-container matColumnDef=\"descricao\">\n          <th mat-header-cell *matHeaderCellDef > descrição </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.descricao}} </td>\n        </ng-container>\n  \n        <!-- Cliente Column -->\n        <ng-container matColumnDef=\"cliente\">\n          <th mat-header-cell *matHeaderCellDef> cliente </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.cliente}} </td>\n        </ng-container>\n  \n        \n        <!-- Data Column -->\n        <ng-container matColumnDef=\"data\">\n          <th mat-header-cell *matHeaderCellDef > data </th>\n          <td mat-cell *matCellDef=\"let row\"> \n              <p *ngFor=\"let a of row.apontamentos\"> {{a.data | date:'d/M/yy '}}  \n            </td> \n        </ng-container>\n  \n        <!-- Custo Column -->\n        <ng-container matColumnDef=\"custo\">\n          <th mat-header-cell *matHeaderCellDef > hh:mm </th>\n          <td mat-cell *matCellDef=\"let row\"> \n            <p *ngFor=\"let a of row.apontamentos\" ><span [ngStyle]=\"{'color':'green'}\" *ngIf=\"a.custo\"> {{ a.custo?.dia | number:'2.0'}} {{ a.custo?.hora | number:'2.0'}}:{{ a.custo?.minuto | number:'2.0' }}</span>  </p>\n          </td>\n          <!-- <td mat-footer-cell *matFooterCellDef> {{obterCustoTotal() | currency:'BRL'}}</td> -->\n        </ng-container>\n\n        <!-- Despesa Column -->\n        <ng-container matColumnDef=\"despesa\">\n          <th mat-header-cell *matHeaderCellDef> despesa </th>\n          <td mat-cell *matCellDef=\"let row\">\n            <p *ngFor=\"let a of row.apontamentos\">  {{a.despesa}}   </p>  \n          </td>\n        </ng-container>\n  \n        <!-- Valor Column -->\n        <ng-container matColumnDef=\"valor\">\n          <th mat-header-cell *matHeaderCellDef> valor </th>\n          <td mat-cell *matCellDef=\"let row\"> \n            <p *ngFor=\"let a of row.apontamentos\" ><span [ngStyle]=\"{'color':'red'}\">{{a.valor | currency:'BRL'}}</span> </p>\n          </td>\n        </ng-container>\n  \n        <!-- Total Column -->\n        <ng-container matColumnDef=\"ctotal\">\n          <th mat-header-cell *matHeaderCellDef> Total horas </th>\n          <td class=\"mat-body-2\"   mat-cell *matCellDef=\"let row\"> \n              <span *ngIf=\"row.custoTotalHora || row.custoTotalMinuto\" class=\"custo\">{{row.custoTotalHora | number:'2.0'}}:{{row.custoTotalMinuto | number:'2.0' || \"00\"}}</span>\n          </td>\n        </ng-container>\n  \n        <!-- Total Column -->\n        <ng-container matColumnDef=\"vtotal\">\n          <th mat-header-cell *matHeaderCellDef> Total despesa </th>\n          <td class=\"mat-body-2\" mat-cell *matCellDef=\"let row\"> \n              <span class=\"despesa\">{{row.valorTotalDespesa | currency:'BRL' || \"0,00\"}}</span>  \n          </td>\n        </ng-container>\n\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>  \n      </table>\n  \n    </div>\n\n\n  </div>"
 
 /***/ }),
 
@@ -3786,6 +3823,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../usuario/usuario.service */ "./src/app/usuario/usuario.service.ts");
 /* harmony import */ var _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../projeto/projeto.service */ "./src/app/projeto/projeto.service.ts");
 /* harmony import */ var _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../cliente/cliente.service */ "./src/app/cliente/cliente.service.ts");
+/* harmony import */ var _excel_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../excel.service */ "./src/app/excel.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3795,6 +3833,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -3815,10 +3854,11 @@ function DataHora(x, y) {
     return { hora: hora, minuto: minutes };
 }
 var RelatorioApontamentoProjetoComponent = /** @class */ (function () {
-    function RelatorioApontamentoProjetoComponent(_usuarioService, _projetoService, _clienteService) {
+    function RelatorioApontamentoProjetoComponent(_usuarioService, _projetoService, _clienteService, _excelService) {
         this._usuarioService = _usuarioService;
         this._projetoService = _projetoService;
         this._clienteService = _clienteService;
+        this._excelService = _excelService;
         this.displayedColumns = ['codigo', 'descricao', 'cliente', 'data', 'custo', 'despesa', 'valor', 'ctotal', 'vtotal'];
         this.estados = [0, 1, 2, 3];
         this.usuarioLogado = {
@@ -3829,6 +3869,7 @@ var RelatorioApontamentoProjetoComponent = /** @class */ (function () {
             _id: "",
             nomeFantasia: ""
         };
+        this.data = [];
     }
     RelatorioApontamentoProjetoComponent.prototype.ngOnInit = function () {
         this.usuarioLogado = this._usuarioService.getUserLoggedIn();
@@ -3845,7 +3886,10 @@ var RelatorioApontamentoProjetoComponent = /** @class */ (function () {
                 _this.obterCliente(_this.projetos[i]['_clienteId'], i);
                 _this.obterApontamentos(_this.projetos[i]['_id'], i);
             }
-        }, function (err) { }, function () { });
+        }, function (err) {
+            console.log('Algum erro ocorreu obtendo lista de projetos ', err);
+            throw err;
+        });
     };
     RelatorioApontamentoProjetoComponent.prototype.obterCliente = function (id, i) {
         var _this = this;
@@ -3854,7 +3898,10 @@ var RelatorioApontamentoProjetoComponent = /** @class */ (function () {
             .subscribe(function (cliente) {
             _this.cliente = cliente.json();
             _this.projetos[i]['cliente'] = _this.cliente.nomeFantasia;
-        }, function (err) { }, function () { });
+        }, function (err) {
+            console.log('Algum erro ocorreu obtendo cliente de projetos ', err);
+            throw err;
+        });
     };
     RelatorioApontamentoProjetoComponent.prototype.obterApontamentos = function (id, i) {
         var _this = this;
@@ -3878,10 +3925,10 @@ var RelatorioApontamentoProjetoComponent = /** @class */ (function () {
                 }
                 else {
                     _this.apontamento = { 'despesa': a.despesa.descricao, 'valor': a.despesa.valor };
-                    if (isNaN(_this.projetos[i].valorTotal)) {
-                        _this.projetos[i].valorTotal = 0;
+                    if (isNaN(_this.projetos[i].valorTotalDespesa)) {
+                        _this.projetos[i].valorTotalDespesa = 0;
                     }
-                    _this.projetos[i].valorTotal += a.despesa.valor;
+                    _this.projetos[i].valorTotalDespesa += a.despesa.valor;
                 }
                 if (_this.projetos[i].custoTotalMinuto) {
                     var hora = void 0;
@@ -3895,10 +3942,60 @@ var RelatorioApontamentoProjetoComponent = /** @class */ (function () {
                     }
                 }
                 _this.projetos[i].apontamentos.push(_this.apontamento);
+                var row = new Array();
+                row['codigo'] = _this.projetos[i].codigo;
+                row['descricao'] = _this.projetos[i].descricao;
+                row['cliente'] = _this.projetos[i].cliente;
+                row['data'] = _this.apontamento.data;
+                if (_this.apontamento.custo) {
+                    row['hhmm'] =
+                        ((_this.apontamento.custo.hora > 9 ? "" + _this.apontamento.custo.hora.toFixed(0) : "0" + _this.apontamento.custo.hora.toFixed(0)) + ':'
+                            + (_this.apontamento.custo.minuto > 9 ? "" + _this.apontamento.custo.minuto.toFixed(0) : "0" + _this.apontamento.custo.minuto.toFixed(0)));
+                }
+                row['despesa'] = _this.apontamento.despesa;
+                row['valor'] = _this.apontamento.valor;
+                if (_this.projetos[i].custoTotalHora || _this.projetos[i].custoTotalMinuto) {
+                    row['totalHora'] = (_this.projetos[i].custoTotalHora + ':' + (_this.projetos[i].custoTotalMinuto > 9 ? "" + _this.projetos[i].custoTotalMinuto.toFixed(0) : "0" + _this.projetos[i].custoTotalMinuto.toFixed(0)));
+                }
+                row['valorTotalDespesa'] = _this.projetos[i].valorTotalDespesa;
+                _this.data.push(row);
                 _this.apontamento = '';
             }
             _this.transactions = _this.projetos;
-        }, function (err) { }, function () { });
+        }, function (err) {
+            console.log('Algum erro ocorreu obtendo apontamentos de projetos ', err);
+            throw err;
+        });
+    };
+    RelatorioApontamentoProjetoComponent.prototype.montarRelatorio = function () {
+        console.log('RelatorioApontamentoProjetoComponent > montarRelatorio()');
+        for (var i = 0; i < this.data.length; i++) {
+            var cod = Object(this.data[i]).codigo;
+            for (var j = 0; j < this.projetos.length; j++) {
+                if (cod === this.projetos[j].codigo) {
+                    Object(this.data[i]).cliente = this.projetos[j].cliente;
+                    break;
+                }
+            }
+            var dt = new Date(Object(this.data[i]).data);
+            var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            if (Object.prototype.toString.call(dt) === "[object Date]") {
+                if (isNaN(dt.getTime())) {
+                    Object(this.data[i]).data = '';
+                }
+                else {
+                    Object(this.data[i]).data = dt.toLocaleDateString('pt-BR', options);
+                }
+            }
+            else {
+                Object(this.data[i]).data = '';
+            }
+        }
+        this.exportAsXLSX();
+    };
+    RelatorioApontamentoProjetoComponent.prototype.exportAsXLSX = function () {
+        console.log('RelatorioApontamentoProjetoComponent > exportAsXLSX()');
+        this._excelService.exportAsExcelFile(this.data, 'rel_apontamento');
     };
     RelatorioApontamentoProjetoComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -3908,72 +4005,10 @@ var RelatorioApontamentoProjetoComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [_usuario_usuario_service__WEBPACK_IMPORTED_MODULE_1__["UsuarioService"],
             _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_2__["ProjetoService"],
-            _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_3__["ClienteService"]])
+            _cliente_cliente_service__WEBPACK_IMPORTED_MODULE_3__["ClienteService"],
+            _excel_service__WEBPACK_IMPORTED_MODULE_4__["ExcelService"]])
     ], RelatorioApontamentoProjetoComponent);
     return RelatorioApontamentoProjetoComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/relatorio/relatorio-custo-projeto/relatorio-custo-projeto.component.html":
-/*!******************************************************************************************!*\
-  !*** ./src/app/relatorio/relatorio-custo-projeto/relatorio-custo-projeto.component.html ***!
-  \******************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<p>\n  relatorio-custo-projeto works!\n</p>\n"
-
-/***/ }),
-
-/***/ "./src/app/relatorio/relatorio-custo-projeto/relatorio-custo-projeto.component.scss":
-/*!******************************************************************************************!*\
-  !*** ./src/app/relatorio/relatorio-custo-projeto/relatorio-custo-projeto.component.scss ***!
-  \******************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ""
-
-/***/ }),
-
-/***/ "./src/app/relatorio/relatorio-custo-projeto/relatorio-custo-projeto.component.ts":
-/*!****************************************************************************************!*\
-  !*** ./src/app/relatorio/relatorio-custo-projeto/relatorio-custo-projeto.component.ts ***!
-  \****************************************************************************************/
-/*! exports provided: RelatorioCustoProjetoComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RelatorioCustoProjetoComponent", function() { return RelatorioCustoProjetoComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var RelatorioCustoProjetoComponent = /** @class */ (function () {
-    function RelatorioCustoProjetoComponent() {
-    }
-    RelatorioCustoProjetoComponent.prototype.ngOnInit = function () {
-    };
-    RelatorioCustoProjetoComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'relatorio-custo-projeto',
-            template: __webpack_require__(/*! ./relatorio-custo-projeto.component.html */ "./src/app/relatorio/relatorio-custo-projeto/relatorio-custo-projeto.component.html"),
-            styles: [__webpack_require__(/*! ./relatorio-custo-projeto.component.scss */ "./src/app/relatorio/relatorio-custo-projeto/relatorio-custo-projeto.component.scss")]
-        }),
-        __metadata("design:paramtypes", [])
-    ], RelatorioCustoProjetoComponent);
-    return RelatorioCustoProjetoComponent;
 }());
 
 
@@ -3987,7 +4022,7 @@ var RelatorioCustoProjetoComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n  <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<div class=\"mat-elevation-z8\" >\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n\n<div class=\"container\">\n  <div class=\"level-left\">\n    <div style=\"margin-top: 20px;\" class=\"title is-4\">Relatório Financeiro de Projetos</div> \n  </div>\n  <br>\n  <div class=\"mat-elevation-z8\">\n    <table mat-table [dataSource]=\"dataSource\" matSort>\n\n      <!-- ID Column -->\n      <ng-container matColumnDef=\"codigo\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> código </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.codigo}} </td>\n      </ng-container>\n\n      <!-- Progress Column -->\n      <ng-container matColumnDef=\"descricao\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> descrição </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.descricao}} </td>\n      </ng-container>\n\n      <!-- Name Column -->\n      <ng-container matColumnDef=\"cliente\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> cliente </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.cliente}} </td>\n      </ng-container>\n\n      <!-- Custo Column -->\n      <ng-container matColumnDef=\"custo\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> custo </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.custo | currency:'BRL'}} </td>\n      </ng-container>\n\n      <!-- Despesa Column -->\n      <ng-container matColumnDef=\"despesa\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> despesa </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.despesa | currency:'BRL'}} </td>\n      </ng-container>\n\n      <!-- total Column -->\n      <ng-container matColumnDef=\"total\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> total </th>\n        <td mat-cell class=\"mat-body-2 total\" *matCellDef=\"let row\"> {{row.total | currency:'BRL'}} </td>\n      </ng-container>\n\n      <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n      <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\">\n      </tr>\n    </table>\n\n    <mat-paginator [pageSizeOptions]=\"[5, 10, 25, 100]\"></mat-paginator>\n  </div>\n  <br>\n  <br>\n  <div>\n      <button mat-raised-button color=\"primary\" (click)=\"exportAsXLSX()\">excel</button>\n\n    <!-- <button mat-raised-button color=\"primary\" (click)=\"exportAsXLSX()\">Exportar como Excel</button> -->\n  </div>\n\n</div>"
+module.exports = "<mat-toolbar>\n  <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<div class=\"mat-elevation-z8\" >\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</div>\n<br>\n\n<div class=\"container\">\n  <div class=\"level-left\">\n    <div style=\"margin-top: 20px;\" class=\"title is-4\">Relatório Financeiro de Projetos</div> \n  </div>\n  <br>\n  <div class=\"level-right\">\n    <button mat-stroked-button color=\"primary\" (click)=\"montarRelatorio()\">excel</button>\n  </div>\n  <br>\n  <div class=\"mat-elevation-z8\">\n    <table mat-table [dataSource]=\"dataSource\" matSort>\n\n      <!-- ID Column -->\n      <ng-container matColumnDef=\"codigo\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> código </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.codigo}} </td>\n      </ng-container>\n\n      <!-- Progress Column -->\n      <ng-container matColumnDef=\"descricao\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> descrição </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.descricao}} </td>\n      </ng-container>\n\n      <!-- Name Column -->\n      <ng-container matColumnDef=\"cliente\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> cliente </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.cliente}} </td>\n      </ng-container>\n\n      <!-- Custo Column -->\n      <ng-container matColumnDef=\"custo\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> custo </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.custo | currency:'BRL'}} </td>\n      </ng-container>\n\n      <!-- Despesa Column -->\n      <ng-container matColumnDef=\"despesa\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> despesa </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.despesa | currency:'BRL'}} </td>\n      </ng-container>\n\n      <!-- total Column -->\n      <ng-container matColumnDef=\"total\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> total </th>\n        <td mat-cell class=\"mat-body-2 total\" *matCellDef=\"let row\"> {{row.total | currency:'BRL'}} </td>\n      </ng-container>\n\n      <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n      <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\">\n      </tr>\n    </table>\n\n    <mat-paginator [pageSizeOptions]=\"[5, 10, 25, 100]\"></mat-paginator>\n  </div>\n\n</div>"
 
 /***/ }),
 
@@ -4027,6 +4062,41 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (undefined && undefined.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
 
 
 
@@ -4040,14 +4110,7 @@ var RelatorioFinanceiroComponent = /** @class */ (function () {
         this._clienteService = _clienteService;
         this._excelService = _excelService;
         this.displayedColumns = ['codigo', 'descricao', 'cliente', 'custo', 'despesa', 'total'];
-        this.data = [{
-                codigo: String,
-                descricao: String,
-                cliente: String,
-                custo: Number,
-                despesa: Number,
-                total: Number
-            }];
+        this.data = [];
         this.usuarioLogado = {
             email: '',
             admin: ''
@@ -4091,49 +4154,71 @@ var RelatorioFinanceiroComponent = /** @class */ (function () {
         });
     };
     RelatorioFinanceiroComponent.prototype.obterApontamentos = function (id, i) {
-        var _this = this;
-        console.log('RelatorioFinanceiroComponent > obterApontamentos');
-        var valorDespesa = 0, custoTotal = 0;
-        this._projetoService.obterTotalApontamentos(id)
-            .subscribe(function (apontamentos) {
-            _this.apontamentos = apontamentos.json();
-            for (var _i = 0, _a = _this.apontamentos; _i < _a.length; _i++) {
-                var a = _a[_i];
-                if (a.tipo == 'hora' && a.hora.fim) {
-                    var fim = new Date(a.hora.fim).getTime();
-                    var inicio = new Date(a.hora.inicio).getTime();
-                    var diff = Math.ceil(fim - inicio) / (1000 * 60 * 60);
-                    custoTotal += (a.valorHH * diff);
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            var valorDespesa, custoTotal;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        console.log('RelatorioFinanceiroComponent > obterApontamentos');
+                        valorDespesa = 0;
+                        custoTotal = 0;
+                        return [4 /*yield*/, this._projetoService.obterTotalApontamentos(id)
+                                .subscribe(function (apontamentos) { return __awaiter(_this, void 0, void 0, function () {
+                                var j, fim, inicio, diff;
+                                return __generator(this, function (_a) {
+                                    this.apontamentos = apontamentos.json();
+                                    for (j = 0; j < this.apontamentos.length; j++) {
+                                        if (this.apontamentos[j].tipo === 'hora' && this.apontamentos[j].hora.fim) {
+                                            fim = new Date(this.apontamentos[j].hora.fim).getTime();
+                                            inicio = new Date(this.apontamentos[j].hora.inicio).getTime();
+                                            diff = Math.ceil(fim - inicio) / (1000 * 60 * 60);
+                                            custoTotal += (this.apontamentos[j].valorHH * diff);
+                                        }
+                                        else {
+                                            valorDespesa += this.apontamentos[j].despesa.valor;
+                                        }
+                                    }
+                                    this.projetos[i]['despesa'] = valorDespesa;
+                                    this.projetos[i]['custo'] = custoTotal;
+                                    this.projetos[i]['total'] = (this.projetos[i]['custo'] || 0) + (this.projetos[i]['despesa'] || 0);
+                                    this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatTableDataSource"](this.projetos);
+                                    this.dataSource.paginator = this.paginator;
+                                    this.dataSource.sort = this.sort;
+                                    return [2 /*return*/];
+                                });
+                            }); }, function (err) {
+                                console.log('Algum erro ocorreu obtendo apontamentos de projetos ', err);
+                                throw err;
+                            })];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
                 }
-                else {
-                    valorDespesa += a.despesa.valor;
-                }
-            }
-            _this.projetos[i]['despesa'] = valorDespesa;
-            _this.projetos[i]['custo'] = custoTotal;
-            _this.projetos[i]['total'] = (_this.projetos[i]['custo'] || 0) + (_this.projetos[i]['despesa'] || 0);
-            _this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatTableDataSource"](_this.projetos);
-            _this.dataSource.paginator = _this.paginator;
-            _this.dataSource.sort = _this.sort;
-        }, function (err) {
-            console.log('Algum erro ocorreu obtendo apontamentos de projetos ', err);
-            throw err;
+            });
         });
+    };
+    RelatorioFinanceiroComponent.prototype.montarRelatorio = function () {
+        console.log('RelatorioFinanceiroComponent > montarRelatorio()');
+        for (var i = 0; i < this.projetos.length; i++) {
+            this.row = new Array();
+            this.row['codigo'] = this.projetos[i]['codigo'];
+            this.row['descricao'] = this.projetos[i]['descricao'];
+            this.row['cliente'] = this.projetos[i]['cliente'];
+            this.row['custo'] = this.projetos[i]['custo'];
+            this.row['despesa'] = this.projetos[i]['despesa'];
+            this.row['total'] = (this.projetos[i]['custo'] || 0) + (this.projetos[i]['despesa'] || 0);
+            this.data.push(this.row);
+        }
+        this.exportAsXLSX();
     };
     RelatorioFinanceiroComponent.prototype.obterCustoTotal = function () {
         console.log('RelatorioFinanceiroComponent > obterCustoTotal()');
         return this.projetos.map(function (t) { return t.custo; }).reduce(function (acc, value) { return acc + value; }, 0);
     };
-    // exportAsXLSX():void {
-    //   console.log('RelatorioFinanceiroComponent > exportAsXLSX()', this.dataSource.filteredData);
-    //   this._excelService.exportAsExcelFile(this.dataSource.filteredData, 'rel_financeiro');
-    // }
     RelatorioFinanceiroComponent.prototype.exportAsXLSX = function () {
-        console.log('RelatorioFinanceiroComponent > exportAsXLSX() >>> data / dadaSource', this.projetos);
-        // for (let i = 0; i < this.projetos.length; i++) {
-        //   this.data[i]    = this.projetos[i] ;
-        // }
-        this._excelService.exportAsExcelFile(this.projetos, 'rel_financeiro');
+        console.log('RelatorioFinanceiroComponent > exportAsXLSX()');
+        this._excelService.exportAsExcelFile(this.data, 'rel_financeiro');
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatPaginator"]),

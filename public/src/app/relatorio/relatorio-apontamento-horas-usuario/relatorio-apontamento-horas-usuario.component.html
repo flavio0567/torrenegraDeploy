@@ -24,9 +24,14 @@
   </div>
   <br>
   <p>Olá {{ usuarioLogado }}</p>
-  <br><br>
+
 
   <form class="example-form" [formGroup] = "options">
+
+    <div class="level-right">
+      <button mat-stroked-button color="primary" (click)="montarRelatorio()" [disabled]="email.invalid">excel</button>
+    </div>
+    <br>
 
     <mat-form-field style="width:400px !important;"> 
       <mat-select placeholder="Selecione o usuário" name="usuario" formControlName="email" required>

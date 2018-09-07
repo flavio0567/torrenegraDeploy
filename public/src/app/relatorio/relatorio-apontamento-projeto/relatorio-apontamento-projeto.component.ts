@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild  } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../usuario/usuario.service';
 import { ProjetoService } from '../../projeto/projeto.service';
 import { ClienteService } from '../../cliente/cliente.service';
+import { ExcelService } from '../../excel.service';
 
 export interface Transaction {
   codigo: string;
@@ -26,7 +26,7 @@ export function DataHora(x, y) {
   x = new Date(x);
   y = new Date(y);
   
-  diff=Math.abs(y.getTime()- x.getTime())/3600000;
+  diff=Math.abs(y.getTime() - x.getTime())/3600000;
   
   if (isNaN(diff)){ return {dia: 0, hora: 0, minuto: 0}; }
   
@@ -63,7 +63,7 @@ export class RelatorioApontamentoProjetoComponent implements OnInit {
       despesa: string,
       valor: number
     }],
-    valorTotal: 0,
+    valorTotalDespesa: 0,
     custoTotalHora: 0,
     custoTotalMinuto: 0,
   }];
@@ -81,11 +81,13 @@ export class RelatorioApontamentoProjetoComponent implements OnInit {
   apontamentos: any;
   apontamento: any;
 
+  data : Array<object> = [];
 
   constructor(
     private _usuarioService: UsuarioService,
     private _projetoService: ProjetoService,
-    private _clienteService: ClienteService
+    private _clienteService: ClienteService,
+    private _excelService: ExcelService
   ) { } 
 
   ngOnInit() {
@@ -105,8 +107,10 @@ export class RelatorioApontamentoProjetoComponent implements OnInit {
           this.obterApontamentos(this.projetos[i]['_id'], i);
         }
       },
-      (err) => { },
-        () => { }
+      (err) => {
+        console.log('Algum erro ocorreu obtendo lista de projetos ', err);
+        throw err;
+      }
     )
   }
 
@@ -118,11 +122,12 @@ export class RelatorioApontamentoProjetoComponent implements OnInit {
         this.cliente = cliente.json();
         this.projetos[i]['cliente'] = this.cliente.nomeFantasia;
       },
-      (err) => { },
-        () => { }
+      (err) => {
+        console.log('Algum erro ocorreu obtendo cliente de projetos ', err);
+        throw err;
+      }
     )
   }
-
   obterApontamentos(id, i) {
     console.log('ProjetoListComponent > obterApontamentos');
     this._projetoService.obterTotalApontamentos(id)
@@ -142,10 +147,10 @@ export class RelatorioApontamentoProjetoComponent implements OnInit {
             this.apontamento = { 'data': a.hora.inicio ,'custo': data }; 
           } else {
             this.apontamento = { 'despesa': a.despesa.descricao, 'valor': a.despesa.valor };
-            if (isNaN(this.projetos[i].valorTotal)) {
-              this.projetos[i].valorTotal = 0;
+            if (isNaN(this.projetos[i].valorTotalDespesa)) {
+              this.projetos[i].valorTotalDespesa = 0;
             } 
-            this.projetos[i].valorTotal +=  a.despesa.valor;      
+            this.projetos[i].valorTotalDespesa +=  a.despesa.valor;      
           }
           if (this.projetos[i].custoTotalMinuto) {
             let hora;
@@ -159,15 +164,63 @@ export class RelatorioApontamentoProjetoComponent implements OnInit {
             }
           }
           this.projetos[i].apontamentos.push(this.apontamento);
+          let row = new Array();
+          row['codigo'] = this.projetos[i].codigo;
+          row['descricao'] = this.projetos[i].descricao;
+          row['cliente'] = this.projetos[i].cliente;
+          row['data'] = this.apontamento.data;
+          if (this.apontamento.custo) {
+            row['hhmm'] = 
+            ((this.apontamento.custo.hora > 9 ? "" + this.apontamento.custo.hora.toFixed(0) : "0" + this.apontamento.custo.hora.toFixed(0)) + ':' 
+            + (this.apontamento.custo.minuto > 9 ? "" + this.apontamento.custo.minuto.toFixed(0) : "0" + this.apontamento.custo.minuto.toFixed(0)));
+          }
+          row['despesa'] = this.apontamento.despesa;
+          row['valor'] = this.apontamento.valor;
+          if (this.projetos[i].custoTotalHora || this.projetos[i].custoTotalMinuto) {  
+            row['totalHora'] = (this.projetos[i].custoTotalHora + ':' + (this.projetos[i].custoTotalMinuto > 9 ? "" + this.projetos[i].custoTotalMinuto.toFixed(0) : "0" + this.projetos[i].custoTotalMinuto.toFixed(0)) );       
+          }
+          row['valorTotalDespesa'] = this.projetos[i].valorTotalDespesa;
+          this.data.push(row);
           this.apontamento = '';
         }
-
         this.transactions = this.projetos;
       },
-      (err) => { },
-        () => { }
+      (err) => {
+        console.log('Algum erro ocorreu obtendo apontamentos de projetos ', err);
+        throw err;
+      }
     )
   }
+
+  montarRelatorio() {
+    console.log('RelatorioApontamentoProjetoComponent > montarRelatorio()');
+    for (let i = 0; i < this.data.length; i++) {
+      let cod = Object(this.data[i]).codigo;
+      for (let j = 0; j < this.projetos.length; j++) {
+        if (cod === this.projetos[j].codigo) {
+          Object(this.data[i]).cliente = this.projetos[j].cliente;
+          break
+        }
+      }
+      let dt = new Date(Object(this.data[i]).data);
+      let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
+      if (Object.prototype.toString.call(dt) === "[object Date]") {
+        if (isNaN(dt.getTime())) {
+          Object(this.data[i]).data = '';
+        } else {
+          Object(this.data[i]).data = dt.toLocaleDateString('pt-BR', options);
+        }
+      } else {
+          Object(this.data[i]).data = '';
+      }
+    }
+    this.exportAsXLSX();
+  }
+
+  exportAsXLSX():void {
+    console.log('RelatorioApontamentoProjetoComponent > exportAsXLSX()');
+    this._excelService.exportAsExcelFile(this.data, 'rel_apontamento');
+ }
 
 
 }

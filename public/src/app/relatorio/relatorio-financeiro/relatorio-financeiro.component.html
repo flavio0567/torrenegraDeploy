@@ -24,6 +24,10 @@
     <div style="margin-top: 20px;" class="title is-4">Relatório Financeiro de Projetos</div> 
   </div>
   <br>
+  <div class="level-right">
+    <button mat-stroked-button color="primary" (click)="montarRelatorio()">excel</button>
+  </div>
+  <br>
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
 
@@ -69,13 +73,6 @@
     </table>
 
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-  </div>
-  <br>
-  <br>
-  <div>
-      <button mat-raised-button color="primary" (click)="exportAsXLSX()">excel</button>
-
-    <!-- <button mat-raised-button color="primary" (click)="exportAsXLSX()">Exportar como Excel</button> -->
   </div>
 
 </div>

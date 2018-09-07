@@ -24,8 +24,11 @@
   </div>
   <br>
   <p>Olá {{ usuarioLogado }}</p>
-  <br><br>
-
+  <br>
+  <div class="level-right">
+    <button mat-stroked-button color="primary" (click)="exportAsXLSX()">excel</button>
+  </div>
+  <br>
   <form class="example-form" [formGroup] = "options">
 
     <mat-form-field style="width:400px !important;"> 

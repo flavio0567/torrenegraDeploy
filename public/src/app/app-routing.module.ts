@@ -150,7 +150,6 @@ const routes: Routes = [
     path: 'primeiro/acesso',
     component: RegisterComponent,
     pathMatch: 'full'
-    // canActivate: [AuthGuard]
   },
   {
     path: 'admin',
@@ -161,11 +160,6 @@ const routes: Routes = [
   {
     path: 'error',
     component: GlobalErrorComponent
- },
-  { 
-    path: 'reset',
-    redirectTo: '',
-    pathMatch: 'full'
   },
   {
     path: '**',

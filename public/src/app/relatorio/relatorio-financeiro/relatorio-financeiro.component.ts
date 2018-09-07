@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef  } from '@angular/core';
+import { Component, OnInit, ViewChild  } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { UsuarioService } from '../../usuario/usuario.service';
 import { ProjetoService } from '../../projeto/projeto.service';
@@ -29,14 +29,8 @@ export class RelatorioFinanceiroComponent implements OnInit {
   displayedColumns: string[] = ['codigo', 'descricao', 'cliente', 'custo', 'despesa', 'total'];
   dataSource: MatTableDataSource<Transaction>;
 
-  data: any = [{
-    codigo: String,
-    descricao: String,
-    cliente: String,
-    custo: Number,
-    despesa: Number,
-    total: Number
-    }];
+  row: any[];
+  data : Array<object> = [];
 
   projetos: [{
     _id: string,
@@ -77,12 +71,11 @@ export class RelatorioFinanceiroComponent implements OnInit {
   obterProjetos() {
     console.log('RelatorioFinanceiroComponent > obterProjetos()')
     const projetoObservable = this._projetoService.obterProjetos(this.estados);
-    projetoObservable.subscribe(
-      (projetos) => { 
-        this.projetos = projetos.json();
-        for (var i = 0; i < this.projetos.length; i++) {
-          this.obterCliente(this.projetos[i]['_clienteId'], i);
-          this.obterApontamentos(this.projetos[i]['_id'], i);
+    projetoObservable.subscribe(projetos => {
+      this.projetos = projetos.json();
+      for (let i = 0; i < this.projetos.length; i++) {
+        this.obterCliente(this.projetos[i]['_clienteId'], i);
+        this.obterApontamentos(this.projetos[i]['_id'], i);
         }
       },
       (err) => {
@@ -95,8 +88,7 @@ export class RelatorioFinanceiroComponent implements OnInit {
   obterCliente(id, i) {
     console.log('RelatorioFinanceiroComponent > obterCliente()');
     this._clienteService.obterClienteById(id)
-    .subscribe(
-      (cliente) => { 
+      .subscribe(cliente => { 
         this.cliente = cliente.json();
         this.projetos[i]['cliente'] = this.cliente.nomeFantasia;
       },
@@ -107,22 +99,21 @@ export class RelatorioFinanceiroComponent implements OnInit {
     )
   }
 
-  obterApontamentos(id, i) {
+  async obterApontamentos(id, i) {
     console.log('RelatorioFinanceiroComponent > obterApontamentos');
-    let valorDespesa = 0,
-        custoTotal = 0;
-    this._projetoService.obterTotalApontamentos(id)
-    .subscribe(
-      (apontamentos) => { 
+    let valorDespesa = 0;
+    let custoTotal = 0;
+    await this._projetoService.obterTotalApontamentos(id)
+    .subscribe(async apontamentos => { 
         this.apontamentos = apontamentos.json();
-        for (let a of this.apontamentos) {
-          if(a.tipo == 'hora' && a.hora.fim) {
-            let fim = new Date(a.hora.fim).getTime();
-            let inicio = new Date(a.hora.inicio).getTime();
+        for (let j=0 ; j < this.apontamentos.length; j++) {
+          if(this.apontamentos[j].tipo === 'hora' && this.apontamentos[j].hora.fim) {
+            let fim = new Date(this.apontamentos[j].hora.fim).getTime();
+            let inicio = new Date(this.apontamentos[j].hora.inicio).getTime();
             let diff = Math.ceil( fim - inicio )/(1000 * 60 * 60)
-            custoTotal += (a.valorHH * diff);
+            custoTotal += (this.apontamentos[j].valorHH * diff);
           } else {
-            valorDespesa +=  a.despesa.valor; 
+            valorDespesa +=  this.apontamentos[j].despesa.valor; 
           }
         }
 
@@ -141,21 +132,30 @@ export class RelatorioFinanceiroComponent implements OnInit {
     )
   }
 
+montarRelatorio() {
+  console.log('RelatorioFinanceiroComponent > montarRelatorio()');
+  for (let i = 0; i < this.projetos.length; i++) {
+    this.row = new Array();
+    this.row['codigo'] = this.projetos[i]['codigo'];
+    this.row['descricao'] = this.projetos[i]['descricao'];
+    this.row['cliente'] = this.projetos[i]['cliente'];
+    this.row['custo'] = this.projetos[i]['custo'];
+    this.row['despesa'] = this.projetos[i]['despesa'];
+    this.row['total'] = (this.projetos[i]['custo'] || 0) + (this.projetos[i]['despesa'] || 0); 
+    this.data.push(this.row);
+  }
+  this.exportAsXLSX();
+}
+
+
   obterCustoTotal() {
     console.log('RelatorioFinanceiroComponent > obterCustoTotal()');
     return this.projetos.map(t => t.custo).reduce((acc, value) => acc + value, 0);
   }
 
-  // exportAsXLSX():void {
-  //   console.log('RelatorioFinanceiroComponent > exportAsXLSX()', this.dataSource.filteredData);
-  //   this._excelService.exportAsExcelFile(this.dataSource.filteredData, 'rel_financeiro');
-  // }
   exportAsXLSX():void {
-    console.log('RelatorioFinanceiroComponent > exportAsXLSX() >>> data / dadaSource', this.projetos);
-    // for (let i = 0; i < this.projetos.length; i++) {
-    //   this.data[i]    = this.projetos[i] ;
-    // }
-    this._excelService.exportAsExcelFile(this.projetos, 'rel_financeiro');
- }
+    console.log('RelatorioFinanceiroComponent > exportAsXLSX()');
+    this._excelService.exportAsExcelFile(this.data, 'rel_financeiro');
+  }
 
 }

@@ -3,8 +3,10 @@ import { UsuarioService } from '../../usuario/usuario.service';
 import { ProjetoService } from '../../projeto/projeto.service';
 import { ClienteService } from '../../cliente/cliente.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ExcelService } from '../../excel.service';
 // import { Datepicker } from './datepicker-popup';
 // import { getLocaleDateTimeFormat } from '../../../../node_modules/@angular/common';
+
 
 export interface Transaction {
   codigo: string;
@@ -53,7 +55,6 @@ export function DataHora(x, y) {
 }
 
 
-
 @Component({
   selector: 'relatorio-apontamento-horas-usuario',
   templateUrl: './relatorio-apontamento-horas-usuario.component.html',
@@ -86,12 +87,15 @@ export class RelatorioApontamentoHorasUsuarioComponent implements OnInit {
     _id: "",
     nomeFantasia: ""
   }
+
+  data : Array<object> = [];
   
   constructor(
     private fb: FormBuilder,
     private _projetoService: ProjetoService,
     private _usuarioService: UsuarioService,
-    private _clienteService: ClienteService
+    private _clienteService: ClienteService,
+    private _excelService: ExcelService
   ) { 
     this.options = fb.group({
       _projetoId: [null],
@@ -147,16 +151,19 @@ export class RelatorioApontamentoHorasUsuarioComponent implements OnInit {
     .subscribe(
       (apontamentos) => { 
         this.apontamentos = apontamentos.json();
-        for (let a of this.apontamentos) {
-          let data = DataHora(a.hora.inicio, a.hora.fim);
-          a.totalhh = data.hora + ':' + data.minuto;
-          this.projeto = getProjeto(this.projetos, a._projeto);
-          a.codigo = (this.projeto? this.projeto.codigo : '-');
+        for (let i=0 ; i < this.apontamentos.length; i++) {
+          let data = DataHora(this.apontamentos[i].hora.inicio, this.apontamentos[i].hora.fim);
+          // this.apontamentos[i].totalhh = data.hora + ':' + data.minuto;
+          this.apontamentos[i].totalhh =
+            (data.hora > 9 ? "" + data.hora.toFixed(0) : "0" + data.hora.toFixed(0)) + ':' +
+            (data.minuto > 9 ? "" + data.minuto : "0" + parseInt(data.minuto).toFixed(0));
+          this.projeto = getProjeto(this.projetos, this.apontamentos[i]._projeto);
+          this.apontamentos[i].codigo = (this.projeto? this.projeto.codigo : '-');
           this._clienteService.obterClienteById(this.projeto._clienteId)
           .subscribe(
             (cliente) => { 
               this.cliente = cliente.json();
-              a.cliente = this.cliente.nomeFantasia
+              this.apontamentos[i].cliente = this.cliente.nomeFantasia;
             },
             (err) => {
               console.log('Algum erro ocorreu obtendo cliente do projeto (apontamento) ', err);
@@ -179,5 +186,36 @@ export class RelatorioApontamentoHorasUsuarioComponent implements OnInit {
     return this.projetos.map(t => t.custo).reduce((acc, value) => acc + value, 0);
   }
 
+
+  montarRelatorio() {
+    console.log('RelatorioFinanceiroComponent > montarRelatorio()');
+    this.data = [];
+    for (let i=0 ; i < this.apontamentos.length; i++) {
+      let row = new Array();
+      row['codigo'] = this.apontamentos[i].codigo;
+      row['cliente'] = this.apontamentos[i].cliente;
+      let dtInicio = new Date(this.apontamentos[i].hora.inicio);
+      let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+      row['inicio'] = dtInicio.toLocaleDateString('pt-BR', options);
+      let dtFim = new Date(this.apontamentos[i].hora.fim);
+      if (Object.prototype.toString.call(dtFim) === "[object Date]") {
+        if (isNaN(dtFim.getTime())) {
+          row['fim'] = '';
+        } else {
+          row['fim'] = dtFim.toLocaleDateString('pt-BR', options);
+        }
+      } else {
+        row['fim'] = '';
+      }
+      row['totalhh'] = this.apontamentos[i].totalhh;
+      this.data.push(row);
+    }
+    this.exportAsXLSX();
+  }
+
+  exportAsXLSX():void {
+    console.log('RelatorioFinanceiroComponent > exportAsXLSX()');
+    this._excelService.exportAsExcelFile(this.data, 'rel_financeiro');
+ }
 
 }
