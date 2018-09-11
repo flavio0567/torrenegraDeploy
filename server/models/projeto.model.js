@@ -30,8 +30,8 @@ const ProjetoSchema = new Schema({
         trim: true
     },
     valorPedido: {
-        type: Number,
-        required: [true, "Valor do pedido do projeto é requerido"]
+        type: Number
+        // required: [true, "Valor do pedido do projeto é requerido"]
     },
     horasPLC: {
         type: Number,

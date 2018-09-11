@@ -61,6 +61,8 @@ export class RelatorioApontamentoDespesasUsuarioComponent implements OnInit {
     nomeFantasia: ""
   }
 
+  data : Array<object> = [];
+
   constructor(
     private fb: FormBuilder,
     private _projetoService: ProjetoService,
@@ -100,8 +102,10 @@ export class RelatorioApontamentoDespesasUsuarioComponent implements OnInit {
       (usuarios) => { 
         this.usuarios = usuarios.json();
       },
-      (err) => { },
-        () => { }
+      (err) => {
+        console.log('Algum erro ocorreu obtendo lista de usuario ', err);
+        throw err;
+      }
     )
   }
 
@@ -155,10 +159,30 @@ export class RelatorioApontamentoDespesasUsuarioComponent implements OnInit {
     return this.transactions.map(t => t.valor).reduce((acc, value) => acc + value, 0);
   }
 
-  exportAsXLSX():void {
-    console.log('RelatorioFinanceiroComponent > exportAsXLSX()');
-    this._excelService.exportAsExcelFile(this.projetos, 'rel_financeiro');
- }
+  montarRelatorio() {
+    console.log('RelatorioApontamentoDespesasUsuarioComponent > montarRelatorio()');
+    this.data = [];
+    let total;
+    for (let i=0 ; i < this.apontamentos.length; i++) {
+      let row = new Array();
+      row['codigo'] = this.apontamentos[i].codigo;
+      row['cliente'] = this.apontamentos[i].cliente;
+      row['despesa'] = this.apontamentos[i].despesa.descricao;
+      row['valor'] = this.apontamentos[i].valor;
+      let dt = new Date(this.apontamentos[i].despesa.data);
+      let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      row['data'] = dt.toLocaleDateString('pt-BR', options);
+      total = this.transactions.map(t => t.valor).reduce((acc, value) => acc + value, 0);
+      this.apontamentos[i].despesa.reembolso? row['reembolso'] = 'sim' : row['reembolso'] = '';
+      this.data.push(row);
+    }
+    this.data.push({'total': total});
+    this.exportAsXLSX();
+  }
 
+  exportAsXLSX():void {
+    console.log('RelatorioApontamentoDespesasUsuarioComponent > exportAsXLSX()');
+    this._excelService.exportAsExcelFile(this.data, 'rel_financeiro');
+ }
 
 }

@@ -45,7 +45,13 @@
     <td>
     <button mat-raised-button color="primary" (click)="obterProjetos()" [disabled]="estados.invalid">projetos</button>
   </td>
+  <td>
+    <button mat-stroked-button color="primary" (click)="montarRelatorio()" [disabled]="estados.invalid">excel</button>
+  </td>
   </tr></table>
+  <!-- <div class="level-right">
+    <button mat-stroked-button color="primary" (click)="montarRelatorio()" [disabled]="estados.invalid">excel</button>
+  </div> -->
 </form>
 <br>
 <mat-form-field>

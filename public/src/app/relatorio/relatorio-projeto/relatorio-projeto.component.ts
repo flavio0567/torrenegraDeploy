@@ -2,6 +2,7 @@ import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { ProjetoService } from '../../projeto/projeto.service';
 import { ClienteService } from '../../cliente/cliente.service';
 import { UsuarioService } from '../../usuario/usuario.service';
+import { ExcelService } from '../../excel.service';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { FormControl } from '@angular/forms';
 
@@ -45,10 +46,13 @@ export class RelatorioProjetoComponent implements OnInit {
     nomeFantasia: ""
   }
 
+  data : Array<object> = [];
+  
   constructor(
     private _usuarioService: UsuarioService,
     private _projetoService: ProjetoService,
     private _clienteService: ClienteService,
+    private _excelService: ExcelService
   ) { } 
 
   ngOnInit() {
@@ -131,6 +135,27 @@ export class RelatorioProjetoComponent implements OnInit {
     }
   }
 
+
+  montarRelatorio() {
+    console.log('RelatorioProjetoComponent > montarRelatorio()');
+    this.data = [];
+    for (let i=0 ; i < this.projetos.length; i++) {
+      let row = new Array();
+      row['codigo'] = this.projetos[i].codigo;
+      row['descricao'] = this.projetos[i].descricao;
+      row['cliente'] = this.projetos[i].cliente;
+      row['situacao'] = this.projetos[i].sitDesc;
+      row['pedido'] = this.projetos[i].pedido;
+      row['valor'] = this.projetos[i].valorPedido;
+      this.data.push(row);
+    }
+    this.exportAsXLSX();
+  }
+
+  exportAsXLSX():void {
+    console.log('RelatorioProjetoComponent > exportAsXLSX()');
+    this._excelService.exportAsExcelFile(this.data, 'rel_projetos');
+ }
 
 }
 

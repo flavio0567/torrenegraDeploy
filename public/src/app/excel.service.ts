@@ -20,8 +20,13 @@ export class ExcelService {
     this.saveAsExcelFile(excelBuffer, excelFileName);
   }
   private saveAsExcelFile(buffer: any, fileName: string): void {
-     const data: Blob = new Blob([buffer], {type: EXCEL_TYPE});
-     FileSaver.saveAs(data, fileName + '_export_' + new  Date().getTime() + EXCEL_EXTENSION);
+    const data: Blob = new Blob([buffer], {type: EXCEL_TYPE});
+    let today = new Date();
+    let date = today.getFullYear() + '' + (today.getMonth() + 1) + '' + 
+    today.getDate() + '_';
+    var time = today.getHours() + "-" + today.getMinutes() + "-" + 
+    today.getSeconds();
+     FileSaver.saveAs(data, fileName + date + time +  EXCEL_EXTENSION);
   }
 
 
