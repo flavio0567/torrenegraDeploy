@@ -184,11 +184,12 @@ module.exports = "td, th {\n  width: 25%; }\n"
 /*!**********************************************************************************************!*\
   !*** ./src/app/apontamento/apontamento-lista-despesa/apontamento-lista-despesa.component.ts ***!
   \**********************************************************************************************/
-/*! exports provided: ApontamentoListaDespesaComponent */
+/*! exports provided: AddDays, ApontamentoListaDespesaComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddDays", function() { return AddDays; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApontamentoListaDespesaComponent", function() { return ApontamentoListaDespesaComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _projeto_projeto_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../projeto/projeto.service */ "./src/app/projeto/projeto.service.ts");
@@ -208,16 +209,25 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+function AddDays(date, amount) {
+    var tzOff = date.getTimezoneOffset() * 60 * 1000, t = date.getTime(), d = new Date(), tzOff2;
+    t += (1000 * 60 * 60 * 24) * amount;
+    d.setTime(t);
+    tzOff2 = d.getTimezoneOffset() * 60 * 1000;
+    if (tzOff != tzOff2) {
+        var diff = tzOff2 - tzOff;
+        t += diff;
+        d.setTime(t);
+    }
+    return d;
+}
 var ApontamentoListaDespesaComponent = /** @class */ (function () {
     function ApontamentoListaDespesaComponent(_projetoService, _usuarioService, dialog) {
         this._projetoService = _projetoService;
         this._usuarioService = _usuarioService;
         this.dialog = dialog;
         this.displayedColumns = ['codigo', 'descricao', 'descricaoDespesa', 'despesaValor', 'despesaData'];
-        this.usuarioLogado = {
-            email: '',
-            admin: ''
-        };
+        this.usuarioLogado = '';
         this.apontamentos = [{
                 codigo: "",
                 descricao: "",
@@ -228,6 +238,14 @@ var ApontamentoListaDespesaComponent = /** @class */ (function () {
                 },
                 _projeto: ""
             }];
+        this.today = AddDays(new Date(), -1);
+        this.tomorrow = AddDays(new Date(), 1);
+        this.apto = {
+            email: this.usuarioLogado,
+            data1: this.today,
+            data2: this.tomorrow,
+            tipo: 'despesa'
+        };
     }
     ApontamentoListaDespesaComponent.prototype.ngOnInit = function () {
         console.log('ApontamentoListaDespesaComponent > ngOnInit()');
@@ -242,8 +260,9 @@ var ApontamentoListaDespesaComponent = /** @class */ (function () {
     };
     ApontamentoListaDespesaComponent.prototype.obterListaApontamento = function () {
         var _this = this;
+        this.apto.email = this.usuarioLogado;
         console.log('ApontamentoListaDespesaComponent > obterListaApontamento()');
-        var apontObservable = this._projetoService.obterApontamentosDespesa(this.usuarioLogado);
+        var apontObservable = this._projetoService.obterApontamentosDespesa(this.apto);
         apontObservable.subscribe(function (apontamentos) {
             _this.apontamentos = apontamentos.json();
             // console.log('ApontamentoListaDespesaComponent > obterListaApontamento() > apontamentos ', this.apontamentos)
@@ -1621,7 +1640,7 @@ var ClienteEditComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n  <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<div class=\"mat-elevation-z8\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n      <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n        <span class=\"navbar-toggler-icon\"></span>\n      </button>\n    \n      <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n        <ul class=\"navbar-nav mr-auto\">\n          <li class=\"nav-item active\">\n            <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n          </li>\n        </ul>\n      </div>\n  </nav>\n</div>\n<div class=\"container\">\n\n  <div class=\"level-left\">\n      <div style=\"margin-top: 20px;\" class=\"title is-4\">Clientes</div> \n  </div>\n  <div class=\"level-right\">\n      <button mat-stroked-button color=\"primary\" [routerLink]=\"['/cliente/novo']\">Novo cliente</button>\n  </div> \n\n  <mat-form-field>\n      <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filtrar\">\n    </mat-form-field>\n  \n    <div class=\"mat-elevation-z8\">\n      <table mat-table [dataSource]=\"dataSource\" matSort>\n\n        <!-- nomeFantasia Column -->\n        <ng-container matColumnDef=\"nomeFantasia\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> nome fantasia </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.nomeFantasia}} </td>\n        </ng-container>\n  \n        <!-- valorHH Column -->\n        <ng-container matColumnDef=\"valorHH\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> valor HH </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.valorHH | currency:'BRL'}} </td>\n        </ng-container>\n  \n        <!-- prazoPgto Column -->\n        <ng-container matColumnDef=\"prazoPgto\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> prazo pagto </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.prazoPgto}} </td>\n        </ng-container>\n  \n        <!-- contatos Column -->\n          <ng-container matColumnDef=\"nome\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> contato </th>\n            <td mat-cell *matCellDef=\"let row\">  {{row.nome}} </td>\n          </ng-container>\n\n        <!-- email Column -->\n        <ng-container matColumnDef=\"email\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> email </th>\n            <td mat-cell *matCellDef=\"let row\"> {{row.email}} </td>\n        </ng-container>\n\n        <!-- fone Column -->\n        <ng-container matColumnDef=\"fone\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> fone </th>\n            <td mat-cell *matCellDef=\"let row\"> {{row.fone}} </td>\n        </ng-container>\n\n        <!-- Acao 1 Column -->\n        <ng-container matColumnDef=\"acao1\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> ação </th>\n          <td mat-cell *matCellDef=\"let row\" >\n            <div class=\"button-row\">\n              <!-- <button mat-button color=\"primary\" >editar</button> -->\n              <button mat-button color=\"primary\" [routerLink]=\"['/cliente/edit/', row['_id'] ]\">editar</button>\n            </div>\n          </td>\n        </ng-container>\n  \n       <!-- Acao 2 Column -->\n       <ng-container matColumnDef=\"acao2\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>\n          <td mat-cell *matCellDef=\"let row\" >\n            <div class=\"button-row\">\n              <button mat-button color=\"warn\" [routerLink]=\"['/cliente/show', row['_id'] ]\">detalhes</button>\n            </div>\n          </td>\n        </ng-container>\n  \n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\">\n        </tr>\n      </table>\n  \n\n    </div>\n    <mat-paginator [pageSizeOptions]=\"[5, 10, 25, 100]\"></mat-paginator>\n</div>"
+module.exports = "<mat-toolbar>\n  <img src=\"../assets/images/TorreNegra-logo-comp-horz-cor-pos-bgB.png\">\n</mat-toolbar>\n\n<div class=\"mat-elevation-z8\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n      <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n        <span class=\"navbar-toggler-icon\"></span>\n      </button>\n    \n      <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n        <ul class=\"navbar-nav mr-auto\">\n          <li class=\"nav-item active\">\n            <a class=\"nav-link\" [routerLink]=\"['/projetos']\">Retornar <span class=\"sr-only\">(current)</span></a>\n          </li>\n        </ul>\n      </div>\n  </nav>\n</div>\n<div class=\"container\">\n\n  <div class=\"level-left\">\n      <div style=\"margin-top: 20px;\" class=\"title is-4\">Clientes</div> \n  </div>\n  <div class=\"level-right\">\n      <button mat-stroked-button color=\"primary\" [routerLink]=\"['/cliente/novo']\">Novo cliente</button>\n  </div> \n\n  <mat-form-field>\n      <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filtrar\">\n    </mat-form-field>\n  \n    <div class=\"mat-elevation-z8\">\n      <table mat-table [dataSource]=\"dataSource\" matSort>\n\n        <!-- nomeFantasia Column -->\n        <ng-container matColumnDef=\"nomeFantasia\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> nome fantasia </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.nomeFantasia}} </td>\n        </ng-container>\n  \n        <!-- valorHH Column -->\n        <ng-container matColumnDef=\"valorHH\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> valor HH </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.valorHH | currency:'BRL'}} </td>\n        </ng-container>\n  \n        <!-- prazoPgto Column -->\n        <ng-container matColumnDef=\"prazoPgto\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> prazo pagto </th>\n          <td mat-cell *matCellDef=\"let row\"> {{row.prazoPgto}} </td>\n        </ng-container>\n  \n        <!-- contatos Column -->\n          <ng-container matColumnDef=\"nome\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> contato </th>\n            <td mat-cell *matCellDef=\"let row\">  {{row.nome}} </td>\n          </ng-container>\n\n        <!-- email Column -->\n        <ng-container matColumnDef=\"email\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> email </th>\n            <td mat-cell *matCellDef=\"let row\"> {{row.email}} </td>\n        </ng-container>\n\n        <!-- fone Column -->\n        <ng-container matColumnDef=\"fone\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> fone </th>\n            <td mat-cell *matCellDef=\"let row\"> {{row.fone}} </td>\n        </ng-container>\n\n        <!-- Acao 1 Column -->\n        <ng-container matColumnDef=\"acao1\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> ação </th>\n          <td mat-cell *matCellDef=\"let row\" >\n            <div class=\"button-row\">\n              <!-- <button mat-button color=\"primary\" >editar</button> -->\n              <button mat-button color=\"primary\" [routerLink]=\"['/cliente/edit/', row['_id'] ]\">editar</button>\n            </div>\n          </td>\n        </ng-container>\n  \n       <!-- Acao 2 Column -->\n       <ng-container matColumnDef=\"acao2\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>\n          <td mat-cell *matCellDef=\"let row\" >\n            <div class=\"button-row\">\n              <button mat-button color=\"warn\" [routerLink]=\"['/cliente/show', row['_id'] ]\">detalhes</button>\n            </div>\n          </td>\n        </ng-container>\n  \n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\">\n        </tr>\n      </table>\n  \n      <mat-paginator [pageSizeOptions]=\"[5, 10, 25, 100]\"></mat-paginator>\n    </div>\n   \n</div>"
 
 /***/ }),
 
@@ -3172,9 +3191,9 @@ var ProjetoService = /** @class */ (function () {
         console.log('ProjetoService > obterApontamento(apto)');
         return this._http.post('/obter/apontamento', apto);
     };
-    ProjetoService.prototype.obterApontamentosDespesa = function (usuario) {
-        console.log('ProjetoService > obterApontamentosDespesa(usuario)');
-        return this._http.get('/apontamentos/despesa/', { params: { usuario: usuario } });
+    ProjetoService.prototype.obterApontamentosDespesa = function (apto) {
+        console.log('ProjetoService > obterApontamentosDespesa(apto)');
+        return this._http.post('/apontamentos/despesa/', apto);
     };
     ProjetoService.prototype.obterTodos = function () {
         console.log('ProjetoService > obterTodos()');
@@ -3458,8 +3477,8 @@ var RelatorioApontamentoDespesasUsuarioComponent = /** @class */ (function () {
         this.options = fb.group({
             _projetoId: [null],
             email: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required]],
-            data1: new Date().toDateString(),
-            data2: new Date().toDateString(),
+            data1: new Date(),
+            data2: new Date(),
             tipo: 'despesa'
         });
         iconRegistry.addSvgIcon('thumbs-up', sanitizer.bypassSecurityTrustResourceUrl('assets/svg/thumbup-icon.svg'));
@@ -3502,7 +3521,7 @@ var RelatorioApontamentoDespesasUsuarioComponent = /** @class */ (function () {
     RelatorioApontamentoDespesasUsuarioComponent.prototype.obterApontamentos = function () {
         var _this = this;
         console.log('RelatorioApontamentoDespesasUsuarioComponent > obterApontamentos');
-        this._projetoService.obterApontamento(this.options.value)
+        this._projetoService.obterApontamentosDespesa(this.options.value)
             .subscribe(function (apontamentos) {
             _this.apontamentos = apontamentos.json();
             var _loop_1 = function (a) {

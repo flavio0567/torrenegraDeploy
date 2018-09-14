@@ -15,7 +15,7 @@ module.exports = function(app){
         projeto.projetosEstado(req, res)})
     .get('/apontamentos/hora/usuario/', (req, res) => {
         projeto.obterApontamentoHoraPorUsuario(req, res)})
-    .get('/apontamentos/despesa/', (req, res) => {
+    .post('/apontamentos/despesa/', (req, res) => {
         projeto.obterApontamentoDespesaPorUsuario(req, res)})
     .put('/apontamento/novo/:id', (req, res) => {
         projeto.apontamentoNovo(req, res)})

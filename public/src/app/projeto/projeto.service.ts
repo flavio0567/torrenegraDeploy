@@ -18,9 +18,9 @@ export class ProjetoService {
     return this._http.post('/obter/apontamento',  apto);
   }
 
-  obterApontamentosDespesa(usuario) {
-    console.log('ProjetoService > obterApontamentosDespesa(usuario)' );
-    return this._http.get('/apontamentos/despesa/', {params: { usuario: usuario}});
+  obterApontamentosDespesa(apto) {
+    console.log('ProjetoService > obterApontamentosDespesa(apto)' );
+    return this._http.post('/apontamentos/despesa/', apto);
 
   }
 

@@ -75,8 +75,8 @@ export class RelatorioApontamentoDespesasUsuarioComponent implements OnInit {
     this.options = fb.group({
       _projetoId: [null],
       email: [null, [ Validators.required ]],
-      data1: new Date().toDateString(),
-      data2: new Date().toDateString(),
+      data1: new Date(),
+      data2: new Date(),
       tipo: 'despesa'
     });
     iconRegistry.addSvgIcon(
@@ -125,7 +125,7 @@ export class RelatorioApontamentoDespesasUsuarioComponent implements OnInit {
 
   obterApontamentos() {
     console.log('RelatorioApontamentoDespesasUsuarioComponent > obterApontamentos');
-    this._projetoService.obterApontamento(this.options.value)
+    this._projetoService.obterApontamentosDespesa(this.options.value)
     .subscribe(
       (apontamentos) => { 
         this.apontamentos = apontamentos.json();

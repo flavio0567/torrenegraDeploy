@@ -101,11 +101,12 @@ module.exports = {
             })
     },
     obterApontamento: (req, res) => {
-        console.log("SERVER > CONTROLLER > obterApontamento > req.body");
+        console.log("SERVER > CONTROLLER > obterApontamento > req.body", req.body);
+        // console.log('projeto: ', ObjectId(req.body._projetoId), 'email:', req.body.email, 'data1:', req.body.data1, 'data2:', req.body.data2);
         if (req.body._projetoId) {
-            console.log('projeto: ', ObjectId(req.body._projetoId), 'email:', req.body.email);
             // Apontamento.find({ $and: [ { usuario: {$eq: req.query.email }}, { _projeto: ObjectId(req.query._projetoId) }, { tipo : 'hora' }, { 'hora.inicio': { $gte: req.query.data1 }  },  { 'hora.inicio': { $lte: req.query.data2 }  }, { 'hora.fim': { $ne: [''] }} ] })
-            Apontamento.find({ $and: [ { usuario: {$eq: req.body.email }}, { _projeto: ObjectId(req.body._projetoId) }, { tipo : req.body.tipo } ] })
+            // Apontamento.find({ $and: [ { usuario: {$eq: req.body.email }}, { _projeto: ObjectId(req.body._projetoId) }, { tipo : req.body.tipo } ] })
+            Apontamento.find({tipo : req.body.tipo,  usuario: {$eq: req.body.email}, _projeto: ObjectId(req.body._projetoId), 'hora.inicio': { $gte: (req.body.data1), $lte: (req.body.data2) }  })
             .populate('apontamentos') 
             .exec(function (err, apontamento) {
                 console.log('Os apontamentos são %s', apontamento);
@@ -113,28 +114,38 @@ module.exports = {
             })
             .catch(error => console.log(error));  
         } else {
-            console.log('projeto: ', null, 'email:', req.body.email);
             // Apontamento.find({ $and: [ { usuario: {$eq: req.query.email }}, { _projeto: req.query._projetoId }, { tipo : 'hora' }, { 'hora.inicio': { $gte: req.query.data1 }  },  { 'hora.inicio': { $lte: req.query.data2 }  }, { 'hora.fim': { $ne: [''] }} ] })
-            Apontamento.find({ $and: [ { usuario: {$eq: req.body.email }}, { tipo : req.body.tipo } ] })
+            Apontamento.find({ $and: [ { usuario: {$eq: req.body.email }}, { tipo : req.body.tipo }, { 'hora.inicio': { $gte: (req.body.data1), $lte: (req.body.data2) } } ] })
                 .populate('apontamentos') 
                 .exec(function (err, apontamento) {
                     // if (err) return handleError(err);
-                    console.log('sucesso obtendo apontamentos ');
+                    console.log('sucesso obtendo apontamentos hora ');
                     res.json(apontamento);
                 })
                 .catch(error => console.log(error));
         }
     },
     obterApontamentoDespesaPorUsuario: (req, res) => {
-        console.log("SERVER > CONTROLLER > obterApontamentoDespesaPorUsuario");
+        console.log("SERVER > CONTROLLER > obterApontamentoDespesaPorUsuario", req.body);
         // Apontamento.find({ $and: [ { tipo : { $eq: ['despesa'] } }, { usuario: { $eq: [req.query.usuario]} } ] } )
-        Apontamento.find({ tipo : 'despesa', usuario: req.query.usuario} ).sort({ createdAt: -1 })
+        if (req.body._projetoId) {
+            Apontamento.find({tipo : req.body.tipo,  usuario: {$eq: req.body.email}, _projeto: ObjectId(req.body._projetoId), 'despesa.data': { $gte: (req.body.data1), $lte: (req.body.data2) }  })
             .populate('apontamentos') 
             .exec(function (err, apontamento) {
-                if (err) return handleError(err);
-                console.log('sucesso obtendo apontamentos ');
+                console.log('Os apontamentos são %s', apontamento);
                 res.json(apontamento);
             })
+            .catch(error => console.log(error));  
+        } else {
+            Apontamento.find({ $and: [ { usuario: {$eq: req.body.email }}, { tipo : req.body.tipo }, { 'despesa.data': { $gte: (req.body.data1), $lte: (req.body.data2) } } ] })
+                .populate('apontamentos') 
+                .exec(function (err, apontamento) {
+                    // if (err) return handleError(err);
+                    console.log('sucesso obtendo apontamentos despesa ');
+                    res.json(apontamento);
+                })
+                .catch(error => console.log(error));
+        }
     },
     obterApontamentoTotal: (req, res) => {
         console.log("SERVER > CONTROLLER > obterApontamentoTotalHora");

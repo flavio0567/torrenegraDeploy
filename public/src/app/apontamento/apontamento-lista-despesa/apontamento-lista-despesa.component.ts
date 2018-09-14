@@ -13,6 +13,25 @@ export interface ApontamentoData {
     data: string}
 }
 
+export function AddDays(date, amount) {
+  var tzOff = date.getTimezoneOffset() * 60 * 1000,
+      t = date.getTime(),
+      d = new Date(),
+      tzOff2;
+
+  t += (1000 * 60 * 60 * 24) * amount;
+  d.setTime(t);
+  tzOff2 = d.getTimezoneOffset() * 60 * 1000;
+  if (tzOff != tzOff2) {
+    var diff = tzOff2 - tzOff;
+    t += diff;
+    d.setTime(t);
+  }
+  return d;
+}
+
+
+
 @Component({
   selector: 'apontamento-lista-despesa',
   templateUrl: './apontamento-lista-despesa.component.html',
@@ -26,10 +45,7 @@ export class ApontamentoListaDespesaComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  usuarioLogado = {
-    email: '',
-    admin: ''
-  }
+  usuarioLogado = '';
 
   apontamentos = [{
     codigo: "",
@@ -40,6 +56,15 @@ export class ApontamentoListaDespesaComponent implements OnInit {
       data: ""},
     _projeto: ""
   }] 
+
+  today = AddDays(new Date(),-1);
+  tomorrow = AddDays(new Date(), 1);
+  apto = {
+    email: this.usuarioLogado,
+    data1: this.today,
+    data2: this.tomorrow,
+    tipo: 'despesa'
+  }
 
   projeto: any;
   
@@ -64,8 +89,9 @@ export class ApontamentoListaDespesaComponent implements OnInit {
   }
 
   obterListaApontamento(){
+    this.apto.email = this.usuarioLogado;
     console.log('ApontamentoListaDespesaComponent > obterListaApontamento()');
-    const apontObservable = this._projetoService.obterApontamentosDespesa(this.usuarioLogado);
+    const apontObservable = this._projetoService.obterApontamentosDespesa(this.apto);
     apontObservable.subscribe(
       (apontamentos) => {
         this.apontamentos = apontamentos.json();
