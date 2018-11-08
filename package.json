@@ -24,6 +24,7 @@
     "jwt-secret": "^1.1.1",
     "mongoose": "^4.13.10",
     "mongoose-unique-validator": "^1.0.6",
+    "node": "^10.12.0",
     "save": "^2.3.2"
   }
 }

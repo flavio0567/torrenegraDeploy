@@ -195,17 +195,30 @@ export class RelatorioApontamentoHorasUsuarioComponent implements OnInit {
       row['codigo'] = this.apontamentos[i].codigo;
       row['cliente'] = this.apontamentos[i].cliente;
       let dtInicio = new Date(this.apontamentos[i].hora.inicio);
-      let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
-      row['inicio'] = dtInicio.toLocaleDateString('pt-BR', options);
+      // let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+      let semana = { weekday: 'long'};
+      let dia = { year: 'numeric', month: '2-digit', day: '2-digit' };
+      row['dia_da_semana_inicio'] = dtInicio.toLocaleDateString('pt-BR', semana);
+      row['data_inicio '] = dtInicio.toLocaleDateString('pt-BR', dia);
+      row['hora_inicio'] =  ('00' + dtInicio.getHours()).slice(-2) + ':' + ('00' + dtInicio.getMinutes()).slice(-2);
       let dtFim = new Date(this.apontamentos[i].hora.fim);
       if (Object.prototype.toString.call(dtFim) === "[object Date]") {
         if (isNaN(dtFim.getTime())) {
-          row['fim'] = '';
+          // row['fim'] = '';
+          row['dia_da_semana_fim'] = '';
+          row['data_fim'] = '';
+          row['hora_fim'] = '';
         } else {
-          row['fim'] = dtFim.toLocaleDateString('pt-BR', options);
+          // row['fim'] = dtFim.toLocaleDateString('pt-BR', options);
+          row['dia_da_semana_fim'] = dtFim.toLocaleDateString('pt-BR', semana);
+          row['data_fim'] = dtFim.toLocaleDateString('pt-BR', dia);
+          row['hora_fim'] = ('00' + dtFim.getHours()).slice(-2) + ':' + ('00' + dtFim.getMinutes()).slice(-2);
         }
       } else {
-        row['fim'] = '';
+        // row['fim'] = '';
+        row['dia_da_semana_fim'] = '';
+        row['data_fim'] = '';
+        row['hora_fim'] = '';
       }
       row['totalhh'] = this.apontamentos[i].totalhh;
       this.data.push(row);
