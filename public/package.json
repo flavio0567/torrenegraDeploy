@@ -37,7 +37,7 @@
     "popper.js": "^1.14.3",
     "rxjs": "^6.2.2",
     "rxjs-compat": "^6.2.2",
-    "xlsx": "^0.13.5",
+    "xlsx": "^0.17.0",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
